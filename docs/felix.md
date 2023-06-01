@@ -1,3 +1,0 @@
-# Felix Bierpongregeln
-
----

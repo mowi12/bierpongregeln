@@ -1,5 +1,3 @@
-# Ergebnisse und Platzierungen
-
 ## Bewertung (Einzel- und Teamturniere)
 
 1. Platz: 5 Punkte

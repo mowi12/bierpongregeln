@@ -1,6 +1,5 @@
-- [Home](README.md)
-- [Allgemeine Regeln](allgemeine_regeln.md)
-- Flavours
-  - [Moritz](moritz.md)
-    - [Ergebnisse](ergebnisse.md)
-  - [Felix](felix.md)
+- [Allgemeine Regeln](allgemeine-regeln.md)
+- [Flavours](flavours.md)
+  - [Moritz-Regeln](moritz-regeln.md)
+  - [Felix-Regeln](felix-regeln.md)
+- [Ergebnisse](ergebnisse.md)
