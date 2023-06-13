@@ -2,8 +2,6 @@ name: Feature request
 description: Suggest an idea for this project
 title: '[Feature]: <title>'
 labels: ["enhancement"]
-assignees:
-  - Slartibartfass2
 body:
   - type: markdown
     attributes:
