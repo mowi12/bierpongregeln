@@ -11,7 +11,7 @@
   <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
   <style>
     :root {
-      --theme-color: rgb(255, 102, 0);
+      --theme-color: rgb(253, 119, 110);
     }
   </style>
 </head>
@@ -27,8 +27,9 @@
       loadSidebar: true,
       logo: '/images/logo_scaled_down.png',
       name: 'Bierpongregeln',
-      // repo: 'https://github.com/mowi12/Bierpongregeln',
-      subMaxLevel: 2,
+      onlyCover: true,
+      repo: 'https://github.com/mowi12/bierpongregeln',
+      subMaxLevel: 4,
       themable: {
         readyTransitions: true,
         responsiveTables: true
@@ -38,7 +39,7 @@
         suffix: 'v1.0.0'
       },
       timeUpdater: {
-        text: "<div align='center' style='color:gray;font-size:10px' >last updated: {docsify-updated}</div>",
+        text: "<div align='center' style='color:gray;font-size:15px' >last updated: {docsify-updated}</div>",
         formatUpdated: '{YYYY}/{MM}/{DD}',
         whereToPlace: 'top'
       },

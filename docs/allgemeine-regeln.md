@@ -1,1 +1,0 @@
-Hier kommen allgemeine Regeln hin.

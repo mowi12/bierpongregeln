@@ -4,6 +4,6 @@
 
 > Die beste Bierpongregelsammlung!
 
-[Allgemeine Regeln](allgemeine-regeln.md)
-[Moritz](moritz-regeln.md)
-[Felix](felix-regeln.md)
+[Regelwerk](regelwerk.md)
+[Flavor - Moritz](moritz.md)
+[Flavor - Felix](felix.md)

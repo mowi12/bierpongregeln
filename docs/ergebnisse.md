@@ -1,3 +1,5 @@
+<h1 align=center>Ergebnisse</h1>
+
 ## Bewertung (Einzel- und Teamturniere)
 
 1. Platz: 5 Punkte
