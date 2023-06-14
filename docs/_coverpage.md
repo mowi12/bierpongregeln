@@ -5,5 +5,3 @@
 > Die beste Bierpongregelsammlung!
 
 [Regelwerk](regelwerk.md)
-[Flavor - Moritz](moritz.md)
-[Flavor - Felix](felix.md)

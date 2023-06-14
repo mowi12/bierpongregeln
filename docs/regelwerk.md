@@ -129,49 +129,49 @@ Es gibt keine allgemeinen Turnierabläufe. Wie genau sich ein Turnier abspielt h
 
 #### Art 14 - Becher umschmeißen
 
-1.  Wenn ein Team während des Spiels einen oder mehrere eigene Becher umwirft, muss ein eigener Becher entfernt werden.
-2.  Der letzte Becher darf nicht durch Umschmeißen entfernt werden. Hier wird an die Fairness der Mitspieler appeliert.
+1. Wenn ein Team während des Spiels einen oder mehrere eigene Becher umwirft, muss ein eigener Becher entfernt werden.
+2. Der letzte Becher darf nicht durch Umschmeißen entfernt werden. Hier wird an die Fairness der Mitspieler appeliert.
 
 #### Art 15 - Blasen/Fingern
 
-1.  Es ist nicht erlaubt, einen Ball, der noch nicht komplett im Becher ist, mit Blasen oder Fingern zu retten.
+1. Es ist nicht erlaubt, einen Ball, der noch nicht komplett im Becher ist, mit Blasen oder Fingern zu retten.
 
 #### Art 16 - Dead Cup
 
-1.  Wenn am Ende einer Runde ein getroffener Becher stehen bleibt, zählt dieser Becher als Dead Cup. Wenn das gegnerische Team in einer der nachfolgenden Runden diesen Becher trifft, hat das Team, das den Dead Cup getroffen hat, sofort gewonnen.
-2.  Wenn eine Person des Teams mit dem Dead Cup bemerkt, dass sie einen Dead Cup haben, dürfen sie diesen Becher entfernen. Dies darf jedoch nicht innerhalb einer gegnerischen Wurfrunde geschehen.
+1. Wenn am Ende einer Runde ein getroffener Becher stehen bleibt, zählt dieser Becher als Dead Cup. Wenn das gegnerische Team in einer der nachfolgenden Runden diesen Becher trifft, hat das Team, das den Dead Cup getroffen hat, sofort gewonnen.
+2. Wenn eine Person des Teams mit dem Dead Cup bemerkt, dass sie einen Dead Cup haben, dürfen sie diesen Becher entfernen. Dies darf jedoch nicht innerhalb einer gegnerischen Wurfrunde geschehen.
 
 #### Art 17 - Trickshot
 
-1.  Wenn ein Ball nach einem Wurf zurück auf die eigene Tischseite rollt, also über die Mitte des Tisches, darf das aktuelle Werferteam den Ball holen. Der Spieler, der den Ball geholt hat, darf einen Trickshot machen. Dieser muss nach den regulären Würfen geworfen werden. Außerdem werden zuerst von regulären Bällen getroffene Becher entfernt.
-2.  Ein Ball gilt nur als zurückgerollt, wenn er auf der eigenen Tischhälfte liegt. Wenn er wieder in die gegnerische Hälfte zurückrollt, darf der Ball nicht mehr geholt werden.
-3.  Becher, die von einem Trickshot getroffen wurden, müssen sofort entfernt werden.
-4.  Wenn ein Trickshot-Ball auf die eigene Tischhälfte zurückrollt, kann dieser ebenfalls geholt werden, und ein weiterer Trickshot kann gemacht werden.
-5.  Ein Trickshot zählt nicht als Air Ball, wenn er hinter der Tischkante gefangen wird.
+1. Wenn ein Ball nach einem Wurf zurück auf die eigene Tischseite rollt, also über die Mitte des Tisches, darf das aktuelle Werferteam den Ball holen. Der Spieler, der den Ball geholt hat, darf einen Trickshot machen. Dieser muss nach den regulären Würfen geworfen werden. Außerdem werden zuerst von regulären Bällen getroffene Becher entfernt.
+2. Ein Ball gilt nur als zurückgerollt, wenn er auf der eigenen Tischhälfte liegt. Wenn er wieder in die gegnerische Hälfte zurückrollt, darf der Ball nicht mehr geholt werden.
+3. Becher, die von einem Trickshot getroffen wurden, müssen sofort entfernt werden.
+4. Wenn ein Trickshot-Ball auf die eigene Tischhälfte zurückrollt, kann dieser ebenfalls geholt werden, und ein weiterer Trickshot kann gemacht werden.
+5. Ein Trickshot zählt nicht als Air Ball, wenn er hinter der Tischkante gefangen wird.
 
 #### Art 18 - Bombe
 
-1.  Wenn in einer Wurfrunde beide Würfe eines Teams den gleichen Becher treffen, müssen dieser Becher und zwei weitere Becher entfernt werden.
-2.  Eine Bombe führt sofort zur Ausführung der Balls Back-Regel.
+1. Wenn in einer Wurfrunde beide Würfe eines Teams den gleichen Becher treffen, müssen dieser Becher und zwei weitere Becher entfernt werden.
+2. Eine Bombe führt sofort zur Ausführung der Balls Back-Regel.
 
 #### Art 19 - On Fire
 
-1.  Wenn ein Spieler zwei Bälle hintereinander trifft, darf er Heating Up rufen. Wenn derselbe Spieler einen weiteren dritten Becher hintereinander trifft und On Fire ruft, ist er On Fire. Er darf so lange werfen, bis er nicht mehr trifft.
-2.  Heating Up und On Fire müssen nicht in der gleichen Wurfrunde gerufen werden.
-3.  Wenn Heating Up oder On Fire nicht gerufen wurde, kann der Spieler beim nächsten Treffer in Folge Heating Up oder On Fire rufen.
-4.  Die On Fire-Würfe werden sofort nach dem Ausruf ausgeführt.
-5.  Aufsetzer und andere Specialwürfe zählen nur als ein Treffer.
+1. Wenn ein Spieler zwei Bälle hintereinander trifft, darf er Heating Up rufen. Wenn derselbe Spieler einen weiteren dritten Becher hintereinander trifft und On Fire ruft, ist er On Fire. Er darf so lange werfen, bis er nicht mehr trifft.
+2. Heating Up und On Fire müssen nicht in der gleichen Wurfrunde gerufen werden.
+3. Wenn Heating Up oder On Fire nicht gerufen wurde, kann der Spieler beim nächsten Treffer in Folge Heating Up oder On Fire rufen.
+4. Die On Fire-Würfe werden sofort nach dem Ausruf ausgeführt.
+5. Aufsetzer und andere Specialwürfe zählen nur als ein Treffer.
 
 #### Art 20 - Island
 
-1.  Wenn ein Becher allein steht, also keine Nachbarn hat, kann ein Spieler Island auf diesen Becher rufen. Wenn der Spieler den genannten Becher trifft, müssen der getroffene Becher und ein weiterer Becher entfernt werden. Wenn der Spieler anstelle des Island-Bechers einen anderen Becher trifft, zählt der Treffer nicht.
-2.  Jeder Spieler darf im gesamten Spiel einmal Island rufen.
+1. Wenn ein Becher allein steht, also keine Nachbarn hat, kann ein Spieler Island auf diesen Becher rufen. Wenn der Spieler den genannten Becher trifft, müssen der getroffene Becher und ein weiterer Becher entfernt werden. Wenn der Spieler anstelle des Island-Bechers einen anderen Becher trifft, zählt der Treffer nicht.
+2. Jeder Spieler darf im gesamten Spiel einmal Island rufen.
 
 #### Art 21 - Air Ball
 
-1.  Wenn ein Air Ball hinter der Tischkante gefangen wird, darf der Fänger des Balls (solange er im gegnerischen Team ist) in der nächsten Wurfrunde einen Ball doppelt werfen.
-2.  Ein Ball zählt als Air Ball, wenn er keinen Gegenstand oder ähnliches berührt und hinter der Tischplatte gefangen wird.
-3.  Bälle, die seitlich neben den Tisch geworfen werden oder dort gefangen werden, zählen nicht als Air Ball.
+1. Wenn ein Air Ball hinter der Tischkante gefangen wird, darf der Fänger des Balls (solange er im gegnerischen Team ist) in der nächsten Wurfrunde einen Ball doppelt werfen.
+2. Ein Ball zählt als Air Ball, wenn er keinen Gegenstand oder ähnliches berührt und hinter der Tischplatte gefangen wird.
+3. Bälle, die seitlich neben den Tisch geworfen werden oder dort gefangen werden, zählen nicht als Air Ball.
 
 ## Sonstiges
 
