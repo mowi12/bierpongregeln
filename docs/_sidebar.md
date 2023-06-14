@@ -1,5 +1,4 @@
 - [Regelwerk](regelwerk.md)
-- [Flavor - Moritz](moritz.md)
 - [Flavor - Felix](felix.md)
 - [Flavor - 3D](3d.md)
 - [Ergebnisse](ergebnisse.md)
