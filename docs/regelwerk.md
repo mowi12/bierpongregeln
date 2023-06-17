@@ -23,6 +23,7 @@ Aktuelle Varianten sind:
 - [Flavor - Felix](felix)
 - [Flavor - 3D](3d)
 - [Flavor - Mehr bälle](mehrbaelle)
+- [Flavor - Sniper](sniper)
 
 ## Vorbereitung
 

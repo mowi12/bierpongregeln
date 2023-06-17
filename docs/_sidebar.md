@@ -2,4 +2,5 @@
 - [Flavor - Felix](felix.md)
 - [Flavor - 3D](3d.md)
 - [Flavor - Mehr Bälle](mehrbaelle.md)
+- [Flavor - Sniper](sniper.md)
 - [Ergebnisse](ergebnisse.md)
