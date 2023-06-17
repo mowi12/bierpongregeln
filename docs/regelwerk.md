@@ -75,10 +75,12 @@ Es gibt keine allgemeinen Turnierabläufe. Wie genau sich ein Turnier abspielt h
 1. Bei der Millane-Technik, wenn eine Person seitlich vom Tisch steht, muss der Ellenbogen immer noch hinter der verlängerten Tischkante bleiben.
 2. Die Millane-Technik darf nur angewendet werden, wenn dadurch keine andere Person behindert wird.
 
-#### Art 5 - Becher richten
+#### Art 5 - Becher richten / zusammenstellen
 
-1. Eine spielende Person kann das andere Team auffordern, die Becher zu richten. Das gegnerische Team muss dieser Aufforderung nachkommen und die Becher richten.
+1. Eine spielende Person kann das andere Team auffordern, die Becher zu richten. Mit Richten ist nur das Rejustieren des Bechers an seine ursprüngliche Position gemeint.Das gegnerische Team muss dieser Aufforderung nachkommen und die Becher richten.
 2. Das gegnerische Team darf die Becher nicht ohne Erlaubnis des anderen Teams richten.
+3. Eine spielende Person kann das andere Team auffordern, die Becher zusammenzustellen. Die Formation darf sich das eigene Team aussuchen.
+4. Jedes Team darf seine Becher nur einmal im ganzen Spiel zusammenstellen.
 
 #### Art 6 - Ball entfernen
 
@@ -126,7 +128,7 @@ Es gibt keine allgemeinen Turnierabläufe. Wie genau sich ein Turnier abspielt h
 
 #### Art 13 - Roller
 
-1. Rollt ein Becher über mehrere Becher, so zählt nur der Becher als getroffen, in dem der Becher am Ende landet.
+1. Rollt ein Ball über mehrere Becher, so zählt nur der Becher als getroffen, in dem der Becher am Ende landet.
 2. Dreht sich ein Ball in einem Becher und fliegt dann in einen anderen Becher, so zählt nur der Becher, in dem der Ball final landet als getroffen.
 3. Ein rollender Ball darf weggeschlagen werden.
 
