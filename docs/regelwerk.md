@@ -22,8 +22,10 @@ Aktuelle Varianten sind:
 
 - [Flavor - Felix](felix)
 - [Flavor - 3D](3d)
-- [Flavor - Mehr bälle](mehrbaelle)
+- [Flavor - Mehr Bälle](mehrbaelle)
 - [Flavor - Sniper](sniper)
+
+Natürlich können verschiedene Varianten, bzw. Flavors auch kombiniert werden.
 
 ## Vorbereitung
 
