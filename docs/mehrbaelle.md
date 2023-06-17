@@ -25,3 +25,11 @@
 #### Art 18 - Bombe
 
 1.  Wenn in einer Wurfrunde <span style="color:rgb(253, 119, 110)">alle</span> Würfe eines Teams den gleichen Becher treffen, müssen dieser Becher und zwei weitere Becher entfernt werden.
+
+## Kombinationsmöglichkeiten
+
+Dieser Flavor ist mit den Flavors 3D und Sniper ohne weitere Einschränkungen kombinierbar.
+
+### Kombination - Felix
+
+1. Art 11: Spielweise nach Flavor Felix

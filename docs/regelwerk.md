@@ -25,7 +25,7 @@ Aktuelle Varianten sind:
 - [Flavor - Mehr Bälle](mehrbaelle)
 - [Flavor - Sniper](sniper)
 
-Natürlich können verschiedene Varianten, bzw. Flavors auch kombiniert werden.
+Natürlich können verschiedene Varianten, bzw. Flavors auch kombiniert werden. Wie und ob verschiedene Flavor miteinander kombinierbar sind steht bei bei jedem Flavor dabei.
 
 ## Vorbereitung
 

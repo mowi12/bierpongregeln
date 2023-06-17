@@ -31,3 +31,11 @@
 2. <span style="color:rgb(253, 119, 110)"><del>Eine Bombe führt sofort zur Ausführung der Balls Back-Regel.</del></span>
 
 #### Art 19 - <span style="color:rgb(253, 119, 110)"><del>On Fire</del></span>
+
+## Kombinationsmöglichkeiten
+
+Dieser Flavor ist mit den Flavors 3D und Sniper ohne weitere Einschränkungen kombinierbar.
+
+### Kombination - Mehr Bälle
+
+1. Art 11: Spielweise nach Flavor Felix
