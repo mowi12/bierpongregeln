@@ -1,4 +1,4 @@
-![logo](images/logo_scaled_down.png)
+![logo](images/logo.png ':size=60%')
 
 # Bierpongregeln
 
