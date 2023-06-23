@@ -28,22 +28,27 @@ Sebbi      | 0          | 0          | 1
 
 Name       | Punkte     | Siege      | Teilnahmen
 ---------- | ---------- | ---------- | ----------
+Millane    | 11         | 2          | 4
+Moritz W.  | 9          | 1          | 4
 Moritz G.  | 6          | 0          | 2
 Markus     | 5          | 1          | 2
-Millane    | 5          | 1          | 2
+Dominik    | 3          | 0          | 2
 Leonhard   | 1          | 0          | 2
-Moritz W.  | 1          | 0          | 2
-Mukhtar    | 0          | 0          | 2
+Felix      | 1          | 0          | 3
+Mukhtar    | 0          | 0          | 4
 Sophie     | 0          | 0          | 1
 Lea        | 0          | 0          | 1
 Marcel     | 0          | 0          | 1
-Felix      | 0          | 0          | 1
+Hartmut    | 0          | 0          | 1
+Ines       | 0          | 0          | 1
 
 ## Turniere und Platzierungen (Team und Einzel)
 
-Datum      | 1.         | 2.        | 3.
----------- | ---------- | --------- | ----------
-28.01.23   | Millane            | Moritz G.          | Leonhard
-10.02.23   | Tim & Michael      | Sophie & Moritz W. | Marcel & Felix
-05.03.23   | Dominik & Leonhard | Markus & Mukhtar   | Lea & Moritz
-23.04.23   | Markus             | Moritz G.          | Moritz W.
+Datum      | 1.         | 2.        | 3.         | Flavor
+---------- | ---------- | --------- | ---------- | ----------
+28.01.23   | Millane            | Moritz G.          | Leonhard       | Normal
+10.02.23   | Tim & Michael      | Sophie & Moritz W. | Marcel & Felix | Normal
+05.03.23   | Dominik & Leonhard | Markus & Mukhtar   | Lea & Moritz   | Normal
+23.04.23   | Markus             | Moritz G.          | Moritz W.      | Normal
+22.06.23   | Millane            | Moritz W.          | Felix          | Normal
+22.06.23   | Moritz W.          | Dominik            | Millane        | Normal + 3D
