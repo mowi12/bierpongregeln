@@ -46,9 +46,9 @@ Ines       | 0          | 0          | 1
 
 Datum      | 1.         | 2.        | 3.         | Flavor
 ---------- | ---------- | --------- | ---------- | ----------
-28.01.23   | Millane            | Moritz G.          | Leonhard       | Normal
-10.02.23   | Tim & Michael      | Sophie & Moritz W. | Marcel & Felix | Normal
-05.03.23   | Dominik & Leonhard | Markus & Mukhtar   | Lea & Moritz   | Normal
-23.04.23   | Markus             | Moritz G.          | Moritz W.      | Normal
-22.06.23   | Millane            | Moritz W.          | Felix          | Normal
-22.06.23   | Moritz W.          | Dominik            | Millane        | Normal + 3D
+28.01.23   | Millane            | Moritz G.          | Leonhard       | Moritz
+10.02.23   | Tim & Michael      | Sophie & Moritz W. | Marcel & Felix | Moritz
+05.03.23   | Dominik & Leonhard | Markus & Mukhtar   | Lea & Moritz   | Moritz
+23.04.23   | Markus             | Moritz G.          | Moritz W.      | Moritz
+22.06.23   | Millane            | Moritz W.          | Felix          | Moritz
+22.06.23   | Moritz W.          | Dominik            | Millane        | Moritz + 3D

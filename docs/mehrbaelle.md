@@ -28,7 +28,7 @@
 
 ## Kombinationsmöglichkeiten
 
-Dieser Flavor ist mit den Flavors 3D und Sniper ohne weitere Einschränkungen kombinierbar.
+Dieser Flavor ist mit den Flavors Moritz, 3D und Sniper ohne weitere Einschränkungen kombinierbar.
 
 ### Kombination - Felix
 
