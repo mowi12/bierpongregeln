@@ -8,39 +8,39 @@
 
 ## Bestenliste (Team)
 
-Name       | Punkte     | Siege      | Teilnahmen
----------- | ---------- | ---------- | ----------
-Dominik    | 5          | 1          | 1
-Tim        | 5          | 1          | 2
-Michael    | 5          | 1          | 2
-Leonhard   | 5          | 1          | 2
-Moritz W.  | 4          | 0          | 2
-Sophie     | 3          | 0          | 1
-Mukhtar    | 3          | 0          | 2
-Markus     | 3          | 0          | 2
-Marcel     | 1          | 0          | 2
-Felix      | 1          | 0          | 2
-Lea        | 1          | 0          | 2
-Millane    | 0          | 0          | 1
-Sebbi      | 0          | 0          | 1
+Name       | PPG        |Punkte     | Siege      | Teilnahmen
+---------- | ---------- | ---------- | ---------- | ----------
+Dominik    | 5          | 5          | 1          | 1
+Sophie     | 3          | 3          | 0          | 1
+Tim        | 2,5        | 5          | 1          | 2
+Michael    | 2,5        | 5          | 1          | 2
+Leonhard   | 2,5        | 5          | 1          | 2
+Moritz W.  | 2          | 4          | 0          | 2
+Mukhtar    | 1,5        | 3          | 0          | 2
+Markus     | 1,5        | 3          | 0          | 2
+Marcel     | 0,5        | 1          | 0          | 2
+Felix      | 0,5        | 1          | 0          | 2
+Lea        | 0,5        | 1          | 0          | 2
+Millane    | 0          | 0          | 0          | 1
+Sebbi      | 0          | 0          | 0          | 1
 
 ## Bestenliste (Einzel)
 
-Name       | Punkte     | Siege      | Teilnahmen
----------- | ---------- | ---------- | ----------
-Millane    | 11         | 2          | 4
-Moritz W.  | 9          | 1          | 4
-Moritz G.  | 6          | 0          | 2
-Markus     | 5          | 1          | 2
-Dominik    | 3          | 0          | 2
-Leonhard   | 1          | 0          | 2
-Felix      | 1          | 0          | 3
-Mukhtar    | 0          | 0          | 4
-Sophie     | 0          | 0          | 1
-Lea        | 0          | 0          | 1
-Marcel     | 0          | 0          | 1
-Hartmut    | 0          | 0          | 1
-Ines       | 0          | 0          | 1
+Name       | PPG        | Punkte     | Siege      | Teilnahmen
+---------- | ---------- | ---------- | ---------- | ----------
+Moritz G.  | 3          | 6          | 0          | 2
+Millane    | 2,75       | 11         | 2          | 4
+Markus     | 2,5        | 5          | 1          | 2
+Moritz W.  | 2,25       | 9          | 1          | 4
+Dominik    | 1,5        | 3          | 0          | 2
+Leonhard   | 0,5        | 1          | 0          | 2
+Felix      | 0,34       | 1          | 0          | 3
+Mukhtar    | 0          | 0          | 0          | 4
+Sophie     | 0          | 0          | 0          | 1
+Lea        | 0          | 0          | 0          | 1
+Marcel     | 0          | 0          | 0          | 1
+Hartmut    | 0          | 0          | 0          | 1
+Ines       | 0          | 0          | 0          | 1
 
 ## Turniere und Platzierungen (Team und Einzel)
 
