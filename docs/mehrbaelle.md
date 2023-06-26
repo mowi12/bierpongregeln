@@ -33,3 +33,7 @@ Dieser Flavor ist mit den Flavors Moritz, 3D und Sniper ohne weitere Einschränk
 ### Kombination - Felix
 
 1. Art 11: Spielweise nach Flavor Felix
+
+### Kombination - Game Pigeon
+
+- Ist nicht mit Flavor Game Pigeon kombinierbar

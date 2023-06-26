@@ -58,6 +58,10 @@ Dieser Flavor ist mit den Flavors 3D und Sniper ohne weitere Einschränkungen ko
 
 - Ist nicht mit Flavor Moritz kombinierbar
 
+### Kombination - Game Pigeon
+
+- Ist nicht mit Flavor Game Pigeon kombinierbar
+
 ### Kombination - Mehr Bälle
 
 1. Art 11: Spielweise nach Flavor Felix

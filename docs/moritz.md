@@ -40,3 +40,7 @@ Dieser Flavor ist mit den Flavors 3D, Mehr Bälle und Sniper ohne weitere Einsch
 ### Kombination - Felix
 
 - Ist nicht mit Flavor Felix kombinierbar
+
+### Kombination - Game Pigeon
+
+- Ist nicht mit Flavor Game Pigeon kombinierbar

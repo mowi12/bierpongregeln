@@ -22,6 +22,7 @@ Aktuelle Varianten sind:
 
 - [Flavor - Moritz](moritz)
 - [Flavor - Felix](felix)
+- [Flavor - Game Pigeon](gamepigeon)
 - [Flavor - 3D](3d)
 - [Flavor - Mehr Bälle](mehrbaelle)
 - [Flavor - Sniper](sniper)
