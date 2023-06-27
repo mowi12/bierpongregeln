@@ -1,0 +1,7 @@
+{
+  "name": "bierpongregeln",
+  "description": "This is a collection of rulesets for beer pong that is served as static html page.",
+  "devDependencies": {
+    "eslint": "^8.43.0"
+  }
+}
