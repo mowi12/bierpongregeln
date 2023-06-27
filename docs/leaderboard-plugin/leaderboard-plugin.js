@@ -1,39 +1,33 @@
+/*eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]*/
+/* global $docsify:writeable */
+
+const tags = [
+    "{{rating}}",
+    "{{teamLeaderboard}}",
+    "{{singleLeaderboard}}",
+    "{{tournaments}}",
+];
+
 (function () {
-    var leaderboardPlugin = function (hook, vm) {
+    var leaderboardPlugin = function (hook, _) {
         hook.beforeEach(
             /** @param {string} markdown */
-            function (markdown) {
-                if (!markdown.includes("{{leaderboard}}")) {
-                    return markdown;
+            function (markdown, next) {
+                // Only run plugin if markdown contains tags
+                if (!tags.some((tag) => markdown.includes(tag))) {
+                    next(markdown);
+                    return;
                 }
 
-                /**
-                 * @type {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, players: {name: string, singleParticipations: number, teamParticipations: number}[], turnaments: {date: string, flavor: string, type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]}}
-                 */
-                const data = turnamentData;
-
-                // Calculate points and metrics
-                const team_leaderboard = fillLeaderboardData(data, TurnamentType.Team);
-                const single_leaderboard = fillLeaderboardData(data, TurnamentType.Single);
-
-                let leaderboard = "";
-
-                // Rating
-                leaderboard += "## Bewertung (Einzel- und Teamturniere)\n\n";
-                leaderboard += `1. Platz: ${formatRating(data.rating.firstPlace)}\n`;
-                leaderboard += `2. Platz: ${formatRating(data.rating.secondPlace)}\n`;
-                leaderboard += `3. Platz: ${formatRating(data.rating.thirdPlace)}\n`;
-
-                leaderboard += "\n## Bestenliste (Team)\n";
-                leaderboard += getLeaderboardMarkdown(team_leaderboard);
-
-                leaderboard += "\n## Bestenliste (Einzel)\n";
-                leaderboard += getLeaderboardMarkdown(single_leaderboard);
-
-                leaderboard += "\n## Turniere und Platzierungen (Team und Einzel)\n";
-                leaderboard += getTurnamentMarkdown(data.turnaments);
-
-                return markdown.replace("{{leaderboard}}", leaderboard);
+                try {
+                    fetch("./leaderboard-plugin/tournaments.json")
+                        .then((response) => response.json())
+                        .then((data) => next(createLeaderboard(markdown, data)));
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    next(markdown);
+                }
             }
         );
     };
@@ -48,6 +42,34 @@ const TurnamentType = {
     Team: "team"
 };
 
+function createLeaderboard(markdown, jsonData) {
+    /**
+     * @type {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, players: {name: string, singleParticipations: number, teamParticipations: number}[], tournaments: {date: string, flavor: string, type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]}}
+     */
+    const data = jsonData;
+
+    // Calculate points and metrics
+    const team_leaderboard = fillLeaderboardData(data, TurnamentType.Team);
+    const single_leaderboard = fillLeaderboardData(data, TurnamentType.Single);
+
+    // Rating
+    let ratingMarkdown = `1. Platz: ${formatRating(data.rating.firstPlace)}\n`;
+    ratingMarkdown += `2. Platz: ${formatRating(data.rating.secondPlace)}\n`;
+    ratingMarkdown += `3. Platz: ${formatRating(data.rating.thirdPlace)}\n`;
+    markdown = markdown.replace("{{rating}}", ratingMarkdown);
+
+    const teamLeaderboardMarkdown = getLeaderboardMarkdown(team_leaderboard);
+    markdown = markdown.replace("{{teamLeaderboard}}", teamLeaderboardMarkdown);
+
+    const singleLeaderboard = getLeaderboardMarkdown(single_leaderboard);
+    markdown = markdown.replace("{{singleLeaderboard}}", singleLeaderboard);
+
+    const tournamentMarkdown = getTournamentMarkdown(data.tournaments);
+    markdown = markdown.replace("{{tournaments}}", tournamentMarkdown);
+
+    return markdown;
+}
+
 /**
  * @param {number} rating 
  */
@@ -56,7 +78,7 @@ function formatRating(rating) {
 }
 
 /**
- * @param {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, players: {name: string, singleParticipations: number, teamParticipations: number}[], turnaments: {type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]}} data 
+ * @param {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, players: {name: string, singleParticipations: number, teamParticipations: number}[], tournaments: {type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]}} data 
  * @param {TurnamentType} type
  */
 function fillLeaderboardData(data, type) {
@@ -77,14 +99,14 @@ function fillLeaderboardData(data, type) {
     }
 
     // Add points to players
-    for (const turnament of data.turnaments) {
-        if (turnament.type !== type) {
+    for (const tournament of data.tournaments) {
+        if (tournament.type !== type) {
             continue;
         }
 
-        addPointsToPlaces(leaderboard, turnament.firstPlace, data.rating.firstPlace, true);
-        addPointsToPlaces(leaderboard, turnament.secondPlace, data.rating.secondPlace);
-        addPointsToPlaces(leaderboard, turnament.thirdPlace, data.rating.thirdPlace);
+        addPointsToPlaces(leaderboard, tournament.firstPlace, data.rating.firstPlace, true);
+        addPointsToPlaces(leaderboard, tournament.secondPlace, data.rating.secondPlace);
+        addPointsToPlaces(leaderboard, tournament.thirdPlace, data.rating.thirdPlace);
     }
 
     return leaderboard;
@@ -169,9 +191,9 @@ function getLeaderboardMarkdown(leaderboard) {
 }
 
 /**
- * @param {{date: string, flavor: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]} turnaments 
+ * @param {{date: string, flavor: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]} tournaments 
  */
-function getTurnamentMarkdown(turnaments) {
+function getTournamentMarkdown(tournaments) {
     const headers = [
         "Datum",
         "1.",
@@ -183,11 +205,11 @@ function getTurnamentMarkdown(turnaments) {
     let markdown = `\n${headers.join(" | ")}\n`;
     markdown += Array(headers.length).fill("--").join(" | ") + "\n";
 
-    turnaments.sort(function (a, b) {
+    tournaments.sort(function (a, b) {
         return Date.parse(a.date) - Date.parse(b.date);
     });
 
-    for (const entry of turnaments) {
+    for (const entry of tournaments) {
         const date = new Date(Date.parse(entry.date));
         markdown += [
             date.toLocaleDateString("de-DE", { year: "2-digit", month: "2-digit", day: "2-digit" }),

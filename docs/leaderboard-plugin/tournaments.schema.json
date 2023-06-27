@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Turnament Data",
-    "description": "Data for all beer pong turnaments",
+    "description": "Data for all beer pong tournaments",
     "type": "object",
     "properties": {
         "rating": {
@@ -19,7 +19,12 @@
                     "type": "number",
                     "minimum": 0
                 }
-            }
+            },
+            "required": [
+                "firstPlace",
+                "secondPlace",
+                "thirdPlace"
+            ]
         },
         "players": {
             "type": "array",
@@ -40,18 +45,21 @@
                 },
                 "required": [
                     "name",
-                    "participations"
+                    "singleParticipations",
+                    "teamParticipations"
                 ]
-            }
+            },
+            "uniqueItems": true,
+            "minItems": 1
         },
-        "turnaments": {
+        "tournaments": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "date": {
                         "type": "string",
-                        "patterm": "^\\d{4}-\\d{2}-\\d{2}"
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}"
                     },
                     "flavor": {
                         "type": "string"
@@ -68,7 +76,6 @@
                         "items": {
                             "type": "string"
                         },
-                        "minItems": 1,
                         "uniqueItems": true
                     },
                     "secondPlace": {
@@ -76,7 +83,6 @@
                         "items": {
                             "type": "string"
                         },
-                        "minItems": 1,
                         "uniqueItems": true
                     },
                     "thirdPlace": {
@@ -84,7 +90,6 @@
                         "items": {
                             "type": "string"
                         },
-                        "minItems": 1,
                         "uniqueItems": true
                     }
                 },
@@ -95,6 +100,64 @@
                     "firstPlace",
                     "secondPlace",
                     "thirdPlace"
+                ],
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "single"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "firstPlace": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 1
+                                },
+                                "secondPlace": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 1
+                                },
+                                "thirdPlace": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 1
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "team"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "firstPlace": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                },
+                                "secondPlace": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                },
+                                "thirdPlace": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                }
+                            }
+                        }
+                    }
                 ]
             }
         }

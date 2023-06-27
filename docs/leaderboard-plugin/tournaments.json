@@ -1,4 +1,4 @@
-const turnamentData = {
+{
     "rating": {
         "firstPlace": 5,
         "secondPlace": 3,
@@ -84,9 +84,9 @@ const turnamentData = {
             "name": "Ines",
             "singleParticipations": 1,
             "teamParticipations": 0
-        },
+        }
     ],
-    "turnaments": [
+    "tournaments": [
         {
             "date": "2023-01-28",
             "flavor": "Moritz",
@@ -178,4 +178,4 @@ const turnamentData = {
             ]
         }
     ]
-};
+}
