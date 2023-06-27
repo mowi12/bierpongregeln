@@ -79,7 +79,7 @@ Es gibt keine allgemeinen Turnierabläufe. Wie genau sich ein Turnier abspielt h
 
 #### Art 5 - Becher richten / zusammenstellen
 
-1. Eine spielende Person kann das andere Team auffordern, die Becher zu richten. Mit Richten ist nur das Rejustieren des Bechers an seine ursprüngliche Position gemeint.Das gegnerische Team muss dieser Aufforderung nachkommen und die Becher richten.
+1. Eine spielende Person kann das andere Team auffordern, die Becher zu richten. Mit Richten ist nur das Rejustieren des Bechers an seine ursprüngliche Position gemeint. Das gegnerische Team muss dieser Aufforderung nachkommen und die Becher richten.
 2. Das gegnerische Team darf die Becher nicht ohne Erlaubnis des anderen Teams richten.
 3. Eine spielende Person kann das andere Team auffordern, die Becher zusammenzustellen. Die Formation darf sich das eigene Team aussuchen.
 4. Jedes Team darf seine Becher nur einmal im ganzen Spiel zusammenstellen.
@@ -99,8 +99,8 @@ Es gibt keine allgemeinen Turnierabläufe. Wie genau sich ein Turnier abspielt h
 
 #### Art 8 - Spielablauf
 
-1. Die Gewinner des [Auswerfens](regelwerk?id=art-7-auswerfen) fangen nun mit den regulären zwei Würfen an.
-2. Nachdem alle Würfe fertig sind, ist das andere Team dran. Dies wiederholt sich solange bis nur noch ein Team Becher auf ihrer Seite stehen hat.
+1. Die Gewinner des [Auswerfens](regelwerk?id=art-7-auswerfen) fangen nun mit den zwei regulären Würfen an.
+2. Nachdem alle Würfe fertig sind, ist das andere Team an der Reihe. Dies wiederholt sich solange bis nur noch ein Team Becher auf ihrer Seite stehen hat.
 
 #### Art 9 - Spielende
 
@@ -110,10 +110,10 @@ Es gibt keine allgemeinen Turnierabläufe. Wie genau sich ein Turnier abspielt h
 
 #### Art 10 - Konter
 
-1. Nur das Team, das das Spiel nicht angefangen hat, hat die Möglichkeit einen Konter zu vollenden.
+1. Nur das Team, welches das Spiel nicht angefangen hat, hat die Möglichkeit einen Konter zu vollenden.
 2. Es gibt keine Begrenzung, wie oft gekontert werden kann.
 3. Ein Konterversuch ist erfolgreich, wenn das zweite Team das Spiel in dieser letzten Runde beenden kann.
-4. Nach einem erfolgreichen Konter bleiben alle Becher der letzten beiden Runden stehen und werden nicht weggestellt. Das Team, das das Spiel fast gewonnen hätte ist nun wieder an der Reihe.
+4. Nach einem erfolgreichen Konter bleiben alle Becher der letzten beiden Runden stehen und werden nicht weggestellt. Das Team, welches das Spiel fast gewonnen hätte ist nun wieder an der Reihe.
 
 ### Standardspiel
 
