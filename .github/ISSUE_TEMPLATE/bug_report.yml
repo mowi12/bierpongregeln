@@ -2,8 +2,6 @@ name: Bug report
 description: Create a bug report to help me improve the project
 title: '[Bug]: <title>'
 labels: ["bug"]
-assignees:
-  - Slartibartfass2
 body:
   - type: markdown
     attributes:
