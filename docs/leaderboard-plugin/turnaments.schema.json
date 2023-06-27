@@ -1,0 +1,102 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Turnament Data",
+    "description": "Data for all beer pong turnaments",
+    "type": "object",
+    "properties": {
+        "rating": {
+            "type": "object",
+            "properties": {
+                "firstPlace": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "secondPlace": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "thirdPlace": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
+        "players": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "singleParticipations": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "teamParticipations": {
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                },
+                "required": [
+                    "name",
+                    "participations"
+                ]
+            }
+        },
+        "turnaments": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "patterm": "^\\d{4}-\\d{2}-\\d{2}"
+                    },
+                    "flavor": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "single",
+                            "team"
+                        ]
+                    },
+                    "firstPlace": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 1,
+                        "uniqueItems": true
+                    },
+                    "secondPlace": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 1,
+                        "uniqueItems": true
+                    },
+                    "thirdPlace": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 1,
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "date",
+                    "flavor",
+                    "type",
+                    "firstPlace",
+                    "secondPlace",
+                    "thirdPlace"
+                ]
+            }
+        }
+    }
+}
