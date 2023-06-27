@@ -115,6 +115,7 @@ function addPointsToPlaces(leaderboard, placePlayers, rating, isWin = false) {
  */
 function getLeaderboardMarkdown(leaderboard) {
     const headers = [
+        "Platz",
         "Name",
         "PPG",
         "Punkte",
@@ -152,8 +153,10 @@ function getLeaderboardMarkdown(leaderboard) {
         return 0;
     });
 
-    for (const entry of leaderboard) {
+    for (let i = 0; i < leaderboard.length; i++) {
+        const entry = leaderboard[i];
         markdown += [
+            `${i + 1}`,
             entry.name,
             entry.ppg.toLocaleString("de-DE", { maximumFractionDigits: 2 }),
             entry.points,
