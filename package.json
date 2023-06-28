@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "validate": "npx ajv -s docs/leaderboard-plugin/tournaments.schema.json -d docs/leaderboard-plugin/tournaments.json --spec=draft2020"
+    "validate": "npx ajv -s docs/leaderboard-plugin/tournaments.schema.json -d docs/leaderboard-plugin/tournaments.json"
   },
   "devDependencies": {
     "eslint": "^8.43.0",

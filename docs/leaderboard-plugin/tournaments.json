@@ -1,4 +1,5 @@
 {
+    "$schema": "./tournaments.schema.json",
     "rating": {
         "firstPlace": 5,
         "secondPlace": 3,
