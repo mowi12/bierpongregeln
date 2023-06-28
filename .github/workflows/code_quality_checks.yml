@@ -20,3 +20,18 @@ jobs:
 
       - name: Verify JSON validation
         run: npm run validate
+
+  spell-checking:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r pages_spellchecker/requirements.txt
+
+      - name: Run spell checking
+        run: python3 pages_spellchecker/pages_spellchecker.py
