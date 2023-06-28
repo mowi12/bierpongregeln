@@ -1,0 +1,148 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "Tournament Data",
+    "description": "Data for all beer pong tournaments",
+    "type": "object",
+    "properties": {
+        "rating": {
+            "type": "object",
+            "properties": {
+                "firstPlace": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "secondPlace": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "thirdPlace": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "firstPlace",
+                "secondPlace",
+                "thirdPlace"
+            ]
+        },
+        "tournaments": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}"
+                    },
+                    "flavor": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "single",
+                            "team"
+                        ]
+                    },
+                    "firstPlace": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    },
+                    "secondPlace": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    },
+                    "thirdPlace": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    },
+                    "participants": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 3
+                    }
+                },
+                "required": [
+                    "date",
+                    "flavor",
+                    "type",
+                    "firstPlace",
+                    "secondPlace",
+                    "thirdPlace",
+                    "participants"
+                ],
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "single"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "firstPlace": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 1
+                                },
+                                "secondPlace": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 1
+                                },
+                                "thirdPlace": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 1
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "team"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "firstPlace": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                },
+                                "secondPlace": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                },
+                                "thirdPlace": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "$schema": "./tournaments.schema.json",
+    "rating": {
+        "firstPlace": 10,
+        "secondPlace": 5,
+        "thirdPlace": 1
+    },
+    "tournaments": [
+        {
+            "date": "2023-01-28",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": [
+                "Millane"
+            ],
+            "secondPlace": [
+                "Moritz G."
+            ],
+            "thirdPlace": [
+                "Leonhard"
+            ],
+            "participants": [
+                "Millane",
+                "Moritz G.",
+                "Leonhard",
+                "Moritz W.",
+                "Mukhtar",
+                "Markus"
+            ]
+        },
+        {
+            "date": "2023-02-10",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": [
+                "Tim",
+                "Michael"
+            ],
+            "secondPlace": [
+                "Sophie",
+                "Moritz W."
+            ],
+            "thirdPlace": [
+                "Marcel",
+                "Felix"
+            ],
+            "participants": [
+                "Tim",
+                "Michael",
+                "Sophie",
+                "Moritz W.",
+                "Marcel",
+                "Felix",
+                "Lea",
+                "Markus",
+                "Mukhtar",
+                "Leonhard"
+            ]
+        },
+        {
+            "date": "2023-03-05",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": [
+                "Dominik",
+                "Leonhard"
+            ],
+            "secondPlace": [
+                "Markus",
+                "Mukhtar"
+            ],
+            "thirdPlace": [
+                "Lea",
+                "Moritz W."
+            ],
+            "participants": [
+                "Dominik",
+                "Michael",
+                "Tim",
+                "Leonhard",
+                "Moritz W.",
+                "Mukhtar",
+                "Markus",
+                "Marcel",
+                "Felix",
+                "Lea",
+                "Millane",
+                "Sebbi"
+            ]
+        },
+        {
+            "date": "2023-04-23",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": [
+                "Markus"
+            ],
+            "secondPlace": [
+                "Moritz G."
+            ],
+            "thirdPlace": [
+                "Moritz W."
+            ],
+            "participants": [
+                "Markus",
+                "Moritz G.",
+                "Moritz W.",
+                "Millane",
+                "Sophie",
+                "Lea",
+                "Marcel",
+                "Leonhard",
+                "Felix",
+                "Mukhtar"
+            ]
+        },
+        {
+            "date": "2023-06-22",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": [
+                "Millane"
+            ],
+            "secondPlace": [
+                "Moritz W."
+            ],
+            "thirdPlace": [
+                "Felix"
+            ],
+            "participants": [
+                "Millane",
+                "Moritz W.",
+                "Felix",
+                "Dominik",
+                "Mukhtar"
+            ]
+        },
+        {
+            "date": "2023-06-22",
+            "flavor": "Moritz + 3D",
+            "type": "single",
+            "firstPlace": [
+                "Moritz W."
+            ],
+            "secondPlace": [
+                "Dominik"
+            ],
+            "thirdPlace": [
+                "Millane"
+            ],
+            "participants": [
+                "Dominik",
+                "Millane",
+                "Moritz W.",
+                "Felix",
+                "Mukhtar",
+                "Hartmut",
+                "Ines"
+            ]
+        }
+    ]
+}

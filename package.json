@@ -1,0 +1,13 @@
+{
+  "name": "bierpongregeln",
+  "description": "This is a collection of rulesets for beer pong that is served as static html page.",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "validate": "npx ajv -s docs/leaderboard-plugin/tournaments.schema.json -d docs/leaderboard-plugin/tournaments.json"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "ajv-cli": "^5.0.0"
+  }
+}
