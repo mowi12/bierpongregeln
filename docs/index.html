@@ -22,6 +22,7 @@
 <body>
   <div id="app"></div>
   <script>
+    version = 'v1.3.2';
     window.$docsify = {
       auto2top: false,
       sideBar: true,
@@ -40,10 +41,11 @@
       },
       customPageTitle: {
         prefix: 'Bierpongregeln',
-        suffix: 'v1.3.2'
+        suffix: version
       },
       timeUpdater: {
-        text: "<div align='center' style='color:gray;font-size:15px' >last updated: {docsify-updated}</div>",
+        text: `<div align='center' style='color:gray;font-size:15px'>${version}</div>
+               <div align='center' style='color:gray;font-size:15px'>last updated: {docsify-updated}</div>`,
         formatUpdated: '{YYYY}/{MM}/{DD}',
         whereToPlace: 'top'
       },
