@@ -13,7 +13,7 @@
 2. <span style="color:rgb(253, 119, 110)">Heating Up und On Fire müssen nicht in der gleichen Wurfrunde gerufen werden.</span>
 3. <span style="color:rgb(253, 119, 110)">Wenn Heating Up oder On Fire nicht gerufen wurde, kann der Spieler beim nächsten Treffer in Folge Heating Up oder On Fire rufen.</span>
 4. <span style="color:rgb(253, 119, 110)">Die On Fire-Würfe werden sofort nach dem Ausruf ausgeführt.</span>
-5. <span style="color:rgb(253, 119, 110)">Aufsetzer und andere Specialwürfe zählen nur als ein Treffer.</span>
+5. <span style="color:rgb(253, 119, 110)">Aufsetzer und andere Spezialwürfe zählen nur als ein Treffer.</span>
 
 #### Art - <span style="color:rgb(253, 119, 110)">Island</span>
 

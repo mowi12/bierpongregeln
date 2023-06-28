@@ -12,7 +12,7 @@ Die Bierpongregeln und alle [Flavors](regelwerk?id=flavors) existieren aus den f
 
 ### Verwendung der Regeln
 
-Die Bierpongregeln und alle Flavors werden hauptsächlich für Turniere verwendet, können aber auch ohne den Punkt Turnierablauf verwendet werden. Die Regeln können für Einzel- und Teamturniere, bzw. Spiele verwendet werden. Im folgenden wird mit Team also nur eine Manschaft gemeint, die Anzahl der Mitspieler ist nicht definiert.
+Die Bierpongregeln und alle Flavors werden hauptsächlich für Turniere verwendet, können aber auch ohne den Punkt Turnierablauf verwendet werden. Die Regeln können für Einzel- und Teamturniere, bzw. Spiele verwendet werden. Im folgenden wird mit Team also nur eine Mannschaft gemeint, die Anzahl der Mitspieler ist nicht definiert.
 
 ## Flavors
 
