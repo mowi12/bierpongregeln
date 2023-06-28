@@ -83,7 +83,7 @@ function formatRating(rating) {
  */
 function fillLeaderboardData(data, type) {
     /**
-     * @type {{name: string, ppg: number, points: number, wins: number, participations: number}[]}
+     * @type {{name: string, pointsPerGame: number, points: number, wins: number, winrate: number, participations: number}[]}
      */
     let leaderboard = [];
 
@@ -99,9 +99,10 @@ function fillLeaderboardData(data, type) {
                 // If there's no match, create a new entry with default values
                 match = {
                     name: participant,
-                    ppg: 0,
+                    pointsPerGame: 0,
                     points: 0,
                     wins: 0,
+                    winrate: 0,
                     participations: 0,
                 };
                 leaderboard.push(match);
@@ -119,7 +120,8 @@ function fillLeaderboardData(data, type) {
                 console.error(`Couldn't find player '${participant}'`);
                 continue;
             }
-            match.ppg = match.points / match.participations;
+            match.pointsPerGame = match.points / match.participations;
+            match.winrate = match.wins / match.participations;
         }
     }
 
@@ -127,7 +129,7 @@ function fillLeaderboardData(data, type) {
 }
 
 /**
- * @param {{name: string, ppg: number, points: number, wins: number, participations: number}[]} leaderboard 
+ * @param {{name: string, points: number, wins: number}[]} leaderboard 
  * @param {string[]} placePlayers 
  * @param {number} rating 
  * @param {boolean} isWin
@@ -146,38 +148,44 @@ function addPointsToPlaces(leaderboard, placePlayers, rating, isWin = false) {
 }
 
 /**
- * @param {{name: string, ppg: number, points: number, wins: number, participations: number}[]} leaderboard 
+ * @param {{name: string, pointsPerGame: number, points: number, wins: number, winrate: number, participations: number}[]} leaderboard 
  */
 function getLeaderboardMarkdown(leaderboard) {
     const headers = [
         "Platz",
         "Name",
+        "Winrate",
         "PPG",
         "Punkte",
         "Siege",
-        "Teilnahmen"
+        "Teilnahmen",
     ];
 
-    let markdown = `\n${headers.join(" | ")}\n`;
+    let markdown = "_PPG: Points per Game_\n";
+    markdown += `\n${headers.join(" | ")}\n`;
     markdown += Array(headers.length).fill("--").join(" | ") + "\n";
 
-    leaderboard = leaderboard.filter((entry) => entry.participations > 0);
     leaderboard.sort(function (a, b) {
-        // High PPG, high wins, high points, low participations
+        // High Winrate, high points per game, high points, high wins, low participations
 
-        const ppgComparision = b.ppg - a.ppg;
-        if (ppgComparision != 0) {
-            return ppgComparision;
+        const winrateComparision = b.winrate - a.winrate;
+        if (winrateComparision != 0) {
+            return winrateComparision;
         }
 
-        const winsComparision = b.wins - a.wins;
-        if (winsComparision != 0) {
-            return winsComparision;
+        const pointsPerGameComparision = b.pointsPerGame - a.pointsPerGame;
+        if (pointsPerGameComparision != 0) {
+            return pointsPerGameComparision;
         }
 
         const pointsComparision = b.points - a.points;
         if (pointsComparision != 0) {
             return pointsComparision;
+        }
+
+        const winsComparision = b.wins - a.wins;
+        if (winsComparision != 0) {
+            return winsComparision;
         }
 
         const participationsComparision = a.participations - b.participations;
@@ -193,10 +201,11 @@ function getLeaderboardMarkdown(leaderboard) {
         markdown += [
             `${i + 1}`,
             entry.name,
-            entry.ppg.toLocaleString("de-DE", { maximumFractionDigits: 2 }),
+            entry.winrate,
+            entry.pointsPerGame.toLocaleString("de-DE", { maximumFractionDigits: 2 }),
             entry.points,
             entry.wins,
-            entry.participations
+            entry.participations,
         ].join(" | ") + "\n";
     }
 
