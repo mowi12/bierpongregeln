@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Turnament Data",
+    "title": "Tournament Data",
     "description": "Data for all beer pong tournaments",
     "type": "object",
     "properties": {
@@ -25,32 +25,6 @@
                 "secondPlace",
                 "thirdPlace"
             ]
-        },
-        "players": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "singleParticipations": {
-                        "type": "integer",
-                        "minimum": 0
-                    },
-                    "teamParticipations": {
-                        "type": "integer",
-                        "minimum": 0
-                    }
-                },
-                "required": [
-                    "name",
-                    "singleParticipations",
-                    "teamParticipations"
-                ]
-            },
-            "uniqueItems": true,
-            "minItems": 1
         },
         "tournaments": {
             "type": "array",
@@ -91,6 +65,14 @@
                             "type": "string"
                         },
                         "uniqueItems": true
+                    },
+                    "participants": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 3
                     }
                 },
                 "required": [
@@ -99,7 +81,8 @@
                     "type",
                     "firstPlace",
                     "secondPlace",
-                    "thirdPlace"
+                    "thirdPlace",
+                    "participants"
                 ],
                 "allOf": [
                     {

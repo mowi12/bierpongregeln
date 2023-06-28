@@ -4,88 +4,6 @@
         "secondPlace": 3,
         "thirdPlace": 1
     },
-    "players": [
-        {
-            "name": "Dominik",
-            "singleParticipations": 2,
-            "teamParticipations": 1
-        },
-        {
-            "name": "Sophie",
-            "singleParticipations": 1,
-            "teamParticipations": 1
-        },
-        {
-            "name": "Tim",
-            "singleParticipations": 0,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Michael",
-            "singleParticipations": 0,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Leonhard",
-            "singleParticipations": 2,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Moritz W.",
-            "singleParticipations": 4,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Mukhtar",
-            "singleParticipations": 4,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Markus",
-            "singleParticipations": 2,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Marcel",
-            "singleParticipations": 1,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Felix",
-            "singleParticipations": 3,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Lea",
-            "singleParticipations": 1,
-            "teamParticipations": 2
-        },
-        {
-            "name": "Millane",
-            "singleParticipations": 4,
-            "teamParticipations": 1
-        },
-        {
-            "name": "Sebbi",
-            "singleParticipations": 0,
-            "teamParticipations": 1
-        },
-        {
-            "name": "Moritz G.",
-            "singleParticipations": 2,
-            "teamParticipations": 0
-        },
-        {
-            "name": "Hartmut",
-            "singleParticipations": 1,
-            "teamParticipations": 0
-        },
-        {
-            "name": "Ines",
-            "singleParticipations": 1,
-            "teamParticipations": 0
-        }
-    ],
     "tournaments": [
         {
             "date": "2023-01-28",
@@ -99,6 +17,14 @@
             ],
             "thirdPlace": [
                 "Leonhard"
+            ],
+            "participants": [
+                "Millane",
+                "Moritz G.",
+                "Leonhard",
+                "Moritz W.",
+                "Mukhtar",
+                "Markus"
             ]
         },
         {
@@ -116,6 +42,18 @@
             "thirdPlace": [
                 "Marcel",
                 "Felix"
+            ],
+            "participants": [
+                "Tim",
+                "Michael",
+                "Sophie",
+                "Moritz W.",
+                "Marcel",
+                "Felix",
+                "Lea",
+                "Markus",
+                "Mukhtar",
+                "Leonhard"
             ]
         },
         {
@@ -133,6 +71,20 @@
             "thirdPlace": [
                 "Lea",
                 "Moritz W."
+            ],
+            "participants": [
+                "Dominik",
+                "Michael",
+                "Tim",
+                "Leonhard",
+                "Moritz W.",
+                "Mukhtar",
+                "Markus",
+                "Marcel",
+                "Felix",
+                "Lea",
+                "Millane",
+                "Sebbi"
             ]
         },
         {
@@ -147,6 +99,18 @@
             ],
             "thirdPlace": [
                 "Moritz W."
+            ],
+            "participants": [
+                "Markus",
+                "Moritz G.",
+                "Moritz W.",
+                "Millane",
+                "Sophie",
+                "Lea",
+                "Marcel",
+                "Leonhard",
+                "Felix",
+                "Mukhtar"
             ]
         },
         {
@@ -161,6 +125,13 @@
             ],
             "thirdPlace": [
                 "Felix"
+            ],
+            "participants": [
+                "Millane",
+                "Moritz W.",
+                "Felix",
+                "Dominik",
+                "Mukhtar"
             ]
         },
         {
@@ -175,6 +146,15 @@
             ],
             "thirdPlace": [
                 "Millane"
+            ],
+            "participants": [
+                "Dominik",
+                "Millane",
+                "Moritz W.",
+                "Felix",
+                "Mukhtar",
+                "Hartmut",
+                "Ines"
             ]
         }
     ]

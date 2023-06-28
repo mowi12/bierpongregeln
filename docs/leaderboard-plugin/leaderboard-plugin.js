@@ -44,13 +44,13 @@ const TurnamentType = {
 
 function createLeaderboard(markdown, jsonData) {
     /**
-     * @type {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, players: {name: string, singleParticipations: number, teamParticipations: number}[], tournaments: {date: string, flavor: string, type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]}}
+     * @type {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, tournaments: {date: string, flavor: string, type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[], participants: string[]}[]}}
      */
     const data = jsonData;
 
     // Calculate points and metrics
-    const team_leaderboard = fillLeaderboardData(data, TurnamentType.Team);
-    const single_leaderboard = fillLeaderboardData(data, TurnamentType.Single);
+    const teamLeaderboard = fillLeaderboardData(data, TurnamentType.Team);
+    const singleLeaderboard = fillLeaderboardData(data, TurnamentType.Single);
 
     // Rating
     let ratingMarkdown = `1. Platz: ${formatRating(data.rating.firstPlace)}\n`;
@@ -58,11 +58,11 @@ function createLeaderboard(markdown, jsonData) {
     ratingMarkdown += `3. Platz: ${formatRating(data.rating.thirdPlace)}\n`;
     markdown = markdown.replace("{{rating}}", ratingMarkdown);
 
-    const teamLeaderboardMarkdown = getLeaderboardMarkdown(team_leaderboard);
+    const teamLeaderboardMarkdown = getLeaderboardMarkdown(teamLeaderboard);
     markdown = markdown.replace("{{teamLeaderboard}}", teamLeaderboardMarkdown);
 
-    const singleLeaderboard = getLeaderboardMarkdown(single_leaderboard);
-    markdown = markdown.replace("{{singleLeaderboard}}", singleLeaderboard);
+    const singleLeaderboardMarkdown = getLeaderboardMarkdown(singleLeaderboard);
+    markdown = markdown.replace("{{singleLeaderboard}}", singleLeaderboardMarkdown);
 
     const tournamentMarkdown = getTournamentMarkdown(data.tournaments);
     markdown = markdown.replace("{{tournaments}}", tournamentMarkdown);
@@ -78,7 +78,7 @@ function formatRating(rating) {
 }
 
 /**
- * @param {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, players: {name: string, singleParticipations: number, teamParticipations: number}[], tournaments: {type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[]}[]}} data 
+ * @param {{rating: {firstPlace: number, secondPlace: number, thirdPlace: number}, tournaments: {type: string, firstPlace: string[], secondPlace: string[], thirdPlace: string[], participants: string[]}[]}} data 
  * @param {TurnamentType} type
  */
 function fillLeaderboardData(data, type) {
@@ -87,26 +87,40 @@ function fillLeaderboardData(data, type) {
      */
     let leaderboard = [];
 
-    // Fill leaderboard with default values
-    for (const player of data.players) {
-        leaderboard.push({
-            name: player.name,
-            ppg: 0,
-            points: 0,
-            wins: 0,
-            participations: type === TurnamentType.Team ? player.teamParticipations : player.singleParticipations,
-        });
-    }
-
     // Add points to players
     for (const tournament of data.tournaments) {
         if (tournament.type !== type) {
             continue;
         }
 
+        for (const participant of tournament.participants) {
+            let match = leaderboard.find((player) => player.name == participant);
+            if (match == undefined) {
+                // If there's no match, create a new entry with default values
+                match = {
+                    name: participant,
+                    ppg: 0,
+                    points: 0,
+                    wins: 0,
+                    participations: 0,
+                };
+                leaderboard.push(match);
+            }
+            match.participations++;
+        }
+
         addPointsToPlaces(leaderboard, tournament.firstPlace, data.rating.firstPlace, true);
         addPointsToPlaces(leaderboard, tournament.secondPlace, data.rating.secondPlace);
         addPointsToPlaces(leaderboard, tournament.thirdPlace, data.rating.thirdPlace);
+
+        for (const participant of tournament.participants) {
+            const match = leaderboard.find((player) => player.name == participant);
+            if (match == undefined) {
+                console.error(`Couldn't find player '${participant}'`);
+                continue;
+            }
+            match.ppg = match.points / match.participations;
+        }
     }
 
     return leaderboard;
@@ -128,7 +142,6 @@ function addPointsToPlaces(leaderboard, placePlayers, rating, isWin = false) {
 
         match.points += rating;
         match.wins += isWin ? 1 : 0;
-        match.ppg = match.points / match.participations;
     }
 }
 
