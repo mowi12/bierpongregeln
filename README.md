@@ -13,3 +13,8 @@ This is a collection of rulesets for beer pong that is served with GitHub Pages.
 2. Use the [VSCode ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) to get linting errors in the editor.
 3. Run `npm run lint` to lint the code.
 4. Run `npm run validate` to validate the tournament data against the schema.
+
+## Developing the spellchecker
+
+1. Run `pip install -r pages_spellchecker/requirements.txt` to install the dependencies.
+2. Run `python pages_spellchecker/pages_spellchecker.py` to check the spelling of the pages.

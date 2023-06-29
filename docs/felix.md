@@ -95,7 +95,7 @@ Dieser Änderung wird vorerst ausgesetzt, um die faire Umsetzbarkeit zu prüfen.
 
 - <span style="color:rgb(253, 119, 110)">Insel mit Aufsetzer &rarr; Inselbecher + ein weiterer (Insel) + ein Becher Aufsetzer</span>
 - <span style="color:rgb(253, 119, 110)">Bombe mit Insel &rarr; Bomben-/ Inselbecher + zwei weitere (Bombe) + ein weiterer (Insel)</span>
-- <span style="color:rgb(253, 119, 110)">Bombe mit Doppel-Insel &rarr; Bomben-/ Inselbecher + zwei weitere (Bombe) + zwei weiterere (Insel)</span>
+- <span style="color:rgb(253, 119, 110)">Bombe mit Doppel-Insel &rarr; Bomben-/ Inselbecher + zwei weitere (Bombe) + zwei weitere (Insel)</span>
 
 ## Kombinationsmöglichkeiten
 
