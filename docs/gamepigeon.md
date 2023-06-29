@@ -35,6 +35,15 @@
 
 2. <span style="color:rgb(253, 119, 110)"><del>Bevor erneut geworfen wird, müssen die beiden getroffenen Becher entfernt werden.</del></span>
 
+#### Art 12 - Aufsetzer
+
+1. <span style="color:rgb(253, 119, 110)"><del>Wenn ein Becher mit einem Ball getroffen wird, der mindestens einmal aufgesetzt hat, zählt dieser Treffer als zwei Treffer.</del></span>
+2. <span style="color:rgb(253, 119, 110)">Ein Aufsetzer darf nicht weggeschlagen werden.</span>
+
+#### Art 13 - Roller
+
+3. Ein rollender Ball darf <span style="color:rgb(253, 119, 110)">nicht</span> weggeschlagen werden.
+
 #### Art 16 - <span style="color:rgb(253, 119, 110)"><del>Trickshot</del></span>
 
 #### Art 17 - <span style="color:rgb(253, 119, 110)"><del>Bombe</del></span>
