@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   analyze:
+    name: Analyze code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,6 +23,7 @@ jobs:
         run: npm run validate-json
 
   spell-checking:
+    name: Spell checking
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
