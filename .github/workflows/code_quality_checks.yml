@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      
+
       - name: Install dependencies
         run: npm install
 
@@ -19,7 +19,7 @@ jobs:
         run: npm run lint
 
       - name: Verify JSON validation
-        run: npm run validate
+        run: npm run validate-json
 
   spell-checking:
     runs-on: ubuntu-latest

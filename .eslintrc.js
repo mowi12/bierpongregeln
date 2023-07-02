@@ -1,38 +1,55 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+    env: {
+        browser: true,
+        commonjs: true,
+        es2021: true,
+        node: true,
     },
-    "extends": "eslint:recommended",
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
+    extends: [
+        'airbnb',
+        'plugin:@docusaurus/recommended',
     ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    overrides: [
+        {
+            env: {
+                node: true,
+            },
+            files: [
+                '.eslintrc.{js,cjs}',
+            ],
+            parserOptions: {
+                sourceType: 'script',
+            },
+        },
+    ],
+    parserOptions: {
+        ecmaVersion: 'latest',
     },
-    "rules": {
-        "indent": [
-            "error",
-            4
+    rules: {
+        indent: [
+            'error',
+            4,
         ],
-        "quotes": [
-            "error",
-            "double"
+        'linebreak-style': 0,
+        'react/jsx-indent': 0,
+        'react/jsx-indent-props': 0,
+        'import/no-unresolved': 0,
+        'no-plusplus': 0,
+        'no-unused-vars': [
+            'error',
+            {
+                argsIgnorePattern: '^_',
+            },
         ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    }
+        'no-console': 0,
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                '.js': 'always',
+                '.jsx': 'always',
+                '.png': 'always',
+            },
+        ],
+    },
 };
