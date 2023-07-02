@@ -41,7 +41,7 @@ const createLeaderboard = (leaderboard) => {
                     <tr key={entry.name}>
                         <td>{entry.place}</td>
                         <td>{entry.name}</td>
-                        <td>{entry.winrate}</td>
+                        <td>{entry.winrate.toLocaleString('de-DE', { maximumFractionDigits: 2 })}</td>
                         <td>{entry.pointsPerGame.toLocaleString('de-DE', { maximumFractionDigits: 2 })}</td>
                         <td>{entry.points}</td>
                         <td>{entry.wins}</td>
