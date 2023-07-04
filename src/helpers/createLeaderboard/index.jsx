@@ -111,11 +111,8 @@ let once = false;
 function sortLeaderBoard(leaderboard, sortConfig) {
     if (isDev && !once) {
         once = true;
-        console.log('Skip once');
         return;
     }
-
-    console.log(`oldState: ${oldSortConfig?.field} & ${oldSortConfig?.order}; sortedField: ${sortConfig.field} & ${sortConfig.order}; ${sortConfig === oldSortConfig}`);
 
     if (sortConfig !== null) {
         if (sortConfig.order === Order.Desc) {
