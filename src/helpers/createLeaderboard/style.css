@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding: 0.2em;
+}
+
+thead button {
+    border: 0;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: inherit;
+    padding: 0.8em;
+    width: 100%;
+    text-align: left;
+}
+
+thead button.ascending::after {
+    content: '▾';
+    margin-left: 0.3em;
+}
+
+thead button.descending::after {
+    content: '▴';
+    margin-left: 0.3em;
+}
