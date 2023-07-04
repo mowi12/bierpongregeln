@@ -1,3 +1,0 @@
-# Bierpongregeln
-
-> Die beste Bierpongregelsammlung!

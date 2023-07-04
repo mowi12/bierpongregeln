@@ -1,4 +1,5 @@
 import glob
+import os
 import re
 import json
 import sys
@@ -19,8 +20,12 @@ def check_markdown_file(file) -> int:
 
     # First the textual content of each markdown file needs to extracted
 
-    # Remove html comments e.g. <!-- comment -->
+    # Remove front matter
+    text = re.sub(r"^---(.|\s)*?---", "", text, flags=re.MULTILINE)
+    # Remove markdown comments e.g. <!-- comment -->
     text = re.sub(r"<!--(.|\s)*?-->", "", text, flags=re.MULTILINE)
+    # Remove mdx comments e.g. {/* comment */}
+    text = re.sub(r"{/\*(.|\s)*?\*/}", "", text, flags=re.MULTILINE)
     # Remove plugin tags e.g. {{rating}}
     text = re.sub(r"{{(.+?)}}", "", text, flags=re.MULTILINE)
     # Remove html tags e.g. <span> or </span>
@@ -42,6 +47,14 @@ def check_markdown_file(file) -> int:
     # Replace punctuation and other special characters with space
     text = re.sub(r"[^\w\s]", " ", text)
 
+    # Save extracted text to temporary file
+    temporary_directory = os.path.join("pages_spellchecker", "tmp", *file.name.split(os.sep)[1:-1])
+    extracted_file_name = os.path.join(temporary_directory, file.name.split(os.sep)[-1])
+    if not os.path.exists(temporary_directory):
+        os.makedirs(temporary_directory)
+    with open(extracted_file_name, "w", encoding="utf-8") as extracted_file:
+        extracted_file.write(text)
+
     # Check for misspelled words first in german then in english
     misspelled = spell_de.unknown(text.split())
     misspelled = spell_en.unknown(misspelled)
@@ -58,9 +71,10 @@ def check_markdown_file(file) -> int:
 
 def main():
     misspelled_words_count = 0
-    for markdown_file in glob.glob("docs/*.md"):
-        with open(markdown_file, "r", encoding="utf-8") as file:
-            misspelled_words_count += check_markdown_file(file)
+    for file_type in ["md", "mdx"]:
+        for markdown_file in glob.glob(f"docs/**/*.{file_type}", recursive=True):
+            with open(markdown_file, "r", encoding="utf-8") as file:
+                misspelled_words_count += check_markdown_file(file)
     if misspelled_words_count > 0:
         print(f"{misspelled_words_count} Misspelled words in total!")
         sys.exit(1)
