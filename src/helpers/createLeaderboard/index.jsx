@@ -1,11 +1,6 @@
 import React from 'react';
 import './style.css';
 
-const tableStyle = {
-    borderStyle: 'hidden',
-    display: 'inline-table',
-};
-
 const Order = {
     Asc: 'ascending',
     Desc: 'descending',
@@ -154,7 +149,7 @@ const createLeaderboard = (leaderboard) => {
     }, [leaderboard, sortConfig]);
 
     return (
-        <table style={tableStyle}>
+        <table className="leaderboard-table">
             <thead>
                 <tr>
                     {headers.map((header) => (

@@ -1,14 +1,14 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
+.leaderboard-table {
+    border-style: hidden;
+    display: inline-table;
 }
 
-thead th {
+.leaderboard-table thead th {
     text-align: left;
     padding: 0.2em;
 }
 
-thead button {
+.leaderboard-table thead button {
     border: 0;
     font-family: inherit;
     font-weight: 600;
@@ -18,12 +18,12 @@ thead button {
     text-align: left;
 }
 
-thead button.ascending::after {
+.leaderboard-table thead button.ascending::after {
     content: '▾';
     margin-left: 0.3em;
 }
 
-thead button.descending::after {
+.leaderboard-table thead button.descending::after {
     content: '▴';
     margin-left: 0.3em;
 }
