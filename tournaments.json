@@ -157,6 +157,34 @@
                 "Hartmut",
                 "Ines"
             ]
+        },
+        {
+            "date": "2023-07-08",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": [
+                "Marcel",
+                "Millane"
+            ],
+            "secondPlace": [
+                "Moritz G.",
+                "Leonhard"
+            ],
+            "thirdPlace": [
+                "Felix",
+                "Idi"
+            ],
+            "participants": [
+                "Marcel",
+                "Millane",
+                "Moritz G.",
+                "Leonhard",
+                "Felix",
+                "Idi",
+                "Moritz W.",
+                "Tim",
+                "Sophie"
+            ]
         }
     ]
 }
