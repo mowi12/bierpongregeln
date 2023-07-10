@@ -25,6 +25,9 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 'latest',
     },
+    ignorePatterns: [
+        'build/',
+    ],
     rules: {
         indent: [
             'error',

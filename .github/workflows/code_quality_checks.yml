@@ -37,3 +37,19 @@ jobs:
 
       - name: Run spell checking
         run: python3 pages_spellchecker/pages_spellchecker.py
+
+  check-lock-file:
+    name: Check lock file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check lock file
+        run: git diff --exit-code

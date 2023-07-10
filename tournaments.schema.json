@@ -125,17 +125,17 @@
                             "properties": {
                                 "firstPlace": {
                                     "type": "array",
-                                    "minItems": 2,
+                                    "minItems": 1,
                                     "maxItems": 2
                                 },
                                 "secondPlace": {
                                     "type": "array",
-                                    "minItems": 2,
+                                    "minItems": 1,
                                     "maxItems": 2
                                 },
                                 "thirdPlace": {
                                     "type": "array",
-                                    "minItems": 2,
+                                    "minItems": 1,
                                     "maxItems": 2
                                 }
                             }
