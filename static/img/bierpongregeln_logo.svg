@@ -1,4 +1,10 @@
 <svg version="1.1" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-background" gradientTransform="rotate(90)">
+      <stop offset="30%" stop-color="#00b3aa" />
+      <stop offset="70%" stop-color="#018273" />
+    </linearGradient>
+  </defs>
    <style>
     .light-background { fill:#00b3aa }
     .dark-background { fill:#018273 }
@@ -10,10 +16,11 @@
   </style>
 
   <!-- background -->
-  <path d="M30,150 a50, 50 0, 0, 1 240, 0" class="light-background" />
+  <circle cx="50%" cy="50%" r="40%" fill="url('#gradient-background')"/>
+  <!--path d="M30,150 a50, 50 0, 0, 1 240, 0" class="light-background" />
   <path d="M30,150 a50, 50 0, 0, 0 240, 0" class="dark-background" />
   <path d="M35,150 a50, 50 0, 0, 0 230, 0" class="light-background" />
-  <path d="M35,150 a50, 50 0, 0, 1 230, 0" class="dark-background" />
+  <path d="M35,150 a50, 50 0, 0, 1 230, 0" class="dark-background" /-->
 
   <!-- ball -->
   <circle cx="50%" cy="10%" r="15" class="dark-gray" />
