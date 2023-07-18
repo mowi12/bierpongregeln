@@ -39,10 +39,11 @@ jobs:
         run: npm run build
 
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
+          if-no-files-found: error
 
   spell-checking:
     name: Spell checking
@@ -50,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
