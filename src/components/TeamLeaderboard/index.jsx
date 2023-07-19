@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePluginData } from '@docusaurus/useGlobalData';
-import createLeaderboard from '../../helpers/createLeaderboard/index.jsx';
+import Leaderboard from '../Leaderboard/index.jsx';
 
 export default function TeamLeaderboard() {
     /**
@@ -18,6 +18,6 @@ export default function TeamLeaderboard() {
      */
     const { teamLeaderboard } = usePluginData('leaderboard-plugin');
     return (
-        <div>{createLeaderboard(teamLeaderboard)}</div>
+        <Leaderboard data={teamLeaderboard} />
     );
 }

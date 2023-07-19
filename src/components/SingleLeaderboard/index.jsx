@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePluginData } from '@docusaurus/useGlobalData';
-import createLeaderboard from '../../helpers/createLeaderboard/index.jsx';
+import Leaderboard from '../Leaderboard/index.jsx';
 
 export default function SingleLeaderboard() {
     /**
@@ -18,6 +18,6 @@ export default function SingleLeaderboard() {
      */
     const { singleLeaderboard } = usePluginData('leaderboard-plugin');
     return (
-        <div>{createLeaderboard(singleLeaderboard)}</div>
+        <Leaderboard data={singleLeaderboard} />
     );
 }

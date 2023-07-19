@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 const Order = {
@@ -132,21 +133,23 @@ function onHeaderClick(header, setSortConfig) {
 
 /**
  * @param {{
- *   name: string,
- *   pointsPerGame: number,
- *   points: number,
- *   wins: number,
- *   winrate: number,
- *   participations: number,
- *   place: number
- * }[]} leaderboard
+ *   data: {
+ *     name: string,
+ *     pointsPerGame: number,
+ *     points: number,
+ *     wins: number,
+ *     winrate: number,
+ *     participations: number,
+ *     place: number
+ *   }[]
+ * }} props
  */
-const createLeaderboard = (leaderboard) => {
+export default function Leaderboard({ data }) {
     const [sortConfig, setSortConfig] = React.useState(oldSortConfig);
 
     React.useMemo(() => {
-        sortLeaderBoard(leaderboard, sortConfig);
-    }, [leaderboard, sortConfig]);
+        sortLeaderBoard(data, sortConfig);
+    }, [data, sortConfig]);
 
     return (
         <table className="leaderboard-table">
@@ -166,7 +169,7 @@ const createLeaderboard = (leaderboard) => {
                 </tr>
             </thead>
             <tbody>
-                {leaderboard.map((entry) => (
+                {data.map((entry) => (
                     <tr key={entry.name}>
                         {keys.map(({ name }) => (
                             <td key={name}>{formatCellContent(entry[name])}</td>
@@ -176,6 +179,19 @@ const createLeaderboard = (leaderboard) => {
             </tbody>
         </table>
     );
-};
+}
 
-export default createLeaderboard;
+Leaderboard.propTypes = {
+    data: PropTypes.arrayOf(
+        {
+            name: PropTypes.string,
+            pointsPerGame: PropTypes.number,
+            points: PropTypes.number,
+            wins: PropTypes.number,
+            winrate: PropTypes.number,
+            participations: PropTypes.number,
+            place: PropTypes.number,
+        },
+
+    ).isRequired,
+};
