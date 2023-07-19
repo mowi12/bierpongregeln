@@ -7,7 +7,9 @@ module.exports = {
     },
     extends: [
         'airbnb',
+        'airbnb/hooks',
         'plugin:@docusaurus/recommended',
+        'plugin:react-hooks/recommended',
     ],
     overrides: [
         {
