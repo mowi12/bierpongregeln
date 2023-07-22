@@ -1,0 +1,104 @@
+<svg version="1.1" width="3000px" height="3000px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-background" gradientTransform="rotate(90)">
+      <stop offset="30%" stop-color="#00b3aa" />
+      <stop offset="70%" stop-color="#018273" />
+    </linearGradient>
+  </defs>
+   <style>
+    .light-background { fill:#00b3aa }
+    .dark-background { fill:#018273 }
+    .light-cup { fill:#ff786e }
+    .dark-cup { fill:#be5652 }
+    .cream-white { fill:#fffafa }
+    .light-gray { fill:#efeae0 }
+    .dark-gray { fill:#aa9991 }
+  </style>
+
+  <!-- background -->
+  <circle cx="50%" cy="50%" r="40%" fill="url('#gradient-background')" />
+
+  <!-- ball -->
+  <circle cx="50%" cy="10%" r="150" class="dark-gray" />
+  <path d="M1400,190 a100,100, 45, 0, 1, 210,210 a100,80, 45, 0, 1, -210,-210 Z" class="light-gray" />
+
+  <!--1-->
+  <path d="M450,1500 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M550,1500 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="20%" cy="850" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="20%" cy="850" rx="260" ry="50" class="light-gray" />
+  <path d="M760,810 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--2-->
+  <path d="M1050,1500 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M1150,1500 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+   
+  <ellipse cx="40%" cy="850" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="40%" cy="850" rx="260" ry="50" class="light-gray" />
+  <path d="M1360,810 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--3-->
+  <path d="M1650,1500 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M1750,1500 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="60%" cy="850" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="60%" cy="850" rx="260" ry="50" class="light-gray" />
+  <path d="M1960,810 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--4-->
+  <path d="M2250,1500 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M2350,1500 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="80%" cy="850" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="80%" cy="850" rx="260" ry="50" class="light-gray" />
+  <path d="M2560,810 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--5-->
+  <path d="M750,1850 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M850,1850 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="30%" cy="1200" rx="330" ry="80" class="cream-white" />
+   <ellipse cx="30%" cy="1200" rx="260" ry="50" class="light-gray" />
+  <path d="M1060,1160 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--6-->
+  <path d="M1350,1850 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M1450,1850 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="50%" cy="1200" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="50%" cy="1200" rx="260" ry="50" class="light-gray" />
+  <path d="M1660,1160 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--7-->
+  <path d="M1950,1850 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M2050,1850 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="70%" cy="1200" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="70%" cy="1200" rx="260" ry="50" class="light-gray" />
+  <path d="M2260,1160 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--8-->
+  <path d="M1050,2200 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M1150,2200 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="40%" cy="1550" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="40%" cy="1550" rx="260" ry="50" class="light-gray" />
+  <path d="M1360,1510 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!--9-->
+  <path d="M1650,2200 l-150,-650 l250,0 l0,700 a150,50 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M1750,2200 l0,-650 l350,0 l-150,650 a150,50, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="60%" cy="1550" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="60%" cy="1550" rx="260" ry="50" class="light-gray" />
+  <path d="M1960,1510 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+
+  <!-- 10 -->
+  <path d="M1350,2550 l-150,-650 l250,0 l0,700 a150,60 0, 0, 1 -100,-50 Z" class="dark-cup" />
+  <path d="M1450,2550 l0,-650 l350,0 l-150,650 a150,60, 0, 0, 1, -200,50 Z" class="light-cup" />
+
+  <ellipse cx="50%" cy="1900" rx="330" ry="80" class="cream-white" />
+  <ellipse cx="50%" cy="1900" rx="260" ry="50" class="light-gray" />
+  <path d="M1660,1860 a260,50, 0, 0, 1, -50,86" class="dark-gray" />
+</svg>
