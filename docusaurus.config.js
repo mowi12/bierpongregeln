@@ -75,6 +75,7 @@ const config = {
                             { to: 'docs/flavors/3d', label: '3D' },
                             { to: 'docs/flavors/mehr_baelle', label: 'Mehr Bälle' },
                             { to: 'docs/flavors/sniper', label: 'Sniper' },
+                            { to: 'docs/flavors/double_table', label: 'Double Table' },
                         ],
                         position: 'left',
                     },
