@@ -5,6 +5,7 @@ import Rating from '@site/src/components/Rating';
 import TeamLeaderboard from '@site/src/components/TeamLeaderboard';
 import SingleLeaderboard from '@site/src/components/SingleLeaderboard';
 import TournamentTable from '@site/src/components/TournamentTable';
+import FlavorPreamble from '@site/src/components/FlavorPreamble';
 
 export default {
     // Re-use the default mapping
@@ -16,4 +17,5 @@ export default {
     TeamLeaderboard,
     SingleLeaderboard,
     TournamentTable,
+    FlavorPreamble,
 };
