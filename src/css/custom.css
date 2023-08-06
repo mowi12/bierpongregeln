@@ -16,6 +16,8 @@
     --ifm-code-font-size: 95%;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
+    --banner-color: #00b3aa;
+
     /* change color of button text */
     --ifm-color-gray-900: #242526;
 }
@@ -30,6 +32,8 @@
     --ifm-color-primary-lighter: #32d8b4;
     --ifm-color-primary-lightest: #4fddbf;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+    --banner-color: #018273;
 
     /* change color of button text */
     --ifm-color-gray-900: #242526;

@@ -16,3 +16,7 @@
         padding: 2rem;
     }
 }
+
+.homePageBackground {
+    --ifm-hero-background-color: var(--banner-color) !important;
+}
