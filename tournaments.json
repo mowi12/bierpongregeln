@@ -185,6 +185,62 @@
                 "Tim",
                 "Sophie"
             ]
+        },
+        {
+            "date": "2023-08-20",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": [
+                "Marcel"
+            ],
+            "secondPlace": [
+                "Moritz G.",
+                "Moritz W."
+            ],
+            "thirdPlace": [
+                "Lea",
+                "Leonhard"
+            ],
+            "participants": [
+                "Millane",
+                "Moritz G.",
+                "Leonhard",
+                "Moritz W.",
+                "Markus",
+                "Marcel",
+                "Alex",
+                "Louis",
+                "Lea",
+                "Felix",
+                "Tim"
+            ]
+        },
+        {
+            "date": "2023-08-23",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": [
+                "Moritz W."
+            ],
+            "secondPlace": [
+                "Leonhard"
+            ],
+            "thirdPlace": [
+                "Moritz G."
+            ],
+            "participants": [
+                "Millane",
+                "Moritz G.",
+                "Leonhard",
+                "Moritz W.",
+                "Markus",
+                "Marcel",
+                "Alex",
+                "Louis",
+                "Lea",
+                "Felix",
+                "Tim"
+            ]
         }
     ]
 }
