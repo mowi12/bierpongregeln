@@ -8,6 +8,7 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    color: #242526;
 }
 
 @media screen and (max-width: 996px) {
@@ -16,8 +17,6 @@
     }
 }
 
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.homePageBackground {
+    --ifm-hero-background-color: var(--banner-color) !important;
 }
