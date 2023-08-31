@@ -141,10 +141,11 @@ function onHeaderClick(header, setSortConfig) {
  *     winrate: number,
  *     participations: number,
  *     place: number
- *   }[]
+ *   }[],
+ *   minimumParticipationThreshold: number
  * }} props
  */
-export default function Leaderboard({ data }) {
+export default function Leaderboard({ data, minimumParticipationThreshold }) {
     const [sortConfig, setSortConfig] = React.useState(oldSortConfig);
 
     React.useMemo(() => {
@@ -156,7 +157,9 @@ export default function Leaderboard({ data }) {
             <i>PPG: Points per Game</i>
             <br />
             <i>
-                Note: People who have played less than 3 games are ranked at the bottom of the list.
+                Note: People who have played less than
+                {` ${minimumParticipationThreshold} `}
+                games are ranked at the bottom of the list.
             </i>
             <br />
             <br />
@@ -203,4 +206,5 @@ Leaderboard.propTypes = {
         },
 
     ).isRequired,
+    minimumParticipationThreshold: PropTypes.number.isRequired,
 };

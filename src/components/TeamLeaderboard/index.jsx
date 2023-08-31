@@ -13,11 +13,15 @@ export default function TeamLeaderboard() {
      *     winrate: number,
      *     participations: number,
      *     place: number
-     *   }[]
+     *   }[],
+     *   minimumParticipationThreshold: number
      * }}
      */
-    const { teamLeaderboard } = usePluginData('leaderboard-plugin');
+    const { teamLeaderboard, minimumParticipationThreshold } = usePluginData('leaderboard-plugin');
     return (
-        <Leaderboard data={teamLeaderboard} />
+        <Leaderboard
+            data={teamLeaderboard}
+            minimumParticipationThreshold={minimumParticipationThreshold}
+        />
     );
 }

@@ -246,6 +246,7 @@ module.exports = async function leaderboardPlugin(_context, _options) {
             }
 
             setGlobalData({
+                minimumParticipationThreshold,
                 rating: content.rating,
                 teamLeaderboard,
                 singleLeaderboard,
