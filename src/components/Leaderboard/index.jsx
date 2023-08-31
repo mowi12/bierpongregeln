@@ -141,10 +141,11 @@ function onHeaderClick(header, setSortConfig) {
  *     winrate: number,
  *     participations: number,
  *     place: number
- *   }[]
+ *   }[],
+ *   minimumParticipationThreshold: number
  * }} props
  */
-export default function Leaderboard({ data }) {
+export default function Leaderboard({ data, minimumParticipationThreshold }) {
     const [sortConfig, setSortConfig] = React.useState(oldSortConfig);
 
     React.useMemo(() => {
@@ -152,32 +153,43 @@ export default function Leaderboard({ data }) {
     }, [data, sortConfig]);
 
     return (
-        <table className="leaderboard-table">
-            <thead>
-                <tr>
-                    {headers.map((header) => (
-                        <th key={header}>
-                            <button
-                                type="button"
-                                onClick={() => onHeaderClick(header, setSortConfig)}
-                                className={sortConfig.field === header ? sortConfig.order : ''}
-                            >
-                                {header}
-                            </button>
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((entry) => (
-                    <tr key={entry.name}>
-                        {keys.map(({ name }) => (
-                            <td key={name}>{formatCellContent(entry[name])}</td>
+        <div>
+            <i>PPG: Points per Game</i>
+            <br />
+            <i>
+                Note: People who have played less than
+                {` ${minimumParticipationThreshold} `}
+                games are ranked at the bottom of the list.
+            </i>
+            <br />
+            <br />
+            <table className="leaderboard-table">
+                <thead>
+                    <tr>
+                        {headers.map((header) => (
+                            <th key={header}>
+                                <button
+                                    type="button"
+                                    onClick={() => onHeaderClick(header, setSortConfig)}
+                                    className={sortConfig.field === header ? sortConfig.order : ''}
+                                >
+                                    {header}
+                                </button>
+                            </th>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {data.map((entry) => (
+                        <tr key={entry.name}>
+                            {keys.map(({ name }) => (
+                                <td key={name}>{formatCellContent(entry[name])}</td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }
 
@@ -194,4 +206,5 @@ Leaderboard.propTypes = {
         },
 
     ).isRequired,
+    minimumParticipationThreshold: PropTypes.number.isRequired,
 };

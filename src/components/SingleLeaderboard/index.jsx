@@ -13,11 +13,15 @@ export default function SingleLeaderboard() {
      *     winrate: number,
      *     participations: number,
      *     place: number
-     *   }[]
+     *   }[],
+     *   minimumParticipationThreshold: number
      * }}
      */
-    const { singleLeaderboard } = usePluginData('leaderboard-plugin');
+    const { singleLeaderboard, minimumParticipationThreshold } = usePluginData('leaderboard-plugin');
     return (
-        <Leaderboard data={singleLeaderboard} />
+        <Leaderboard
+            data={singleLeaderboard}
+            minimumParticipationThreshold={minimumParticipationThreshold}
+        />
     );
 }

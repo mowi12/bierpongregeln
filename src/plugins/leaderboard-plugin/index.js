@@ -7,6 +7,8 @@ const TurnamentType = {
     Team: 'team',
 };
 
+const minimumParticipationThreshold = 3;
+
 /**
  * @param {{
  *   name: string,
@@ -29,6 +31,13 @@ const TurnamentType = {
  * @returns {number}
  */
 function sortLeaderBoard(a, b) {
+    // People who have only played a few games are ranked at the bottom of the list
+    let minimumParticipationComparision = a.participations < minimumParticipationThreshold ? 1 : 0;
+    minimumParticipationComparision -= b.participations < minimumParticipationThreshold ? 1 : 0;
+    if (minimumParticipationComparision !== 0) {
+        return minimumParticipationComparision;
+    }
+
     // High Winrate, high points per game, high points, high wins, low participations
 
     const winrateComparision = b.winrate - a.winrate;
@@ -237,6 +246,7 @@ module.exports = async function leaderboardPlugin(_context, _options) {
             }
 
             setGlobalData({
+                minimumParticipationThreshold,
                 rating: content.rating,
                 teamLeaderboard,
                 singleLeaderboard,
