@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100" height="100">
+    <style>
+        .light-cup { fill:#ff786e }
+        .dark-cup { fill:#be5652 }
+        .cream-white { fill:#fffafa }
+        .light-gray { fill:#efeae0 }
+        .dark-gray { fill:#aa9991 }
+    </style>
+
+    <!-- Cup -->
+    <path d="M35,85 l-15,-65 l25,0 l0,70 a15,5 0, 0, 1 -10,-5 Z" class="dark-cup" />
+    <path d="M45,85 l0,-65 l35,0 l-15,65 a15,5, 0, 0, 1, -20,5 Z" class="light-cup" />
+
+    <ellipse cx="50" cy="20" rx="33" ry="8" class="cream-white" />
+    <ellipse cx="50" cy="20" rx="26" ry="5" class="light-gray" />
+    <path d="M66,16 a26,5, 0, 0, 1, -5,8.6" class="dark-gray" />
+</svg>
