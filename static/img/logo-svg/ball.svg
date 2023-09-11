@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100" height="100">
+    <style>
+        .light-gray {
+            fill:#efeae0;
+            rotate: -45deg;
+            transform-origin: 50% 50% }
+        .dark-gray { fill:#aa9991 }
+    </style>
+    
+    <circle cx="50%" cy="50%" r="50" class="dark-gray" />
+    <path d="M50,0 a50,50, 0, 0, 1, 0,100 a50,52, 0, 0, 1, 0,-100 Z" class="light-gray" />
+</svg>
