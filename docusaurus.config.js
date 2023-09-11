@@ -71,6 +71,7 @@ const config = {
                         items: [
                             { to: 'docs/flavors/moritz', label: 'Moritz' },
                             { to: 'docs/flavors/felix', label: 'Felix' },
+                            { to: 'docs/flavors/marcel', label: 'Marcel' },
                             { to: 'docs/flavors/game_pigeon', label: 'Game Pigeon' },
                             { to: 'docs/flavors/3d', label: '3D' },
                             { to: 'docs/flavors/mehr_baelle', label: 'Mehr Bälle' },
