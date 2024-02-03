@@ -32,37 +32,37 @@ const minimumParticipationThreshold = 3;
  */
 function sortLeaderBoard(a, b) {
     // People who have only played a few games are ranked at the bottom of the list
-    let minimumParticipationComparision = a.participations < minimumParticipationThreshold ? 1 : 0;
-    minimumParticipationComparision -= b.participations < minimumParticipationThreshold ? 1 : 0;
-    if (minimumParticipationComparision !== 0) {
-        return minimumParticipationComparision;
+    let minimumParticipationComparison = a.participations < minimumParticipationThreshold ? 1 : 0;
+    minimumParticipationComparison -= b.participations < minimumParticipationThreshold ? 1 : 0;
+    if (minimumParticipationComparison !== 0) {
+        return minimumParticipationComparison;
     }
 
     // High Winrate, high points per game, high points, high wins, low participations
 
-    const winrateComparision = b.winrate - a.winrate;
-    if (winrateComparision !== 0) {
-        return winrateComparision;
+    const winrateComparison = b.winrate - a.winrate;
+    if (winrateComparison !== 0) {
+        return winrateComparison;
     }
 
-    const pointsPerGameComparision = b.pointsPerGame - a.pointsPerGame;
-    if (pointsPerGameComparision !== 0) {
-        return pointsPerGameComparision;
+    const pointsPerGameComparison = b.pointsPerGame - a.pointsPerGame;
+    if (pointsPerGameComparison !== 0) {
+        return pointsPerGameComparison;
     }
 
-    const pointsComparision = b.points - a.points;
-    if (pointsComparision !== 0) {
-        return pointsComparision;
+    const pointsComparison = b.points - a.points;
+    if (pointsComparison !== 0) {
+        return pointsComparison;
     }
 
-    const winsComparision = b.wins - a.wins;
-    if (winsComparision !== 0) {
-        return winsComparision;
+    const winsComparison = b.wins - a.wins;
+    if (winsComparison !== 0) {
+        return winsComparison;
     }
 
-    const participationsComparision = a.participations - b.participations;
-    if (participationsComparision !== 0) {
-        return participationsComparision;
+    const participationsComparison = a.participations - b.participations;
+    if (participationsComparison !== 0) {
+        return participationsComparison;
     }
 
     return 0;
