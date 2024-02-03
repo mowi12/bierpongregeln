@@ -4,6 +4,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const { version } = require('./package.json');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Bierpongregeln',
@@ -90,7 +92,8 @@ const config = {
             },
             footer: {
                 style: 'dark',
-                copyright: `Copyright © ${new Date().getFullYear()} Felix Schlegel, Moritz Wieland. Built with Docusaurus.`,
+                copyright: `Version <a href="https://github.com/mowi12/bierpongregeln/releases/tag/v${version}" target="_blank" rel="noreferrer">${version}</a><br>
+                Copyright © ${new Date().getFullYear()} Felix Schlegel, Moritz Wieland. Built with Docusaurus.`,
             },
             prism: {
                 theme: lightCodeTheme,
