@@ -3,8 +3,19 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
+const { execSync } = require('child_process');
 const { version } = require('./package.json');
+
+function getLastUpdate() {
+    const date = execSync('git log -1 --pretty=%cd --date=format:%Y-%m-%d')
+        .toString()
+        .trim();
+    return new Date(date).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -92,7 +103,7 @@ const config = {
             },
             footer: {
                 style: 'dark',
-                copyright: `Version <a href="https://github.com/mowi12/bierpongregeln/releases/tag/v${version}" target="_blank" rel="noreferrer">${version}</a><br>
+                copyright: `Version <a href="https://github.com/mowi12/bierpongregeln/releases/tag/v${version}" target="_blank" rel="noreferrer">${version}</a> (last update ${getLastUpdate()})  <br>
                 Copyright © ${new Date().getFullYear()} Felix Schlegel, Moritz Wieland. Built with Docusaurus.`,
             },
             prism: {
