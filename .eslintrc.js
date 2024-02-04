@@ -1,59 +1,54 @@
 module.exports = {
     env: {
         browser: true,
-        commonjs: true,
         es2021: true,
         node: true,
     },
     extends: [
-        'airbnb',
-        'airbnb/hooks',
-        'plugin:@docusaurus/recommended',
-        'plugin:react-hooks/recommended',
+        "plugin:@docusaurus/recommended",
+        "standard-with-typescript",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
     ],
     overrides: [
         {
             env: {
                 node: true,
             },
-            files: [
-                '.eslintrc.{js,cjs}',
-            ],
+            files: [".eslintrc.{js,cjs}"],
             parserOptions: {
-                sourceType: 'script',
+                sourceType: "script",
             },
         },
     ],
     parserOptions: {
-        ecmaVersion: 'latest',
+        ecmaVersion: "latest",
+        sourceType: "module",
     },
-    ignorePatterns: [
-        'build/',
-    ],
+    ignorePatterns: ["build/"],
+    plugins: ["react"],
     rules: {
-        indent: [
-            'error',
-            4,
-        ],
-        'linebreak-style': 0,
-        'react/jsx-indent': 0,
-        'react/jsx-indent-props': 0,
-        'import/no-unresolved': 0,
-        'no-plusplus': 0,
-        'no-unused-vars': [
-            'error',
+        indent: ["error", 4],
+        "linebreak-style": 0,
+        "react/jsx-indent": 0,
+        "react/jsx-indent-props": 0,
+        "no-plusplus": 0,
+        "no-unused-vars": [
+            "error",
             {
-                argsIgnorePattern: '^_',
+                argsIgnorePattern: "^_",
             },
         ],
-        'no-console': 0,
-        'import/extensions': [
-            'error',
-            'ignorePackages',
+        "no-console": 0,
+        "import/extensions": [
+            "error",
+            "ignorePackages",
             {
-                '.js': 'always',
-                '.jsx': 'always',
-                '.png': 'always',
+                ".js": "always",
+                ".jsx": "always",
+                ".ts": "always",
+                ".tsx": "always",
+                ".png": "always",
             },
         ],
     },

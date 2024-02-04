@@ -1,7 +1,6 @@
-import React from 'react';
-import Admonition from '@theme/Admonition';
+import Admonition from "@theme/Admonition";
 
-export default function FlavorPreamble() {
+export default function FlavorPreamble(): JSX.Element {
     return (
         <div>
             <Admonition type="info">
@@ -9,7 +8,11 @@ export default function FlavorPreamble() {
                 <br />
                 <span>Zu beachten ist, dass </span>
                 <a href="../regelwerk#flavors">Flavors</a>
-                <span> die Regeln des zugrunde liegenden Regelwerks abändern, entfernen </span>
+                <span>
+                    {" "}
+                    die Regeln des zugrunde liegenden Regelwerks abändern,
+                    entfernen{" "}
+                </span>
                 <span>und/oder um neue Regeln erweitern.</span>
                 <br />
                 <span>Es empfiehlt sich, vorher das </span>
