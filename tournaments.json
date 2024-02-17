@@ -241,6 +241,28 @@
                 "Felix",
                 "Tim"
             ]
+        },
+        {
+            "date": "2024-02-03",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": [
+                "Marcel"
+            ],
+            "secondPlace": [
+                "Moritz W."
+            ],
+            "thirdPlace": [
+                "Millane"
+            ],
+            "participants": [
+                "Millane",
+                "Felix",
+                "Idi",
+                "Moritz W.",
+                "Moritz G.",
+                "Marcel"
+            ]
         }
     ]
 }
