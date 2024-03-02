@@ -10,15 +10,9 @@
             "date": "2023-01-28",
             "flavor": "Moritz",
             "type": "single",
-            "firstPlace": [
-                "Millane"
-            ],
-            "secondPlace": [
-                "Moritz G."
-            ],
-            "thirdPlace": [
-                "Leonhard"
-            ],
+            "firstPlace": ["Millane"],
+            "secondPlace": ["Moritz G."],
+            "thirdPlace": ["Leonhard"],
             "participants": [
                 "Millane",
                 "Moritz G.",
@@ -32,18 +26,9 @@
             "date": "2023-02-10",
             "flavor": "Moritz",
             "type": "team",
-            "firstPlace": [
-                "Tim",
-                "Michael"
-            ],
-            "secondPlace": [
-                "Sophie",
-                "Moritz W."
-            ],
-            "thirdPlace": [
-                "Marcel",
-                "Felix"
-            ],
+            "firstPlace": ["Tim", "Michael"],
+            "secondPlace": ["Sophie", "Moritz W."],
+            "thirdPlace": ["Marcel", "Felix"],
             "participants": [
                 "Tim",
                 "Michael",
@@ -61,18 +46,9 @@
             "date": "2023-03-05",
             "flavor": "Moritz",
             "type": "team",
-            "firstPlace": [
-                "Dominik",
-                "Leonhard"
-            ],
-            "secondPlace": [
-                "Markus",
-                "Mukhtar"
-            ],
-            "thirdPlace": [
-                "Lea",
-                "Moritz W."
-            ],
+            "firstPlace": ["Dominik", "Leonhard"],
+            "secondPlace": ["Markus", "Mukhtar"],
+            "thirdPlace": ["Lea", "Moritz W."],
             "participants": [
                 "Dominik",
                 "Michael",
@@ -92,15 +68,9 @@
             "date": "2023-04-23",
             "flavor": "Moritz",
             "type": "single",
-            "firstPlace": [
-                "Markus"
-            ],
-            "secondPlace": [
-                "Moritz G."
-            ],
-            "thirdPlace": [
-                "Moritz W."
-            ],
+            "firstPlace": ["Markus"],
+            "secondPlace": ["Moritz G."],
+            "thirdPlace": ["Moritz W."],
             "participants": [
                 "Markus",
                 "Moritz G.",
@@ -118,15 +88,9 @@
             "date": "2023-06-22",
             "flavor": "Moritz",
             "type": "single",
-            "firstPlace": [
-                "Millane"
-            ],
-            "secondPlace": [
-                "Moritz W."
-            ],
-            "thirdPlace": [
-                "Felix"
-            ],
+            "firstPlace": ["Millane"],
+            "secondPlace": ["Moritz W."],
+            "thirdPlace": ["Felix"],
             "participants": [
                 "Millane",
                 "Moritz W.",
@@ -139,15 +103,9 @@
             "date": "2023-06-22",
             "flavor": "Moritz + 3D",
             "type": "single",
-            "firstPlace": [
-                "Moritz W."
-            ],
-            "secondPlace": [
-                "Dominik"
-            ],
-            "thirdPlace": [
-                "Millane"
-            ],
+            "firstPlace": ["Moritz W."],
+            "secondPlace": ["Dominik"],
+            "thirdPlace": ["Millane"],
             "participants": [
                 "Dominik",
                 "Millane",
@@ -162,18 +120,9 @@
             "date": "2023-07-08",
             "flavor": "Moritz",
             "type": "team",
-            "firstPlace": [
-                "Marcel",
-                "Millane"
-            ],
-            "secondPlace": [
-                "Moritz G.",
-                "Leonhard"
-            ],
-            "thirdPlace": [
-                "Felix",
-                "Idi"
-            ],
+            "firstPlace": ["Marcel", "Millane"],
+            "secondPlace": ["Moritz G.", "Leonhard"],
+            "thirdPlace": ["Felix", "Idi"],
             "participants": [
                 "Marcel",
                 "Millane",
@@ -190,17 +139,9 @@
             "date": "2023-08-20",
             "flavor": "Moritz",
             "type": "team",
-            "firstPlace": [
-                "Marcel"
-            ],
-            "secondPlace": [
-                "Moritz G.",
-                "Moritz W."
-            ],
-            "thirdPlace": [
-                "Lea",
-                "Leonhard"
-            ],
+            "firstPlace": ["Marcel"],
+            "secondPlace": ["Moritz G.", "Moritz W."],
+            "thirdPlace": ["Lea", "Leonhard"],
             "participants": [
                 "Millane",
                 "Moritz G.",
@@ -219,15 +160,9 @@
             "date": "2023-08-23",
             "flavor": "Moritz",
             "type": "single",
-            "firstPlace": [
-                "Moritz W."
-            ],
-            "secondPlace": [
-                "Leonhard"
-            ],
-            "thirdPlace": [
-                "Moritz G."
-            ],
+            "firstPlace": ["Moritz W."],
+            "secondPlace": ["Leonhard"],
+            "thirdPlace": ["Moritz G."],
             "participants": [
                 "Millane",
                 "Moritz G.",
@@ -246,15 +181,9 @@
             "date": "2024-02-03",
             "flavor": "Moritz",
             "type": "single",
-            "firstPlace": [
-                "Marcel"
-            ],
-            "secondPlace": [
-                "Moritz W."
-            ],
-            "thirdPlace": [
-                "Millane"
-            ],
+            "firstPlace": ["Marcel"],
+            "secondPlace": ["Moritz W."],
+            "thirdPlace": ["Millane"],
             "participants": [
                 "Millane",
                 "Felix",

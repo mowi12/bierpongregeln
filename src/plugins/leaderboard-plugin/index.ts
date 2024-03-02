@@ -105,7 +105,10 @@ function initializeParticipants(
     }
 }
 
-function calculateMetrics(leaderboard: LeaderboardEntry[], tournament: Tournament) {
+function calculateMetrics(
+    leaderboard: LeaderboardEntry[],
+    tournament: Tournament
+) {
     for (const participant of tournament.participants) {
         const match = leaderboard.find((player) => player.name === participant);
         if (match === undefined) {
@@ -117,7 +120,10 @@ function calculateMetrics(leaderboard: LeaderboardEntry[], tournament: Tournamen
     }
 }
 
-function fillLeaderboardData(data: GameData, type: TurnamentType): LeaderboardEntry[] {
+function fillLeaderboardData(
+    data: GameData,
+    type: TurnamentType
+): LeaderboardEntry[] {
     const leaderboard: LeaderboardEntry[] = [];
 
     // Add points to players
@@ -158,7 +164,8 @@ function fillLeaderboardData(data: GameData, type: TurnamentType): LeaderboardEn
     return leaderboard;
 }
 
-async function leaderboardPlugin(_context: any, _options: any) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function leaderboardPlugin(_context: unknown, _options: unknown) {
     return {
         name: "leaderboard-plugin",
         async loadContent() {

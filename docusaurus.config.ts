@@ -1,17 +1,17 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import { execSync } from 'child_process';
-import { version } from './package.json';
+import { execSync } from "child_process";
+import { version } from "./package.json";
 
 function getLastUpdate() {
-    const date = execSync('git log -1 --pretty=%cd --date=format:%Y-%m-%d')
+    const date = execSync("git log -1 --pretty=%cd --date=format:%Y-%m-%d")
         .toString()
         .trim();
     return new Date(date).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
     });
 }
 
@@ -120,9 +120,7 @@ const config: Config = {
             maxHeadingLevel: 3,
         },
     } satisfies Preset.ThemeConfig,
-    plugins: [
-        "./src/plugins/leaderboard-plugin/index.ts",
-    ],
+    plugins: ["./src/plugins/leaderboard-plugin/index.ts"],
 };
 
 export default config;
