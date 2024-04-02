@@ -6,7 +6,7 @@
 
 # Bierpongregeln / Beer pong rules
 
-This is a collection of rulesets for beer pong that is built using [Docusaurus 2](https://docusaurus.io/) and served with GitHub Pages.
+This is a collection of rulesets for beer pong that is built using [Docusaurus 3](https://docusaurus.io/) and served with GitHub Pages.
 
 ## How to run locally
 
