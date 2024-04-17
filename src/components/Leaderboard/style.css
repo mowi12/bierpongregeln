@@ -1,0 +1,36 @@
+.leaderboard-table {
+    border-style: hidden;
+    display: inline-table;
+}
+
+.leaderboard-table thead th {
+    padding: 0.2em;
+}
+
+.leaderboard-table thead button {
+    border: 0;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: inherit;
+    padding: 0.8em;
+    width: 100%;
+    text-align: left;
+}
+
+.leaderboard-table thead button::after {
+    content: "▾";
+    visibility: hidden;
+    margin-left: 0.3em;
+}
+
+.leaderboard-table thead button.asc::after {
+    content: "▾";
+    visibility: visible;
+    margin-left: 0.3em;
+}
+
+.leaderboard-table thead button.desc::after {
+    content: "▴";
+    visibility: visible;
+    margin-left: 0.3em;
+}
