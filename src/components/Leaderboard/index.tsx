@@ -1,5 +1,6 @@
 import React from "react";
 import { LeaderboardEntry } from "@site/src/types/leaderboard";
+import "./style.css";
 
 interface LeaderboardProps {
     data: LeaderboardEntry[];
