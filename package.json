@@ -30,7 +30,7 @@
     "devDependencies": {
         "@docusaurus/module-type-aliases": "^3.5.1",
         "@docusaurus/tsconfig": "^3.4.0",
-        "@docusaurus/types": "^3.4.0",
+        "@docusaurus/types": "^3.5.1",
         "@typescript-eslint/eslint-plugin": "^7.17.0",
         "@typescript-eslint/parser": "^7.18.0",
         "ajv-cli": "^5.0.0",
