@@ -94,8 +94,8 @@ const config: Config = {
                     position: "left",
                 },
                 {
-                    to: "docs/ergebnisse",
-                    label: "Ergebnisse",
+                    to: "docs/greiner-cup",
+                    label: "3. Greiner Cup",
                     position: "left",
                 },
                 {
