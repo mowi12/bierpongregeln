@@ -99,6 +99,17 @@ const config: Config = {
                     position: "left",
                 },
                 {
+                    type: "dropdown",
+                    label: "Cups",
+                    items: [
+                        {
+                            to: "docs/cups/greiner-cup-3",
+                            label: "3. Greiner Cup",
+                        },
+                    ],
+                    position: "left",
+                },
+                {
                     href: "https://github.com/mowi12/bierpongregeln",
                     label: "GitHub",
                     position: "right",
