@@ -94,11 +94,18 @@ const config: Config = {
                     position: "left",
                 },
                 {
+                    to: "docs/ergebnisse",
+                    label: "Ergebnisse",
+                    position: "left",
+                },
+                {
                     type: "dropdown",
-                    label: "Ergebnisse und Cups",
+                    label: "Cups",
                     items: [
-                        { to: "docs/ergebnisse-cups/ergebnisse", label: "Ergebnisse" },
-                        { to: "docs/ergebnisse-cups/greiner-cup", label: "3. Greiner Cup" },
+                        {
+                            to: "docs/cups/greiner-cup-3",
+                            label: "3. Greiner Cup",
+                        },
                     ],
                     position: "left",
                 },
