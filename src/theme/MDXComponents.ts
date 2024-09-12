@@ -6,6 +6,8 @@ import TeamLeaderboard from "@site/src/components/TeamLeaderboard";
 import SingleLeaderboard from "@site/src/components/SingleLeaderboard";
 import TournamentTable from "@site/src/components/TournamentTable";
 import FlavorPreamble from "@site/src/components/FlavorPreamble";
+import Columns from "@site/src/components/Columns";
+import Column from "@site/src/components/Column";
 
 export default {
     // Re-use the default mapping
@@ -16,4 +18,6 @@ export default {
     SingleLeaderboard,
     TournamentTable,
     FlavorPreamble,
+    Columns,
+    Column,
 };
