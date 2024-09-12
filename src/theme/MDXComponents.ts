@@ -8,6 +8,7 @@ import TournamentTable from "@site/src/components/TournamentTable";
 import FlavorPreamble from "@site/src/components/FlavorPreamble";
 import Columns from "@site/src/components/Columns";
 import Column from "@site/src/components/Column";
+import InputRange from "../components/InputRange";
 
 export default {
     // Re-use the default mapping
@@ -20,4 +21,5 @@ export default {
     FlavorPreamble,
     Columns,
     Column,
+    InputRange,
 };
