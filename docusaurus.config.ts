@@ -110,6 +110,11 @@ const config: Config = {
                     position: "left",
                 },
                 {
+                    to: "docs/tournament_mode_generator",
+                    label: "Turniermodus-Generator",
+                    position: "left",
+                },
+                {
                     href: "https://github.com/mowi12/bierpongregeln",
                     label: "GitHub",
                     position: "right",

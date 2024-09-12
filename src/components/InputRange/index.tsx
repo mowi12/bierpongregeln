@@ -1,4 +1,6 @@
 import React from "react";
+import Column from "../Column";
+import Columns from "../Columns";
 
 interface InputRangeProps {
     min: number;
@@ -22,22 +24,28 @@ export default function InputRange(props: InputRangeProps) {
     }
 
     return (
-        <div>
-            <input
-                type="range"
-                min={min}
-                max={max}
-                step={step}
-                value={value}
-                onChange={(event) => setValue(onValueChange(event))}
-            />
-            <input
-                type="number"
-                name="textInput"
-                value={value}
-                onChange={(event) => setValue(onValueChange(event))}
-            />
-            <label htmlFor="textInput">{label}</label>
-        </div>
+        <Columns>
+            <Column>
+                <label htmlFor="textInput">{label}:</label>
+            </Column>
+            <Column>
+                <input
+                    type="range"
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={value}
+                    onChange={(event) => setValue(onValueChange(event))}
+                />
+            </Column>
+            <Column>
+                <input
+                    type="number"
+                    name="textInput"
+                    value={value}
+                    onChange={(event) => setValue(onValueChange(event))}
+                />
+            </Column>
+        </Columns>
     );
 }

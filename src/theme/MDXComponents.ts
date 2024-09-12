@@ -13,6 +13,7 @@ import Card from "../components/card-components/Card";
 import CardHeader from "../components/card-components/CardHeader";
 import CardBody from "../components/card-components/CardBody";
 import CardFooter from "../components/card-components/CardFooter";
+import TournamentModeGenerator from "../components/TournamentModeGenerator";
 
 export default {
     // Re-use the default mapping
@@ -30,4 +31,5 @@ export default {
     CardHeader,
     CardBody,
     CardFooter,
+    TournamentModeGenerator,
 };
