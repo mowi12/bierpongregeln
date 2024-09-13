@@ -23,6 +23,7 @@ export default function TournamentModeCardFooter(
                     <span>Anzahl Spiele: {details.numberOfGames}</span>
                 </Column>
                 {gamesPerTeamColumn(details)}
+                {numberOfGamesPerGroup(details as GroupPhaseDetailProps)}
                 {finalsTypeColumn(details as GroupPhaseDetailProps)}
                 {totalDurationColumn(details.totalDuration, tables)}
             </Columns>
@@ -41,21 +42,21 @@ function gamesPerTeamColumn(details: FFADetailProps) {
 
     return (
         <Column>
-            <span>
-                Spiele pro {teamType}: {gamesPerTeamText}
-            </span>
+            Spiele pro {teamType}: {gamesPerTeamText}
         </Column>
     );
+}
+
+function numberOfGamesPerGroup(details: GroupPhaseDetailProps) {
+    if (!("numberOfGamesPerGroup" in details)) return null;
+    return <Column>Spiele pro Gruppe: {details.numberOfGamesPerGroup}</Column>;
 }
 
 function finalsTypeColumn(details: GroupPhaseDetailProps) {
     if (!("finalsType" in details)) return null;
     return (
         <Column>
-            <span>
-                Typ:{" "}
-                {getFinalsType((details as GroupPhaseDetailProps).finalsType)}
-            </span>
+            Typ: {getFinalsType((details as GroupPhaseDetailProps).finalsType)}
         </Column>
     );
 }
@@ -63,9 +64,7 @@ function finalsTypeColumn(details: GroupPhaseDetailProps) {
 function totalDurationColumn(totalDuration: number, tables: number) {
     return (
         <Column>
-            <span>
-                Gesamtdauer: {minutesToDurationString(totalDuration / tables)}
-            </span>
+            Gesamtdauer: {minutesToDurationString(totalDuration / tables)}
         </Column>
     );
 }

@@ -17,5 +17,6 @@ export interface FFADetailProps {
 }
 
 export interface GroupPhaseDetailProps extends FFADetailProps {
+    numberOfGamesPerGroup: number;
     finalsType: number;
 }

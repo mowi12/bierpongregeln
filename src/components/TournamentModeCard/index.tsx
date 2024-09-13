@@ -20,6 +20,8 @@ export default function TournamentModeCard(props: TournamentModeCardProps) {
     if (item.details.totalDuration / tables > maxDuration) {
         style.backgroundColor = "rgba(255, 0, 0, 0.1)";
         style.border = "0.25rem solid rgba(255, 0, 0, 0.8)";
+    } else {
+        style.border = "0.25rem solid rgba(0, 0, 0, 0)";
     }
 
     return (

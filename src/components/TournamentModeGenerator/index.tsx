@@ -81,27 +81,24 @@ export default function TournamentModeGenerator() {
             </div>
             <div
                 style={{
-                    margin: "3rem 0rem 0rem 0rem",
+                    marginTop: "2rem",
                 }}
             >
-                <div id="list">
-                    {items
-                        .sort(
-                            (a, b) =>
-                                a.details.totalDuration -
-                                b.details.totalDuration
-                        )
-                        .map((item) => (
-                            <TournamentModeCard
-                                item={item}
-                                tables={tables}
-                                maxDuration={maxDuration}
-                            />
-                        ))}
-                </div>
+                {items.sort(orderByTotalDuration).map((item) => (
+                    <TournamentModeCard
+                        key={item.title}
+                        item={item}
+                        tables={tables}
+                        maxDuration={maxDuration}
+                    />
+                ))}
             </div>
         </div>
     );
+}
+
+function orderByTotalDuration(a: CardProps, b: CardProps) {
+    return a.details.totalDuration - b.details.totalDuration;
 }
 
 function binomialCoefficient(n: number, k: number): number {
@@ -188,6 +185,7 @@ function addGamesForGroupPhase(
                     min: gamesPerTeamInGP,
                     max: maximumGamesPerTeam,
                 },
+                numberOfGamesPerGroup: gamesPerGroupInGP,
                 finalsType: finalsType,
                 totalDuration: totalDuration,
             },
