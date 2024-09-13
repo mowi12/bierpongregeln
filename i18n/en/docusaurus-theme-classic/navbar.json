@@ -1,0 +1,66 @@
+{
+  "title": {
+    "message": "Bierpongregeln",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Bierpongregeln Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Regelwerk": {
+    "message": "Regelwerk",
+    "description": "Navbar item with label Regelwerk"
+  },
+  "item.label.Flavors": {
+    "message": "Flavors",
+    "description": "Navbar item with label Flavors"
+  },
+  "item.label.Ergebnisse": {
+    "message": "Ergebnisse",
+    "description": "Navbar item with label Ergebnisse"
+  },
+  "item.label.Cups": {
+    "message": "Cups",
+    "description": "Navbar item with label Cups"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Moritz": {
+    "message": "Moritz",
+    "description": "Navbar item with label Moritz"
+  },
+  "item.label.Felix": {
+    "message": "Felix",
+    "description": "Navbar item with label Felix"
+  },
+  "item.label.Marcel": {
+    "message": "Marcel",
+    "description": "Navbar item with label Marcel"
+  },
+  "item.label.Game Pigeon": {
+    "message": "Game Pigeon",
+    "description": "Navbar item with label Game Pigeon"
+  },
+  "item.label.3D": {
+    "message": "3D",
+    "description": "Navbar item with label 3D"
+  },
+  "item.label.Mehr Bälle": {
+    "message": "Mehr Bälle",
+    "description": "Navbar item with label Mehr Bälle"
+  },
+  "item.label.Sniper": {
+    "message": "Sniper",
+    "description": "Navbar item with label Sniper"
+  },
+  "item.label.Double Table": {
+    "message": "Double Table",
+    "description": "Navbar item with label Double Table"
+  },
+  "item.label.3. Greiner Cup": {
+    "message": "3. Greiner Cup",
+    "description": "Navbar item with label 3. Greiner Cup"
+  }
+}
