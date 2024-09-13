@@ -45,11 +45,13 @@ const config: Config = {
                 label: "Deutsch",
                 direction: "ltr",
                 htmlLang: "de",
+                path: "de",
             },
             en: {
                 label: "English",
                 direction: "ltr",
                 htmlLang: "en",
+                path: "en",
             },
         },
     },
