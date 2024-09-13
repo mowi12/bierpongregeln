@@ -34,7 +34,7 @@ def save_new_version(new_version):
     data["version"] = new_version
 
     with open("package.json", "w") as file:
-        json.dump(data, file, indent=2)
+        json.dump(data, file, indent=4)
 
     print(f"Version updated to {new_version} in package.json")
 
