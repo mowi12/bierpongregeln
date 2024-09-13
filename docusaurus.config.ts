@@ -39,7 +39,19 @@ const config: Config = {
     // to replace "en" with "zh-Hans".
     i18n: {
         defaultLocale: "de",
-        locales: ["de"],
+        locales: ["de", "en"],
+        localeConfigs: {
+            de: {
+                label: "Deutsch",
+                direction: "ltr",
+                htmlLang: "de",
+            },
+            en: {
+                label: "English",
+                direction: "ltr",
+                htmlLang: "en",
+            },
+        },
     },
 
     presets: [
@@ -108,6 +120,14 @@ const config: Config = {
                         },
                     ],
                     position: "left",
+                },
+                {
+                    type: "docsVersionDropdown",
+                    position: "right",
+                },
+                {
+                    type: "localeDropdown",
+                    position: "right",
                 },
                 {
                     href: "https://github.com/mowi12/bierpongregeln",
