@@ -1,6 +1,6 @@
 {
-  "copyright": {
-    "message": "Version <a href=\"https://github.com/mowi12/bierpongregeln/releases/tag/v2.7.0\"\n                target=\"_blank\" rel=\"noreferrer\">2.7.0</a> (last update 09/12/2024)  <br>\n                Copyright © 2024 Felix Schlegel, Moritz Wieland. Built with Docusaurus.",
-    "description": "The footer copyright"
-  }
+    "copyright": {
+        "message": "Version <a href=\"https://github.com/mowi12/bierpongregeln/releases/tag/v2.7.0\"\n                target=\"_blank\" rel=\"noreferrer\">2.7.0</a> (last update 09/12/2024)  <br>\n                Copyright © 2024 Felix Schlegel, Moritz Wieland. Built with Docusaurus.",
+        "description": "The footer copyright"
+    }
 }
