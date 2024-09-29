@@ -8,6 +8,12 @@ import TournamentTable from "@site/src/components/TournamentTable";
 import FlavorPreamble from "@site/src/components/FlavorPreamble";
 import Columns from "@site/src/components/Columns";
 import Column from "@site/src/components/Column";
+import InputRange from "../components/InputRange";
+import Card from "../components/card-components/Card";
+import CardHeader from "../components/card-components/CardHeader";
+import CardBody from "../components/card-components/CardBody";
+import CardFooter from "../components/card-components/CardFooter";
+import TournamentModeGenerator from "../components/TournamentModeGenerator";
 
 export default {
     // Re-use the default mapping
@@ -20,4 +26,10 @@ export default {
     FlavorPreamble,
     Columns,
     Column,
+    InputRange,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    TournamentModeGenerator,
 };

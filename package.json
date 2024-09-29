@@ -1,7 +1,7 @@
 {
     "name": "bierpongregeln",
     "description": "This is a collection of rulesets for beer pong that is built using Docusaurus 2 and served with GitHub Pages.",
-    "version": "2.7.0",
+    "version": "2.8.0",
     "private": true,
     "scripts": {
         "docusaurus": "docusaurus",
