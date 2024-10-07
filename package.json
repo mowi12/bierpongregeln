@@ -32,7 +32,7 @@
         "@docusaurus/module-type-aliases": "^3.5.2",
         "@docusaurus/tsconfig": "^3.5.2",
         "@docusaurus/types": "^3.5.2",
-        "@typescript-eslint/eslint-plugin": "^8.7.0",
+        "@typescript-eslint/eslint-plugin": "^8.8.0",
         "@typescript-eslint/parser": "^8.8.0",
         "ajv-cli": "^5.0.0",
         "eslint": "^9.12.0",
