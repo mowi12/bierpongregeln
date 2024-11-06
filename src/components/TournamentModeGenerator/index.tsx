@@ -115,7 +115,7 @@ function addGameForFreeForAll(
 ) {
     const teams = Math.ceil(players / teamSize);
     const games = binomialCoefficient(teams, 2);
-    if (games <= 1) return;
+    if (games < 1) return;
     const gamesPerTeam = teams - 1;
     const totalDuration = games * minutesPerGame;
 
