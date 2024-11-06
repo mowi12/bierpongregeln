@@ -28,14 +28,14 @@
             "type": "team",
             "firstPlace": ["Tim", "Michael"],
             "secondPlace": ["Sophie", "Moritz W."],
-            "thirdPlace": ["Marcel", "Felix"],
+            "thirdPlace": ["Marcel", "Felix S."],
             "participants": [
                 "Tim",
                 "Michael",
                 "Sophie",
                 "Moritz W.",
                 "Marcel",
-                "Felix",
+                "Felix S.",
                 "Lea",
                 "Markus",
                 "Mukhtar",
@@ -58,7 +58,7 @@
                 "Mukhtar",
                 "Markus",
                 "Marcel",
-                "Felix",
+                "Felix S.",
                 "Lea",
                 "Millane",
                 "Sebbi"
@@ -80,7 +80,7 @@
                 "Lea",
                 "Marcel",
                 "Leonhard",
-                "Felix",
+                "Felix S.",
                 "Mukhtar"
             ]
         },
@@ -90,11 +90,11 @@
             "type": "single",
             "firstPlace": ["Millane"],
             "secondPlace": ["Moritz W."],
-            "thirdPlace": ["Felix"],
+            "thirdPlace": ["Felix S."],
             "participants": [
                 "Millane",
                 "Moritz W.",
-                "Felix",
+                "Felix S.",
                 "Dominik",
                 "Mukhtar"
             ]
@@ -110,7 +110,7 @@
                 "Dominik",
                 "Millane",
                 "Moritz W.",
-                "Felix",
+                "Felix S.",
                 "Mukhtar",
                 "Hartmut",
                 "Ines"
@@ -122,13 +122,13 @@
             "type": "team",
             "firstPlace": ["Marcel", "Millane"],
             "secondPlace": ["Moritz G.", "Leonhard"],
-            "thirdPlace": ["Felix", "Idi"],
+            "thirdPlace": ["Felix S.", "Idi"],
             "participants": [
                 "Marcel",
                 "Millane",
                 "Moritz G.",
                 "Leonhard",
-                "Felix",
+                "Felix S.",
                 "Idi",
                 "Moritz W.",
                 "Tim",
@@ -152,7 +152,7 @@
                 "Alex",
                 "Louis",
                 "Lea",
-                "Felix",
+                "Felix S.",
                 "Tim"
             ]
         },
@@ -173,7 +173,7 @@
                 "Alex",
                 "Louis",
                 "Lea",
-                "Felix",
+                "Felix S.",
                 "Tim"
             ]
         },
@@ -186,11 +186,51 @@
             "thirdPlace": ["Millane"],
             "participants": [
                 "Millane",
-                "Felix",
+                "Felix S.",
                 "Idi",
                 "Moritz W.",
                 "Moritz G.",
                 "Marcel"
+            ]
+        },
+        {
+            "date": "2024-09-13",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": ["Moritz G.", "Moritz W."],
+            "secondPlace": ["Markus", "Louis"],
+            "thirdPlace": ["Juli", "Lara"],
+            "participants": [
+                "Juli",
+                "Lara",
+                "Felix S.",
+                "Lennard",
+                "Lili",
+                "Mareike",
+                "Anton",
+                "Tim",
+                "Sebbi",
+                "Simon",
+                "Robin",
+                "Pablo",
+                "Moritz G.",
+                "Moritz W.",
+                "Markus",
+                "Louis",
+                "Jakob",
+                "Idi",
+                "Esther",
+                "Samuel",
+                "Leonhard",
+                "Maren",
+                "Felix F.",
+                "Timo",
+                "Daniel",
+                "Niklas",
+                "Lisa",
+                "Sascha",
+                "Marcel",
+                "Mukhtar"
             ]
         }
     ]
