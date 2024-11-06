@@ -3,6 +3,21 @@
     "title": "Tournament Data",
     "description": "Data for all beer pong tournaments",
     "type": "object",
+    "definitions": {
+        "flavor": {
+            "type": "string",
+            "enum": [
+                "Moritz",
+                "Felix",
+                "Marcel",
+                "Game Pigeon",
+                "3D",
+                "Mehr Bälle",
+                "Sniper",
+                "Double Table"
+            ]
+        }
+    },
     "properties": {
         "rating": {
             "type": "object",
@@ -32,7 +47,19 @@
                         "pattern": "^\\d{4}-\\d{2}-\\d{2}"
                     },
                     "flavor": {
-                        "type": "string"
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/flavor"
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/flavor"
+                                },
+                                "minItems": 1,
+                                "uniqueItems": true
+                            }
+                        ]
                     },
                     "type": {
                         "type": "string",
@@ -137,5 +164,6 @@
                 ]
             }
         }
-    }
+    },
+    "required": ["rating", "tournaments"]
 }

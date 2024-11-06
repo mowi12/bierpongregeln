@@ -101,7 +101,7 @@
         },
         {
             "date": "2023-06-22",
-            "flavor": "Moritz + 3D",
+            "flavor": ["Moritz", "3D"],
             "type": "single",
             "firstPlace": ["Moritz W."],
             "secondPlace": ["Dominik"],

@@ -17,7 +17,7 @@ export interface Rating {
 export interface Tournament {
     id: number;
     date: string;
-    flavor: string;
+    flavor: string | string [];
     type: string;
     firstPlace: string[];
     secondPlace: string[];
