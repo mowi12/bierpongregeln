@@ -35,7 +35,7 @@ export default function TournamentModeGenerator() {
         <div>
             <div className="container">
                 <InputRange
-                    min={1}
+                    min={2}
                     max={50}
                     step={1}
                     startValue={startValuePlayers}
@@ -103,7 +103,7 @@ function orderByTotalDuration(a: CardProps, b: CardProps) {
 
 function binomialCoefficient(n: number, k: number): number {
     if (k === 0 || k === n) return 1;
-    if (n < 0 || k < 0 || k > n) throw new Error("Invalid input");
+    if (n < 0 || k < 0 || k > n) throw new Error(`Invalid arguments: n=${n}, k=${k}`);
     return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
 }
 
@@ -115,7 +115,7 @@ function addGameForFreeForAll(
 ) {
     const teams = Math.ceil(players / teamSize);
     const games = binomialCoefficient(teams, 2);
-    if (games <= 1) return;
+    if (games < 1) return;
     const gamesPerTeam = teams - 1;
     const totalDuration = games * minutesPerGame;
 
