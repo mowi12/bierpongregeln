@@ -25,12 +25,19 @@ function createTournamentsTable(tournaments: Tournament[]) {
                         <td>{entry.firstPlace.join(" & ")}</td>
                         <td>{entry.secondPlace.join(" & ")}</td>
                         <td>{entry.thirdPlace.join(" & ")}</td>
-                        <td>{entry.flavor}</td>
+                        <td>{formatFlavor(entry.flavor)}</td>
                     </tr>
                 ))}
             </tbody>
         </table>
     );
+}
+
+function formatFlavor(flavor: string | string[]) {
+    if (Array.isArray(flavor)) {
+        return flavor.join(" & ");
+    }
+    return flavor;
 }
 
 export default function TournamentTable() {
