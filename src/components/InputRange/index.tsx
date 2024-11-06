@@ -59,7 +59,6 @@ export default function InputRange(props: InputRangeProps) {
                     max={max}
                     step={step}
                     id="sliderInput"
-                    defaultValue={startValue}
                     value={value}
                     onChange={handleSliderChange}
                 />
@@ -69,7 +68,6 @@ export default function InputRange(props: InputRangeProps) {
                     type="number"
                     name="textInput"
                     id="textInput"
-                    defaultValue={startValue}
                     value={inputValue}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
