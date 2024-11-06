@@ -91,6 +91,11 @@ function minutesToDurationString(minutes: number): string {
     const remainingMinutes = minutes % 60;
     const days = Math.floor(hours / 24);
     const remainingHours = hours % 24;
-    if (days > 0) return `${days}d ${remainingHours}h ${remainingMinutes}min`;
-    return `${hours}h ${remainingMinutes}min`;
+
+    let result = "";
+    if (days > 0) result += `${days}d `;
+    if (hours > 0) result += `${remainingHours}h `;
+    result += `${Math.ceil(remainingMinutes)}min`;
+
+    return result;
 }
