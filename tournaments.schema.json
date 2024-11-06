@@ -16,6 +16,30 @@
                 "Sniper",
                 "Double Table"
             ]
+        },
+        "participant": {
+            "type": "string",
+            "enum": [
+                "Millane",
+                "Moritz G.",
+                "Leonhard",
+                "Moritz W.",
+                "Mukhtar",
+                "Markus",
+                "Tim",
+                "Michael",
+                "Sophie",
+                "Marcel",
+                "Felix",
+                "Lea",
+                "Dominik",
+                "Sebbi",
+                "Hartmut",
+                "Ines",
+                "Idi",
+                "Alex",
+                "Louis"
+            ]
         }
     },
     "properties": {
@@ -68,28 +92,28 @@
                     "firstPlace": {
                         "type": "array",
                         "items": {
-                            "type": "string"
+                            "$ref": "#/definitions/participant"
                         },
                         "uniqueItems": true
                     },
                     "secondPlace": {
                         "type": "array",
                         "items": {
-                            "type": "string"
+                            "$ref": "#/definitions/participant"
                         },
                         "uniqueItems": true
                     },
                     "thirdPlace": {
                         "type": "array",
                         "items": {
-                            "type": "string"
+                            "$ref": "#/definitions/participant"
                         },
                         "uniqueItems": true
                     },
                     "participants": {
                         "type": "array",
                         "items": {
-                            "type": "string"
+                            "$ref": "#/definitions/participant"
                         },
                         "uniqueItems": true,
                         "minItems": 3
