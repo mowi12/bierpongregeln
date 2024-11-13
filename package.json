@@ -19,7 +19,6 @@
         "typecheck": "tsc"
     },
     "dependencies": {
-        "@docusaurus/core": "^3.6.1",
         "@docusaurus/preset-classic": "^3.6.1",
         "@mdx-js/react": "^3.1.0",
         "clsx": "^2.1.1",
@@ -29,11 +28,8 @@
         "react-dom": "^18.3.1"
     },
     "devDependencies": {
-        "@docusaurus/module-type-aliases": "^3.6.0",
         "@docusaurus/tsconfig": "^3.6.1",
-        "@docusaurus/types": "^3.6.0",
-        "@typescript-eslint/eslint-plugin": "^8.12.2",
-        "@typescript-eslint/parser": "^8.12.2",
+        "@typescript-eslint/eslint-plugin": "^8.14.0",
         "ajv-cli": "^5.0.0",
         "eslint": "^9.14.0",
         "typescript": "~5.6.3"
