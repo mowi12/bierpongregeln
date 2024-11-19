@@ -23,21 +23,21 @@ export default [
         plugins: {
             "@typescript-eslint": typescriptEslint,
         },
-
         languageOptions: {
             globals: {
                 ...globals.browser,
             },
-
             parser: tsParser,
             ecmaVersion: "latest",
             sourceType: "script",
         },
-
         rules: {
             indent: ["error", 4],
             quotes: ["error", "double"],
             semi: ["error", "always"],
         },
     },
+    {
+        ignores: ["node_modules/", ".docusaurus/", "build/"],
+    }
 ];
