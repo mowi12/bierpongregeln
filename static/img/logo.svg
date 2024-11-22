@@ -1,4 +1,4 @@
-<svg version="1.1" width="3000px" height="3000px" xmlns="http://www.w3.org/2000/svg">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3000">
   <defs>
     <linearGradient id="gradient-background" gradientTransform="rotate(90)">
       <stop offset="30%" stop-color="#00b3aa" />
