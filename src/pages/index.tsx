@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 
-import Logo from "@site/static/img/logo.png";
+import Logo from "@site/static/img/logo.svg";
 import styles from "./index.module.css";
 
 function HomepageHeader() {
@@ -17,7 +17,7 @@ function HomepageHeader() {
             )}
         >
             <div className="container">
-                <img src={Logo} alt="Logo" width="300px" height="300px" />
+                <Logo className={clsx(styles.heroLogo)} />
                 <h1 className="hero__title">{siteConfig.title}</h1>
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
                 <div>
