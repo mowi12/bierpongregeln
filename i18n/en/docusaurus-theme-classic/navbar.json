@@ -1,8 +1,4 @@
 {
-  "title": {
-    "message": "Beer Pong Rules",
-    "description": "The title in the navbar"
-  },
   "logo.alt": {
     "message": "Beer Pong Rules Logo",
     "description": "The alt text of navbar logo"
@@ -62,5 +58,9 @@
   "item.label.3. Greiner Cup": {
     "message": "3rd Greiner Cup",
     "description": "Navbar item with label 3. Greiner Cup"
+  },
+  "item.label.Turniermodus-Generator": {
+    "message": "Tournament-Generator",
+    "description": "Navbar item with label Turniermodus-Generator"
   }
 }
