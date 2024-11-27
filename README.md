@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://mowi12.github.io/bierpongregeln/">
-        <img src="static/img/logo.png" alt="logo" width="300">
+        <img src="static/img/logo.svg" alt="logo" width="300">
     </a>
 </p>
 
