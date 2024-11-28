@@ -313,5 +313,17 @@
   "theme.blog.author.noPosts": {
     "message": "This author has not written any posts yet.",
     "description": "The text for authors with 0 blog post"
+  },
+  "flavorPreamble.message": {
+    "message": "Have fun with this flavor!{br}Please note that {flavorsLink} modifies, removes and/or adds new rules to the rules of the underlying rulebook.{br}It is recommended to read the {regelwerkLink} beforehand.",
+    "description": "The message displayed at the top of a flavor page"
+  },
+  "flavorPreamble.flavors": {
+    "message": "a flavor",
+    "description": "String displayed in the flavor preamble link to the flavors page"
+  },
+  "flavorPreamble.regelwerk": {
+    "message": "rules",
+    "description": "String displayed in the flavor preamble link to the regelwerk page"
   }
 }
