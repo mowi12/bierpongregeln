@@ -338,6 +338,9 @@
     "message": "3rd Place: {points} Point",
     "description": "The label for the third place in a ranking"
   },
+  "leaderboard.message": {
+    "message": "PPG: Points per Game,{br}Attention: Persons who have participated in fewer than {threshold} matches are displayed at the end of the table."
+  },
   "tournamentTable.date": {
     "message": "Date",
     "description": "The date of the tournament"

@@ -1,6 +1,8 @@
 import React from "react";
 import { LeaderboardEntry } from "@site/src/types/leaderboard";
 import "./style.css";
+import Admonition from "@theme/Admonition";
+import Translate from "@docusaurus/Translate";
 
 interface LeaderboardProps {
     data: LeaderboardEntry[];
@@ -145,15 +147,17 @@ export default function Leaderboard(props: LeaderboardProps) {
 
     return (
         <div>
-            <i>PPG: Points per Game</i>
-            <br />
-            <i>
-                Note: People who have played less than
-                {` ${minimumParticipationThreshold} `}
-                games are ranked at the bottom of the list.
-            </i>
-            <br />
-            <br />
+            <Admonition type="info">
+                <Translate id="leaderboard.message"
+                    values={{
+                        threshold: minimumParticipationThreshold,
+                        br: <br />,
+                    }}
+                >
+                    {`PPG: Points per Game,{br}
+                    Achtung: Personen, die an weniger als {threshold} Spielen teilgenommen haben, werden am Ende der Tabelle angezeigt.`}
+                </Translate>
+            </Admonition>
             <table className="leaderboard-table">
                 <thead>
                     <tr>
