@@ -337,5 +337,25 @@
   "rating.thirdPlace": {
     "message": "3rd Place: {points} Point",
     "description": "The label for the third place in a ranking"
+  },
+  "tournamentTable.date": {
+    "message": "Date",
+    "description": "The date of the tournament"
+  },
+  "tournamentTable.firstPlace": {
+    "message": "1st Place",
+    "description": "The first place of the tournament"
+  },
+  "tournamentTable.secondPlace": {
+    "message": "2nd Place",
+    "description": "The second place of the tournament"
+  },
+  "tournamentTable.thirdPlace": {
+    "message": "3rd Place",
+    "description": "The third place of the tournament"
+  },
+  "tournamentTable.flavor": {
+    "message": "Flavor",
+    "description": "The flavor of the tournament"
   }
 }
