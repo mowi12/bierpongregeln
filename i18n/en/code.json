@@ -325,5 +325,17 @@
   "flavorPreamble.regelwerk": {
     "message": "rules",
     "description": "String displayed in the flavor preamble link to the regelwerk page"
+  },
+  "rating.firstPlace": {
+    "message": "1st Place: {points} Points",
+    "description": "The label for the first place in a ranking"
+  },
+  "rating.secondPlace": {
+    "message": "2nd Place: {points} Points",
+    "description": "The label for the second place in a ranking"
+  },
+  "rating.thirdPlace": {
+    "message": "3rd Place: {points} Point",
+    "description": "The label for the third place in a ranking"
   }
 }
