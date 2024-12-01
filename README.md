@@ -12,6 +12,7 @@ This is a collection of rulesets for beer pong that is built using [Docusaurus 3
 
 1. Run `npm install` to get the dependencies.
 2. Run `npm run start` in the root directory of this repository.
+3. Run `npm run start -- --locale <language>` in the root directory of this repository to start in a different language.
 
 ### Build for production
 
