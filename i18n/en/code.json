@@ -360,5 +360,33 @@
   "tournamentTable.flavor": {
     "message": "Flavor",
     "description": "The flavor of the tournament"
+  },
+  "leaderboardTable.place": {
+    "message": "Place",
+    "description": "The place in the leaderboard"
+  },
+  "leaderboardTable.name": {
+    "message": "Name",
+    "description": "The name of the player"
+  },
+  "leaderboardTable.winrate": {
+    "message": "Winrate",
+    "description": "The winrate of the player"
+  },
+  "leaderboardTable.ppg": {
+    "message": "PPG",
+    "description": "The points per game of the player"
+  },
+  "leaderboardTable.points": {
+    "message": "Points",
+    "description": "The points of the player"
+  },
+  "leaderboardTable.wins": {
+    "message": "Wins",
+    "description": "The wins of the player"
+  },
+  "leaderboardTable.participations": {
+    "message": "Participations",
+    "description": "The participations of the player"
   }
 }
