@@ -6,6 +6,8 @@ import Layout from "@theme/Layout";
 import Logo from "@site/static/img/logo.svg";
 import styles from "./index.module.css";
 
+import Translate from "@docusaurus/Translate";
+
 function HomepageHeader() {
     const { siteConfig } = useDocusaurusContext();
     return (
@@ -25,7 +27,12 @@ function HomepageHeader() {
                         className="button button--secondary button--lg"
                         to="/docs/regelwerk"
                     >
-                        Regelwerk
+                        <Translate
+                            id="homepage.mainButton"
+                            description="Main button which forwards to the rules"
+                        >
+                            Regelwerk
+                        </Translate>
                     </Link>
                 </div>
             </div>
