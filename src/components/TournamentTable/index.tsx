@@ -1,7 +1,6 @@
 import { usePluginData } from "@docusaurus/useGlobalData";
 import { LeadboardData, Tournament } from "@site/src/types/leaderboard";
-
-const headers = ["Datum", "1. Platz", "2. Platz", "3. Platz", "Flavor"];
+import Translate from "@docusaurus/Translate";
 
 function createTournamentsTable(tournaments: Tournament[]) {
     const tableStyle = {
@@ -13,9 +12,31 @@ function createTournamentsTable(tournaments: Tournament[]) {
         <table style={tableStyle}>
             <thead>
                 <tr>
-                    {headers.map((header) => (
-                        <th key={header}>{header}</th>
-                    ))}
+                    <th key="tournamentTable.date">
+                        <Translate id="tournamentTable.date" description="The date of the tournament">
+                            Datum
+                        </Translate>
+                    </th>
+                    <th key="tournamentTable.firstPlace">
+                        <Translate id="tournamentTable.firstPlace" description="The first place of the tournament">
+                            1. Platz
+                        </Translate>
+                    </th>
+                    <th key="tournamentTable.secondPlace">
+                        <Translate id="tournamentTable.secondPlace" description="The second place of the tournament">
+                            2. Platz
+                        </Translate>
+                    </th>
+                    <th key="tournamentTable.thirdPlace">
+                        <Translate id="tournamentTable.thirdPlace" description="The third place of the tournament">
+                            3. Platz
+                        </Translate>
+                    </th>
+                    <th key="tournamentTable.flavor">
+                        <Translate id="tournamentTable.flavor" description="The flavor of the tournament">
+                            Flavor
+                        </Translate>
+                    </th>
                 </tr>
             </thead>
             <tbody>
