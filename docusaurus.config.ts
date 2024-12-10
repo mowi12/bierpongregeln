@@ -8,11 +8,13 @@ function getLastUpdate() {
     const date = execSync("git log -1 --pretty=%cd --date=format:%Y-%m-%d")
         .toString()
         .trim();
-    return new Date(date).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-    });
+    return new Date(date)
+        .toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+        .replace(/\//g, ".");
 }
 
 const config: Config = {
@@ -142,7 +144,7 @@ const config: Config = {
         footer: {
             style: "dark",
             copyright: `Version <a href="https://github.com/mowi12/bierpongregeln/releases/tag/v${version}"
-                target="_blank" rel="noreferrer">${version}</a> (last update ${getLastUpdate()})  <br>
+                target="_blank" rel="noreferrer">${version}</a> (Letztes Update ${getLastUpdate()})  <br>
                 Copyright © ${new Date().getFullYear()} Felix Schlegel, Moritz Wieland. Built with Docusaurus.`,
         },
         prism: {
