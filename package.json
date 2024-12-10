@@ -16,7 +16,8 @@
         "validate-json": "ajv -s tournaments.schema.json -d tournaments.json",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "typecheck": "tsc"
+        "typecheck": "tsc",
+        "update-version": "python3 scripts/updateversion.py"
     },
     "dependencies": {
         "@docusaurus/preset-classic": "^3.7.0",
