@@ -31,7 +31,7 @@
         "@docusaurus/tsconfig": "^3.6.3",
         "@typescript-eslint/eslint-plugin": "^8.17.0",
         "ajv-cli": "^5.0.0",
-        "eslint": "^9.16.0",
+        "eslint": "^9.17.0",
         "typescript": "~5.7.2"
     },
     "browserslist": {
