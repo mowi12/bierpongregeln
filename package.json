@@ -13,7 +13,7 @@
         "serve": "docusaurus serve",
         "write-translations": "rm -f i18n/en/docusaurus-theme-classic/footer.json && docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids",
-        "validate-json": "ajv -s tournaments.schema.json -d tournaments.json",
+        "validate-json": "ajv validate -s tournaments.schema.json tournaments.json",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc",
@@ -30,8 +30,8 @@
     },
     "devDependencies": {
         "@docusaurus/tsconfig": "^3.7.0",
+        "@jirutka/ajv-cli": "^6.0.0-beta.5",
         "@typescript-eslint/eslint-plugin": "^8.21.0",
-        "ajv-cli": "^5.0.0",
         "eslint": "^9.19.0",
         "typescript": "~5.7.3"
     },
