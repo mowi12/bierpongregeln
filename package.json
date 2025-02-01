@@ -11,7 +11,7 @@
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
         "serve": "docusaurus serve",
-        "write-translations": "python3 update-footer-en.py",
+        "write-translations": "python3 scripts/update-footer-en.py",
         "write-heading-ids": "docusaurus write-heading-ids",
         "validate-json": "ajv validate -s tournaments.schema.json tournaments.json",
         "lint": "eslint .",
