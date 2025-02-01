@@ -1,7 +1,7 @@
 {
     "name": "bierpongregeln",
     "description": "This is a collection of rulesets for beer pong that is built using Docusaurus 2 and served with GitHub Pages.",
-    "version": "2.9.0",
+    "version": "2.9.1",
     "private": true,
     "scripts": {
         "docusaurus": "docusaurus",
@@ -16,7 +16,8 @@
         "validate-json": "ajv -s tournaments.schema.json -d tournaments.json",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "typecheck": "tsc"
+        "typecheck": "tsc",
+        "update-version": "python3 scripts/updateversion.py"
     },
     "dependencies": {
         "@docusaurus/preset-classic": "^3.7.0",
