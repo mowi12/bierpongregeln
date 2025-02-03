@@ -31,7 +31,7 @@
     "devDependencies": {
         "@docusaurus/tsconfig": "^3.7.0",
         "@jirutka/ajv-cli": "^6.0.0-beta.5",
-        "@typescript-eslint/eslint-plugin": "^8.21.0",
+        "@typescript-eslint/eslint-plugin": "^8.22.0",
         "eslint": "^9.19.0",
         "typescript": "~5.7.3"
     },
