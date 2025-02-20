@@ -14,6 +14,7 @@ import CardHeader from "../components/card-components/CardHeader";
 import CardBody from "../components/card-components/CardBody";
 import CardFooter from "../components/card-components/CardFooter";
 import TournamentModeGenerator from "../components/TournamentModeGenerator";
+import { Icon } from "@iconify/react";
 
 export default {
     // Re-use the default mapping
@@ -32,4 +33,5 @@ export default {
     CardBody,
     CardFooter,
     TournamentModeGenerator,
+    IIcon: Icon, // Make the iconify Icon component available in MDX as <icon />.
 };

@@ -1,7 +1,7 @@
 {
     "name": "bierpongregeln",
     "description": "This is a collection of rulesets for beer pong that is built using Docusaurus 2 and served with GitHub Pages.",
-    "version": "2.9.2",
+    "version": "2.10.0",
     "private": true,
     "scripts": {
         "docusaurus": "docusaurus",
@@ -30,6 +30,7 @@
     },
     "devDependencies": {
         "@docusaurus/tsconfig": "^3.7.0",
+        "@iconify/react": "^5.2.0",
         "@jirutka/ajv-cli": "^6.0.0-beta.5",
         "@typescript-eslint/eslint-plugin": "^8.24.0",
         "eslint": "^9.20.1",

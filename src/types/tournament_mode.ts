@@ -20,3 +20,9 @@ export interface GroupPhaseDetailProps extends FFADetailProps {
     numberOfGamesPerGroup: number;
     finalsType: number;
 }
+
+export const isGroupPhaseDetailProps = (
+    details: FFADetailProps | GroupPhaseDetailProps
+): details is GroupPhaseDetailProps => {
+    return "numberOfGamesPerGroup" in details;
+};
