@@ -6,8 +6,47 @@ on:
       - main
 
 jobs:
+  update-footer:
+    name: Run Pre-Deployment Script
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies (if required)
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Execute Pre-Check Script
+        run: python scripts/update-footer-en.py
+
+      - name: Commit changes (if any)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || (git commit -m "Automated changes from update-footer" && git push)
+
   deploy:
     name: Deploy on GitHub Pages
+    needs: [update-footer]
     runs-on: ubuntu-latest
     permissions:
       contents: read
