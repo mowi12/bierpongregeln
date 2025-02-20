@@ -1,0 +1,19 @@
+.mode-icon {
+    display: flex;
+    align-items: center;
+}
+
+.mode-icon-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.mode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: "row";
+    gap: 0.5rem;
+    width: 100%;
+}

@@ -103,7 +103,8 @@ function orderByTotalDuration(a: CardProps, b: CardProps) {
 
 function binomialCoefficient(n: number, k: number): number {
     if (k === 0 || k === n) return 1;
-    if (n < 0 || k < 0 || k > n) throw new Error(`Invalid arguments: n=${n}, k=${k}`);
+    if (n < 0 || k < 0 || k > n)
+        throw new Error(`Invalid arguments: n=${n}, k=${k}`);
     return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
 }
 
@@ -124,13 +125,13 @@ function addGameForFreeForAll(
     let description = "";
     if (teamSize > 1) {
         description =
-            "Bei 'Jeder gegen jeden' spielt jedes Team gegen jedes andere Team. Das Team mit den meisten Siegen oder bei Gleichstand, mit der besten Trefferdifferenz gewinnt. Da die Anzahl an Spielen, bei diesem Spielmodus schnell ansteigt, ist er nur für eine geringe Anzahl an Teams empfohlen.";
+            "Bei 'Jeder gegen Jeden' spielt jedes Team gegen jedes andere Team. Das Team mit den meisten Siegen oder bei Gleichstand, mit der besten Trefferdifferenz gewinnt. Da die Anzahl an Spielen, bei diesem Spielmodus schnell ansteigt, ist er nur für eine geringe Anzahl an Teams empfohlen.";
     } else {
         description =
-            "Bei 'Jeder gegen jeden' spielt jeder Spieler gegen jeden anderen Spieler. Der Spielern mit den meisten Siegen oder bei Gleichstand, mit der besten Trefferdifferenz gewinnt. Da die Anzahl an Spielen, bei diesem Spielmodus schnell ansteigt, ist er nur für eine geringe Anzahl an Spielern empfohlen.";
+            "Bei 'Jeder gegen Jeden' spielt jeder Spieler gegen Jeden anderen Spieler. Der Spielern mit den meisten Siegen oder bei Gleichstand, mit der besten Trefferdifferenz gewinnt. Da die Anzahl an Spielen, bei diesem Spielmodus schnell ansteigt, ist er nur für eine geringe Anzahl an Spielern empfohlen.";
     }
     items.push({
-        title: `Jeder gegen jeden - ${titleAddition}`,
+        title: `Jeder gegen Jeden - ${titleAddition}`,
         description: description,
         details: {
             teamSize: teamSize,
