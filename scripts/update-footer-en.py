@@ -1,20 +1,8 @@
 import os
 import subprocess
-import sys
 
 
-# Step 1: Parse the locale from command-line arguments
-def get_locale_from_args():
-    locale = "en"  # Default locale
-    if "--locale" in sys.argv:
-        locale_index = sys.argv.index("--locale") + 1
-        if locale_index < len(sys.argv):
-            locale = sys.argv[locale_index]
-    return locale
-
-
-locale = get_locale_from_args()
-print(f"Using locale: {locale}")
+locale = "en"
 
 # Define the file path
 file_path = f"i18n/{locale}/docusaurus-theme-classic/footer.json"
@@ -28,7 +16,7 @@ else:
 
 # Step 3: Run the 'docusaurus write-translations' command with the locale
 try:
-    subprocess.run(["docusaurus", "write-translations", "--locale", locale], check=True)
+    subprocess.run(["npx", "docusaurus", "write-translations", "--locale", locale], check=True)
     print("Executed 'docusaurus write-translations' successfully.")
 except subprocess.CalledProcessError as e:
     print(f"Error running 'docusaurus write-translations': {e}")
