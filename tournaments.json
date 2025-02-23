@@ -232,6 +232,28 @@
                 "Marcel",
                 "Mukhtar"
             ]
+        },   
+        {
+            "date": "2025-02-23",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": ["Sophie", "Marcel"],
+            "secondPlace": ["Kay", "Nico"],
+            "thirdPlace": ["Tim", "Moritz W."],
+            "participants": [
+                "Sophie",
+                "Marcel",
+                "Idi",
+                "Markus",
+                "Felix S.",
+                "Lena",
+                "Louis",
+                "Dominik",
+                "Tim",
+                "Moritz W.",
+                "Kay",
+                "Nico"
+            ]
         }
     ]
 }
