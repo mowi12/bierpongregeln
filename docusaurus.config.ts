@@ -9,12 +9,11 @@ function getLastUpdate() {
         .toString()
         .trim();
     return new Date(date)
-        .toLocaleDateString(undefined, {
+        .toLocaleDateString("de-DE", {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
-        })
-        .replace(/\//g, ".");
+        });
 }
 
 const config: Config = {
