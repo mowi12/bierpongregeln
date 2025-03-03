@@ -9,6 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      time: "08:00"
     groups:
       docusaurus:
         patterns:
@@ -17,3 +18,4 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      time: "08:00"
