@@ -6,7 +6,8 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "prepare": "husky"
   },
   "dependencies": {
     "@react-router/node": "^7.4.0",
@@ -29,8 +30,12 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-react": "^7.37.4",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "3.5.3",
     "react-router-devtools": "^1.1.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.2",
@@ -42,5 +47,8 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
