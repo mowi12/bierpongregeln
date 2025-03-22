@@ -6,17 +6,19 @@ import pluginReact from "eslint-plugin-react";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    plugins: { js, tseslint, react: pluginReact },
+    extends: [
+      "js/recommended",
+      ...tseslint.configs.recommended,
+      eslintConfigPrettier,
+    ],
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
   },
-  {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    plugins: { js },
-    extends: ["js/recommended"],
-  },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  eslintConfigPrettier,
 ]);
