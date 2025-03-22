@@ -1,5 +1,7 @@
 {
   "name": "bierpongregeln",
+  "description": "This is a collection of rulesets for beer pong, created with React, served with GitHub Pages, and featuring tournament results and a tool to create tournaments.",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +13,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "update-version": "python3 scripts/update-version.py && prettier --write ."
   },
   "dependencies": {
     "@react-router/node": "^7.4.0",
