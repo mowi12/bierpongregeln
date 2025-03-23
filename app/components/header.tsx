@@ -9,10 +9,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router";
 import logo from "@/assets/logo-full.svg";
+import { ModeToggle } from "./mode-toggle";
 
 function Header() {
   return (
-    <header className="bg-primary w-full p-5 flex flex-row justify-between">
+    <header className="w-full p-5 flex flex-row justify-between">
       <Link to="/" className="h-full flex items-center">
         <img src={logo} alt="Logo" className="h-full w-auto" />
       </Link>
@@ -61,7 +62,7 @@ function Header() {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <div></div>
+      <ModeToggle />
     </header>
   );
 }

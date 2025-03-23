@@ -17,7 +17,7 @@ function Footer(props: FooterProps) {
   }
 
   return (
-    <footer className="bg-primary text-secondary p-5 flex flex-col items-center justify-center w-full">
+    <footer className="p-5 flex flex-col items-center justify-center w-full">
       <p className="text-center">
         Version {version} (Letztes Update: {lastCommitDate})
       </p>

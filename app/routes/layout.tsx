@@ -9,7 +9,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <div className="bg-secondary text-primary flex flex-col items-center h-screen">
+    <div className="flex flex-col items-center h-screen">
       <Header />
 
       <main className="flex-grow flex flex-col justify-center w-full h-full">
