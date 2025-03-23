@@ -22,13 +22,17 @@ function Header() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <Link to="regelwerk">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-secondary text-secondary-foreground`}
+              >
                 Regelwerk
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Flavors</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="bg-secondary text-secondary-foreground">
+              Flavors
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <Link to="flavors/moritz">
                 <NavigationMenuLink>Moritz</NavigationMenuLink>
@@ -39,7 +43,9 @@ function Header() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Ergebnisse & Cups</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="bg-secondary text-secondary-foreground">
+              Ergebnisse & Cups
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <Link to="ergebnisse">
                 <NavigationMenuLink>Ergebnisse</NavigationMenuLink>
@@ -51,7 +57,9 @@ function Header() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link to="turniermodus-generator">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-secondary text-secondary-foreground`}
+              >
                 Turniermodus-Generator
               </NavigationMenuLink>
             </Link>
