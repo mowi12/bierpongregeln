@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import type { Route } from "./+types/home";
 import { Outlet } from "react-router";
+import Header from "@/components/header";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Bierpongregeln" }];
@@ -9,6 +10,8 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <div className="bg-secondary text-primary flex flex-col items-center h-screen">
+      <Header />
+
       <main className="flex-grow flex flex-col justify-center w-full h-full">
         <Outlet />
       </main>
