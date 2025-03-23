@@ -21,7 +21,7 @@ function Header() {
       <NavigationMenu className="z-1" viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link to="">
+            <Link to="regelwerk">
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Regelwerk
               </NavigationMenuLink>
@@ -30,30 +30,27 @@ function Header() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>Flavors</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <Link to="">
+              <Link to="flavors/moritz">
                 <NavigationMenuLink>Moritz</NavigationMenuLink>
               </Link>
-              <Link to="">
+              <Link to="flavors/felix">
                 <NavigationMenuLink>Felix</NavigationMenuLink>
-              </Link>
-              <Link to="">
-                <NavigationMenuLink>...</NavigationMenuLink>
               </Link>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Ergebnisse & Cups</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <Link to="">
+              <Link to="ergebnisse">
                 <NavigationMenuLink>Ergebnisse</NavigationMenuLink>
               </Link>
-              <Link to="">
+              <Link to="cups/greiner-cup-3">
                 <NavigationMenuLink>3. Greiner Cup</NavigationMenuLink>
               </Link>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link to="">
+            <Link to="turniermodus-generator">
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Turniermodus-Generator
               </NavigationMenuLink>

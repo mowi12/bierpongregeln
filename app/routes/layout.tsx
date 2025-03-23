@@ -12,7 +12,7 @@ export default function Home() {
     <div className="flex flex-col items-center h-screen">
       <Header />
 
-      <main className="flex-grow flex flex-col justify-center w-full h-full">
+      <main className="flex-grow flex flex-col justify-start w-full">
         <Outlet />
       </main>
 
