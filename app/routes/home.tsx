@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 function Home() {
   return (
@@ -8,7 +9,9 @@ function Home() {
       <div className="flex flex-col items-center gap-5">
         <h1 className="text-6xl font-bold">Bierpongregeln</h1>
         <h3 className="text-2xl">Die beste Bierpongregelsammlung!</h3>
-        <Button className="h-12 w-35 text-1xl">Regelwerk</Button>
+        <Button className="h-12 w-35 text-1xl">
+          <Link to="regelwerk">Regelwerk</Link>
+        </Button>
       </div>
     </div>
   );
