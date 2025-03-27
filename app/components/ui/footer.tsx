@@ -1,10 +1,12 @@
 import packageJSON from "@/../package.json";
 import useLastCommitDate from "@/hooks/useLastCommitDate";
-import { Spinner } from "./ui/spinner";
+import { Spinner } from "./spinner";
+import { cn } from "@/lib/utils";
 
 interface FooterProps {
   authors: Array<string>;
   additionalText?: string;
+  className?: string;
 }
 
 function Footer(props: FooterProps) {
@@ -20,7 +22,12 @@ function Footer(props: FooterProps) {
   }
 
   return (
-    <footer className="p-5 flex flex-col items-center justify-center w-full">
+    <footer
+      className={cn(
+        "p-5 flex flex-col items-center justify-center w-full",
+        props.className,
+      )}
+    >
       <p className="text-center flex items-center gap-1">
         Version {version} (Letztes Update:{" "}
         {loading ? <Spinner size="small" className="" /> : lastCommitDate})

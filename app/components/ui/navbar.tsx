@@ -7,19 +7,29 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 import { Link } from "react-router";
-import logo from "@/assets/logo-full.svg";
-import { ModeToggle } from "./mode-toggle";
 
-function Header() {
+export enum NavbarVariant {
+  HORIZONTAL = "horizontal",
+  VERTICAL = "vertical",
+}
+
+interface NavbarProps {
+  variant: NavbarVariant;
+  className?: string;
+}
+
+function Navbar(props: NavbarProps) {
+  let flag = false;
+  if (props.variant == NavbarVariant.VERTICAL) {
+    flag = true;
+  }
+
   return (
-    <header className="w-full p-5 flex flex-row justify-between">
-      <Link to="/" className="h-full flex items-center">
-        <img src={logo} alt="Logo" className="h-full w-auto" />
-      </Link>
-
-      <NavigationMenu className="z-1" viewport={false}>
-        <NavigationMenuList>
+    <nav className={cn(props.className)}>
+      <NavigationMenu viewport={false}>
+        <NavigationMenuList className={flag ? "flex flex-col" : ""}>
           <NavigationMenuItem>
             <Link to="regelwerk">
               <NavigationMenuLink
@@ -66,10 +76,8 @@ function Header() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-
-      <ModeToggle />
-    </header>
+    </nav>
   );
 }
 
-export default Header;
+export default Navbar;

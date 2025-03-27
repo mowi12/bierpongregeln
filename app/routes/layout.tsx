@@ -1,7 +1,7 @@
-import Footer from "@/components/footer";
+import Footer from "@/components/ui/footer";
 import type { Route } from "./+types/home";
 import { Outlet } from "react-router";
-import Header from "@/components/header";
+import Header from "@/components/ui/header";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Bierpongregeln" }];
