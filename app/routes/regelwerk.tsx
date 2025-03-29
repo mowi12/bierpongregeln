@@ -1,7 +1,11 @@
 import MDXRegelwerk from "@/assets/md-docs/regelwerk.mdx";
 
 function Regelwerk() {
-  return <MDXRegelwerk />;
+  return (
+    <div className="mdx">
+      <MDXRegelwerk />
+    </div>
+  );
 }
 
 export default Regelwerk;

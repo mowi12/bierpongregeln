@@ -29,7 +29,11 @@ async function Flavors({ params }: Route.ComponentProps) {
     MDXContent = mdxContent.Component;
   }
 
-  return <MDXContent />;
+  return (
+    <div className="mdx">
+      <MDXContent />
+    </div>
+  );
 }
 
 export default Flavors;
