@@ -94,6 +94,10 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Node Modules Inspector
+
+.node-modules-inspector/
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
