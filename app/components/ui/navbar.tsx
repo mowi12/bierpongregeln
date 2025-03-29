@@ -50,6 +50,24 @@ function Navbar(props: NavbarProps) {
               <Link to="flavors/felix">
                 <NavigationMenuLink>Felix</NavigationMenuLink>
               </Link>
+              <Link to="flavors/marcel">
+                <NavigationMenuLink>Marcel</NavigationMenuLink>
+              </Link>
+              <Link to="flavors/sniper">
+                <NavigationMenuLink>Sniper</NavigationMenuLink>
+              </Link>
+              <Link to="flavors/mehr_baelle">
+                <NavigationMenuLink>Mehr Bälle</NavigationMenuLink>
+              </Link>
+              <Link to="flavors/game_pigeon">
+                <NavigationMenuLink>Game Pigeon</NavigationMenuLink>
+              </Link>
+              <Link to="flavors/double_table">
+                <NavigationMenuLink>Double Table</NavigationMenuLink>
+              </Link>
+              <Link to="flavors/3d">
+                <NavigationMenuLink>3D</NavigationMenuLink>
+              </Link>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>

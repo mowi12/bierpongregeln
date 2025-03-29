@@ -1,10 +1,19 @@
-import { Outlet } from "react-router";
-import type { Route } from "./+types/flavors";
+import type { Route } from "./+types/cups";
 
-export async function loader({ params }: Route.LoaderArgs) {}
+import GreinerCup3 from "@/assets/md-docs/cups/greiner-cup-3.mdx";
 
-function Cups({ params }: Route.ComponentProps) {
-  return <Outlet />;
+const flavors = [{ name: "greiner-cup-3", Component: GreinerCup3 }];
+
+async function Flavors({ params }: Route.ComponentProps) {
+  const mdxContent = flavors.find(
+    (flavor) => flavor.name === params.flavorname,
+  );
+  let MDXContent = null;
+  if (mdxContent?.Component) {
+    MDXContent = mdxContent.Component;
+  }
+
+  return <MDXContent />;
 }
 
-export default Cups;
+export default Flavors;
