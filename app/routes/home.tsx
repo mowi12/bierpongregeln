@@ -4,7 +4,11 @@ import { Link } from "react-router";
 function Home() {
   return (
     <div className="h-full w-full flex flex-col items-center justify-center gap-10">
-      <img src="/logo/logo-full.svg" alt="Logo" className="w-3/5 md:w-2/7" />
+      <img
+        src="/logo/logo-full.svg"
+        alt="Logo"
+        className="w-3/5 md:w-2/7 md:max-w-110"
+      />
 
       <div className="flex flex-col items-center gap-5">
         <h1 className="text-4xl md:text-6xl font-bold">Bierpongregeln</h1>
