@@ -33,7 +33,7 @@
         "@iconify/react": "^5.2.1",
         "@jirutka/ajv-cli": "^6.0.0",
         "@typescript-eslint/eslint-plugin": "^8.29.1",
-        "eslint": "^9.24.0",
+        "eslint": "^9.25.1",
         "typescript": "~5.8.3"
     },
     "browserslist": {
