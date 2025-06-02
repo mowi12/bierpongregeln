@@ -20,7 +20,7 @@
         "update-version": "python3 scripts/updateversion.py"
     },
     "dependencies": {
-        "@docusaurus/preset-classic": "^3.7.0",
+        "@docusaurus/preset-classic": "^3.8.0",
         "@mdx-js/react": "^3.1.0",
         "clsx": "^2.1.1",
         "globals": "^16.1.0",
@@ -29,7 +29,7 @@
         "react-dom": "^19.1.0"
     },
     "devDependencies": {
-        "@docusaurus/tsconfig": "^3.7.0",
+        "@docusaurus/tsconfig": "^3.8.0",
         "@iconify/react": "^6.0.0",
         "@jirutka/ajv-cli": "^6.0.0",
         "@typescript-eslint/eslint-plugin": "^8.32.1",
