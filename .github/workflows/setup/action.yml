@@ -1,21 +1,21 @@
 name: Setup
 description: Setup CI/CD pipeline
 inputs:
-    node_version:
-        description: "Node.js version"
-        required: true
+  node_version:
+    description: "Node.js version"
+    required: true
 runs:
-    using: composite
-    steps:
-        - name: Setup Node.js
-          uses: actions/setup-node@v4
-          with:
-              node-version: ${{ inputs.node_version }}
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
 
-        - name: Install dependencies
-          shell: bash
-          run: pnpm install --frozen-lockfile
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
 
-        - name: Svelte-Kit sync
-          shell: bash
-          run: npx svelte-kit sync
+    - name: Svelte-Kit sync
+      shell: bash
+      run: npx svelte-kit sync
