@@ -52,6 +52,7 @@ body {
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --link: oklch(0.62 0.1351 24.36);
+  --callout: oklch(0.62 0.1351 24.36);
 }
 
 .dark {
@@ -87,6 +88,7 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
   --link: oklch(0.73 0.1666 26.27);
+  --callout: oklch(0.73 0.1666 26.27);
 }
 
 @theme inline {
@@ -126,6 +128,7 @@ body {
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-link: var(--link);
+  --color-callout: var(--callout);
 }
 
 @layer base {
