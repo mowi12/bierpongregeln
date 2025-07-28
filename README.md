@@ -1,3 +1,9 @@
+<p align="center">
+    <a href="https://mowi12.github.io/bierpongregeln/">
+        <img src="logo.svg" alt="logo" width="300">
+    </a>
+</p>
+
 # Bierpongregeln / Beer Pong Rules
 
 A comprehensive web application for Beer Pong rules, tournament results, and live tournament management. This project is designed to be the definitive resource for both casual players and serious tournament organizers.
