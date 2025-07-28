@@ -32,7 +32,7 @@
         "@docusaurus/tsconfig": "^3.8.1",
         "@iconify/react": "^6.0.0",
         "@jirutka/ajv-cli": "^6.0.0",
-        "@typescript-eslint/eslint-plugin": "^8.36.0",
+        "@typescript-eslint/eslint-plugin": "^8.38.0",
         "eslint": "^9.32.0",
         "typescript": "~5.8.3"
     },
