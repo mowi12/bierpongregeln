@@ -19,6 +19,7 @@ A comprehensive web application for Beer Pong rules, tournament results, and liv
     - [Phase 1: Foundation (Minimum Viable Product)](#phase-1-foundation-minimum-viable-product)
     - [Phase 2: Dynamic Application](#phase-2-dynamic-application)
     - [Phase 3: Live Platform](#phase-3-live-platform)
+  - [License](#license)
 
 ## Project Overview
 
@@ -120,3 +121,7 @@ This section tracks the project's progress. Items will be checked off as they ar
   - [ ] Integrate a WebSocket service for real-time communication.
   - [ ] Implement backend logic to push updates (e.g., score changes) to clients.
   - [ ] Implement frontend logic to subscribe to and display real-time updates on public tournament pages.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more details.
