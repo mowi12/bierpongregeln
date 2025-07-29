@@ -1,0 +1,135 @@
+name: Enhancement Request
+description: Suggest improvements to existing features or functionality
+title: "[ENHANCEMENT] "
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an enhancement!
+
+        This template is for improving existing features, not adding new ones.
+
+  - type: textarea
+    id: enhancement-description
+    attributes:
+      label: Enhancement Description
+      description: A clear description of the enhancement you'd like to see
+      placeholder: Describe the enhancement you want to make...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-area
+    attributes:
+      label: Feature Area
+      description: Which existing feature would this enhance?
+      options:
+        - Rules & Documentation
+        - Tournament Management
+        - User Interface/UX
+        - Performance & Loading
+        - Authentication & User Management
+        - Real-time Features
+        - Mobile/Responsive Design
+        - Search & Filtering
+        - Data Management
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+      description: How does the feature currently work?
+      placeholder: |
+        Currently, the feature:
+        - Does X when Y happens
+        - Shows Z information
+        - Has limitations with...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed Improvement
+      description: How would you like to enhance this feature?
+      placeholder: |
+        The enhancement would:
+        - Add X functionality
+        - Improve Y performance
+        - Make Z more user-friendly
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-benefit
+    attributes:
+      label: User Benefit
+      description: How will this enhancement benefit users?
+      placeholder: |
+        This enhancement will help users by:
+        - Making it easier to...
+        - Reducing time spent on...
+        - Providing better...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this enhancement?
+      options:
+        - Low - Nice to have, but not critical
+        - Medium - Improves user experience significantly
+        - High - Addresses user pain points
+        - Critical - Fixes usability issues
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-notes
+    attributes:
+      label: Implementation Notes
+      description: Any technical considerations or implementation ideas
+      placeholder: |
+        Technical considerations:
+        - May require changes to...
+        - Could be implemented by...
+        - Should consider...
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What would make this enhancement complete?
+      placeholder: |
+        - [ ] Feature now does X
+        - [ ] Users can Y
+        - [ ] Performance improved by Z
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information, screenshots, or examples that might help
+      placeholder: Add any additional context, screenshots, or examples here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

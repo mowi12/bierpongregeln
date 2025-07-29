@@ -1,0 +1,99 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for Bierpongregeln
+title: "[FEATURE] "
+labels: ["enhancement", "feature"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature for Bierpongregeln!
+
+        Please provide as much detail as possible to help us understand your request.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see implemented
+      placeholder: Describe the feature you want to add...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What is the current limitation?
+      placeholder: "Currently, users can't..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe how you envision this feature working
+      placeholder: "This feature would allow users to..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category
+      description: Which area of the application would this feature belong to?
+      options:
+        - Rules & Documentation
+        - Tournament Management
+        - User Interface/UX
+        - Performance & Optimization
+        - Internationalization (i18n)
+        - Authentication & User Management
+        - Real-time Features
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature for the project?
+      options:
+        - Low - Nice to have, but not critical
+        - Medium - Important for user experience
+        - High - Critical for core functionality
+        - Critical - Blocking other development
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: List the specific requirements that would make this feature complete
+      placeholder: |
+        - [ ] Users can...
+        - [ ] The system should...
+        - [ ] Error handling for...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information, screenshots, or examples that might help
+      placeholder: Add any additional context, screenshots, or examples here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

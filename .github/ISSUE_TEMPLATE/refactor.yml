@@ -1,0 +1,132 @@
+name: Refactor Request
+description: Suggest code improvements, refactoring, or technical debt cleanup
+title: "[REFACTOR] "
+labels: ["refactor"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a refactor!
+
+        This template is for code improvements, technical debt cleanup, and architectural changes.
+
+  - type: textarea
+    id: refactor-description
+    attributes:
+      label: Refactor Description
+      description: A clear description of what needs to be refactored
+      placeholder: Describe the code or component that needs refactoring...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-implementation
+    attributes:
+      label: Current Implementation
+      description: Describe the current code structure and why it needs improvement
+      placeholder: |
+        Current code structure:
+        - Component X does Y and Z
+        - File A contains B and C
+        - Issues with current approach...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvements
+    attributes:
+      label: Proposed Improvements
+      description: How would you like to refactor this code?
+      placeholder: |
+        Proposed changes:
+        - Split component X into smaller components
+        - Extract utility functions to separate file
+        - Improve type safety by...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: refactor-type
+    attributes:
+      label: Type of Refactor
+      description: What kind of refactoring is this?
+      options:
+        - Code Structure - Reorganizing components, functions, or files
+        - Performance - Optimizing for speed, memory, or efficiency
+        - Type Safety - Improving TypeScript types and interfaces
+        - Code Quality - Improving readability, maintainability, or best practices
+        - Architecture - Changing the overall structure or patterns
+        - Dependencies - Updating or replacing libraries/packages
+        - Testing - Improving test coverage or test structure
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this refactor?
+      options:
+        - Low - Nice to have, but not critical
+        - Medium - Improves code quality significantly
+        - High - Addresses technical debt or performance issues
+        - Critical - Fixes security issues or blocking other development
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-files
+    attributes:
+      label: Affected Files/Components
+      description: Which files or components will be affected by this refactor?
+      placeholder: |
+        - src/components/ComponentA.tsx
+        - src/utils/helper.ts
+        - src/types/index.ts
+    validations:
+      required: false
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Expected Benefits
+      description: What benefits will this refactor provide?
+      placeholder: |
+        - Improved performance by X%
+        - Better maintainability
+        - Reduced code duplication
+        - Enhanced type safety
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Potential Risks
+      description: Are there any risks or breaking changes to consider?
+      placeholder: |
+        - Breaking changes to API
+        - Performance impact during transition
+        - Migration effort required
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information, code examples, or context that might help
+      placeholder: Add any additional context, code snippets, or examples here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

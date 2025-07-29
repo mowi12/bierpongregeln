@@ -1,0 +1,53 @@
+name: General Issue
+description: For any other issues that don't fit the other templates
+title: "[GENERAL] "
+labels: []
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue!
+
+        This template is for any issues that don't fit the other categories.
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue Description
+      description: A clear and concise description of the issue
+      placeholder: Describe the issue you're reporting...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of issue is this?
+      options:
+        - Documentation - Issues with README, docs, or guides
+        - Question - General questions about the project
+        - Discussion - Ideas or topics for discussion
+        - Support - Help needed with setup or usage
+        - Other - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-details
+    attributes:
+      label: Additional Details
+      description: Any additional information that might help
+      placeholder: Add any additional details, context, or examples here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -19,6 +19,8 @@ A comprehensive web application for Beer Pong rules, tournament results, and liv
     - [Phase 1: Foundation (Minimum Viable Product)](#phase-1-foundation-minimum-viable-product)
     - [Phase 2: Dynamic Application](#phase-2-dynamic-application)
     - [Phase 3: Live Platform](#phase-3-live-platform)
+  - [Contributing](#contributing)
+    - [Issue Templates](#issue-templates)
   - [License](#license)
 
 ## Project Overview
@@ -121,6 +123,20 @@ This section tracks the project's progress. Items will be checked off as they ar
   - [ ] Integrate a WebSocket service for real-time communication.
   - [ ] Implement backend logic to push updates (e.g., score changes) to clients.
   - [ ] Implement frontend logic to subscribe to and display real-time updates on public tournament pages.
+
+## Contributing
+
+We welcome contributions to Bierpongregeln! Please read our [contributing guidelines](CONTRIBUTING.md) before submitting issues or pull requests.
+
+### Issue Templates
+
+We have several issue templates to help you report problems or suggest improvements:
+
+- **[Feature Request](.github/ISSUE_TEMPLATE/feature.yml)** - Suggest new features or functionality
+- **[Bug Report](.github/ISSUE_TEMPLATE/bug.yml)** - Report bugs or unexpected behavior
+- **[Enhancement Request](.github/ISSUE_TEMPLATE/enhancement.yml)** - Suggest improvements to existing features
+- **[Refactor Request](.github/ISSUE_TEMPLATE/refactor.yml)** - Suggest code improvements or technical debt cleanup
+- **[General Issue](.github/ISSUE_TEMPLATE/general.yml)** - For any other issues that don't fit the above categories
 
 ## License
 
