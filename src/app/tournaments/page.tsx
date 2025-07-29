@@ -5,26 +5,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { PageHeader } from "@/components/page-header";
 
 export default function TournamentsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <div className="container mx-auto px-4 py-8">
-        <header className="relative mb-12">
-          <div className="absolute top-0 right-0">
-            <ThemeToggle />
-          </div>
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-4">
-              Tournament Results
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Browse past tournament results, statistics, and historical data.
-            </p>
-          </div>
-        </header>
+        <PageHeader
+          title="Tournament Results"
+          description="Browse past tournament results, statistics, and historical data."
+        />
 
         <main className="max-w-4xl mx-auto">
           <Card>
