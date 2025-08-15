@@ -14,7 +14,6 @@ We use GitHub Issues to track bugs and feature requests. Before creating an issu
 
 1. **Search existing issues** to see if your problem has already been reported
 2. **Use the appropriate issue template** from our collection:
-
    - [Feature Request](.github/ISSUE_TEMPLATE/feature.yml) - For new features
    - [Bug Report](.github/ISSUE_TEMPLATE/bug.yml) - For bugs and problems
    - [Enhancement Request](.github/ISSUE_TEMPLATE/enhancement.yml) - For improving existing features

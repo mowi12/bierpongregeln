@@ -63,40 +63,34 @@ This section tracks the project's progress. Items will be checked off as they ar
 ### Phase 1: Foundation (Minimum Viable Product)
 
 - [ ] Core Project Setup
-
   - [ ] Initialize Next.js project with TypeScript and Tailwind CSS.
   - [ ] Establish project structure and code conventions.
 
 - [ ] Static Content Implementation
-
   - [ ] Define initial data structure using local Markdown/JSON for rules and tournaments.
   - [ ] Create a list page to display all available rulesets.
   - [ ] Create a dynamic detail page for rendering individual rulesets from Markdown.
   - [ ] Implement a results page with a sortable table for past tournaments.
 
 - [ ] Deployment
-
   - [ ] Configure and deploy the initial static site to Vercel.
   - [ ] Set up a CI/CD pipeline for automatic deployments.
 
 ### Phase 2: Dynamic Application
 
 - [ ] Backend & Database Integration
-
   - [ ] Design the database schema using the Prisma schema language.
   - [ ] Set up a PostgreSQL database instance.
   - [ ] Run initial database migrations.
   - [ ] Write a script to migrate data from local files to the database.
 
 - [ ] API Development
-
   - [ ] Create API endpoints for fetching rulesets (/api/rulesets).
   - [ ] Create API endpoints for fetching tournaments and results (/api/tournaments).
   - [ ] Frontend Refactoring
   - [ ] Convert static pages (getStaticProps) to dynamic pages that fetch data from the API (getServerSideProps or client-side SWR/React Query).
 
 - [ ] New Feature Implementation
-
   - [ ] Develop the UI for the Tournament Format Generator.
   - [ ] Implement the logic for calculating format statistics on the client-side.
   - [ ] Integrate a localization library (e.g., next-i18next).
@@ -106,20 +100,17 @@ This section tracks the project's progress. Items will be checked off as they ar
 ### Phase 3: Live Platform
 
 - [ ] User Authentication
-
   - [ ] Integrate NextAuth.js into the application.
   - [ ] Add User model to the Prisma schema and link to Tournament.
   - [ ] Implement registration and login flows.
   - [ ] Create protected routes and components accessible only to authenticated users.
 
 - [ ] Tournament Management
-
   - [ ] Design and build a form for creating and configuring new tournaments.
   - [ ] Create API endpoints to handle tournament creation and updates.
   - [ ] Develop a dedicated dashboard for organizers to manage tournament brackets and player lists.
 
 - [ ] Real-time Functionality
-
   - [ ] Integrate a WebSocket service for real-time communication.
   - [ ] Implement backend logic to push updates (e.g., score changes) to clients.
   - [ ] Implement frontend logic to subscribe to and display real-time updates on public tournament pages.
