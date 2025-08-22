@@ -5,29 +5,26 @@ import {
     SidebarGroupContent,
     SidebarGroupLabel,
     SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { navigationItems } from "@/lib/navigation";
+import { SidebarCollapsibleMenuItem } from "./sidebar-collapsible-menu-item";
+import { SidebarSimpleMenuItem } from "./sidebar-simple-menu-item";
 
 export function AppSidebar() {
     return (
         <Sidebar side={"right"} variant={"floating"}>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarGroupLabel>Bierpongregeln</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {navigationItems.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
+                            {navigationItems.map((item) =>
+                                item.subItems && item.subItems.length > 0 ? (
+                                    <SidebarCollapsibleMenuItem key={item.title} item={item} />
+                                ) : (
+                                    <SidebarSimpleMenuItem key={item.title} item={item} />
+                                )
+                            )}
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
