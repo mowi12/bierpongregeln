@@ -38,77 +38,77 @@ export const felix: Ruleset = {
                             ]
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            id: "spielablauf",
+            title: "Spielablauf",
+            content: [
                 {
-                    id: "spielablauf",
-                    title: "Spielablauf",
-                    content: [
-                        {
-                            id: "art-7-auswerfen",
-                            title: "Auswerfen",
-                            paragraphs: [
-                                { content: "Um die Spielreihenfolge und -seite festzulegen, erhält jeweils eine Person pro Seite einen Ball. Beide Personen müssen nun gleichzeitig versuchen, einen Becher des gegnerischen Teams zu treffen." },
-                                { content: "Beim Werfen müssen sich beide Personen in die Augen schauen." },
-                                { content: "Das Team, das zuerst trifft, darf entscheiden, welches Team beginnt. Das Team, das nicht trifft, darf entscheiden auf welcher Tischseite sie spielt." },
-                                { content: "Wenn beide Werfende treffen, muss der Wurf von denselben Werfenden wiederholt werden." },
-                                { content: "Nach fünf Wiederholungen darf das Auswerfen durch Schere-Stein-Papier ersetzt werden, um eine längere Spielverzögerung zu verhindern." }
-                            ]
-                        },
-                        {
-                            id: "art-10-konter",
-                            title: "Nachspiel",
-                            paragraphs: [
-                                { content: "Nur das Team, welches das Spiel nicht angefangen hat, hat ein Recht auf Nachspiel." },
-                                { content: "Es darf nur einmal nachgespielt werden." },
-                                { content: "Das Nachspiel ist erfolgreich, wenn das zweite Team das Spiel in dieser letzten Runde beenden kann." },
-                                { content: "Bei einem erfolgreichen Nachspiel wird das Spiel als unentschieden gewertet." }
-                            ]
-                        }
+                    id: "art-7-auswerfen",
+                    title: "Auswerfen",
+                    paragraphs: [
+                        { content: "Um die Spielreihenfolge und -seite festzulegen, erhält jeweils eine Person pro Seite einen Ball. Beide Personen müssen nun gleichzeitig versuchen, einen Becher des gegnerischen Teams zu treffen." },
+                        { content: "Beim Werfen müssen sich beide Personen in die Augen schauen." },
+                        { content: "Das Team, das zuerst trifft, darf entscheiden, welches Team beginnt. Das Team, das nicht trifft, darf entscheiden auf welcher Tischseite sie spielt." },
+                        { content: "Wenn beide Werfende treffen, muss der Wurf von denselben Werfenden wiederholt werden." },
+                        { content: "Nach fünf Wiederholungen darf das Auswerfen durch Schere-Stein-Papier ersetzt werden, um eine längere Spielverzögerung zu verhindern." }
                     ]
                 },
                 {
-                    id: "standardspiel",
-                    title: "Standardspiel",
-                    content: [
-                        {
-                            id: "art-11-balls-back",
-                            title: "Balls Back",
-                            paragraphs: [
-                                { content: "Wenn in einer Wurfrunde ein Wurf getroffen wurde, darf der Spieler erneut werfen." },
-                                { content: "Bevor erneut geworfen wird, müssen die getroffenen Becher entfernt werden." }
-                            ]
-                        },
-                        {
-                            id: "art-13-becher-umschmeissen",
-                            title: "Becher umschmeißen",
-                            paragraphs: [
-                                { content: "Wenn ein Team während des Spiels einen oder mehrere eigene Becher umwirft, müssen die umgeworfenen Becher entfernt werden." },
-                                { content: "Der letzte Becher darf nicht durch Umschmeißen entfernt werden. Hier wird an die Fairness der Mitspieler appelliert." }
-                            ]
-                        },
-                        {
-                            id: "art-14-blasen-fingern",
-                            title: "Blasen/Fingern",
-                            paragraphs: [
-                                { content: "Es ist nicht erlaubt, einen Ball, der noch nicht komplett im Becher ist, mit Fingern zu retten." },
-                                { content: "Es ist erlaubt einen Ball, welcher noch nicht komplett im Becher ist, durch Blasen zu retten." },
-                                { content: "Ein Ball ist noch nicht komplett im Becher, wenn er die Flüssigkeit im Becher noch nicht berührt hat." },
-                                { content: "Wenn der Ball aus einem Becher in einen anderen geblasen wird, zählen beide Becher als getroffen und müssen entfernt werden." }
-                            ]
-                        },
-                        {
-                            id: "art-15-trickshot",
-                            title: "Trickshot",
-                            paragraphs: [
-                                { content: "Wenn ein Ball nach einem Wurf zurückrollt, darf das aktuelle Werferteam den Ball holen. Das gegnerische Team darf dies verhindern, indem es selber den Ball holt. Wenn es einem Spieler des aktuellen Werferteams gelingt, den Ball zu holen, darf dieser einen Trickshot machen. Dieser muss nach den regulären Würfen geworfen werden. Außerdem werden zuerst von regulären Bällen getroffene Becher entfernt." },
-                                { content: "Becher, die von einem Trickshot getroffen wurden, müssen sofort entfernt werden." },
-                                { content: "Wenn ein Trickshot-Ball zurückrollt, kann dieser ebenfalls geholt werden, und ein weiterer Trickshot kann gemacht werden." },
-                                { content: "Ein Trickshot zählt nicht als Air Ball, wenn er hinter der Tischkante gefangen wird." },
-                                { content: "Der Trickshot ist nicht auf andere Spieler des Teams übertragbar." },
-                                { content: "Der Trickshot zählt, aufgrund seiner Komplexität, als zwei Treffer." },
-                                { content: "Der Spieler der den Ball holt, muss zum Zeitpunkt des Wurfs auf der zugehörigen Seite des Tischs stehen, um somit gleiche Chancen zu ermöglichen. Das Eingreifen einer Person, welche dieser Vorraussetzung nicht entspricht ist untersagt und wird damit bestraft, dass das jeweilige andere Team den Ball erhält." }
-                            ]
-                        }
+                    id: "art-10-konter",
+                    title: "Nachspiel",
+                    paragraphs: [
+                        { content: "Nur das Team, welches das Spiel nicht angefangen hat, hat ein Recht auf Nachspiel." },
+                        { content: "Es darf nur einmal nachgespielt werden." },
+                        { content: "Das Nachspiel ist erfolgreich, wenn das zweite Team das Spiel in dieser letzten Runde beenden kann." },
+                        { content: "Bei einem erfolgreichen Nachspiel wird das Spiel als unentschieden gewertet." }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "standardspiel",
+            title: "Standardspiel",
+            content: [
+                {
+                    id: "art-11-balls-back",
+                    title: "Balls Back",
+                    paragraphs: [
+                        { content: "Wenn in einer Wurfrunde ein Wurf getroffen wurde, darf der Spieler erneut werfen." },
+                        { content: "Bevor erneut geworfen wird, müssen die getroffenen Becher entfernt werden." }
+                    ]
+                },
+                {
+                    id: "art-13-becher-umschmeissen",
+                    title: "Becher umschmeißen",
+                    paragraphs: [
+                        { content: "Wenn ein Team während des Spiels einen oder mehrere eigene Becher umwirft, müssen die umgeworfenen Becher entfernt werden." },
+                        { content: "Der letzte Becher darf nicht durch Umschmeißen entfernt werden. Hier wird an die Fairness der Mitspieler appelliert." }
+                    ]
+                },
+                {
+                    id: "art-14-blasen-fingern",
+                    title: "Blasen/Fingern",
+                    paragraphs: [
+                        { content: "Es ist nicht erlaubt, einen Ball, der noch nicht komplett im Becher ist, mit Fingern zu retten." },
+                        { content: "Es ist erlaubt einen Ball, welcher noch nicht komplett im Becher ist, durch Blasen zu retten." },
+                        { content: "Ein Ball ist noch nicht komplett im Becher, wenn er die Flüssigkeit im Becher noch nicht berührt hat." },
+                        { content: "Wenn der Ball aus einem Becher in einen anderen geblasen wird, zählen beide Becher als getroffen und müssen entfernt werden." }
+                    ]
+                },
+                {
+                    id: "art-15-trickshot",
+                    title: "Trickshot",
+                    paragraphs: [
+                        { content: "Wenn ein Ball nach einem Wurf zurückrollt, darf das aktuelle Werferteam den Ball holen. Das gegnerische Team darf dies verhindern, indem es selber den Ball holt. Wenn es einem Spieler des aktuellen Werferteams gelingt, den Ball zu holen, darf dieser einen Trickshot machen. Dieser muss nach den regulären Würfen geworfen werden. Außerdem werden zuerst von regulären Bällen getroffene Becher entfernt." },
+                        { content: "Becher, die von einem Trickshot getroffen wurden, müssen sofort entfernt werden." },
+                        { content: "Wenn ein Trickshot-Ball zurückrollt, kann dieser ebenfalls geholt werden, und ein weiterer Trickshot kann gemacht werden." },
+                        { content: "Ein Trickshot zählt nicht als Air Ball, wenn er hinter der Tischkante gefangen wird." },
+                        { content: "Der Trickshot ist nicht auf andere Spieler des Teams übertragbar." },
+                        { content: "Der Trickshot zählt, aufgrund seiner Komplexität, als zwei Treffer." },
+                        { content: "Der Spieler der den Ball holt, muss zum Zeitpunkt des Wurfs auf der zugehörigen Seite des Tischs stehen, um somit gleiche Chancen zu ermöglichen. Das Eingreifen einer Person, welche dieser Vorraussetzung nicht entspricht ist untersagt und wird damit bestraft, dass das jeweilige andere Team den Ball erhält." }
                     ]
                 }
             ]

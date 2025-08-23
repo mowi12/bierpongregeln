@@ -45,21 +45,21 @@ export const gamePigeon: Ruleset = {
                             ]
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            id: "spielablauf",
+            title: "Spielablauf",
+            content: [
                 {
-                    id: "spielablauf",
-                    title: "Spielablauf",
-                    content: [
-                        {
-                            id: "art-10-konter",
-                            title: "Konter",
-                            paragraphs: [
-                                { content: "Beide Teams haben die Möglichkeit, einen Konter zu vollenden." },
-                                { content: "Es kann im gesamten Spiel von beiden Teams zusammen nur einmal gekontert werden." },
-                                { content: "Ist ein Konter erfolgreich, so wird jedem Team eine kleine 3-Becher Pyramide aufgebaut. Diese wird wie beim Zusammenstellen Vorne platziert." },
-                                { content: "Nachdem die 3 Becher für den Konter aufgebaut wurden, gibt es keine weiteren Konter mehr und das Team hat gewonnen, welches zuerst alle 3 Becher trifft." }
-                            ]
-                        }
+                    id: "art-10-konter",
+                    title: "Konter",
+                    paragraphs: [
+                        { content: "Beide Teams haben die Möglichkeit, einen Konter zu vollenden." },
+                        { content: "Es kann im gesamten Spiel von beiden Teams zusammen nur einmal gekontert werden." },
+                        { content: "Ist ein Konter erfolgreich, so wird jedem Team eine kleine 3-Becher Pyramide aufgebaut. Diese wird wie beim Zusammenstellen Vorne platziert." },
+                        { content: "Nachdem die 3 Becher für den Konter aufgebaut wurden, gibt es keine weiteren Konter mehr und das Team hat gewonnen, welches zuerst alle 3 Becher trifft." }
                     ]
                 }
             ]
