@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/composites/app-sidebar";
 import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
 import { cn } from "@/lib/utils";
+import { NavbarLogo } from "@/components/composites/navbar-logo";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -30,19 +31,25 @@ export default function RootLayout({ children }: Readonly<{
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SidebarProvider defaultOpen={false}>
             <AppSidebar />
-            <main className="flex min-h-screen w-full flex-col">
-                {/* Desktop Navigation - Hidden on mobile */}
-                <nav className="hidden items-center justify-center p-4 md:flex">
-                    <AppNavigationMenu />
-                </nav>
+            <div className="flex min-h-screen w-full flex-col">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* --- Desktop Navigation --- */}
+                    <nav className="relative hidden items-center justify-center py-4 md:flex">
+                        <div className="absolute left-0">
+                            <NavbarLogo />
+                        </div>
+                        <AppNavigationMenu />
+                    </nav>
 
-                {/* Mobile Sidebar Trigger - Right aligned, visible only on mobile */}
-                <div className="flex justify-end p-4 md:hidden">
-                    <SidebarTrigger className="ml-auto" />
+                    {/* --- Mobile Navigation --- */}
+                    <div className="flex items-center justify-between p-4 md:hidden">
+                        <NavbarLogo />
+                        <SidebarTrigger />
+                    </div>
+
+                    <main className="flex-1">{children}</main>
                 </div>
-
-                <div className="flex-1 p-4">{children}</div>
-            </main>
+            </div>
         </SidebarProvider>
         <div
             className={cn(

@@ -1,0 +1,22 @@
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+const logoSrc = "/logo.svg";
+
+export function NavbarLogo({ className }: { className?: string }) {
+    return (
+        <Link href="/" className={cn("flex items-center space-x-2", className)}>
+            <Image
+                src={logoSrc}
+                alt="Bierpongregeln Logo"
+                width={40}
+                height={40}
+                className="rounded-full"
+            />
+            <span className="hidden xl:inline-block font-bold text-lg">
+                Bierpongregeln
+            </span>
+        </Link>
+    );
+}

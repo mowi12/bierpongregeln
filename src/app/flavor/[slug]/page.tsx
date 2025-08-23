@@ -126,13 +126,13 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
     const articleCounter = { current: 0 };
 
     return (
-        <main className="mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="py-12">
             <h1 className="text-5xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">{ruleset.name}</h1>
             <hr className="mb-12 border-gray-200 dark:border-gray-700" />
 
             {ruleset.sections.map(section => (
                 <SectionComponent key={section.id} section={section} articleCounter={articleCounter} refMap={refMap} />
             ))}
-        </main>
+        </div>
     );
 }
