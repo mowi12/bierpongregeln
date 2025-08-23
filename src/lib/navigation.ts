@@ -13,43 +13,43 @@ export interface NavItem {
 export const navigationItems: NavItem[] = [
     {
         title: "Regelwerk",
-        url: "#",
+        url: "/coming-soon",
         icon: BookOpen,
     },
     {
         title: "Flavors",
-        url: "#",
+        url: "/coming-soon",
         icon: Flame,
         subItems: [
             {
                 title: "Flavor 1",
-                url: "#",
+                url: "/coming-soon",
             },
             {
                 title: "Flavor 2",
-                url: "#",
+                url: "/coming-soon",
             },
         ],
     },
     {
         title: "Ergebnisse",
-        url: "#",
+        url: "/coming-soon",
         icon: BarChart,
     },
     {
         title: "Cups",
-        url: "#",
+        url: "/coming-soon",
         icon: Trophy,
         subItems: [
             {
                 title: "Cup 1",
-                url: "#",
+                url: "/coming-soon",
             },
         ],
     },
     {
         title: "Turniermodus Generator",
-        url: "#",
+        url: "/coming-soon",
         icon: Cog,
     },
 ];
