@@ -5,7 +5,6 @@ import React from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/composites/app-sidebar";
 import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
-import { cn } from "@/lib/utils";
 import { NavbarLogo } from "@/components/composites/navbar-logo";
 
 const geistSans = Geist({

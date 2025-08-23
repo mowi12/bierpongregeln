@@ -1,9 +1,7 @@
-// src/app/flavour/[slug]/page.tsx
 import { notFound } from 'next/navigation';
 import { getMergedRuleset, getRulesetSlugs } from '@/lib/ruleset-loader';
 import { Ruleset, Section, Article } from '@/components/types/ruleset.types';
 import Link from 'next/link';
-import { Fragment } from 'react';
 
 // --- Helper Functions & Components ---
 
@@ -105,17 +103,16 @@ const SectionComponent = ({ section, articleCounter, refMap }: { section: Sectio
 
 export async function generateStaticParams() {
     const slugs = await getRulesetSlugs();
-    return slugs.map(slug => ({ slug }));
+    return slugs.map((slug: string) => ({ slug }));
 }
 
 type FlavorPageProps = {
-    params: {
-        slug: string;
-    }
+    params: Promise<{ slug: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export default async function FlavorPage({ params }: FlavorPageProps) {
-    const { slug } = params;
+    const { slug } = await params;
     const ruleset = await getMergedRuleset(slug);
 
     if (!ruleset) {
@@ -129,7 +126,6 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
         <div className="py-12">
             <h1 className="text-5xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">{ruleset.name}</h1>
             <hr className="mb-12 border-gray-200 dark:border-gray-700" />
-
             {ruleset.sections.map(section => (
                 <SectionComponent key={section.id} section={section} articleCounter={articleCounter} refMap={refMap} />
             ))}
