@@ -5,6 +5,7 @@ import React from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/composites/app-sidebar";
 import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -21,31 +22,42 @@ export const metadata: Metadata = {
     description: "Die beste Bierpongregelsammlung!",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
+export default function RootLayout({ children }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <SidebarProvider defaultOpen={false}>
-                    <AppSidebar />
-                    <main className="flex min-h-screen w-full flex-col">
-                        {/* Desktop Navigation - Hidden on mobile */}
-                        <nav className="hidden items-center justify-center p-4 md:flex">
-                            <AppNavigationMenu />
-                        </nav>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <SidebarProvider defaultOpen={false}>
+            <AppSidebar />
+            <main className="flex min-h-screen w-full flex-col">
+                {/* Desktop Navigation - Hidden on mobile */}
+                <nav className="hidden items-center justify-center p-4 md:flex">
+                    <AppNavigationMenu />
+                </nav>
 
-                        {/* Mobile Sidebar Trigger - Right aligned, visible only on mobile */}
-                        <div className="flex justify-end p-4 md:hidden">
-                            <SidebarTrigger className="ml-auto" />
-                        </div>
+                {/* Mobile Sidebar Trigger - Right aligned, visible only on mobile */}
+                <div className="flex justify-end p-4 md:hidden">
+                    <SidebarTrigger className="ml-auto" />
+                </div>
 
-                        <div className="flex-1 p-4">{children}</div>
-                    </main>
-                </SidebarProvider>
-            </body>
+                <div className="flex-1 p-4">{children}</div>
+            </main>
+        </SidebarProvider>
+        <div
+            className={cn(
+                "absolute right-1 bottom-1 rounded-md px-1.5",
+                "bg-red-300 sm:bg-green-300 md:bg-yellow-300 lg:bg-blue-300 xl:bg-purple-300 2xl:bg-pink-300",
+            )}
+        >
+            <div className="max-sm:visible sm:hidden">--</div>
+            <div className="max-sm:hidden sm:visible md:hidden">sm</div>
+            <div className="max-md:hidden md:visible lg:hidden">md</div>
+            <div className="max-lg:hidden lg:visible xl:hidden">lg</div>
+            <div className="max-xl:hidden xl:visible 2xl:hidden">xl</div>
+            <div className="max-2xl:hidden 2xl:visible">2xl</div>
+        </div>
+        </body>
         </html>
     );
 }
