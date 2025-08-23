@@ -214,6 +214,11 @@ export const regelwerk: Ruleset = {
             ]
         },
         {
+            id: "spezialregeln",
+            title: "Spezialregeln",
+            content: []
+        },
+        {
             id: "sonstiges",
             title: "Sonstiges",
             content: [

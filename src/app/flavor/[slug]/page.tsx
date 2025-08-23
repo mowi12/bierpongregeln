@@ -82,21 +82,27 @@ const ArticleComponent = ({ article, number, refMap }: { article: Article; numbe
 /**
  * Renders a Section, which can contain other Sections or Articles recursively.
  */
-const SectionComponent = ({ section, articleCounter, refMap }: { section: Section; articleCounter: { current: number }; refMap: Map<string, { number: number; title: string }> }) => (
-    <section id={section.id} className="mb-12 scroll-mt-20">
-        <h2 className="text-3xl font-bold border-b border-gray-200 dark:border-gray-700 pb-3 mb-6 text-gray-900 dark:text-gray-100">
-            {section.title}
-        </h2>
-        {section.content.map((item) => {
-            if ('content' in item) { // is Section
-                return <SectionComponent key={item.id} section={item} articleCounter={articleCounter} refMap={refMap} />;
-            } else { // is Article
-                articleCounter.current++;
-                return <ArticleComponent key={item.id} article={item} number={articleCounter.current} refMap={refMap} />;
-            }
-        })}
-    </section>
-);
+const SectionComponent = ({ section, articleCounter, refMap }: { section: Section; articleCounter: { current: number }; refMap: Map<string, { number: number; title: string }> }) => {
+    if (section.content.length === 0) {
+        return null;
+    }
+
+    return (
+        <section id={section.id} className="mb-12 scroll-mt-20">
+            <h2 className="text-3xl font-bold border-b border-gray-200 dark:border-gray-700 pb-3 mb-6 text-gray-900 dark:text-gray-100">
+                {section.title}
+            </h2>
+            {section.content.map((item) => {
+                if ('content' in item) { // is Section
+                    return <SectionComponent key={item.id} section={item} articleCounter={articleCounter} refMap={refMap} />;
+                } else { // is Article
+                    articleCounter.current++;
+                    return <ArticleComponent key={item.id} article={item} number={articleCounter.current} refMap={refMap} />;
+                }
+            })}
+        </section>
+    )
+};
 
 
 // --- The Page Component ---
