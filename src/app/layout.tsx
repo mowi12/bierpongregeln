@@ -51,7 +51,7 @@ export default function RootLayout({ children }: Readonly<{
                 </div>
             </div>
         </SidebarProvider>
-        <div
+        {/*<div
             className={cn(
                 "absolute right-1 bottom-1 rounded-md px-1.5",
                 "bg-red-300 sm:bg-green-300 md:bg-yellow-300 lg:bg-blue-300 xl:bg-purple-300 2xl:bg-pink-300",
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: Readonly<{
             <div className="max-lg:hidden lg:visible xl:hidden">lg</div>
             <div className="max-xl:hidden xl:visible 2xl:hidden">xl</div>
             <div className="max-2xl:hidden 2xl:visible">2xl</div>
-        </div>
+        </div> */}
         </body>
         </html>
     );
