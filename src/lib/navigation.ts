@@ -57,7 +57,7 @@ export const navigationItems: NavItem[] = [
     },
     {
         title: "Ergebnisse",
-        url: "/coming-soon",
+        url: "/tournament-results",
         icon: BarChart,
     },
     {
