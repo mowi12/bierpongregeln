@@ -73,7 +73,7 @@ export const navigationItems: NavItem[] = [
     },
     {
         title: "Turniermodus Generator",
-        url: "/coming-soon",
+        url: "/tournament-generator",
         icon: Cog,
     },
 ];
