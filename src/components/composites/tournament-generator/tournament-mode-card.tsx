@@ -54,14 +54,17 @@ function getModeDescription(mode: TournamentMode): string {
 
 interface Props {
     mode: TournamentMode;
+    players: number;
     maxDuration: number;
+    isBestFit?: boolean;
 }
 
-export function TournamentModeCard({ mode, maxDuration }: Props) {
+export function TournamentModeCard({ mode, players, maxDuration, isBestFit }: Props) {
     const exceeds = mode.totalDuration > maxDuration;
     const isTeam = mode.teamSize > 1;
     const unitSingular = isTeam ? "Team" : "Spieler";
     const unitPlural = isTeam ? "Teams" : "Spieler";
+    const hasUnevenTeams = isTeam && players % mode.teamSize !== 0;
 
     const teamLabel = isTeam ? `Teams à ${mode.teamSize} Spieler` : "Einzel";
 
@@ -84,12 +87,20 @@ export function TournamentModeCard({ mode, maxDuration }: Props) {
         <div
             className={cn(
                 "rounded-lg border p-4",
+                isBestFit && "border-primary",
                 exceeds && "border-destructive/50 bg-destructive/5",
             )}
         >
             <div className="flex items-start justify-between gap-4">
                 <div>
-                    <div className="font-semibold">{title}</div>
+                    <div className="flex items-center gap-2">
+                        <span className="font-semibold">{title}</span>
+                        {isBestFit && (
+                            <span className="bg-primary/10 text-primary rounded px-1.5 py-0.5 text-xs font-medium">
+                                Empfehlung
+                            </span>
+                        )}
+                    </div>
                     <div className="text-muted-foreground text-sm">{subtitle}</div>
                 </div>
                 <div
@@ -112,6 +123,13 @@ export function TournamentModeCard({ mode, maxDuration }: Props) {
             )}
 
             <p className="text-muted-foreground mt-3 text-sm">{getModeDescription(mode)}</p>
+
+            {hasUnevenTeams && (
+                <p className="mt-2 text-xs text-amber-600">
+                    Hinweis: Ein Team hat nur {players % mode.teamSize} statt {mode.teamSize}{" "}
+                    Spieler.
+                </p>
+            )}
 
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
                 {mode.type === "freeForAll" ? (
