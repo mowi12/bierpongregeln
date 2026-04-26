@@ -23,7 +23,7 @@ export function AppSidebar() {
                                     <SidebarCollapsibleMenuItem key={item.title} item={item} />
                                 ) : (
                                     <SidebarSimpleMenuItem key={item.title} item={item} />
-                                )
+                                ),
                             )}
                         </SidebarMenu>
                     </SidebarGroupContent>

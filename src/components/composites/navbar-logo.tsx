@@ -14,9 +14,7 @@ export function NavbarLogo({ className }: { className?: string }) {
                 height={40}
                 className="rounded-full"
             />
-            <span className="hidden xl:inline-block font-bold text-lg">
-                Bierpongregeln
-            </span>
+            <span className="hidden text-lg font-bold xl:inline-block">Bierpongregeln</span>
         </Link>
     );
 }
