@@ -232,7 +232,7 @@
                 "Marcel",
                 "Mukhtar"
             ]
-        },   
+        },
         {
             "date": "2025-02-22",
             "flavor": "Moritz",
@@ -253,6 +253,43 @@
                 "Moritz W.",
                 "Kay",
                 "Nico"
+            ]
+        },
+        {
+            "date": "2025-08-29",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": ["Leonhard"],
+            "secondPlace": ["Moritz G."],
+            "thirdPlace": ["Marcel"],
+            "participants": [
+                "Moritz G.",
+                "Moritz W.",
+                "Jakob",
+                "Marcel",
+                "Leonhard",
+                "Louis",
+                "Felix S."
+            ]
+        },
+        {
+            "date": "2026-04-25",
+            "flavor": "Moritz",
+            "type": "single",
+            "firstPlace": ["Louis"],
+            "secondPlace": ["Marcel"],
+            "thirdPlace": ["Leonhard"],
+            "participants": [
+                "Moritz W.",
+                "Leonhard",
+                "Louis",
+                "Marcel",
+                "Felix S.",
+                "Dominik",
+                "Markus",
+                "Lea",
+                "Lukas",
+                "Mukhtar"
             ]
         }
     ]
