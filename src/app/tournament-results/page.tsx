@@ -57,7 +57,7 @@ export default function TournamentResultsPage() {
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold">Team-Rangliste</h2>
                 <p className="text-muted-foreground">
-                    Gesamtpunktzahl aller Spieler aus Team-Turnieren. Spalten sind sortierbar.
+                    Gesamtpunktzahl aller Spieler aus Team-Turnieren.
                 </p>
                 <StandingsTable data={teamStandings} />
             </section>
@@ -66,7 +66,7 @@ export default function TournamentResultsPage() {
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold">Einzel-Rangliste</h2>
                 <p className="text-muted-foreground">
-                    Gesamtpunktzahl aller Spieler aus Einzel-Turnieren. Spalten sind sortierbar.
+                    Gesamtpunktzahl aller Spieler aus Einzel-Turnieren.
                 </p>
                 <StandingsTable data={singleStandings} />
             </section>

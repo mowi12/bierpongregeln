@@ -20,14 +20,26 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { PlayerStanding } from "@/lib/tournament-utils";
+import { PlayerStanding, QUALIFIED_MIN_PARTICIPATIONS } from "@/lib/tournament-utils";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronDown } from "lucide-react";
+
+const DEFAULT_SORTING: SortingState = [
+    { id: "winRate", desc: true },
+    { id: "pointsPerGame", desc: true },
+    { id: "totalScore", desc: true },
+    { id: "firstPlace", desc: true },
+    { id: "participations", desc: true },
+];
 
 function SortButton({
     column,
     children,
+    title,
 }: {
     column: Column<PlayerStanding>;
     children: React.ReactNode;
+    title?: string;
 }) {
     const sorted = column.getIsSorted();
     return (
@@ -35,6 +47,7 @@ function SortButton({
             variant="ghost"
             size="sm"
             className="-ml-3 h-8"
+            title={title}
             onClick={() => column.toggleSorting(sorted === "asc")}
         >
             {children}
@@ -54,9 +67,8 @@ const columns: ColumnDef<PlayerStanding>[] = [
         id: "rank",
         header: "#",
         cell: ({ row, table }) => {
-            const sortedRows = table.getSortedRowModel().rows;
-            const rank = sortedRows.findIndex((r) => r.id === row.id) + 1;
-            return <span className="text-muted-foreground">{rank}</span>;
+            const rank = table.getRowModel().rows.findIndex((r) => r.id === row.id) + 1;
+            return <span className="text-muted-foreground tabular-nums">{rank}</span>;
         },
         enableSorting: false,
     },
@@ -65,39 +77,132 @@ const columns: ColumnDef<PlayerStanding>[] = [
         header: ({ column }) => <SortButton column={column}>Spieler</SortButton>,
     },
     {
-        accessorKey: "firstPlace",
-        header: ({ column }) => <SortButton column={column}>1. Platz</SortButton>,
-        cell: ({ getValue }) => (
-            <span className="font-medium text-yellow-600">{getValue() as number}</span>
+        accessorKey: "winRate",
+        header: ({ column }) => (
+            <SortButton column={column} title="Siegquote (Siege / Teilnahmen)">
+                Quote
+            </SortButton>
         ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">
+                {((getValue() as number) * 100).toFixed(1)}%
+            </span>
+        ),
+        sortingFn: "basic",
     },
     {
-        accessorKey: "secondPlace",
-        header: ({ column }) => <SortButton column={column}>2. Platz</SortButton>,
-        cell: ({ getValue }) => (
-            <span className="font-medium text-slate-500">{getValue() as number}</span>
+        accessorKey: "pointsPerGame",
+        header: ({ column }) => (
+            <SortButton column={column} title="Punkte pro Teilnahme">
+                P/TN
+            </SortButton>
         ),
-    },
-    {
-        accessorKey: "thirdPlace",
-        header: ({ column }) => <SortButton column={column}>3. Platz</SortButton>,
         cell: ({ getValue }) => (
-            <span className="font-medium text-amber-700">{getValue() as number}</span>
+            <span className="block text-center tabular-nums">
+                {(getValue() as number).toFixed(1)}
+            </span>
         ),
+        sortingFn: "basic",
     },
     {
         accessorKey: "totalScore",
-        header: ({ column }) => <SortButton column={column}>Punkte</SortButton>,
-        cell: ({ getValue }) => <span className="font-bold">{getValue() as number}</span>,
+        header: ({ column }) => (
+            <SortButton column={column} title="Gesamtpunkte">
+                Punkte
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">{getValue() as number}</span>
+        ),
+    },
+    {
+        accessorKey: "firstPlace",
+        header: ({ column }) => (
+            <SortButton column={column} title="Siege (1. Platz)">
+                Siege
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">{getValue() as number}</span>
+        ),
+    },
+    {
+        accessorKey: "participations",
+        header: ({ column }) => (
+            <SortButton column={column} title="Teilnahmen">
+                TN
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">{getValue() as number}</span>
+        ),
     },
 ];
 
-export function StandingsTable({ data }: { data: PlayerStanding[] }) {
-    const [sorting, setSorting] = useState<SortingState>([{ id: "totalScore", desc: true }]);
+function RankedTable({ data }: { data: PlayerStanding[] }) {
+    const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
     const table = useReactTable({
         data,
         columns,
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        onSortingChange: setSorting,
+        enableMultiSort: true,
+        state: { sorting },
+    });
+
+    return (
+        <div className="rounded-md border">
+            <Table>
+                <TableHeader>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <TableHead key={header.id}>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                              header.column.columnDef.header,
+                                              header.getContext(),
+                                          )}
+                                </TableHead>
+                            ))}
+                        </TableRow>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows.length ? (
+                        table.getRowModel().rows.map((row) => (
+                            <TableRow key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <TableCell key={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={columns.length} className="h-24 text-center">
+                                Keine Ergebnisse.
+                            </TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+        </div>
+    );
+}
+
+const columnsNoRank = columns.filter((c) => c.id !== "rank");
+
+function UnrankedTable({ data }: { data: PlayerStanding[] }) {
+    const [sorting, setSorting] = useState<SortingState>([{ id: "totalScore", desc: true }]);
+
+    const table = useReactTable({
+        data,
+        columns: columnsNoRank,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: setSorting,
@@ -124,25 +229,40 @@ export function StandingsTable({ data }: { data: PlayerStanding[] }) {
                     ))}
                 </TableHeader>
                 <TableBody>
-                    {table.getRowModel().rows.length ? (
-                        table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))
-                    ) : (
-                        <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
-                                Keine Ergebnisse.
-                            </TableCell>
+                    {table.getRowModel().rows.map((row) => (
+                        <TableRow key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <TableCell key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </TableCell>
+                            ))}
                         </TableRow>
-                    )}
+                    ))}
                 </TableBody>
             </Table>
+        </div>
+    );
+}
+
+export function StandingsTable({ data }: { data: PlayerStanding[] }) {
+    const qualified = data.filter((p) => p.participations >= QUALIFIED_MIN_PARTICIPATIONS);
+    const unqualified = data.filter((p) => p.participations < QUALIFIED_MIN_PARTICIPATIONS);
+
+    return (
+        <div className="space-y-6">
+            <RankedTable data={qualified} />
+            {unqualified.length > 0 && (
+                <Collapsible defaultOpen={false}>
+                    <CollapsibleTrigger className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-sm transition-colors [&[data-state=open]>svg]:rotate-180">
+                        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+                        Spieler mit weniger als {QUALIFIED_MIN_PARTICIPATIONS} Teilnahmen (nicht
+                        gewertet)
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-2">
+                        <UnrankedTable data={unqualified} />
+                    </CollapsibleContent>
+                </Collapsible>
+            )}
         </div>
     );
 }

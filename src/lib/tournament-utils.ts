@@ -20,11 +20,16 @@ export interface Rating {
 
 export interface PlayerStanding {
     player: string;
+    participations: number;
     firstPlace: number;
     secondPlace: number;
     thirdPlace: number;
     totalScore: number;
+    winRate: number;
+    pointsPerGame: number;
 }
+
+export const QUALIFIED_MIN_PARTICIPATIONS = 3;
 
 export const rating: Rating = tournamentData.rating;
 export const tournaments: Tournament[] = tournamentData.tournaments as Tournament[];
@@ -32,24 +37,35 @@ export const tournaments: Tournament[] = tournamentData.tournaments as Tournamen
 function computeStandings(type: TournamentType): PlayerStanding[] {
     const scores = new Map<string, PlayerStanding>();
 
+    function ensureEntry(player: string): PlayerStanding {
+        if (!scores.has(player)) {
+            scores.set(player, {
+                player,
+                participations: 0,
+                firstPlace: 0,
+                secondPlace: 0,
+                thirdPlace: 0,
+                totalScore: 0,
+                winRate: 0,
+                pointsPerGame: 0,
+            });
+        }
+        return scores.get(player)!;
+    }
+
     for (const t of tournaments) {
         if (t.type !== type) continue;
 
+        for (const player of t.participants) {
+            ensureEntry(player).participations++;
+        }
+
         const addPoints = (
             players: string[],
-            place: keyof Omit<PlayerStanding, "player" | "totalScore">,
+            place: "firstPlace" | "secondPlace" | "thirdPlace",
         ) => {
             for (const player of players) {
-                if (!scores.has(player)) {
-                    scores.set(player, {
-                        player,
-                        firstPlace: 0,
-                        secondPlace: 0,
-                        thirdPlace: 0,
-                        totalScore: 0,
-                    });
-                }
-                const entry = scores.get(player)!;
+                const entry = ensureEntry(player);
                 entry[place]++;
                 entry.totalScore += rating[place];
             }
@@ -60,7 +76,19 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
         addPoints(t.thirdPlace, "thirdPlace");
     }
 
-    return Array.from(scores.values()).sort((a, b) => b.totalScore - a.totalScore);
+    for (const entry of scores.values()) {
+        entry.winRate = entry.participations > 0 ? entry.firstPlace / entry.participations : 0;
+        entry.pointsPerGame =
+            entry.participations > 0 ? entry.totalScore / entry.participations : 0;
+    }
+
+    return Array.from(scores.values()).sort((a, b) => {
+        if (b.winRate !== a.winRate) return b.winRate - a.winRate;
+        if (b.pointsPerGame !== a.pointsPerGame) return b.pointsPerGame - a.pointsPerGame;
+        if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
+        if (b.firstPlace !== a.firstPlace) return b.firstPlace - a.firstPlace;
+        return b.participations - a.participations;
+    });
 }
 
 export function getTeamStandings(): PlayerStanding[] {
