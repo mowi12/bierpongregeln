@@ -30,7 +30,18 @@ export interface GroupPhaseMode {
     totalDuration: number;
 }
 
-export type TournamentMode = FreeForAllMode | GroupPhaseMode;
+export interface SwissMode {
+    type: "swiss";
+    teamSize: number;
+    teams: number;
+    rounds: number;
+    numberOfGames: number;
+    gamesPerTeam: number;
+    hasOddTeams: boolean;
+    totalDuration: number;
+}
+
+export type TournamentMode = FreeForAllMode | GroupPhaseMode | SwissMode;
 
 export interface GeneratorInputs {
     players: number;
@@ -159,10 +170,44 @@ function generateGroupPhase(
     return modes;
 }
 
+function generateSwiss(
+    players: number,
+    maxTeamSize: number,
+    tables: number,
+    minutesPerGame: number,
+): SwissMode[] {
+    const modes: SwissMode[] = [];
+    const maxTeamSizeCapped = Math.min(Math.ceil(players / 2), maxTeamSize);
+
+    for (let teamSize = 1; teamSize <= maxTeamSizeCapped; teamSize++) {
+        const teams = Math.ceil(players / teamSize);
+        if (teams < 4) continue;
+
+        const standardRounds = Math.ceil(Math.log2(teams));
+        const gamesPerRound = Math.floor(teams / 2);
+
+        for (let rounds = 2; rounds <= standardRounds; rounds++) {
+            modes.push({
+                type: "swiss",
+                teamSize,
+                teams,
+                rounds,
+                numberOfGames: rounds * gamesPerRound,
+                gamesPerTeam: rounds,
+                hasOddTeams: teams % 2 !== 0,
+                totalDuration: rounds * Math.ceil(gamesPerRound / tables) * minutesPerGame,
+            });
+        }
+    }
+
+    return modes;
+}
+
 export function generateTournamentModes(inputs: GeneratorInputs): TournamentMode[] {
     const { players, maxTeamSize, tables, minutesPerGame } = inputs;
     return [
         ...generateFreeForAll(players, maxTeamSize, tables, minutesPerGame),
         ...generateGroupPhase(players, maxTeamSize, tables, minutesPerGame),
+        ...generateSwiss(players, maxTeamSize, tables, minutesPerGame),
     ].sort((a, b) => a.totalDuration - b.totalDuration);
 }

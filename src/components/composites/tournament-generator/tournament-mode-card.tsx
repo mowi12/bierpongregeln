@@ -36,11 +36,17 @@ export function TournamentModeCard({ mode, maxDuration }: Props) {
     const unitSingular = isTeam ? "Team" : "Spieler";
     const unitPlural = isTeam ? "Teams" : "Spieler";
 
+    const teamLabel = isTeam ? `Teams à ${mode.teamSize} Spieler` : "Einzel";
+
     let title: string;
     let subtitle: string;
     if (mode.type === "freeForAll") {
         title = "Jeder gegen Jeden";
-        subtitle = isTeam ? `Teams à ${mode.teamSize} Spieler` : "Einzel";
+        subtitle = teamLabel;
+    } else if (mode.type === "swiss") {
+        const standardRounds = Math.ceil(Math.log2(mode.teams));
+        title = "Schweizer System";
+        subtitle = `${mode.rounds} Runden${mode.rounds === standardRounds ? " (Standard)" : ""}${isTeam ? ` · ${teamLabel}` : ""}`;
     } else {
         const groupUnit = isTeam ? `Teams à ${mode.teamSize} Spieler` : "Spieler";
         title = "Gruppenphase";
@@ -84,6 +90,20 @@ export function TournamentModeCard({ mode, maxDuration }: Props) {
                         <Stat label={unitPlural} value={mode.teams} />
                         <Stat label="Spiele" value={mode.numberOfGames} />
                         <Stat label={`Spiele/${unitSingular}`} value={mode.gamesPerTeam} />
+                    </>
+                ) : mode.type === "swiss" ? (
+                    <>
+                        <Stat label={unitPlural} value={mode.teams} />
+                        <Stat label="Runden" value={mode.rounds} />
+                        <Stat label="Spiele" value={mode.numberOfGames} />
+                        <Stat
+                            label={`Spiele/${unitSingular}`}
+                            value={
+                                mode.hasOddTeams
+                                    ? `${mode.gamesPerTeam - 1}–${mode.gamesPerTeam}`
+                                    : mode.gamesPerTeam
+                            }
+                        />
                     </>
                 ) : (
                     <>
