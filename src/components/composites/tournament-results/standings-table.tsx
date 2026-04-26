@@ -29,6 +29,7 @@ const DEFAULT_SORTING: SortingState = [
     { id: "pointsPerGame", desc: true },
     { id: "totalScore", desc: true },
     { id: "firstPlace", desc: true },
+    { id: "podiumFinishes", desc: true },
     { id: "participations", desc: true },
 ];
 
@@ -120,6 +121,17 @@ const columns: ColumnDef<PlayerStanding>[] = [
         header: ({ column }) => (
             <SortButton column={column} title="Siege (1. Platz)">
                 Siege
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">{getValue() as number}</span>
+        ),
+    },
+    {
+        accessorKey: "podiumFinishes",
+        header: ({ column }) => (
+            <SortButton column={column} title="Podestplätze (Plätze 1–3)">
+                Podest
             </SortButton>
         ),
         cell: ({ getValue }) => (

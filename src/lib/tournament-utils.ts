@@ -24,6 +24,7 @@ export interface PlayerStanding {
     firstPlace: number;
     secondPlace: number;
     thirdPlace: number;
+    podiumFinishes: number;
     totalScore: number;
     winRate: number;
     pointsPerGame: number;
@@ -45,6 +46,7 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
                 firstPlace: 0,
                 secondPlace: 0,
                 thirdPlace: 0,
+                podiumFinishes: 0,
                 totalScore: 0,
                 winRate: 0,
                 pointsPerGame: 0,
@@ -77,6 +79,7 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
     }
 
     for (const entry of scores.values()) {
+        entry.podiumFinishes = entry.firstPlace + entry.secondPlace + entry.thirdPlace;
         entry.winRate = entry.participations > 0 ? entry.firstPlace / entry.participations : 0;
         entry.pointsPerGame =
             entry.participations > 0 ? entry.totalScore / entry.participations : 0;
@@ -87,6 +90,7 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
         if (b.pointsPerGame !== a.pointsPerGame) return b.pointsPerGame - a.pointsPerGame;
         if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
         if (b.firstPlace !== a.firstPlace) return b.firstPlace - a.firstPlace;
+        if (b.podiumFinishes !== a.podiumFinishes) return b.podiumFinishes - a.podiumFinishes;
         return b.participations - a.participations;
     });
 }
