@@ -25,6 +25,33 @@ function Stat({ label, value }: { label: string; value: string | number }) {
     );
 }
 
+function getModeDescription(mode: TournamentMode): string {
+    const isTeam = mode.teamSize > 1;
+    const unit = isTeam ? "Team" : "Spieler";
+    const unitPlural = isTeam ? "Teams" : "Spieler";
+
+    switch (mode.type) {
+        case "freeForAll":
+            return (
+                `Jede${isTeam ? "s" : "r"} ${unit} tritt gegen jede${isTeam ? "s" : "n"} andere${isTeam ? "s" : "n"} ${unit} an. ` +
+                `D${isTeam ? "as" : "er"} ${unit} mit den meisten Siegen gewinnt – bei Gleichstand entscheidet die Trefferdifferenz. ` +
+                `Geeignet für eine kleine Anzahl an ${unitPlural}.`
+            );
+        case "swiss":
+            return (
+                `Jede Runde werden ${unitPlural} mit ähnlichem Punktestand gegeneinander ausgelost. ` +
+                `Alle ${unitPlural} bestreiten die gleiche Anzahl an Runden – es gibt keine Ausscheidung. ` +
+                `Am Ende entscheidet die Gesamtpunktzahl über die Platzierung.`
+            );
+        case "groupPhase":
+            return (
+                `Die ${unitPlural} werden in ${mode.groupCount} Gruppen aufgeteilt, in denen jede${isTeam ? "s" : "r"} gegen jede${isTeam ? "s" : "n"} andere${isTeam ? "" : "n"} spielt. ` +
+                `Die zwei Erstplatzierten jeder Gruppe qualifizieren sich für die K.O.-Runde ab ${koFirstRoundLabel(mode.finalsType)}, ` +
+                `in der im direkten Duell der Sieger ermittelt wird.`
+            );
+    }
+}
+
 interface Props {
     mode: TournamentMode;
     maxDuration: number;
@@ -83,6 +110,8 @@ export function TournamentModeCard({ mode, maxDuration }: Props) {
                     {formatDuration(mode.totalDuration - maxDuration)}.
                 </p>
             )}
+
+            <p className="text-muted-foreground mt-3 text-sm">{getModeDescription(mode)}</p>
 
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
                 {mode.type === "freeForAll" ? (
