@@ -34,11 +34,11 @@ const allRulesets: Ruleset[] = [
 
 // Separate the flavors from the base ruleset and sort them
 const flavors = allRulesets
-    .filter(ruleset => ruleset.slug !== 'regelwerk') // Exclude the base ruleset
+    .filter((ruleset) => ruleset.slug !== "regelwerk") // Exclude the base ruleset
     .sort((a, b) => a.sidebarPosition - b.sidebarPosition); // Sort by sidebarPosition
 
 // Map the sorted flavors to the sub-item structure
-const flavorSubItems = flavors.map(flavor => ({
+const flavorSubItems = flavors.map((flavor) => ({
     title: flavor.name,
     url: `/flavor/${flavor.slug}`,
 }));
@@ -51,13 +51,13 @@ export const navigationItems: NavItem[] = [
     },
     {
         title: "Flavors",
-        url: flavorSubItems.length > 0 ? flavorSubItems[0].url : '#',
+        url: flavorSubItems.length > 0 ? flavorSubItems[0].url : "#",
         icon: Flame,
         subItems: flavorSubItems,
     },
     {
         title: "Ergebnisse",
-        url: "/coming-soon",
+        url: "/tournament-results",
         icon: BarChart,
     },
     {
@@ -73,7 +73,7 @@ export const navigationItems: NavItem[] = [
     },
     {
         title: "Turniermodus Generator",
-        url: "/coming-soon",
+        url: "/tournament-generator",
         icon: Cog,
     },
 ];

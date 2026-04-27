@@ -13,4 +13,3 @@ export function SidebarSimpleMenuItem({ item }: { item: NavItem }) {
         </SidebarMenuItem>
     );
 }
-
