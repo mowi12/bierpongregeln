@@ -1,9 +1,9 @@
 {
     "$schema": "./tournaments.schema.json",
     "rating": {
-        "firstPlace": 10,
-        "secondPlace": 5,
-        "thirdPlace": 1
+        "firstPlace": 15,
+        "secondPlace": 8,
+        "thirdPlace": 3
     },
     "tournaments": [
         {
