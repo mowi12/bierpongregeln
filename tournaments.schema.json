@@ -54,14 +54,25 @@
                 "Maren",
                 "Felix F.",
                 "Timo",
-                "Daniel",
+                "Daniel F.",
                 "Niklas",
                 "Lisa",
                 "Sascha",
                 "Lena",
                 "Kay",
                 "Nico",
-                "Lukas"
+                "Lukas",
+                "Niki",
+                "Mara",
+                "Nina",
+                "Johanna",
+                "Dome",
+                "Luca",
+                "Tim Pap.",
+                "Tom",
+                "Daniel P.",
+                "Meli",
+                "Caty"
             ]
         }
     },
@@ -82,7 +93,11 @@
                     "minimum": 0
                 }
             },
-            "required": ["firstPlace", "secondPlace", "thirdPlace"]
+            "required": [
+                "firstPlace",
+                "secondPlace",
+                "thirdPlace"
+            ]
         },
         "tournaments": {
             "type": "array",
@@ -110,7 +125,10 @@
                     },
                     "type": {
                         "type": "string",
-                        "enum": ["single", "team"]
+                        "enum": [
+                            "single",
+                            "team"
+                        ]
                     },
                     "firstPlace": {
                         "type": "array",
@@ -212,5 +230,8 @@
             }
         }
     },
-    "required": ["rating", "tournaments"]
+    "required": [
+        "rating",
+        "tournaments"
+    ]
 }
