@@ -13,13 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup
+        uses: ./.github/workflows/setup/
 
       - name: Run Biome Checker
         run: npx biome ci
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup
+        uses: ./.github/workflows/setup/
+
+      - name: Run type check
+        run: npm run typecheck

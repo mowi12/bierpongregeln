@@ -4,7 +4,7 @@
  * It also supports strikethroughs and highlights directly in the string.
  */
 export type Paragraph = {
-    id: string; // Unique identifier for referencing
+    id?: string; // Unique identifier for referencing
     // We can use a single content string that contains simple HTML/Markdown for styling.
     // e.g., "<del>Old text.</del> <Highlight>New text.</Highlight>"
     // This is easier to author than complex object structures.
