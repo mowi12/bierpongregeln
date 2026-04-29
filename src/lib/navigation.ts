@@ -61,17 +61,6 @@ export const navigationItems: NavItem[] = [
         icon: BarChart,
     },
     {
-        title: "Cups",
-        url: "#",
-        icon: Trophy,
-        subItems: [
-            {
-                title: "2. Greiner Cup",
-                url: "/coming-soon",
-            },
-        ],
-    },
-    {
         title: "Turniermodus Generator",
         url: "/tournament-generator",
         icon: Cog,
