@@ -1,0 +1,25 @@
+name: Code Quality Checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  lint:
+    name: Biome Checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Biome Checker
+        run: npx biome ci
