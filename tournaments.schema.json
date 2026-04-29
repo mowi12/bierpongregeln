@@ -93,11 +93,7 @@
                     "minimum": 0
                 }
             },
-            "required": [
-                "firstPlace",
-                "secondPlace",
-                "thirdPlace"
-            ]
+            "required": ["firstPlace", "secondPlace", "thirdPlace"]
         },
         "tournaments": {
             "type": "array",
@@ -125,10 +121,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "enum": [
-                            "single",
-                            "team"
-                        ]
+                        "enum": ["single", "team"]
                     },
                     "firstPlace": {
                         "type": "array",
@@ -230,8 +223,5 @@
             }
         }
     },
-    "required": [
-        "rating",
-        "tournaments"
-    ]
+    "required": ["rating", "tournaments"]
 }

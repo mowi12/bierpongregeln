@@ -22,7 +22,9 @@ export const dreiD: Ruleset = {
                             content:
                                 "Alle Becher beider Teams müssen vor Spielbeginn gleichmäßig mit Wasser oder Bier befüllt werden.",
                         },
-                        { content: "Es muss vereinbart werden, mit welchem Flavor gespielt wird." },
+                        {
+                            content: "Es muss vereinbart werden, mit welchem Flavor gespielt wird.",
+                        },
                     ],
                 },
                 {

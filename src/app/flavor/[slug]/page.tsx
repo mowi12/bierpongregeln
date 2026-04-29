@@ -20,7 +20,10 @@ const createReferenceMap = (ruleset: Ruleset) => {
                 traverse(item.content);
             } else {
                 // It's an Article
-                refMap.set(item.id, { number: articleCounter, title: item.title });
+                refMap.set(item.id, {
+                    number: articleCounter,
+                    title: item.title,
+                });
                 articleCounter++;
             }
         }

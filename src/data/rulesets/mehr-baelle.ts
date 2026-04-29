@@ -102,7 +102,9 @@ export const mehrBaelle: Ruleset = {
                             content:
                                 "Wenn in einer Wurfrunde alle Würfe eines Teams den gleichen Becher treffen, müssen dieser Becher und zwei weitere Becher entfernt werden.",
                         },
-                        { content: "Eine Bombe führt sofort zur Ausführung der Balls-Back Regel." },
+                        {
+                            content: "Eine Bombe führt sofort zur Ausführung der Balls-Back Regel.",
+                        },
                     ],
                 },
             ],
@@ -113,13 +115,21 @@ export const mehrBaelle: Ruleset = {
         { flavorSlug: "marcel", flavorName: "Marcel", status: "compatible" },
         { flavorSlug: "3d", flavorName: "3D", status: "compatible" },
         { flavorSlug: "sniper", flavorName: "Sniper", status: "compatible" },
-        { flavorSlug: "double-table", flavorName: "Double Table", status: "compatible" },
+        {
+            flavorSlug: "double-table",
+            flavorName: "Double Table",
+            status: "compatible",
+        },
         {
             flavorSlug: "felix",
             flavorName: "Felix",
             status: "restricted",
             notes: [{ content: "Art 11: Spielweise nach Flavor Felix" }],
         },
-        { flavorSlug: "game-pigeon", flavorName: "Game Pigeon", status: "incompatible" },
+        {
+            flavorSlug: "game-pigeon",
+            flavorName: "Game Pigeon",
+            status: "incompatible",
+        },
     ],
 };
