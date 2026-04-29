@@ -3,8 +3,8 @@
 import { useState } from "react";
 import {
     generateTournamentModes,
-    GeneratorInputs,
-    TournamentMode,
+    type GeneratorInputs,
+    type TournamentMode,
     formatDuration,
 } from "@/lib/tournament-generator";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,7 @@ const DEFAULTS: GeneratorInputs = {
 };
 
 function GeneratorInput({
+    id,
     label,
     value,
     min,
@@ -37,6 +38,7 @@ function GeneratorInput({
     format,
     onChange,
 }: {
+    id: string;
     label: string;
     value: number;
     min: number;
@@ -48,12 +50,15 @@ function GeneratorInput({
     return (
         <div className="space-y-1.5">
             <div className="flex justify-between text-sm">
-                <label className="font-medium">{label}</label>
+                <label className="font-medium" htmlFor={id}>
+                    {label}
+                </label>
                 <span className="text-muted-foreground tabular-nums">
                     {format ? format(value) : unit ? `${value} ${unit}` : value}
                 </span>
             </div>
             <input
+                id={id}
                 type="range"
                 min={min}
                 max={max}
@@ -102,6 +107,7 @@ export default function TournamentGeneratorPage() {
                 <h2 className="text-xl font-semibold">Einstellungen</h2>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <GeneratorInput
+                        id="players"
                         label="Spieleranzahl"
                         value={inputs.players}
                         min={2}
@@ -109,6 +115,7 @@ export default function TournamentGeneratorPage() {
                         onChange={set("players")}
                     />
                     <GeneratorInput
+                        id="maxTeamSize"
                         label="Maximale Teamgröße"
                         value={inputs.maxTeamSize}
                         min={1}
@@ -116,6 +123,7 @@ export default function TournamentGeneratorPage() {
                         onChange={set("maxTeamSize")}
                     />
                     <GeneratorInput
+                        id="tables"
                         label="Anzahl Tische"
                         value={inputs.tables}
                         min={1}
@@ -123,6 +131,7 @@ export default function TournamentGeneratorPage() {
                         onChange={set("tables")}
                     />
                     <GeneratorInput
+                        id="minutesPerGame"
                         label="Spieldauer"
                         value={inputs.minutesPerGame}
                         min={1}
@@ -131,6 +140,7 @@ export default function TournamentGeneratorPage() {
                         onChange={set("minutesPerGame")}
                     />
                     <GeneratorInput
+                        id="maxDuration"
                         label="Maximale Turnierdauer"
                         value={inputs.maxDuration}
                         min={inputs.minutesPerGame}
@@ -166,9 +176,9 @@ export default function TournamentGeneratorPage() {
 
                 {withinLimit.length > 0 ? (
                     <div className="space-y-3">
-                        {withinLimit.map((mode, i) => (
+                        {withinLimit.map((mode) => (
                             <TournamentModeCard
-                                key={i}
+                                key={mode.id}
                                 mode={mode}
                                 players={inputs.players}
                                 maxDuration={inputs.maxDuration}
@@ -193,9 +203,9 @@ export default function TournamentGeneratorPage() {
                             die maximale Turnierdauer
                         </CollapsibleTrigger>
                         <CollapsibleContent className="mt-3 space-y-3">
-                            {exceeding.map((mode, i) => (
+                            {exceeding.map((mode) => (
                                 <TournamentModeCard
-                                    key={i}
+                                    key={mode.id}
                                     mode={mode}
                                     players={inputs.players}
                                     maxDuration={inputs.maxDuration}

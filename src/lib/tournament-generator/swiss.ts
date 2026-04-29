@@ -1,4 +1,4 @@
-import { SwissMode } from "./types";
+import type { SwissMode } from "./types";
 
 export function generateSwiss(
     players: number,
@@ -18,6 +18,7 @@ export function generateSwiss(
 
         for (let rounds = 2; rounds <= standardRounds; rounds++) {
             modes.push({
+                id: `swiss-${teamSize}-${rounds}`,
                 type: "swiss",
                 teamSize,
                 teams,

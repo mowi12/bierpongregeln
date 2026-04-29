@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const dreiD: Ruleset = {
     name: "3D",

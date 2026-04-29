@@ -1,4 +1,4 @@
-import { Article, Ruleset, Section } from "@/components/types/ruleset.types";
+import type { Article, Ruleset, Section } from "@/components/types/ruleset.types";
 import { klona } from "klona";
 
 const rulesetData = {

@@ -7,7 +7,7 @@ export type {
     GeneratorInputs,
 } from "./types";
 
-import { GeneratorInputs, TournamentMode } from "./types";
+import type { GeneratorInputs, TournamentMode } from "./types";
 import { generateFreeForAll } from "./free-for-all";
 import { generateGroupPhase } from "./group-phase";
 import { generateSwiss } from "./swiss";

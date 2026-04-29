@@ -8,7 +8,7 @@ import { dreiD } from "@/data/rulesets/3d";
 import { mehrBaelle } from "@/data/rulesets/mehr-baelle";
 import { sniper } from "@/data/rulesets/sniper";
 import { doubleTable } from "@/data/rulesets/double-table";
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export interface NavItem {
     title: string;

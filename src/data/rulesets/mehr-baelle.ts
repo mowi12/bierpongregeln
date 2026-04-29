@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const mehrBaelle: Ruleset = {
     name: "Mehr Bälle",

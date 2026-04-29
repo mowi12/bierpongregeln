@@ -6,7 +6,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Tournament, formatDate, formatFlavor } from "@/lib/tournament-utils";
+import { type Tournament, formatDate, formatFlavor } from "@/lib/tournament-utils";
 
 export function TournamentsTable({ tournaments }: { tournaments: Tournament[] }) {
     return (
@@ -24,8 +24,8 @@ export function TournamentsTable({ tournaments }: { tournaments: Tournament[] })
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {tournaments.map((t, i) => (
-                        <TableRow key={i}>
+                    {tournaments.map((t) => (
+                        <TableRow key={t.id}>
                             <TableCell>{formatDate(t.date)}</TableCell>
                             <TableCell>{t.type === "team" ? "Team" : "Einzel"}</TableCell>
                             <TableCell>{formatFlavor(t.flavor)}</TableCell>

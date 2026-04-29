@@ -3,9 +3,10 @@ import tournamentData from "../../tournaments.json";
 export type TournamentType = "single" | "team";
 
 export interface Tournament {
+    id: string;
     date: string;
     flavor: string | string[];
-    type: TournamentType;
+    type: string;
     firstPlace: string[];
     secondPlace: string[];
     thirdPlace: string[];
@@ -33,14 +34,18 @@ export interface PlayerStanding {
 export const QUALIFIED_MIN_PARTICIPATIONS = 3;
 
 export const rating: Rating = tournamentData.rating;
-export const tournaments: Tournament[] = tournamentData.tournaments as Tournament[];
+export const tournaments: Tournament[] = tournamentData.tournaments.map((t, i) => ({
+    id: `tournament-${i}`,
+    ...t,
+}));
 
 function computeStandings(type: TournamentType): PlayerStanding[] {
     const scores = new Map<string, PlayerStanding>();
 
     function ensureEntry(player: string): PlayerStanding {
-        if (!scores.has(player)) {
-            scores.set(player, {
+        let existing = scores.get(player);
+        if (!existing) {
+            const score = {
                 player,
                 participations: 0,
                 firstPlace: 0,
@@ -50,9 +55,12 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
                 totalScore: 0,
                 winRate: 0,
                 pointsPerGame: 0,
-            });
+            };
+
+            scores.set(player, score);
+            existing = score;
         }
-        return scores.get(player)!;
+        return existing;
     }
 
     for (const t of tournaments) {
