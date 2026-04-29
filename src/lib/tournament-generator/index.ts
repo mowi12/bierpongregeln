@@ -1,16 +1,16 @@
-export { formatDuration } from "./types";
 export type {
     FreeForAllMode,
+    GeneratorInputs,
     GroupPhaseMode,
     SwissMode,
     TournamentMode,
-    GeneratorInputs,
 } from "./types";
+export { formatDuration } from "./types";
 
-import type { GeneratorInputs, TournamentMode } from "./types";
 import { generateFreeForAll } from "./free-for-all";
 import { generateGroupPhase } from "./group-phase";
 import { generateSwiss } from "./swiss";
+import type { GeneratorInputs, TournamentMode } from "./types";
 
 export function generateTournamentModes(inputs: GeneratorInputs): TournamentMode[] {
     const { players, maxTeamSize, tables, minutesPerGame } = inputs;

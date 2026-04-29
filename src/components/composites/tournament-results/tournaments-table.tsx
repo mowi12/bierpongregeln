@@ -6,7 +6,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { type Tournament, formatDate, formatFlavor } from "@/lib/tournament-utils";
+import { formatDate, formatFlavor, type Tournament } from "@/lib/tournament-utils";
 
 export function TournamentsTable({ tournaments }: { tournaments: Tournament[] }) {
     return (

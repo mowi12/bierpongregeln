@@ -1,4 +1,4 @@
-import { type TournamentMode, formatDuration } from "@/lib/tournament-generator";
+import { formatDuration, type TournamentMode } from "@/lib/tournament-generator";
 import { cn } from "@/lib/utils";
 
 function koFirstRoundLabel(finalsType: number): string {

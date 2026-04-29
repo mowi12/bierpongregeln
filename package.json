@@ -9,7 +9,9 @@
         "lint": "biome lint",
         "lint:fix": "biome lint --write",
         "format": "biome format --write",
-        "format:check": "biome format"
+        "format:check": "biome format",
+        "check": "biome check",
+        "check:fix": "biome check --write"
     },
     "dependencies": {
         "@radix-ui/react-collapsible": "^1.1.12",

@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import {
-    generateTournamentModes,
-    type GeneratorInputs,
-    type TournamentMode,
-    formatDuration,
-} from "@/lib/tournament-generator";
-import { Button } from "@/components/ui/button";
-import { TournamentModeCard } from "@/components/composites/tournament-generator/tournament-mode-card";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { TournamentModeCard } from "@/components/composites/tournament-generator/tournament-mode-card";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+    formatDuration,
+    type GeneratorInputs,
+    generateTournamentModes,
+    type TournamentMode,
+} from "@/lib/tournament-generator";
 
 type ModeType = TournamentMode["type"];
 

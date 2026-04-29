@@ -1,13 +1,13 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMergedRuleset, getRulesetSlugs } from "@/lib/ruleset-loader";
 import {
-    type Ruleset,
-    type Section,
     type Article,
     isSection,
     type Paragraph,
+    type Ruleset,
+    type Section,
 } from "@/components/types/ruleset.types";
-import Link from "next/link";
+import { getMergedRuleset, getRulesetSlugs } from "@/lib/ruleset-loader";
 
 // --- Helper Functions & Components ---
 
