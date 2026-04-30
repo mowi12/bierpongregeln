@@ -4,6 +4,7 @@
  * It also supports strikethroughs and highlights directly in the string.
  */
 export type Paragraph = {
+    id?: string; // Unique identifier for referencing
     // We can use a single content string that contains simple HTML/Markdown for styling.
     // e.g., "<del>Old text.</del> <Highlight>New text.</Highlight>"
     // This is easier to author than complex object structures.
@@ -34,6 +35,10 @@ export type Section = {
     // A section can contain other sections or a list of articles.
     content: (Section | Article)[];
 };
+
+export function isSection(item: Section | Article): item is Section {
+    return "content" in item && Array.isArray(item.content);
+}
 
 /**
  * Describes the compatibility of this ruleset with another.

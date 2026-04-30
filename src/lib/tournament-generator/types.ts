@@ -6,6 +6,7 @@ export function formatDuration(minutes: number): string {
 }
 
 export interface FreeForAllMode {
+    id: string;
     type: "freeForAll";
     teamSize: number;
     teams: number;
@@ -15,6 +16,7 @@ export interface FreeForAllMode {
 }
 
 export interface GroupPhaseMode {
+    id: string;
     type: "groupPhase";
     teamSize: number;
     teams: number;
@@ -31,6 +33,7 @@ export interface GroupPhaseMode {
 }
 
 export interface SwissMode {
+    id: string;
     type: "swiss";
     teamSize: number;
     teams: number;

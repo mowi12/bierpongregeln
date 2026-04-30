@@ -1,4 +1,4 @@
-import { FreeForAllMode } from "./types";
+import type { FreeForAllMode } from "./types";
 import { binomialCoefficient } from "./utils";
 
 // Round-robin: (teams-1) rounds for even teams, teams rounds for odd; floor(teams/2) games per round.
@@ -23,6 +23,7 @@ export function generateFreeForAll(
         const numberOfGames = binomialCoefficient(teams, 2);
         if (numberOfGames < 1) continue;
         modes.push({
+            id: `ffa-${teamSize}`,
             type: "freeForAll",
             teamSize,
             teams,

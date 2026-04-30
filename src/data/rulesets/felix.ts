@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const felix: Ruleset = {
     name: "Felix",
@@ -36,7 +36,9 @@ export const felix: Ruleset = {
                             id: "art-3-werfen",
                             title: "Werfen",
                             paragraphs: [
-                                { content: "Jedes Team hat in jeder Runde zwei Standardwürfe." },
+                                {
+                                    content: "Jedes Team hat in jeder Runde zwei Standardwürfe.",
+                                },
                                 {
                                     content:
                                         "Durch Spezialwürfe kann die Anzahl der Würfe pro Runde erhöht werden.",
@@ -83,7 +85,9 @@ export const felix: Ruleset = {
                             content:
                                 "Um die Spielreihenfolge und -seite festzulegen, erhält jeweils eine Person pro Seite einen Ball. Beide Personen müssen nun gleichzeitig versuchen, einen Becher des gegnerischen Teams zu treffen.",
                         },
-                        { content: "Beim Werfen müssen sich beide Personen in die Augen schauen." },
+                        {
+                            content: "Beim Werfen müssen sich beide Personen in die Augen schauen.",
+                        },
                         {
                             content:
                                 "Das Team, das zuerst trifft, darf entscheiden, welches Team beginnt. Das Team, das nicht trifft, darf entscheiden auf welcher Tischseite sie spielt.",
@@ -235,7 +239,9 @@ export const felix: Ruleset = {
                             content:
                                 "Wenn ein Becher allein steht, also keine Nachbarn hat, kann ein Spieler Insel auf diesen Becher rufen. Wird dieser getroffen, müssen der getroffene Becher und ein weiterer Becher entfernt werden. Wird anstelle des Insel-Bechers ein anderer Becher getroffen, zählt der Treffer nicht.",
                         },
-                        { content: "Jeder Spieler darf im gesamten Spiel einmal Insel rufen." },
+                        {
+                            content: "Jeder Spieler darf im gesamten Spiel einmal Insel rufen.",
+                        },
                         {
                             content:
                                 "Die Anzahl an Insel-Rufen begrenzt sich pro Team auf zwei, selbst wenn ein Team aus mehr als zwei Spielern besteht.",
@@ -326,10 +332,18 @@ export const felix: Ruleset = {
     combinations: [
         { flavorSlug: "3d", flavorName: "3D", status: "compatible" },
         { flavorSlug: "sniper", flavorName: "Sniper", status: "compatible" },
-        { flavorSlug: "double-table", flavorName: "Double Table", status: "compatible" },
+        {
+            flavorSlug: "double-table",
+            flavorName: "Double Table",
+            status: "compatible",
+        },
         { flavorSlug: "moritz", flavorName: "Moritz", status: "incompatible" },
         { flavorSlug: "marcel", flavorName: "Marcel", status: "incompatible" },
-        { flavorSlug: "game-pigeon", flavorName: "Game Pigeon", status: "incompatible" },
+        {
+            flavorSlug: "game-pigeon",
+            flavorName: "Game Pigeon",
+            status: "incompatible",
+        },
         {
             flavorSlug: "mehr-baelle",
             flavorName: "Mehr Bälle",

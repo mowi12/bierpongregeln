@@ -1,0 +1,33 @@
+name: Code Quality Checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  lint:
+    name: Biome Checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup
+        uses: ./.github/workflows/setup/
+
+      - name: Run Biome Checker
+        run: pnpm exec biome ci --error-on-warnings
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup
+        uses: ./.github/workflows/setup/
+
+      - name: Run type check
+        run: pnpm run typecheck

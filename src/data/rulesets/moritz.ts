@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const moritz: Ruleset = {
     name: "Moritz",
@@ -40,7 +40,9 @@ export const moritz: Ruleset = {
                             content:
                                 "Wenn Heating Up oder On Fire nicht gerufen wurde, kann der Spieler beim nächsten Treffer in Folge Heating Up oder On Fire rufen.",
                         },
-                        { content: "Die On Fire-Würfe werden sofort nach dem Ausruf ausgeführt." },
+                        {
+                            content: "Die On Fire-Würfe werden sofort nach dem Ausruf ausgeführt.",
+                        },
                         {
                             content:
                                 "Aufsetzer und andere Spezialwürfe zählen nur als ein Treffer.",
@@ -55,7 +57,9 @@ export const moritz: Ruleset = {
                             content:
                                 "Wenn ein Becher allein steht, also keine Nachbarn hat, kann ein Spieler Island auf diesen Becher rufen. Wird dieser getroffen, müssen der getroffene Becher und ein weiterer Becher entfernt werden. Wird anstelle des Island-Bechers ein anderer Becher getroffen, zählt der Treffer nicht.",
                         },
-                        { content: "Jeder Spieler darf im gesamten Spiel einmal Island rufen." },
+                        {
+                            content: "Jeder Spieler darf im gesamten Spiel einmal Island rufen.",
+                        },
                     ],
                 },
                 {
@@ -105,11 +109,23 @@ export const moritz: Ruleset = {
     ],
     combinations: [
         { flavorSlug: "3d", flavorName: "3D", status: "compatible" },
-        { flavorSlug: "mehr-baelle", flavorName: "Mehr Bälle", status: "compatible" },
+        {
+            flavorSlug: "mehr-baelle",
+            flavorName: "Mehr Bälle",
+            status: "compatible",
+        },
         { flavorSlug: "sniper", flavorName: "Sniper", status: "compatible" },
-        { flavorSlug: "double-table", flavorName: "Double Table", status: "compatible" },
+        {
+            flavorSlug: "double-table",
+            flavorName: "Double Table",
+            status: "compatible",
+        },
         { flavorSlug: "felix", flavorName: "Felix", status: "incompatible" },
         { flavorSlug: "marcel", flavorName: "Marcel", status: "incompatible" },
-        { flavorSlug: "game-pigeon", flavorName: "Game Pigeon", status: "incompatible" },
+        {
+            flavorSlug: "game-pigeon",
+            flavorName: "Game Pigeon",
+            status: "incompatible",
+        },
     ],
 };

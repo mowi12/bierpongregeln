@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const doubleTable: Ruleset = {
     name: "Double Table",
@@ -22,14 +22,18 @@ export const doubleTable: Ruleset = {
                             content:
                                 "Alle Becher beider Teams müssen vor Spielbeginn gleichmäßig mit Wasser oder Bier befüllt werden.",
                         },
-                        { content: "Es muss vereinbart werden, mit welchem Flavor gespielt wird." },
+                        {
+                            content: "Es muss vereinbart werden, mit welchem Flavor gespielt wird.",
+                        },
                     ],
                 },
                 {
                     id: "becherformation",
                     title: "Becherformation",
                     paragraphs: [
-                        { content: "Jedes Team hat 20 Becher auf den eigenen Tischseiten stehen." },
+                        {
+                            content: "Jedes Team hat 20 Becher auf den eigenen Tischseiten stehen.",
+                        },
                         {
                             content:
                                 "Alle Becher müssen in zwei 2D-Pyramidenformationen aufgestellt werden. Dabei müssen die Spitzen der Pyramiden zur anderen Tischseite zeigen und es müssen sich alle Ränder der Becher berühren.",
@@ -80,7 +84,9 @@ export const doubleTable: Ruleset = {
                             id: "art-3-werfen",
                             title: "Werfen",
                             paragraphs: [
-                                { content: "Jedes Team hat in jeder Runde zwei Standardwürfe." },
+                                {
+                                    content: "Jedes Team hat in jeder Runde zwei Standardwürfe.",
+                                },
                                 {
                                     content:
                                         "Durch Spezialwürfe kann die Anzahl der Würfe pro Runde erhöht werden.",
@@ -109,7 +115,9 @@ export const doubleTable: Ruleset = {
                                     content:
                                         "Sollte ein Ball während des Wurfs aus der Hand rutschen und in einem eigenen Becher landen, so ist dieser Ball nicht über die Mittellinie gerollt, zählt trotzdem als Treffer und muss weggestellt werden. Der Ball darf nicht erneut geworfen werden.",
                                 },
-                                { content: "Es darf auf Becher beider Tische geworfen werden." },
+                                {
+                                    content: "Es darf auf Becher beider Tische geworfen werden.",
+                                },
                             ],
                         },
                         {

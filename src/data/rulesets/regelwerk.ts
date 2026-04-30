@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const regelwerk: Ruleset = {
     name: "Regelwerk",
@@ -22,14 +22,18 @@ export const regelwerk: Ruleset = {
                             content:
                                 "Alle Becher beider Teams müssen vor Spielbeginn gleichmäßig mit Wasser oder Bier befüllt werden.",
                         },
-                        { content: "Es muss vereinbart werden, mit welchem Flavor gespielt wird." },
+                        {
+                            content: "Es muss vereinbart werden, mit welchem Flavor gespielt wird.",
+                        },
                     ],
                 },
                 {
                     id: "becherformation",
                     title: "Becherformation",
                     paragraphs: [
-                        { content: "Jedes Team hat 10 Becher auf der eigenen Tischseite stehen." },
+                        {
+                            content: "Jedes Team hat 10 Becher auf der eigenen Tischseite stehen.",
+                        },
                         {
                             content:
                                 "Alle Becher müssen in einer 2D-Pyramidenformation aufgestellt werden. Dabei muss die Spitze der Pyramide zur anderen Tischseite zeigen und es müssen sich alle Ränder der Becher berühren.",
@@ -114,7 +118,9 @@ export const regelwerk: Ruleset = {
                             id: "art-3-werfen",
                             title: "Werfen",
                             paragraphs: [
-                                { content: "Jedes Team hat in jeder Runde zwei Standardwürfe." },
+                                {
+                                    content: "Jedes Team hat in jeder Runde zwei Standardwürfe.",
+                                },
                                 {
                                     content:
                                         "Durch Spezialwürfe kann die Anzahl der Würfe pro Runde erhöht werden.",
@@ -207,7 +213,9 @@ export const regelwerk: Ruleset = {
                             content:
                                 "Um die Spielreihenfolge und -seite festzulegen, erhält jeweils eine Person pro Seite einen Ball. Beide Personen müssen nun gleichzeitig versuchen, einen Becher des gegnerischen Teams zu treffen.",
                         },
-                        { content: "Beim Werfen müssen sich beide Personen in die Augen schauen." },
+                        {
+                            content: "Beim Werfen müssen sich beide Personen in die Augen schauen.",
+                        },
                         {
                             content:
                                 "Das Team, das zuerst trifft, darf entscheiden, welches Team beginnt. Das Team, das nicht trifft, darf entscheiden auf welcher Tischseite sie spielt.",
@@ -258,7 +266,9 @@ export const regelwerk: Ruleset = {
                             content:
                                 "Nur das Team, welches das Spiel nicht angefangen hat, hat die Möglichkeit einen Konter zu vollenden.",
                         },
-                        { content: "Es gibt keine Begrenzung, wie oft gekontert werden kann." },
+                        {
+                            content: "Es gibt keine Begrenzung, wie oft gekontert werden kann.",
+                        },
                         {
                             content:
                                 "Ein Konterversuch ist erfolgreich, wenn das zweite Team das Spiel in dieser letzten Runde beenden kann.",
@@ -361,7 +371,9 @@ export const regelwerk: Ruleset = {
                             content:
                                 "Wenn in einer Wurfrunde beide Würfe eines Teams den gleichen Becher treffen, müssen dieser Becher und zwei weitere Becher entfernt werden.",
                         },
-                        { content: "Eine Bombe führt sofort zur Ausführung der Balls-Back Regel." },
+                        {
+                            content: "Eine Bombe führt sofort zur Ausführung der Balls-Back Regel.",
+                        },
                     ],
                 },
             ],

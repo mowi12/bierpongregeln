@@ -1,14 +1,14 @@
-import { BookOpen, Flame, BarChart, Trophy, Cog, type LucideIcon } from "lucide-react";
-import { regelwerk } from "@/data/rulesets/regelwerk";
-import { moritz } from "@/data/rulesets/moritz";
-import { felix } from "@/data/rulesets/felix";
-import { marcel } from "@/data/rulesets/marcel";
-import { gamePigeon } from "@/data/rulesets/game-pigeon";
+import { BarChart, BookOpen, Cog, Flame, type LucideIcon } from "lucide-react";
+import type { Ruleset } from "@/components/types/ruleset.types";
 import { dreiD } from "@/data/rulesets/3d";
-import { mehrBaelle } from "@/data/rulesets/mehr-baelle";
-import { sniper } from "@/data/rulesets/sniper";
 import { doubleTable } from "@/data/rulesets/double-table";
-import { Ruleset } from "@/components/types/ruleset.types";
+import { felix } from "@/data/rulesets/felix";
+import { gamePigeon } from "@/data/rulesets/game-pigeon";
+import { marcel } from "@/data/rulesets/marcel";
+import { mehrBaelle } from "@/data/rulesets/mehr-baelle";
+import { moritz } from "@/data/rulesets/moritz";
+import { regelwerk } from "@/data/rulesets/regelwerk";
+import { sniper } from "@/data/rulesets/sniper";
 
 export interface NavItem {
     title: string;
@@ -59,17 +59,6 @@ export const navigationItems: NavItem[] = [
         title: "Ergebnisse",
         url: "/tournament-results",
         icon: BarChart,
-    },
-    {
-        title: "Cups",
-        url: "#",
-        icon: Trophy,
-        subItems: [
-            {
-                title: "2. Greiner Cup",
-                url: "/coming-soon",
-            },
-        ],
     },
     {
         title: "Turniermodus Generator",

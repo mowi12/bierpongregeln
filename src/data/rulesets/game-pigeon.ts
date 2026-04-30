@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const gamePigeon: Ruleset = {
     name: "Game Pigeon",
@@ -28,7 +28,9 @@ export const gamePigeon: Ruleset = {
                             id: "art-3-werfen",
                             title: "Werfen",
                             paragraphs: [
-                                { content: "Jedes Team hat in jeder Runde zwei Standardwürfe." },
+                                {
+                                    content: "Jedes Team hat in jeder Runde zwei Standardwürfe.",
+                                },
                                 {
                                     content:
                                         "Durch Spezialwürfe kann die Anzahl der Würfe pro Runde erhöht werden.",
@@ -126,7 +128,11 @@ export const gamePigeon: Ruleset = {
                 {
                     id: "art-12-aufsetzer",
                     title: "Aufsetzer",
-                    paragraphs: [{ content: "Ein Aufsetzer darf nicht weggeschlagen werden." }],
+                    paragraphs: [
+                        {
+                            content: "Ein Aufsetzer darf nicht weggeschlagen werden.",
+                        },
+                    ],
                 },
             ],
         },
@@ -145,10 +151,18 @@ export const gamePigeon: Ruleset = {
     combinations: [
         { flavorSlug: "3d", flavorName: "3D", status: "compatible" },
         { flavorSlug: "sniper", flavorName: "Sniper", status: "compatible" },
-        { flavorSlug: "double-table", flavorName: "Double Table", status: "compatible" },
+        {
+            flavorSlug: "double-table",
+            flavorName: "Double Table",
+            status: "compatible",
+        },
         { flavorSlug: "moritz", flavorName: "Moritz", status: "incompatible" },
         { flavorSlug: "felix", flavorName: "Felix", status: "incompatible" },
         { flavorSlug: "marcel", flavorName: "Marcel", status: "incompatible" },
-        { flavorSlug: "mehr-baelle", flavorName: "Mehr Bälle", status: "incompatible" },
+        {
+            flavorSlug: "mehr-baelle",
+            flavorName: "Mehr Bälle",
+            status: "incompatible",
+        },
     ],
 };

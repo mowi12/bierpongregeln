@@ -10,8 +10,8 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
 import { navigationItems } from "@/lib/navigation";
+import { cn } from "@/lib/utils";
 
 export function AppNavigationMenu() {
     return (

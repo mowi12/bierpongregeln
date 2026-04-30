@@ -1,4 +1,4 @@
-import { SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import type { NavItem } from "@/lib/navigation";
 
 export function SidebarSimpleMenuItem({ item }: { item: NavItem }) {

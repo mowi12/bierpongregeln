@@ -1,7 +1,13 @@
-import { notFound } from "next/navigation";
-import { getMergedRuleset, getRulesetSlugs } from "@/lib/ruleset-loader";
-import { Ruleset, Section, Article } from "@/components/types/ruleset.types";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+    type Article,
+    isSection,
+    type Paragraph,
+    type Ruleset,
+    type Section,
+} from "@/components/types/ruleset.types";
+import { getMergedRuleset, getRulesetSlugs } from "@/lib/ruleset-loader";
 
 // --- Helper Functions & Components ---
 
@@ -20,7 +26,10 @@ const createReferenceMap = (ruleset: Ruleset) => {
                 traverse(item.content);
             } else {
                 // It's an Article
-                refMap.set(item.id, { number: articleCounter, title: item.title });
+                refMap.set(item.id, {
+                    number: articleCounter,
+                    title: item.title,
+                });
                 articleCounter++;
             }
         }
@@ -47,11 +56,12 @@ const ParagraphRenderer = ({
         const match = part.match(/\[\[ref:(.*?)\]\]/);
         if (match) {
             const refId = match[1];
+            const key = `ref-${refId}-${index}`;
             const refData = refMap.get(refId);
             if (refData) {
                 return (
                     <Link
-                        key={index}
+                        key={key}
                         href={`#${refId}`}
                         className="font-medium text-blue-600 hover:underline dark:text-blue-400"
                     >
@@ -60,11 +70,12 @@ const ParagraphRenderer = ({
                 );
             }
             return (
-                <span key={index} className="text-red-500">
+                <span key={key} className="text-red-500">
                     [Invalid Ref: {refId}]
                 </span>
             );
         }
+        // biome-ignore lint: lint/security/noDangerouslySetInnerHtml
         return <span key={index} dangerouslySetInnerHTML={{ __html: part }} />;
     });
 
@@ -89,7 +100,7 @@ const ArticleComponent = ({
         </h3>
         <div className="space-y-2 text-gray-700 dark:text-gray-300">
             {article.paragraphs.map((p, i) => (
-                <div key={i} className="flex items-start">
+                <div key={p.id} className="flex items-start">
                     <span className="w-8 flex-shrink-0 font-mono text-gray-500">({i + 1})</span>
                     <p className="flex-1">
                         <ParagraphRenderer content={p.content} refMap={refMap} />
@@ -122,7 +133,7 @@ const SectionComponent = ({
                 {section.title}
             </h2>
             {section.content.map((item) => {
-                if ("content" in item) {
+                if (isSection(item)) {
                     // is Section
                     return (
                         <SectionComponent
@@ -172,6 +183,16 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
     const refMap = createReferenceMap(ruleset);
     const articleCounter = { current: 0 };
 
+    // For propper rendering, add an ID to the paragraphs of each article
+    const allParagraphs: Paragraph[] = [];
+    ruleset.sections.forEach((section) => {
+        const paragraphs = getParagraphs(section);
+        allParagraphs.push(...paragraphs);
+    });
+    allParagraphs.forEach((p, i) => {
+        p.id = `paragraph-${i + 1}`;
+    });
+
     return (
         <div className="py-12">
             <h1 className="mb-4 text-5xl font-extrabold text-gray-900 dark:text-gray-100">
@@ -188,4 +209,16 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
             ))}
         </div>
     );
+}
+
+function getParagraphs(section: Section) {
+    const paragraphs: Paragraph[] = [];
+    section.content.forEach((item) => {
+        if (isSection(item)) {
+            paragraphs.push(...getParagraphs(item));
+        } else {
+            paragraphs.push(...item.paragraphs);
+        }
+    });
+    return paragraphs;
 }

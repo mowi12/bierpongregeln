@@ -1,9 +1,9 @@
 {
     "$schema": "./tournaments.schema.json",
     "rating": {
-        "firstPlace": 10,
-        "secondPlace": 5,
-        "thirdPlace": 1
+        "firstPlace": 15,
+        "secondPlace": 8,
+        "thirdPlace": 3
     },
     "tournaments": [
         {
@@ -205,7 +205,7 @@
                 "Maren",
                 "Felix F.",
                 "Timo",
-                "Daniel",
+                "Daniel F.",
                 "Niklas",
                 "Lisa",
                 "Sascha",
@@ -250,6 +250,38 @@
                 "Leonhard",
                 "Louis",
                 "Felix S."
+            ]
+        },
+        {
+            "date": "2025-09-12",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": ["Tim", "Michael"],
+            "secondPlace": ["Niki", "Mara"],
+            "thirdPlace": ["Caty", "Lisa"],
+            "participants": [
+                "Tim",
+                "Michael",
+                "Niki",
+                "Mara",
+                "Nina",
+                "Juli",
+                "Johanna",
+                "Dome",
+                "Felix S.",
+                "Simon",
+                "Luca",
+                "Sebbi",
+                "Tim Pap.",
+                "Tom",
+                "Leonhard",
+                "Marcel",
+                "Lennard",
+                "Daniel F.",
+                "Daniel P.",
+                "Meli",
+                "Louis",
+                "Markus"
             ]
         },
         {

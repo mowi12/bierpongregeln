@@ -1,4 +1,4 @@
-import { GroupPhaseMode } from "./types";
+import type { GroupPhaseMode } from "./types";
 import { binomialCoefficient } from "./utils";
 
 // All groups play their round-robins simultaneously, sharing available tables.
@@ -17,7 +17,7 @@ function groupPhaseDuration(
 function koPhaseDuration(koRounds: number, tables: number, minutesPerGame: number): number {
     let duration = 0;
     for (let r = 0; r < koRounds; r++) {
-        const gamesInRound = Math.pow(2, koRounds - 1 - r);
+        const gamesInRound = 2 ** (koRounds - 1 - r);
         duration += Math.ceil(gamesInRound / tables) * minutesPerGame;
     }
     return duration;
@@ -56,6 +56,7 @@ export function generateGroupPhase(
 
             const gamesPerTeamInGP = groupSize - 1;
             modes.push({
+                id: `gp-${teamSize}-${groupSize}`,
                 type: "groupPhase",
                 teamSize,
                 teams,

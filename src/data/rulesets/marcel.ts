@@ -1,4 +1,4 @@
-import { Ruleset } from "@/components/types/ruleset.types";
+import type { Ruleset } from "@/components/types/ruleset.types";
 
 export const marcel: Ruleset = {
     name: "Marcel",
@@ -82,7 +82,9 @@ export const marcel: Ruleset = {
                             content:
                                 "Wenn in einer Wurfrunde beide Würfe eines Teams den gleichen Becher treffen, müssen dieser Becher und zwei weitere Becher entfernt werden.",
                         },
-                        { content: "Eine Bombe führt sofort zur Ausführung der Balls-Back Regel." },
+                        {
+                            content: "Eine Bombe führt sofort zur Ausführung der Balls-Back Regel.",
+                        },
                         {
                             content:
                                 "Mit einer Bombe darf das Spiel nicht beendet werden. Das heißt, sobald in einer Wurfrunde die Möglichkeit besteht mit einer Bombe (eine Kombination von Bombe mit Aufsetzer zählt hier nicht) das Spiel zu beenden, so bleibt ein Becher bei erfolgreichem Treffer stehen. Das gegnerische Team darf sich aussuchen, welche Becher weggestellt werden.",
@@ -117,7 +119,9 @@ export const marcel: Ruleset = {
                             content:
                                 "Wenn ein Becher allein steht, also keine Nachbarn hat, kann ein Spieler Island auf diesen Becher rufen. Wird dieser getroffen, müssen der getroffene Becher und ein weiterer Becher entfernt werden. Wird anstelle des Island-Bechers ein anderer Becher getroffen, zählt der Treffer nicht.",
                         },
-                        { content: "Jeder Spieler darf im gesamten Spiel einmal Island rufen." },
+                        {
+                            content: "Jeder Spieler darf im gesamten Spiel einmal Island rufen.",
+                        },
                     ],
                 },
             ],
@@ -149,11 +153,23 @@ export const marcel: Ruleset = {
     ],
     combinations: [
         { flavorSlug: "3d", flavorName: "3D", status: "compatible" },
-        { flavorSlug: "mehr-baelle", flavorName: "Mehr Bälle", status: "compatible" },
+        {
+            flavorSlug: "mehr-baelle",
+            flavorName: "Mehr Bälle",
+            status: "compatible",
+        },
         { flavorSlug: "sniper", flavorName: "Sniper", status: "compatible" },
-        { flavorSlug: "double-table", flavorName: "Double Table", status: "compatible" },
+        {
+            flavorSlug: "double-table",
+            flavorName: "Double Table",
+            status: "compatible",
+        },
         { flavorSlug: "moritz", flavorName: "Moritz", status: "incompatible" },
         { flavorSlug: "felix", flavorName: "Felix", status: "incompatible" },
-        { flavorSlug: "game-pigeon", flavorName: "Game Pigeon", status: "incompatible" },
+        {
+            flavorSlug: "game-pigeon",
+            flavorName: "Game Pigeon",
+            status: "incompatible",
+        },
     ],
 };

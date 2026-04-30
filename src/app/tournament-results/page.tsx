@@ -1,7 +1,7 @@
-import { rating, tournaments, getTeamStandings, getSingleStandings } from "@/lib/tournament-utils";
-import { StandingsTable } from "@/components/composites/tournament-results/standings-table";
 import { RatingCard } from "@/components/composites/tournament-results/rating-card";
+import { StandingsTable } from "@/components/composites/tournament-results/standings-table";
 import { TournamentsTable } from "@/components/composites/tournament-results/tournaments-table";
+import { getSingleStandings, getTeamStandings, rating, tournaments } from "@/lib/tournament-utils";
 
 export default function TournamentResultsPage() {
     const teamStandings = getTeamStandings();
