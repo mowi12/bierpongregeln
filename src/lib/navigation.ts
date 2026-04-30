@@ -1,4 +1,4 @@
-import { BarChart, BookOpen, Cog, Flame, type LucideIcon, Trophy } from "lucide-react";
+import { BarChart, BookOpen, Cog, Flame, type LucideIcon } from "lucide-react";
 import type { Ruleset } from "@/components/types/ruleset.types";
 import { dreiD } from "@/data/rulesets/3d";
 import { doubleTable } from "@/data/rulesets/double-table";
