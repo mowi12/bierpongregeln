@@ -17,7 +17,7 @@ jobs:
         uses: ./.github/workflows/setup/
 
       - name: Run Biome Checker
-        run: pnpm exec biome ci
+        run: pnpm exec biome ci --error-on-warnings
 
   typecheck:
     name: Type Check
