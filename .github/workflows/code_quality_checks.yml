@@ -17,7 +17,7 @@ jobs:
         uses: ./.github/workflows/setup/
 
       - name: Run Biome Checker
-        run: npx biome ci
+        run: pnpm exec biome ci
 
   typecheck:
     name: Type Check
@@ -30,4 +30,4 @@ jobs:
         uses: ./.github/workflows/setup/
 
       - name: Run type check
-        run: npm run typecheck
+        run: pnpm run typecheck
