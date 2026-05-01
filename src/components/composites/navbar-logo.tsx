@@ -8,6 +8,7 @@ export function NavbarLogo({ className }: { className?: string }) {
     return (
         <Link href="/" className={cn("flex items-center space-x-2", className)}>
             <Image
+                loading="eager"
                 src={logoSrc}
                 alt="Bierpongregeln Logo"
                 width={40}
