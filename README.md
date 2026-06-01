@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://mowi12.github.io/bierpongregeln/">
+    <a href="https://bierpongregeln.vercel.app">
         <img src="logo.svg" alt="logo" width="300">
     </a>
 </p>

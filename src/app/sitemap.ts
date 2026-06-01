@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getRulesetSlugs } from "@/lib/ruleset-loader";
 
-const baseUrl = "https://mowi12.github.io/bierpongregeln";
+const baseUrl = "https://bierpongregeln.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const slugs = await getRulesetSlugs();

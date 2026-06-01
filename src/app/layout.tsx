@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-const baseUrl = "https://mowi12.github.io/bierpongregeln";
+const baseUrl = "https://bierpongregeln.vercel.app";
 
 export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),
