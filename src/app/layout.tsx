@@ -17,9 +17,21 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
+const baseUrl = "https://mowi12.github.io/bierpongregeln";
+
 export const metadata: Metadata = {
+    metadataBase: new URL(baseUrl),
     title: "Bierpongregeln",
     description: "Die beste Bierpongregelsammlung!",
+    openGraph: {
+        title: "Bierpongregeln",
+        description: "Die beste Bierpongregelsammlung!",
+        locale: "de_DE",
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+    },
 };
 
 export default function RootLayout({
@@ -28,7 +40,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="de" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <SidebarProvider defaultOpen={false}>
                     <AppSidebar />
