@@ -1,5 +1,7 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useState } from "react";
 import {
     SidebarMenuButton,
     SidebarMenuItem,
@@ -8,19 +10,27 @@ import {
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import type { NavItem } from "@/lib/navigation";
+import { cn } from "@/lib/utils";
 
 export function SidebarCollapsibleMenuItem({ item }: { item: NavItem }) {
+    const [open, setOpen] = useState(false);
+
     return (
-        <Collapsible asChild className="group/collapsible">
-            <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                    <SidebarMenuButton tooltip={item.title}>
-                        {item.icon && <item.icon />}
-                        <span>{item.title}</span>
-                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                    </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
+        <SidebarMenuItem>
+            <SidebarMenuButton tooltip={item.title} onClick={() => setOpen((o) => !o)}>
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+                <ChevronRight
+                    className={cn("ml-auto transition-transform duration-200", open && "rotate-90")}
+                />
+            </SidebarMenuButton>
+            <div
+                className={cn(
+                    "grid transition-all duration-200 ease-in-out",
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                )}
+            >
+                <div className="overflow-hidden">
                     <SidebarMenuSub>
                         {item.subItems?.map((subItem) => (
                             <SidebarMenuSubItem key={subItem.title}>
@@ -32,8 +42,8 @@ export function SidebarCollapsibleMenuItem({ item }: { item: NavItem }) {
                             </SidebarMenuSubItem>
                         ))}
                     </SidebarMenuSub>
-                </CollapsibleContent>
-            </SidebarMenuItem>
-        </Collapsible>
+                </div>
+            </div>
+        </SidebarMenuItem>
     );
 }
