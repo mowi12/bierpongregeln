@@ -6,6 +6,7 @@ import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
 import { AppSidebar } from "@/components/composites/app-sidebar";
 import { NavbarLogo } from "@/components/composites/navbar-logo";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { baseUrl } from "@/lib/site";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -16,8 +17,6 @@ const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
 });
-
-const baseUrl = "https://bierpongregeln.vercel.app";
 
 export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),

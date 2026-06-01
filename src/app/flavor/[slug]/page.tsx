@@ -174,7 +174,7 @@ export async function generateMetadata({ params }: FlavorPageProps): Promise<Met
     if (!ruleset) return {};
     return {
         title: `${ruleset.name} | Bierpongregeln`,
-        description: `${ruleset.name} – Bierpongregelwerk auf bierpongregeln.de`,
+        description: `${ruleset.name} – Bierpongregelwerk`,
     };
 }
 
