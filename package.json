@@ -2,6 +2,7 @@
     "name": "bierpongregeln",
     "version": "3.0.0",
     "private": true,
+    "packageManager": "pnpm@11.5.1",
     "scripts": {
         "dev": "next dev --turbopack",
         "build": "next build",

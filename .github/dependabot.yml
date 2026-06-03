@@ -8,8 +8,30 @@ updates:
       react:
         patterns:
           - "react*"
+      tailwindcss:
+        patterns:
+          - "tailwindcss*"
+          - "@tailwindcss/*"
+          - "tw-animate-css"
+      radix-ui:
+        patterns:
+          - "@radix-ui/*"
+      types:
+        patterns:
+          - "@types/*"
+      biome:
+        patterns:
+          - "@biomejs/*"
+      next:
+        patterns:
+          - "next"
+          - "@next/*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"

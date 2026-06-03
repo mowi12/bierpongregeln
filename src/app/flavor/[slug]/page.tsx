@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -162,15 +163,25 @@ const SectionComponent = ({
 
 // --- The Page Component ---
 
-export async function generateStaticParams() {
-    const slugs = await getRulesetSlugs();
-    return slugs.map((slug: string) => ({ slug }));
-}
-
 type FlavorPageProps = {
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export async function generateMetadata({ params }: FlavorPageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const ruleset = await getMergedRuleset(slug);
+    if (!ruleset) return {};
+    return {
+        title: `${ruleset.name} | Bierpongregeln`,
+        description: `${ruleset.name} – Bierpongregelwerk`,
+    };
+}
+
+export async function generateStaticParams() {
+    const slugs = await getRulesetSlugs();
+    return slugs.map((slug: string) => ({ slug }));
+}
 
 export default async function FlavorPage({ params }: FlavorPageProps) {
     const { slug } = await params;

@@ -6,6 +6,7 @@ import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
 import { AppSidebar } from "@/components/composites/app-sidebar";
 import { NavbarLogo } from "@/components/composites/navbar-logo";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { baseUrl } from "@/lib/site";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -18,8 +19,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL(baseUrl),
     title: "Bierpongregeln",
     description: "Die beste Bierpongregelsammlung!",
+    openGraph: {
+        title: "Bierpongregeln",
+        description: "Die beste Bierpongregelsammlung!",
+        locale: "de_DE",
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+    },
 };
 
 export default function RootLayout({
@@ -28,7 +39,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="de" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <SidebarProvider defaultOpen={false}>
                     <AppSidebar />
