@@ -42,7 +42,7 @@ src/
 - **Linter/Formatter**: Biome — 4-space indent, 100-char line width, LF line endings, double quotes
 - **TypeScript**: strict mode, path alias `@/*` → `src/*`
 - **Commits**: conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `build:`, `docs:`)
-- **Package manager**: pnpm (v10)
+- **Package manager**: pnpm (v11)
 - **Styling**: Tailwind CSS v4 via `@tailwindcss/postcss` — no `tailwind.config.ts` needed
 - **Components**: shadcn/ui (new-york style, slate base color)
 
