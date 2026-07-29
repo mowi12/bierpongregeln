@@ -1,5 +1,12 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 export const socialImageSize = { width: 1200, height: 630 };
 export const socialImageAlt = "Bierpongregeln – Die beste Bierpongregelsammlung!";
+
+const logoDataUrl = `data:image/png;base64,${readFileSync(
+    join(process.cwd(), "public", "logo-social.png"),
+).toString("base64")}`;
 
 export function SocialImageContent() {
     return (
@@ -14,16 +21,8 @@ export function SocialImageContent() {
                 backgroundImage: "linear-gradient(135deg, #00b3aa 0%, #018273 100%)",
             }}
         >
-            <div
-                style={{
-                    width: 160,
-                    height: 160,
-                    borderRadius: "50%",
-                    backgroundColor: "#ff786e",
-                    display: "flex",
-                    marginBottom: 40,
-                }}
-            />
+            {/** biome-ignore lint/performance/noImgElement: next/og's ImageResponse requires a plain <img>, not next/image */}
+            <img src={logoDataUrl} width={220} height={220} alt="" style={{ marginBottom: 40 }} />
             <div
                 style={{
                     fontSize: 96,
