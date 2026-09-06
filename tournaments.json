@@ -303,6 +303,47 @@
                 "Lukas",
                 "Mukhtar"
             ]
+        },
+        {
+            "date": "2026-09-05",
+            "flavor": "Felix",
+            "type": "team",
+            "firstPlace": ["Moritz W.", "Louis"],
+            "secondPlace": ["Felix S."],
+            "thirdPlace": ["Sebbi", "Korinna"],
+            "participants": [
+                "Moritz W.",
+                "Louis",
+                "Felix S.",
+                "Sebbi",
+                "Korinna",
+                "Sophie",
+                "Elisha",
+                "Idi",
+                "Jannis",
+                "Tobias",
+                "Marc"
+            ]
+        },
+        {
+            "date": "2026-09-05",
+            "flavor": "Felix",
+            "type": "team",
+            "firstPlace": ["Sophie", "Jannis"],
+            "secondPlace": ["Louis", "Korinna"],
+            "thirdPlace": ["Sebbi", "Felix S."],
+            "participants": [
+                "Moritz W.",
+                "Louis",
+                "Felix S.",
+                "Sebbi",
+                "Korinna",
+                "Sophie",
+                "Elisha",
+                "Jannis",
+                "Tobias",
+                "Marc"
+            ]
         }
     ]
 }
