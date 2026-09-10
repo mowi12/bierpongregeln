@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RatingCard } from "@/components/composites/tournament-results/rating-card";
 import { StandingsTable } from "@/components/composites/tournament-results/standings-table";
 import { TournamentsTable } from "@/components/composites/tournament-results/tournaments-table";
@@ -26,6 +27,13 @@ export default function TournamentResultsPage() {
                     <RatingCard emoji="🥈" points={rating.secondPlace} place={2} />
                     <RatingCard emoji="🥉" points={rating.thirdPlace} place={3} />
                 </div>
+                <p className="text-muted-foreground text-sm">
+                    Ein alternatives Wertungssystem (Konsistenz, Aktivität, Feldgröße) lässt sich im{" "}
+                    <Link href="/tournament-results/scoring-lab" className="underline">
+                        Wertungs-Labor
+                    </Link>{" "}
+                    durchspielen – experimentell, ohne Auswirkung auf diese Rangliste.
+                </p>
             </section>
 
             {/* Section 2: Team Tournament Standings */}
