@@ -49,6 +49,14 @@ function boardTournaments(board: TournamentType): Tournament[] {
         .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 
+/** Whole calendar months from `fromISO` to `toISO`, never negative. */
+function monthsBetween(fromISO: string, toISO: string): number {
+    const from = new Date(fromISO);
+    const to = new Date(toISO);
+    const months = (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());
+    return Math.max(0, months);
+}
+
 function currentRankMap(board: TournamentType): Map<string, number> {
     const standings = board === "team" ? getTeamStandings() : getSingleStandings();
     const qualified = standings.filter((s) => s.participations >= QUALIFIED_MIN_PARTICIPATIONS);
@@ -65,8 +73,14 @@ interface Accumulator {
     firstPlace: number;
     secondPlace: number;
     thirdPlace: number;
-    baseScore: number;
+    /** Recency-weighted participation points (equals `rawParticipation` in cliff mode). */
+    participationScore: number;
+    /** Recency-weighted, difficulty-weighted podium points. */
+    podiumScore: number;
+    /** Un-aged additive score, used for the efficiency baseline. */
+    rawBaseScore: number;
     lastEventIndex: number;
+    lastEventDate: string;
 }
 
 /**
@@ -75,12 +89,22 @@ interface Accumulator {
  */
 export function computeSystemB(board: TournamentType, params: ScoringParams): ScoredPlayer[] {
     const events = boardTournaments(board);
+    if (events.length === 0) return [];
+
     const medianN = median(events.map(fieldSize));
+    const lastIndex = events.length - 1;
+    const newestDate = events[lastIndex].date;
+    const halfLife = Math.max(params.recencyHalfLife, 0.1);
     const placeWeight = {
         firstPlace: params.firstPlaceWeight,
         secondPlace: params.secondPlaceWeight,
         thirdPlace: params.thirdPlaceWeight,
     } as const;
+
+    const ageOf = (event: Tournament, index: number): number =>
+        params.inactivityUnit === "months"
+            ? monthsBetween(event.date, newestDate)
+            : lastIndex - index;
 
     const acc = new Map<string, Accumulator>();
     const ensure = (player: string): Accumulator => {
@@ -92,8 +116,11 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
                 firstPlace: 0,
                 secondPlace: 0,
                 thirdPlace: 0,
-                baseScore: 0,
+                participationScore: 0,
+                podiumScore: 0,
+                rawBaseScore: 0,
                 lastEventIndex: -1,
+                lastEventDate: newestDate,
             };
             acc.set(player, entry);
         }
@@ -102,35 +129,57 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
 
     events.forEach((event, index) => {
         const coef = coefficient(params.coefficientShape, fieldSize(event), medianN);
+        const weight =
+            params.inactivityMode === "recency" ? 0.5 ** (ageOf(event, index) / halfLife) : 1;
         for (const player of event.participants) {
             const entry = ensure(player);
             entry.participations++;
-            entry.baseScore += params.participationPoint;
+            entry.participationScore += params.participationPoint * weight;
+            entry.rawBaseScore += params.participationPoint;
             entry.lastEventIndex = index;
+            entry.lastEventDate = event.date;
         }
         for (const place of ["firstPlace", "secondPlace", "thirdPlace"] as const) {
             for (const player of event[place]) {
                 const entry = ensure(player);
                 entry[place]++;
-                entry.baseScore += placeWeight[place] * coef;
+                const points = placeWeight[place] * coef;
+                entry.podiumScore += points * weight;
+                entry.rawBaseScore += points;
             }
         }
     });
 
     const players = [...acc.values()].filter((p) => p.participations > 0);
-    const totalBase = players.reduce((sum, p) => sum + p.baseScore, 0);
+    const totalRawBase = players.reduce((sum, p) => sum + p.rawBaseScore, 0);
     const totalParticipations = players.reduce((sum, p) => sum + p.participations, 0);
-    const avgPpg = totalParticipations > 0 ? totalBase / totalParticipations : 1;
+    const avgPpg = totalParticipations > 0 ? totalRawBase / totalParticipations : 1;
 
     const ranks = currentRankMap(board);
 
     const scored: ScoredPlayer[] = players.map((p) => {
         const adjustedPointsPerGame =
-            (p.baseScore + params.shrinkage * avgPpg) / (p.participations + params.shrinkage);
+            (p.rawBaseScore + params.shrinkage * avgPpg) / (p.participations + params.shrinkage);
         const efficiencyMultiplier =
             avgPpg > 0 ? (adjustedPointsPerGame / avgPpg) ** params.efficiencyExponent : 1;
-        const missedTournaments = events.length - 1 - p.lastEventIndex;
-        const decay = params.decayBase ** Math.max(0, missedTournaments - params.decayGrace);
+
+        const missedUnits =
+            params.inactivityUnit === "months"
+                ? monthsBetween(p.lastEventDate, newestDate)
+                : lastIndex - p.lastEventIndex;
+
+        let decayedBase: number;
+        if (params.inactivityMode === "recency") {
+            decayedBase = p.participationScore + p.podiumScore;
+        } else {
+            const decayFactor = params.decayBase ** Math.max(0, missedUnits - params.decayGrace);
+            decayedBase =
+                params.decayScope === "podium"
+                    ? p.participationScore + p.podiumScore * decayFactor
+                    : (p.participationScore + p.podiumScore) * decayFactor;
+        }
+
+        const decay = p.rawBaseScore > 0 ? decayedBase / p.rawBaseScore : 1;
 
         return {
             player: p.player,
@@ -139,12 +188,12 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
             secondPlace: p.secondPlace,
             thirdPlace: p.thirdPlace,
             podiumFinishes: p.firstPlace + p.secondPlace + p.thirdPlace,
-            baseScore: p.baseScore,
+            baseScore: p.rawBaseScore,
             adjustedPointsPerGame,
             efficiencyMultiplier,
-            missedTournaments,
+            missedTournaments: lastIndex - p.lastEventIndex,
             decay,
-            finalScore: p.baseScore * efficiencyMultiplier * decay,
+            finalScore: decayedBase * efficiencyMultiplier,
             currentRank: ranks.get(p.player) ?? null,
         };
     });

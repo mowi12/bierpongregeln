@@ -9,17 +9,39 @@ export type { TournamentType };
 export type CoefficientShape = "linear" | "linear-cap2" | "sqrt" | "log";
 
 /**
+ * How old results lose value.
+ * - `cliff`: full value until a player stops showing up, then `decayBase` per
+ *   missed unit beyond `decayGrace`.
+ * - `recency`: every result is weighted by its age with a `recencyHalfLife`, so
+ *   the board reflects current form and inactivity fades out on its own.
+ */
+export type InactivityMode = "cliff" | "recency";
+
+/** Unit in which age / missed time is measured. */
+export type InactivityUnit = "tournaments" | "months";
+
+/**
+ * What the cliff decay multiplies.
+ * - `full`: the whole base score.
+ * - `podium`: only the difficulty-weighted podium points; participation points
+ *   are "banked" and never decay.
+ */
+export type DecayScope = "full" | "podium";
+
+/**
  * Tunable parameters of the experimental "System B" score.
  *
  * ```
- * A        = Σ participationPoint                         (flat, not difficulty-scaled)
- *          + Σ placeWeight × coefficient(event)           (difficulty-scaled)
+ * A        = Σ participationPoint × w(event)              (flat, not difficulty-scaled)
+ *          + Σ placeWeight × coefficient(event) × w(event)
+ *   w(event) = 1                       in cliff mode
+ *            = 0.5 ^ (age / halfLife)  in recency mode
  *
- * adjPpg   = (A + shrinkage · avgPpg) / (participations + shrinkage)
+ * adjPpg   = (Araw + shrinkage · avgPpg) / (participations + shrinkage)
  * effMult  = (adjPpg / avgPpg) ^ efficiencyExponent
- * decay    = decayBase ^ max(0, missed − decayGrace)
+ * decay    = decayBase ^ max(0, missed − decayGrace)     cliff mode only
  *
- * S        = A × effMult × decay
+ * S        = decayedBase × effMult
  * ```
  */
 export interface ScoringParams {
@@ -37,10 +59,18 @@ export interface ScoringParams {
     shrinkage: number;
     /** Exponent applied to `adjPpg / avgPpg`. 0 disables the efficiency guardrail. */
     efficiencyExponent: number;
-    /** Base of the inactivity decay. 1 disables decay. */
+    /** Which mechanism ages old results. */
+    inactivityMode: InactivityMode;
+    /** Whether age is counted in tournaments or in calendar months. */
+    inactivityUnit: InactivityUnit;
+    /** `cliff` mode: base of the inactivity decay, per missed unit. 1 disables decay. */
     decayBase: number;
-    /** Missed tournaments that are forgiven before decay starts biting. */
+    /** `cliff` mode: missed units forgiven before decay starts biting. */
     decayGrace: number;
+    /** `cliff` mode: whether the decay also eats participation points. */
+    decayScope: DecayScope;
+    /** `recency` mode: age (in the chosen unit) at which a result is worth half. */
+    recencyHalfLife: number;
 }
 
 export interface ScoringVariant {
@@ -57,13 +87,14 @@ export interface ScoredPlayer {
     secondPlace: number;
     thirdPlace: number;
     podiumFinishes: number;
-    /** Raw additive score `A` (participation + difficulty-weighted podium points). */
+    /** Additive score before ageing: participation + difficulty-weighted podium points. */
     baseScore: number;
     /** Shrunk points-per-game used for the efficiency multiplier. */
     adjustedPointsPerGame: number;
     efficiencyMultiplier: number;
     /** Tournaments of this type held since the player's last appearance. */
     missedTournaments: number;
+    /** Effective ageing factor applied to the base score (1 = no loss). */
     decay: number;
     /** Final score `S` used for ranking. */
     finalScore: number;

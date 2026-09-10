@@ -103,3 +103,11 @@ list. Possible only if the full finishing order starts being recorded.
 
 Build **1–3** into the lab as toggles, settle **4** (fixed anchor) and **5** (two columns
 vs one) now, and leave the rest.
+
+## Status
+
+- **1–3 implemented** (2026-09-11): the lab now has an "Alterung alter Ergebnisse" block
+  with a Cliff-Decay / Recency-Halbwertszeit mode switch, a Turniere / Monate unit switch,
+  and — in cliff mode — a "ganzer Score / nur Podest" scope switch. Cliff + tournaments +
+  full is the default and reproduces the previous behaviour exactly.
+- **4–6 still open.**
