@@ -2,8 +2,11 @@ export { evaluateExpectations } from "./checks";
 export { coefficient, computeEventValues, computeSystemB, fieldSize } from "./system-b";
 export type {
     CoefficientShape,
+    DecayScope,
     EventValue,
     ExpectationResult,
+    InactivityMode,
+    InactivityUnit,
     ScoredPlayer,
     ScoringParams,
     ScoringVariant,

@@ -14,8 +14,12 @@ export const DEFAULT_PARAMS: ScoringParams = {
     coefficientShape: "sqrt",
     shrinkage: 2,
     efficiencyExponent: 0.8,
+    inactivityMode: "cliff",
+    inactivityUnit: "tournaments",
     decayBase: 0.9,
     decayGrace: 2,
+    decayScope: "full",
+    recencyHalfLife: 8,
 };
 
 export const SCORING_VARIANTS: ScoringVariant[] = [

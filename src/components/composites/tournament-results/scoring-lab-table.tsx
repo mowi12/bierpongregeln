@@ -76,8 +76,8 @@ const HEADERS: { label: string; title: string; align?: "left" }[] = [
     { label: "1/2/3", title: "Erste / zweite / dritte Plätze" },
     { label: "Punkte", title: "Rohpunktzahl A (Teilnahme + gewichtete Podestpunkte)" },
     { label: "×Eff", title: "Effizienz-Multiplikator (geshrinkte Punkte pro Spiel)" },
-    { label: "×Inakt", title: "Inaktivitäts-Faktor (Decay seit letzter Teilnahme)" },
-    { label: "Score", title: "Endpunktzahl S = A × Eff × Inakt" },
+    { label: "×Inakt", title: "Alterungsfaktor (gealterte Basis / Rohbasis)" },
+    { label: "Score", title: "Endpunktzahl = gealterte Basis × Eff" },
     { label: "Δ", title: "Ränge gewonnen (▲) oder verloren (▼) gegenüber der aktuellen Wertung" },
 ];
 
