@@ -12,7 +12,10 @@ import {
     computeEventValues,
     computeSystemB,
     DEFAULT_PARAMS,
+    type DecayScope,
     evaluateExpectations,
+    type InactivityMode,
+    type InactivityUnit,
     SCORING_VARIANTS,
     type ScoringParams,
     type TournamentType,
@@ -25,8 +28,57 @@ const COEF_SHAPES: { value: CoefficientShape; label: string }[] = [
     { value: "log", label: "Logarithmisch" },
 ];
 
+const INACTIVITY_MODES: { value: InactivityMode; label: string }[] = [
+    { value: "cliff", label: "Cliff-Decay" },
+    { value: "recency", label: "Recency-Halbwertszeit" },
+];
+
+const INACTIVITY_UNITS: { value: InactivityUnit; label: string }[] = [
+    { value: "tournaments", label: "Turniere" },
+    { value: "months", label: "Monate" },
+];
+
+const DECAY_SCOPES: { value: DecayScope; label: string }[] = [
+    { value: "full", label: "ganzer Score" },
+    { value: "podium", label: "nur Podest" },
+];
+
 function paramsEqual(a: ScoringParams, b: ScoringParams): boolean {
     return (Object.keys(a) as (keyof ScoringParams)[]).every((key) => a[key] === b[key]);
+}
+
+function ChoiceGroup<T extends string>({
+    label,
+    hint,
+    options,
+    value,
+    onChange,
+}: {
+    label: string;
+    hint?: string;
+    options: { value: T; label: string }[];
+    value: T;
+    onChange: (v: T) => void;
+}) {
+    return (
+        <div className="space-y-1.5">
+            <p className="text-sm font-medium" title={hint}>
+                {label}
+            </p>
+            <div className="flex flex-wrap gap-2">
+                {options.map((o) => (
+                    <Button
+                        key={o.value}
+                        variant={value === o.value ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => onChange(o.value)}
+                    >
+                        {o.label}
+                    </Button>
+                ))}
+            </div>
+        </div>
+    );
 }
 
 function Slider({
@@ -81,6 +133,22 @@ export default function ScoringLabPage() {
             setParams((prev) => ({ ...prev, [key]: Math.round(value * factor) / factor }));
     };
 
+    const setUnit = (unit: ScoringParams["inactivityUnit"]) => {
+        const graceMax = unit === "months" ? 12 : 4;
+        const halfLifeMax = unit === "months" ? 36 : 15;
+        setParams((prev) => ({
+            ...prev,
+            inactivityUnit: unit,
+            decayGrace: Math.min(prev.decayGrace, graceMax),
+            recencyHalfLife: Math.min(prev.recencyHalfLife, halfLifeMax),
+        }));
+    };
+
+    const unitSingular = params.inactivityUnit === "months" ? "Monat" : "Turnier";
+    const unitPlural = params.inactivityUnit === "months" ? "Monate" : "Turniere";
+    const graceMax = params.inactivityUnit === "months" ? 12 : 4;
+    const halfLifeMax = params.inactivityUnit === "months" ? 36 : 15;
+
     const activeVariantId = useMemo(() => {
         const match = SCORING_VARIANTS.find((v) => paramsEqual(v.params, params));
         return match?.id ?? "custom";
@@ -113,22 +181,26 @@ export default function ScoringLabPage() {
                 <CollapsibleContent className="text-muted-foreground mt-3 space-y-2 text-sm">
                     <p>Pro Spieler und Rangliste (Team / Einzel getrennt):</p>
                     <pre className="bg-muted overflow-x-auto rounded p-3 text-xs">
-                        {`A       = Σ Teilnahmepunkte                       (fix, nicht skaliert)
-        + Σ Platzpunkte × Koeffizient(Turnier)   (nach Feldgröße skaliert)
+                        {`Basis   = Σ Teilnahmepunkte × w(Turnier)
+        + Σ Platzpunkte × Koeffizient(Turnier) × w(Turnier)
+  w(Turnier) = 1                          (Cliff-Modus)
+             = 0,5 ^ (Alter / Halbwertszeit)   (Recency-Modus)
 
-Koeffizient = f(Feldgröße / Median),  Median-Turnier = 1.0×
+Koeffizient = f(Feldgröße / Median),  Median-Turnier = 1,0×
               Feldgröße = Spieler (Einzel) bzw. Teams (Team)
 
-adjPpg  = (A + Shrinkage · ØPpg) / (Teilnahmen + Shrinkage)
+adjPpg  = (Rohbasis + Shrinkage · ØPpg) / (Teilnahmen + Shrinkage)
 Eff     = (adjPpg / ØPpg) ^ Effizienz-Exponent
-Inakt   = Decay-Basis ^ max(0, verpasste Turniere − Karenz)
+Inakt   = Decay-Basis ^ max(0, verpasste Einheiten − Karenz)   (nur Cliff)
+          Reichweite "nur Podest" verschont die Teilnahmepunkte
 
-Score   = A × Eff × Inakt`}
+Score   = gealterte Basis × Eff`}
                     </pre>
                     <p>
                         Fixiert nach dem Sensitivitäts-Test: Wurzel-Koeffizient, Shrinkage&nbsp;2,
-                        Effizienz-Exponent&nbsp;0,8, Decay&nbsp;0,9 mit Karenz&nbsp;2. Offen zum
-                        Justieren bleiben Teilnahmepunkt und Sieggewicht.
+                        Effizienz-Exponent&nbsp;0,8. Offen zum Justieren: Teilnahmepunkt,
+                        Sieggewicht und die Alterung alter Ergebnisse (Cliff-Decay oder
+                        Recency-Halbwertszeit, in Turnieren oder Monaten).
                     </p>
                 </CollapsibleContent>
             </Collapsible>
@@ -202,44 +274,81 @@ Score   = A × Eff × Inakt`}
                         display={params.efficiencyExponent.toFixed(1)}
                         onChange={setRounded("efficiencyExponent", 1)}
                     />
-                    <Slider
-                        label="Decay-Basis (d)"
-                        hint="Faktor pro verpasstem Turnier über die Karenz hinaus. 1 schaltet die Inaktivitäts-Strafe ab."
-                        value={params.decayBase}
-                        min={0.7}
-                        max={1}
-                        step={0.01}
-                        display={params.decayBase.toFixed(2)}
-                        onChange={setRounded("decayBase", 2)}
-                    />
-                    <Slider
-                        label="Decay-Karenz (G)"
-                        hint="Anzahl verpasster Turniere, die vor Einsetzen der Strafe verziehen werden."
-                        value={params.decayGrace}
-                        min={0}
-                        max={4}
-                        step={1}
-                        display={`${params.decayGrace}`}
-                        onChange={set("decayGrace")}
-                    />
                 </div>
 
-                <div className="space-y-1.5">
-                    <p className="text-sm font-medium">Feldgrößen-Koeffizient</p>
-                    <div className="flex flex-wrap gap-2">
-                        {COEF_SHAPES.map((shape) => (
-                            <Button
-                                key={shape.value}
-                                variant={
-                                    params.coefficientShape === shape.value ? "default" : "outline"
-                                }
-                                size="sm"
-                                onClick={() => set("coefficientShape")(shape.value)}
-                            >
-                                {shape.label}
-                            </Button>
-                        ))}
+                <ChoiceGroup
+                    label="Feldgrößen-Koeffizient"
+                    hint="Wie stark größere Turniere höher gewichtet werden."
+                    options={COEF_SHAPES}
+                    value={params.coefficientShape}
+                    onChange={set("coefficientShape")}
+                />
+
+                <div className="space-y-4 rounded-md border p-4">
+                    <p className="text-sm font-semibold">Alterung alter Ergebnisse</p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <ChoiceGroup
+                            label="Modus"
+                            hint="Cliff: volle Punkte bis zur Inaktivität, dann Strafe. Recency: jedes Ergebnis altert nach Halbwertszeit."
+                            options={INACTIVITY_MODES}
+                            value={params.inactivityMode}
+                            onChange={set("inactivityMode")}
+                        />
+                        <ChoiceGroup
+                            label="Einheit"
+                            hint="Alter in Turnieren oder in Kalendermonaten messen."
+                            options={INACTIVITY_UNITS}
+                            value={params.inactivityUnit}
+                            onChange={setUnit}
+                        />
                     </div>
+
+                    {params.inactivityMode === "cliff" ? (
+                        <>
+                            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                                <Slider
+                                    label="Decay-Basis (d)"
+                                    hint={`Faktor pro verpasstem ${unitSingular} über die Karenz hinaus. 1 schaltet die Strafe ab.`}
+                                    value={params.decayBase}
+                                    min={0.7}
+                                    max={1}
+                                    step={0.01}
+                                    display={params.decayBase.toFixed(2)}
+                                    onChange={setRounded("decayBase", 2)}
+                                />
+                                <Slider
+                                    label="Decay-Karenz (G)"
+                                    hint={`Verpasste ${unitPlural}, die vor Einsetzen der Strafe verziehen werden.`}
+                                    value={Math.min(params.decayGrace, graceMax)}
+                                    min={0}
+                                    max={graceMax}
+                                    step={1}
+                                    display={`${params.decayGrace} ${unitPlural}`}
+                                    onChange={set("decayGrace")}
+                                />
+                            </div>
+                            <ChoiceGroup
+                                label="Reichweite der Strafe"
+                                hint="Ob die Strafe auch die Teilnahmepunkte frisst oder nur die Podestpunkte."
+                                options={DECAY_SCOPES}
+                                value={params.decayScope}
+                                onChange={set("decayScope")}
+                            />
+                        </>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                            <Slider
+                                label="Halbwertszeit"
+                                hint={`Alter in ${unitPlural}, bei dem ein Ergebnis noch die Hälfte zählt.`}
+                                value={Math.min(params.recencyHalfLife, halfLifeMax)}
+                                min={1}
+                                max={halfLifeMax}
+                                step={1}
+                                display={`${params.recencyHalfLife} ${unitPlural}`}
+                                onChange={set("recencyHalfLife")}
+                            />
+                        </div>
+                    )}
                 </div>
             </section>
 
