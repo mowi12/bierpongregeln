@@ -346,6 +346,44 @@
                 "Tobias",
                 "Marc"
             ]
+        },
+        {
+            "date": "2026-09-13",
+            "flavor": "Moritz",
+            "type": "team",
+            "firstPlace": ["Timo", "Lars"],
+            "secondPlace": ["Daniel F.", "Moritz W."],
+            "thirdPlace": ["Niki", "Mara"],
+            "participants": [
+                "Maren",
+                "Moritz G.",
+                "Tim T.",
+                "Lisa",
+                "Meli",
+                "Leonhard",
+                "Timo",
+                "Lars",
+                "Tim",
+                "Pablo",
+                "Simon",
+                "Anton",
+                "Marcel",
+                "Jule",
+                "Max",
+                "Markus",
+                "Sophie",
+                "Konstantin",
+                "Niki",
+                "Mara",
+                "Juli",
+                "Sebbi",
+                "Dominik",
+                "Caty",
+                "Daniel F.",
+                "Moritz W.",
+                "Louis",
+                "Jonas"
+            ]
         }
     ]
 }
