@@ -3,11 +3,15 @@
 import {
     type Column,
     type ColumnDef,
+    createSortedRowModel,
     flexRender,
-    getCoreRowModel,
-    getSortedRowModel,
+    rowSortingFeature,
     type SortingState,
-    useReactTable,
+    sortFn_alphanumeric,
+    sortFn_basic,
+    sortFn_text,
+    tableFeatures,
+    useTable,
 } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -23,6 +27,12 @@ import {
 } from "@/components/ui/table";
 import { type PlayerStanding, QUALIFIED_MIN_PARTICIPATIONS } from "@/lib/tournament-utils";
 
+const features = tableFeatures({
+    rowSortingFeature,
+    sortedRowModel: createSortedRowModel(),
+    sortFns: { alphanumeric: sortFn_alphanumeric, basic: sortFn_basic, text: sortFn_text },
+});
+
 const DEFAULT_SORTING: SortingState = [
     { id: "winRate", desc: true },
     { id: "pointsPerGame", desc: true },
@@ -37,7 +47,7 @@ function SortButton({
     children,
     title,
 }: {
-    column: Column<PlayerStanding>;
+    column: Column<typeof features, PlayerStanding, unknown>;
     children: React.ReactNode;
     title?: string;
 }) {
@@ -62,7 +72,7 @@ function SortButton({
     );
 }
 
-const columns: ColumnDef<PlayerStanding>[] = [
+const columns: ColumnDef<typeof features, PlayerStanding>[] = [
     {
         id: "rank",
         header: "#",
@@ -88,7 +98,7 @@ const columns: ColumnDef<PlayerStanding>[] = [
                 {((getValue() as number) * 100).toFixed(1)}%
             </span>
         ),
-        sortingFn: "basic",
+        sortFn: "basic",
     },
     {
         accessorKey: "pointsPerGame",
@@ -102,7 +112,7 @@ const columns: ColumnDef<PlayerStanding>[] = [
                 {(getValue() as number).toFixed(1)}
             </span>
         ),
-        sortingFn: "basic",
+        sortFn: "basic",
     },
     {
         accessorKey: "totalScore",
@@ -153,11 +163,10 @@ const columns: ColumnDef<PlayerStanding>[] = [
 function RankedTable({ data }: { data: PlayerStanding[] }) {
     const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
-    const table = useReactTable({
+    const table = useTable({
+        features,
         data,
         columns,
-        getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(),
         onSortingChange: setSorting,
         enableMultiSort: true,
         state: { sorting },
@@ -186,7 +195,7 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
                     {table.getRowModel().rows.length ? (
                         table.getRowModel().rows.map((row) => (
                             <TableRow key={row.id}>
-                                {row.getVisibleCells().map((cell) => (
+                                {row.getAllCells().map((cell) => (
                                     <TableCell key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
@@ -211,11 +220,10 @@ const columnsNoRank = columns.filter((c) => c.id !== "rank");
 function UnrankedTable({ data }: { data: PlayerStanding[] }) {
     const [sorting, setSorting] = useState<SortingState>([{ id: "totalScore", desc: true }]);
 
-    const table = useReactTable({
+    const table = useTable({
+        features,
         data,
         columns: columnsNoRank,
-        getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(),
         onSortingChange: setSorting,
         state: { sorting },
     });
@@ -242,7 +250,7 @@ function UnrankedTable({ data }: { data: PlayerStanding[] }) {
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
                         <TableRow key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
+                            {row.getAllCells().map((cell) => (
                                 <TableCell key={cell.id}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </TableCell>
