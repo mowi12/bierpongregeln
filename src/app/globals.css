@@ -34,14 +34,6 @@
     --color-brand-teal: var(--brand-teal);
     --color-brand-teal-dark: var(--brand-teal-dark);
 
-    /* Legacy sidebar aliases, removed together with the old mobile sidebar */
-    --color-sidebar: var(--card);
-    --color-sidebar-foreground: var(--card-foreground);
-    --color-sidebar-accent: var(--accent);
-    --color-sidebar-accent-foreground: var(--accent-foreground);
-    --color-sidebar-border: var(--border);
-    --color-sidebar-ring: var(--ring);
-
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
