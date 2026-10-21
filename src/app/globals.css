@@ -280,12 +280,6 @@
     }
 }
 
-/* Rules search matches (CSS Custom Highlight API) */
-::highlight(rules-search) {
-    background-color: var(--coral-soft);
-    color: var(--foreground);
-}
-
 @utility scrollbar-none {
     scrollbar-width: none;
 

@@ -302,7 +302,7 @@ Range input styling lives in `globals.css` `@layer components` (`.range-input`: 
 | File | Status | Changes |
 |---|---|---|
 | `layout.tsx` | ✏️ | Bricolage font; `<head>` with theme init script; `viewport` export (`themeColor` light `#fbf8f3` / dark `#0b1d1c` via media, `viewportFit: "cover"`); body = skip link "Zum Inhalt springen" → `SiteHeader` → `<main id="main" class="…">` → `BottomTabBar`. Removes `SidebarProvider`, `AppSidebar`, `SidebarTrigger`, the commented breakpoint debug block. |
-| `globals.css` | ✏️ | Tokens, base layer, keyframes (`rule-flash`, `podium-rise`), `.range-input`, `.scrollbar-none`, custom highlight `::highlight(rules-search)` (`background: var(--coral-soft); color: var(--foreground)`). |
+| `globals.css` | ✏️ | Tokens, base layer, keyframes (`rule-flash`, `podium-rise`), `.range-input`, `.scrollbar-none`, (the search highlight style lives in `rules-search.tsx`, see § 7.2). |
 | `page.tsx` | ✏️ | `HeroSplash` with title "Bierpongregeln", description "Die beste Bierpongregelsammlung!". |
 | `flavor/[slug]/page.tsx` | ✏️ | Composes `PageHeader` (title = ruleset name, lead `Basisregeln · N Artikel` for `regelwerk`, `Flavor · N Artikel` otherwise), `lg:grid lg:grid-cols-[17.5rem_minmax(0,1fr)] lg:gap-12` with `RulesToolbar` (aside) and `<div id="rules-content">` of `RuleSection`s, empty state `<p data-rules-empty hidden>Keine Regel gefunden.</p>`, islands `RulesSearch`, `RulesScrollSpy`. Helpers move to `lib/ruleset-view.ts`. |
 | `tournament-results/page.tsx` | ✏️ | `PageHeader` + `StandingsTabs`; `lg:grid lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-8`; aside: "Punktevergabe" (`RatingCard` ×3) + "Letzte Turniere" (`RecentTournaments`); full-width `section#alle-turniere` with `TournamentsTable`. |
@@ -378,8 +378,9 @@ the root layout — a server component):
 - Keyboard: `/` focuses the field (ignored while typing in an input/textarea/contenteditable);
   `Escape` clears and keeps focus. Clear button (`X`, `size-11`) visible when non-empty.
 - No URL syncing (anchors `#id` already provide shareable links).
-- Known build warning: Turbopack's CSS parser does not recognise `::highlight()` and logs
-  "Parsing CSS source code failed"; the rule is still emitted unchanged (verified in the built CSS).
+- The `::highlight(rules-search)` rule is rendered by `RulesSearch` as a React 19
+  `<style href precedence>` (hoisted into `<head>`), because Turbopack's CSS parser (Lightning CSS)
+  does not recognise `::highlight()` and warned on every compile when it lived in `globals.css`.
 
 ### 7.3 Scroll spy (`RulesScrollSpy`, client island)
 

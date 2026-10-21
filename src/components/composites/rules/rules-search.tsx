@@ -6,6 +6,13 @@ import { normalizeSearchText, normalizeWithSourceIndex } from "@/lib/search";
 
 const HIGHLIGHT_NAME = "rules-search";
 
+// Rendered as a React-managed <style> instead of living in globals.css: Turbopack's CSS parser does
+// not know the ::highlight() pseudo-element yet and would warn on every compile.
+const highlightStyles = `::highlight(${HIGHLIGHT_NAME}) {
+    background-color: var(--coral-soft);
+    color: var(--foreground);
+}`;
+
 function supportsHighlights() {
     return typeof CSS !== "undefined" && "highlights" in CSS;
 }
@@ -123,17 +130,22 @@ export function RulesSearch() {
     );
 
     return (
-        <SearchField
-            id="rules-search"
-            label="Regeln durchsuchen"
-            placeholder="Regel suchen"
-            shortcut="/"
-            value={query}
-            onValueChange={setQuery}
-            inputRef={inputRef}
-            onKeyDown={(event) => {
-                if (event.key === "Escape") setQuery("");
-            }}
-        />
+        <>
+            <style href="rules-search-highlight" precedence="default">
+                {highlightStyles}
+            </style>
+            <SearchField
+                id="rules-search"
+                label="Regeln durchsuchen"
+                placeholder="Regel suchen"
+                shortcut="/"
+                value={query}
+                onValueChange={setQuery}
+                inputRef={inputRef}
+                onKeyDown={(event) => {
+                    if (event.key === "Escape") setQuery("");
+                }}
+            />
+        </>
     );
 }
