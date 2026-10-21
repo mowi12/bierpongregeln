@@ -35,7 +35,7 @@ export function RulesScrollSpy() {
         const tocLinks = Array.from(document.querySelectorAll<HTMLElement>("[data-toc-target]"));
         const chips = Array.from(document.querySelectorAll<HTMLElement>("[data-chip-target]"));
         const chipList = document.querySelector<HTMLElement>("[data-chip-list]");
-        const tocContainer = tocLinks[0]?.closest("aside") ?? null;
+        const tocContainer = tocLinks[0]?.closest("nav") ?? null;
         const intersecting = new Set<HTMLElement>();
         let activeId: string | null = null;
 

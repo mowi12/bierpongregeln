@@ -9,7 +9,7 @@ export function RulesSectionChips({ toc }: { toc: TocSection[] }) {
         <nav aria-label="Abschnitte" className="lg:hidden">
             <ul
                 data-chip-list
-                className="scrollbar-none -mx-4 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4"
+                className="scrollbar-none -mx-4 -my-1 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4 py-1"
             >
                 {toc.map((section) => (
                     <li key={section.id} className="shrink-0 snap-start">

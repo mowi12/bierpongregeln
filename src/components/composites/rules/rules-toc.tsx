@@ -6,7 +6,11 @@ import type { TocSection } from "@/lib/ruleset-view";
  */
 export function RulesToc({ toc }: { toc: TocSection[] }) {
     return (
-        <nav aria-label="Artikel" className="hidden flex-col gap-5 lg:flex">
+        <nav
+            aria-label="Artikel"
+            // Padding with matching negative margin leaves room for focus rings inside the scroll area
+            className="hidden flex-col gap-5 lg:-m-1 lg:flex lg:min-h-0 lg:overflow-y-auto lg:p-1"
+        >
             {toc.map((section) => (
                 <div key={section.id} data-toc-section={section.id}>
                     <SectionLabel as="div" className="mb-1.5 ml-2.5">
