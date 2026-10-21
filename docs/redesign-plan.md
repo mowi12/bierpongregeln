@@ -241,7 +241,7 @@ Legend: 🆕 new · ✏️ changed · 🗑️ deleted. Server components unless 
 | `table.tsx` | ✏️ | Head: `h-11 px-3 text-xs font-bold uppercase tracking-[0.06em]`; cell `px-3 py-3.5 tabular-nums`; row hover `hover:bg-background`. |
 | `sheet.tsx` | ✏️ | Durations open 300 / close 200 ms, close button `size-11 rounded-full` with German `sr-only` "Schließen", bottom side gets `rounded-t-3xl` and `pb-[env(safe-area-inset-bottom)]`. |
 | `navigation-menu.tsx` | ✏️ | `navigationMenuTriggerStyle`: `h-11 rounded-full px-4 text-[0.9375rem] font-semibold`, active `data-[active=true]:bg-accent data-[active=true]:text-accent-foreground data-[active=true]:font-bold`; viewport `rounded-xl shadow-float border`. |
-| `tabs.tsx` | 🆕 | Generated via `pnpm dlx shadcn@latest add tabs` (Radix variant; verify the CLI emits `@radix-ui/react-tabs`, otherwise write the Radix version by hand). Styled as segmented control: list `grid grid-cols-2 rounded-lg bg-secondary p-1`, trigger `h-11 rounded-md font-bold data-[state=active]:bg-card data-[state=active]:shadow-sm`. |
+| `tabs.tsx` | 🆕 | Written by hand on `@radix-ui/react-tabs` in the style of the other primitives (the shadcn CLI emitted the umbrella `radix-ui` package plus an unrelated `cn` package, which would mix libraries). Styled as segmented control: list `grid grid-cols-2 rounded-lg bg-secondary p-1`, trigger `h-11 rounded-md font-bold data-[state=active]:bg-card data-[state=active]:shadow-sm`. |
 | `collapsible.tsx`, `separator.tsx`, `skeleton.tsx` | — | unchanged |
 | `sidebar.tsx`, `tooltip.tsx` | 🗑️ | removed with the old mobile navigation |
 
@@ -473,7 +473,7 @@ redesign, i18n, analytics.
 | 10 | `feat(rules): add table of contents, section chips and scroll spy` | `rules-toolbar.tsx`, `rules-toc.tsx`, `rules-section-chips.tsx`, `rules-scroll-spy.tsx`, `buildToc` |
 | 11 | `feat(rules): add client-side rules search` | `lib/search.ts`, `search-field.tsx`, `rules-search.tsx`, `data-search`, highlight CSS |
 | 12 | `refactor(results): restyle rating cards and tables` | `rating-card.tsx`, `standings-table.tsx`, `tournaments-table.tsx` |
-| 13 | `feat(ui): add tabs primitive` | `pnpm dlx shadcn@latest add tabs` + restyle, `+ @radix-ui/react-tabs` |
+| 13 | `feat(ui): add tabs primitive` | hand-written Radix tabs, `+ @radix-ui/react-tabs` |
 | 14 | `feat(results): add podium, recent tournaments and team/single tabs` | `podium.tsx`, `recent-tournaments.tsx`, `standings-tabs.tsx`, `tournament-utils.ts` helpers, page layout, `podium-rise` |
 | 15 | `feat(generator): redesign tournament generator` | `generator-slider.tsx`, `.range-input`, `tournament-mode-card.tsx`, page layout |
 | 16 | `docs: document redesigned structure` | `AGENTS.md`, `README.md`, tick off this plan |
