@@ -119,3 +119,21 @@ export function formatDate(dateStr: string): string {
     const [year, month, day] = dateStr.split("-");
     return `${day}.${month}.${year}`;
 }
+
+export function getQualifiedStandings(standings: PlayerStanding[]): PlayerStanding[] {
+    return standings.filter((p) => p.participations >= QUALIFIED_MIN_PARTICIPATIONS);
+}
+
+export function getRecentTournaments(count: number): Tournament[] {
+    return [...tournaments]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, count);
+}
+
+const shortMonthFormat = new Intl.DateTimeFormat("de-DE", { month: "short", timeZone: "UTC" });
+
+export function formatDateParts(dateStr: string): { day: string; month: string } {
+    const [, , day] = dateStr.split("-");
+    const month = shortMonthFormat.format(new Date(`${dateStr}T00:00:00Z`)).replace(".", "");
+    return { day, month };
+}

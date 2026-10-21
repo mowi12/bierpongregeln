@@ -46,6 +46,20 @@
     --container-page: 77.5rem;
     --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
 
+    /* Podium blocks grow out of the floor */
+    --animate-podium-rise: podium-rise 500ms var(--ease-out-soft);
+
+    @keyframes podium-rise {
+        from {
+            opacity: 0;
+            transform: scaleY(0.2);
+        }
+        to {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+
     /* Briefly highlights a rule article that was jumped to */
     --animate-rule-flash: rule-flash 1.2s var(--ease-out-soft);
 
