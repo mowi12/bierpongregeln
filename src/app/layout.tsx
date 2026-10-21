@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import type React from "react";
 import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
 import { AppSidebar } from "@/components/composites/app-sidebar";
+import { InlineScript } from "@/components/composites/inline-script";
 import { NavbarLogo } from "@/components/composites/navbar-logo";
+import { ThemeToggle } from "@/components/composites/theme-toggle";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { baseUrl } from "@/lib/site";
+import { themeInitScript } from "@/lib/theme";
 
 const bricolage = Bricolage_Grotesque({
     variable: "--font-bricolage",
@@ -30,6 +33,14 @@ export const metadata: Metadata = {
     },
 };
 
+export const viewport: Viewport = {
+    themeColor: [
+        { media: "(prefers-color-scheme: light)", color: "#fbf8f3" },
+        { media: "(prefers-color-scheme: dark)", color: "#0b1d1c" },
+    ],
+    viewportFit: "cover",
+};
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -37,6 +48,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="de" suppressHydrationWarning>
+            <head>
+                <InlineScript html={themeInitScript} />
+            </head>
             <body className={`${bricolage.variable} font-sans antialiased`}>
                 <SidebarProvider defaultOpen={false}>
                     <AppSidebar />
@@ -48,12 +62,18 @@ export default function RootLayout({
                                     <NavbarLogo />
                                 </div>
                                 <AppNavigationMenu />
+                                <div className="absolute right-0">
+                                    <ThemeToggle />
+                                </div>
                             </nav>
 
                             {/* --- Mobile Navigation --- */}
                             <div className="flex items-center justify-between p-4 md:hidden">
                                 <NavbarLogo />
-                                <SidebarTrigger />
+                                <div className="flex items-center gap-2">
+                                    <ThemeToggle />
+                                    <SidebarTrigger />
+                                </div>
                             </div>
 
                             <main className="flex-1">{children}</main>

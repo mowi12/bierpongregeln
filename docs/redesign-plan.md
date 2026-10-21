@@ -346,8 +346,15 @@ the root layout — a server component):
 - Two-state toggle: without a stored preference the system setting is followed (live); the first
   click stores an explicit choice.
 - Known limitation: the `theme-color` meta follows the system, not a manual override.
-- Verification step: dev console must be free of the React/Next "script tag" error. If it appears,
-  fall back to `next/script` with `strategy="beforeInteractive"` and re-verify.
+- Implemented following Next's bundled guide
+  `node_modules/next/dist/docs/01-app/02-guides/preventing-flash-before-hydration.md`:
+  - the script is rendered through `components/composites/inline-script.tsx` (`type` is
+    `text/javascript` on the server and `text/plain` on the client), which avoids React's
+    development warning about script tags;
+  - `ThemeToggle` calls `syncTheme()` in `useLayoutEffect`, because the Strict Mode remount in
+    development resets the attributes of `<html>` (no-op in production).
+- Verified in Chromium (dev server): system light/dark detected, toggle persists across reload, no
+  console warnings.
 
 ### 7.2 Rules search (`RulesSearch`, client island)
 
