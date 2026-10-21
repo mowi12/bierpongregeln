@@ -1,6 +1,7 @@
 "use client";
 
-import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -14,74 +15,76 @@ import { navigationItems } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 export function AppNavigationMenu() {
+    const pathname = usePathname();
+
     return (
-        <NavigationMenu>
-            <NavigationMenuList className="h-full items-center">
-                {navigationItems.map((item) => (
-                    <NavigationMenuItem key={item.title}>
-                        {item.subItems ? (
-                            <>
-                                <NavigationMenuTrigger
-                                    className={cn(
-                                        navigationMenuTriggerStyle(),
-                                        "flex items-center justify-center",
-                                    )}
+        <NavigationMenu aria-label="Hauptnavigation">
+            <NavigationMenuList className="gap-1">
+                {navigationItems.map((item) => {
+                    const isActive = item.match(pathname);
+
+                    return (
+                        <NavigationMenuItem key={item.title}>
+                            {item.subItems ? (
+                                <>
+                                    <NavigationMenuTrigger
+                                        data-active={isActive || undefined}
+                                        className={navigationMenuTriggerStyle()}
+                                    >
+                                        {item.title}
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid w-[26rem] grid-cols-2 gap-1 p-3">
+                                            {item.subItems.map((subItem) => {
+                                                const isCurrent = pathname === subItem.url;
+
+                                                return (
+                                                    <li key={subItem.url}>
+                                                        <NavigationMenuLink
+                                                            asChild
+                                                            active={isCurrent}
+                                                            className={cn(
+                                                                "flex-row items-center gap-3 rounded-lg px-3 py-3 text-[0.9375rem] font-semibold",
+                                                                "data-active:bg-accent data-active:text-accent-foreground",
+                                                            )}
+                                                        >
+                                                            <Link
+                                                                href={subItem.url}
+                                                                aria-current={
+                                                                    isCurrent ? "page" : undefined
+                                                                }
+                                                            >
+                                                                <span
+                                                                    aria-hidden="true"
+                                                                    className="bg-coral size-2 shrink-0 rounded-full"
+                                                                />
+                                                                {subItem.title}
+                                                            </Link>
+                                                        </NavigationMenuLink>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </>
+                            ) : (
+                                <NavigationMenuLink
+                                    asChild
+                                    active={isActive}
+                                    className={navigationMenuTriggerStyle()}
                                 >
-                                    <span className="leading-none">{item.title}</span>
-                                </NavigationMenuTrigger>
-                                <NavigationMenuContent>
-                                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                        {item.subItems.map((subItem) => (
-                                            <ListItem
-                                                key={subItem.title}
-                                                href={subItem.url}
-                                                title={subItem.title}
-                                            >
-                                                {subItem.title}
-                                            </ListItem>
-                                        ))}
-                                    </ul>
-                                </NavigationMenuContent>
-                            </>
-                        ) : (
-                            <NavigationMenuLink
-                                href={item.url}
-                                className={cn(
-                                    navigationMenuTriggerStyle(),
-                                    "flex items-center justify-center",
-                                )}
-                            >
-                                <span className="leading-none">{item.title}</span>
-                            </NavigationMenuLink>
-                        )}
-                    </NavigationMenuItem>
-                ))}
+                                    <Link
+                                        href={item.url}
+                                        aria-current={isActive ? "page" : undefined}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                </NavigationMenuLink>
+                            )}
+                        </NavigationMenuItem>
+                    );
+                })}
             </NavigationMenuList>
         </NavigationMenu>
     );
 }
-
-const ListItem = React.forwardRef<React.ComponentRef<"a">, React.ComponentPropsWithoutRef<"a">>(
-    ({ className, title, children, ...props }, ref) => {
-        return (
-            <li>
-                <NavigationMenuLink asChild>
-                    <a
-                        ref={ref}
-                        className={cn(
-                            "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
-                            className,
-                        )}
-                        {...props}
-                    >
-                        <div className="text-sm leading-none font-medium">{title}</div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            {children}
-                        </p>
-                    </a>
-                </NavigationMenuLink>
-            </li>
-        );
-    },
-);
-ListItem.displayName = "ListItem";

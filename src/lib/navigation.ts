@@ -1,4 +1,4 @@
-import { BarChart, BookOpen, Cog, Flame, type LucideIcon } from "lucide-react";
+import { BookOpen, Flame, type LucideIcon, SlidersHorizontal, Trophy } from "lucide-react";
 import type { Ruleset } from "@/components/types/ruleset.types";
 import { dreiD } from "@/data/rulesets/3d";
 import { doubleTable } from "@/data/rulesets/double-table";
@@ -10,14 +10,20 @@ import { moritz } from "@/data/rulesets/moritz";
 import { regelwerk } from "@/data/rulesets/regelwerk";
 import { sniper } from "@/data/rulesets/sniper";
 
-export interface NavItem {
+export interface NavSubItem {
     title: string;
     url: string;
+}
+
+export interface NavItem {
+    title: string;
+    // Compact label for the mobile tab bar
+    shortTitle: string;
+    url: string;
     icon: LucideIcon;
-    subItems?: {
-        title: string;
-        url: string;
-    }[];
+    // Whether the item is the active one for the given pathname
+    match: (pathname: string) => boolean;
+    subItems?: NavSubItem[];
 }
 
 const allRulesets: Ruleset[] = [
@@ -32,37 +38,45 @@ const allRulesets: Ruleset[] = [
     doubleTable,
 ];
 
-// Separate the flavors from the base ruleset and sort them
-const flavors = allRulesets
-    .filter((ruleset) => ruleset.slug !== "regelwerk") // Exclude the base ruleset
-    .sort((a, b) => a.sidebarPosition - b.sidebarPosition); // Sort by sidebarPosition
+const regelwerkUrl = `/flavor/${regelwerk.slug}`;
 
-// Map the sorted flavors to the sub-item structure
-const flavorSubItems = flavors.map((flavor) => ({
-    title: flavor.name,
-    url: `/flavor/${flavor.slug}`,
-}));
+// Separate the flavors from the base ruleset and sort them
+export const flavorItems: NavSubItem[] = allRulesets
+    .filter((ruleset) => ruleset.slug !== regelwerk.slug) // Exclude the base ruleset
+    .sort((a, b) => a.sidebarPosition - b.sidebarPosition) // Sort by sidebarPosition
+    .map((flavor) => ({
+        title: flavor.name,
+        url: `/flavor/${flavor.slug}`,
+    }));
 
 export const navigationItems: NavItem[] = [
     {
         title: "Regelwerk",
-        url: `/flavor/${regelwerk.slug}`,
+        shortTitle: "Regeln",
+        url: regelwerkUrl,
         icon: BookOpen,
+        match: (pathname) => pathname === regelwerkUrl,
     },
     {
         title: "Flavors",
-        url: flavorSubItems.length > 0 ? flavorSubItems[0].url : "#",
+        shortTitle: "Flavors",
+        url: flavorItems.length > 0 ? flavorItems[0].url : "#",
         icon: Flame,
-        subItems: flavorSubItems,
+        match: (pathname) => pathname.startsWith("/flavor/") && pathname !== regelwerkUrl,
+        subItems: flavorItems,
     },
     {
         title: "Ergebnisse",
+        shortTitle: "Ergebnisse",
         url: "/tournament-results",
-        icon: BarChart,
+        icon: Trophy,
+        match: (pathname) => pathname === "/tournament-results",
     },
     {
         title: "Turniermodus Generator",
+        shortTitle: "Generator",
         url: "/tournament-generator",
-        icon: Cog,
+        icon: SlidersHorizontal,
+        match: (pathname) => pathname === "/tournament-generator",
     },
 ];
