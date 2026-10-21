@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import type React from "react";
 import { AppNavigationMenu } from "@/components/composites/app-navigation-menu";
@@ -8,14 +8,11 @@ import { NavbarLogo } from "@/components/composites/navbar-logo";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { baseUrl } from "@/lib/site";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+const bricolage = Bricolage_Grotesque({
+    variable: "--font-bricolage",
+    subsets: ["latin", "latin-ext"],
+    axes: ["opsz"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +37,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="de" suppressHydrationWarning>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <body className={`${bricolage.variable} font-sans antialiased`}>
                 <SidebarProvider defaultOpen={false}>
                     <AppSidebar />
                     <div className="flex min-h-screen w-full flex-col">
