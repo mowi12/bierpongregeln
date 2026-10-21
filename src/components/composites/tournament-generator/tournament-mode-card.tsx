@@ -18,10 +18,10 @@ function koFirstRoundLabel(finalsType: number): string {
 
 function Stat({ label, value }: { label: string; value: string | number }) {
     return (
-        <span>
-            <span className="text-muted-foreground">{label}: </span>
-            <span className="font-medium">{value}</span>
-        </span>
+        <div className="flex gap-1.5">
+            <dt className="text-muted-foreground">{label}:</dt>
+            <dd className="font-bold tabular-nums">{value}</dd>
+        </div>
     );
 }
 
@@ -86,29 +86,29 @@ export function TournamentModeCard({ mode, players, maxDuration, isBestFit }: Pr
     return (
         <div
             className={cn(
-                "rounded-lg border p-4",
-                isBestFit && "border-primary",
-                exceeds && "border-destructive/50 bg-destructive/5",
+                "bg-card rounded-xl border p-5 lg:rounded-3xl lg:p-6",
+                isBestFit && "border-primary ring-primary/30 ring-1",
+                exceeds && "border-destructive/40 bg-destructive/5",
             )}
         >
             <div className="flex items-start justify-between gap-4">
                 <div>
                     <div className="flex items-center gap-2">
-                        <span className="font-semibold">{title}</span>
+                        <h3 className="text-card-title">{title}</h3>
                         {isBestFit && (
-                            <span className="bg-primary/10 text-primary rounded px-1.5 py-0.5 text-xs font-medium">
+                            <span className="bg-accent text-accent-foreground rounded-full px-2.5 py-1 text-xs font-bold">
                                 Empfehlung
                             </span>
                         )}
                     </div>
-                    <div className="text-muted-foreground text-sm">{subtitle}</div>
+                    <div className="text-muted-foreground mt-0.5 text-sm">{subtitle}</div>
                 </div>
                 <div
                     className={cn(
-                        "shrink-0 rounded-md px-2 py-1 text-sm font-medium tabular-nums",
+                        "shrink-0 rounded-full px-3 py-1 text-sm font-bold tabular-nums",
                         exceeds
                             ? "bg-destructive/10 text-destructive"
-                            : "bg-muted text-muted-foreground",
+                            : "bg-secondary text-secondary-foreground",
                     )}
                 >
                     {formatDuration(mode.totalDuration)}
@@ -116,22 +116,24 @@ export function TournamentModeCard({ mode, players, maxDuration, isBestFit }: Pr
             </div>
 
             {exceeds && (
-                <p className="text-destructive mt-2 text-xs">
+                <p className="text-destructive mt-2 text-[0.8125rem] font-semibold">
                     Überschreitet die maximale Turnierdauer um{" "}
                     {formatDuration(mode.totalDuration - maxDuration)}.
                 </p>
             )}
 
-            <p className="text-muted-foreground mt-3 text-sm">{getModeDescription(mode)}</p>
+            <p className="text-muted-foreground mt-3 max-w-[68ch] text-[0.9375rem] leading-relaxed">
+                {getModeDescription(mode)}
+            </p>
 
             {hasUnevenTeams && (
-                <p className="mt-2 text-xs text-amber-600">
+                <p className="text-coral-ink mt-2 text-[0.8125rem] font-semibold">
                     Hinweis: Ein Team hat nur {players % mode.teamSize} statt {mode.teamSize}{" "}
                     Spieler.
                 </p>
             )}
 
-            <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+            <dl className="mt-4 grid grid-cols-1 gap-x-6 gap-y-1 border-t pt-4 text-sm min-[420px]:grid-cols-2 sm:flex sm:flex-wrap">
                 {mode.type === "freeForAll" ? (
                     <>
                         <Stat label={unitPlural} value={mode.teams} />
@@ -167,7 +169,7 @@ export function TournamentModeCard({ mode, players, maxDuration, isBestFit }: Pr
                         />
                     </>
                 )}
-            </div>
+            </dl>
         </div>
     );
 }
