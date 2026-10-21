@@ -39,6 +39,7 @@ update this document in the same commit.
 | Old sidebar | Delete `sidebar.tsx`, `tooltip.tsx`, `use-mobile.ts`, sidebar composites; remove `@radix-ui/react-tooltip` | Keeping dead code |
 | Icons | `lucide-react` (unchanged) | — |
 | Tables | `@tanstack/react-table` v9 (unchanged) | — |
+| Class names | [`cn`](https://github.com/shadcn-ui/cn) replaces `clsx` + `tailwind-merge` (step 17) | Keeping two libraries for one job |
 
 No other libraries are added. Any further library question is raised with the maintainer first.
 
@@ -477,5 +478,8 @@ redesign, i18n, analytics.
 | 14 | `feat(results): add podium, recent tournaments and team/single tabs` | `podium.tsx`, `recent-tournaments.tsx`, `standings-tabs.tsx`, `tournament-utils.ts` helpers, page layout, `podium-rise` |
 | 15 | `feat(generator): redesign tournament generator` | `generator-slider.tsx`, `.range-input`, `tournament-mode-card.tsx`, page layout |
 | 16 | `docs: document redesigned structure` | `AGENTS.md`, `README.md`, tick off this plan |
+| 17 | `refactor: replace clsx and tailwind-merge with cn` | [`cn`](https://github.com/shadcn-ui/cn) (shadcn, drop-in replacement with Tailwind v4 support): `lib/utils.ts` re-exports `cn` from `cn`; `− clsx`, `− tailwind-merge`, `+ cn` |
 
-Dependency changes (#7, #13) were approved in the planning session.
+Dependency changes (#7, #13) were approved in the planning session; #17 (`cn`) was requested
+during implementation. `cn` is pre-1.0 (0.5.0), so the swap is the last, isolated step and can be
+reverted on its own.
