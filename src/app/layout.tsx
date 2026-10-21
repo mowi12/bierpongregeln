@@ -2,10 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import type React from "react";
-import { AppSidebar } from "@/components/composites/app-sidebar";
+import { BottomTabBar } from "@/components/composites/bottom-tab-bar";
 import { InlineScript } from "@/components/composites/inline-script";
 import { SiteHeader } from "@/components/composites/site-header";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { baseUrl } from "@/lib/site";
 import { themeInitScript } from "@/lib/theme";
 
@@ -45,24 +44,27 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="de" suppressHydrationWarning>
+        <html lang="de" data-scroll-behavior="smooth" suppressHydrationWarning>
             <head>
                 <InlineScript html={themeInitScript} />
             </head>
             <body className={`${bricolage.variable} font-sans antialiased`}>
-                <SidebarProvider defaultOpen={false}>
-                    <AppSidebar />
-                    <div className="flex min-h-screen w-full flex-col">
-                        <SiteHeader />
-                        <main className="mx-auto w-full max-w-(--container-page) flex-1 px-4 md:px-8">
-                            {children}
-                        </main>
-                        {/* Temporary mobile menu until the bottom tab bar replaces the sidebar */}
-                        <div className="fixed right-4 bottom-4 z-40 md:hidden">
-                            <SidebarTrigger />
-                        </div>
-                    </div>
-                </SidebarProvider>
+                <a
+                    href="#main"
+                    className="bg-card focus-visible:ring-ring/50 sr-only z-50 rounded-full px-5 py-3 font-semibold focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus-visible:ring-[3px]"
+                >
+                    Zum Inhalt springen
+                </a>
+                <div className="flex min-h-dvh flex-col">
+                    <SiteHeader />
+                    <main
+                        id="main"
+                        className="mx-auto w-full max-w-(--container-page) flex-1 px-4 pt-6 pb-[calc(var(--tabbar-height)+env(safe-area-inset-bottom)+1.5rem)] md:px-8 md:pt-10 md:pb-20"
+                    >
+                        {children}
+                    </main>
+                </div>
+                <BottomTabBar />
             </body>
         </html>
     );
