@@ -20,21 +20,30 @@ All three CI checks must pass before merging: `biome ci`, `typecheck`, `build`.
 ```
 src/
   app/                  # Next.js App Router pages
-    flavor/[slug]/      # Dynamic ruleset pages
+    flavor/[slug]/      # Dynamic ruleset pages (server-rendered articles + client islands)
     tournament-generator/
     tournament-results/
     coming-soon/
+    globals.css         # Design tokens (light/dark), type scale, keyframes, base styles
   components/
-    ui/                 # shadcn/ui primitives
+    ui/                 # shadcn/ui primitives (Radix), restyled via tokens
     composites/         # App-specific composed components
+      rules/            # Rule articles, TOC, section chips, search + scroll-spy islands
+      tournament-results/
+      tournament-generator/
     types/              # Shared TypeScript types (ruleset.types.ts)
   lib/
-    navigation.ts       # Sidebar/nav structure
-    ruleset-loader.ts   # Loads and merges ruleset JSON data
-    tournament-utils.ts # Tournament format calculation logic
+    navigation.ts       # Nav items (labels, icons, active-route matching), flavor list
+    ruleset-loader.ts   # Loads and merges ruleset data
+    ruleset-view.ts     # Reference map, TOC and search text for rendering rulesets
+    search.ts           # Search text normalization (umlauts, accents)
+    theme.ts            # Theme init script + toggle helpers
+    tournament-utils.ts # Standings and tournament helpers
     utils.ts            # cn() helper
   data/
     rulesets/           # One file per ruleset (regelwerk, moritz, felix, …)
+docs/
+  redesign-plan.md      # Design system and decisions of the "Clean & Bold" redesign
 ```
 
 ## Code Conventions
@@ -44,7 +53,18 @@ src/
 - **Commits**: conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `build:`, `docs:`)
 - **Package manager**: pnpm (v11)
 - **Styling**: Tailwind CSS v4 via `@tailwindcss/postcss` — no `tailwind.config.ts` needed
-- **Components**: shadcn/ui (new-york style, slate base color)
+- **Components**: shadcn/ui primitives on individual `@radix-ui/*` packages — don't mix in the umbrella `radix-ui` package or another component library
+- **Icons**: `lucide-react`
+
+## Design System
+
+See [docs/redesign-plan.md](docs/redesign-plan.md) for the full reference. In short:
+
+- **Colors**: logo-derived tokens in `globals.css` (`:root` light, `.dark` dark) exposed as Tailwind colors (`bg-primary`, `bg-accent`, `bg-coral`, `text-coral-ink`, …). Coral and brand teal are decorative only, never text.
+- **Type**: Bricolage Grotesque; use the text tokens (`text-title`, `text-label`, `text-card-title`, `text-rule`, … with `-lg` variants) instead of arbitrary sizes. Numbers use `tabular-nums`.
+- **Theme**: inline script in `<head>` (`lib/theme.ts`) applies `.dark` before paint; `ThemeToggle` persists the choice in `localStorage`.
+- **Layout**: mobile first; bottom tab bar below `md`, sticky header from `md`, sidebars from `lg`. Touch targets ≥ 44 px.
+- **Motion**: Tailwind transitions and `tw-animate-css`, wrapped in `motion-safe:`; reduced motion is respected globally.
 
 ## Rulesets
 
@@ -60,3 +80,13 @@ The base ruleset is `regelwerk`. All other flavors extend it via `baseRulesetSlu
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines and the [issue templates](.github/ISSUE_TEMPLATE/) for reporting bugs or suggesting features.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

@@ -1,6 +1,6 @@
 # Redesign Plan — "Clean & Bold"
 
-Status: **approved for implementation** · Branch: `feat/redesign` · Design canvas:
+Status: **implemented** (steps 0–16; step 17 see below) · Branch: `feat/redesign` · Design canvas:
 <https://claude.ai/artifact/YMrD1kshjxw3LVi1jcM3ji>
 
 This document is the single source of truth for the redesign. Every implementation commit
