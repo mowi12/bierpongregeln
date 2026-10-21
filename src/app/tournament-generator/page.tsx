@@ -55,10 +55,14 @@ export default function TournamentGeneratorPage() {
     }
 
     const allModes = generateTournamentModes(inputs).filter((m) => enabledModes[m.type]);
-    const withinLimit = allModes.filter((m) => m.totalDuration <= inputs.maxDuration);
+    const fitting = allModes.filter((m) => m.totalDuration <= inputs.maxDuration);
     const exceeding = allModes.filter((m) => m.totalDuration > inputs.maxDuration);
-    const bestFitDuration =
-        withinLimit.length > 0 ? withinLimit[withinLimit.length - 1].totalDuration : -1;
+    const bestFitDuration = fitting.length > 0 ? fitting[fitting.length - 1].totalDuration : -1;
+    // Show the recommendation(s) first, the remaining suggestions keep their order
+    const withinLimit = [
+        ...fitting.filter((m) => m.totalDuration === bestFitDuration),
+        ...fitting.filter((m) => m.totalDuration !== bestFitDuration),
+    ];
 
     return (
         <>
