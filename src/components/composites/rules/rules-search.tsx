@@ -126,7 +126,7 @@ export function RulesSearch() {
         <SearchField
             id="rules-search"
             label="Regeln durchsuchen"
-            placeholder="Regel suchen, z. B. Aufsetzer"
+            placeholder="Regel suchen"
             shortcut="/"
             value={query}
             onValueChange={setQuery}
