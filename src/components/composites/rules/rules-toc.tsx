@@ -9,7 +9,7 @@ export function RulesToc({ toc }: { toc: TocSection[] }) {
         <nav aria-label="Artikel" className="hidden flex-col gap-5 lg:flex">
             {toc.map((section) => (
                 <div key={section.id} data-toc-section={section.id}>
-                    <SectionLabel as="div" className="mb-1.5 ml-2.5 text-xs lg:text-xs">
+                    <SectionLabel as="div" className="mb-1.5 ml-2.5">
                         {section.title}
                     </SectionLabel>
                     <ul>
