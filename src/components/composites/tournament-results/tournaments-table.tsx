@@ -10,7 +10,7 @@ import { formatDate, formatFlavor, type Tournament } from "@/lib/tournament-util
 
 export function TournamentsTable({ tournaments }: { tournaments: Tournament[] }) {
     return (
-        <div className="rounded-md border">
+        <div className="bg-card overflow-hidden rounded-xl border lg:rounded-3xl">
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -29,13 +29,13 @@ export function TournamentsTable({ tournaments }: { tournaments: Tournament[] })
                             <TableCell>{formatDate(t.date)}</TableCell>
                             <TableCell>{t.type === "team" ? "Team" : "Einzel"}</TableCell>
                             <TableCell>{formatFlavor(t.flavor)}</TableCell>
-                            <TableCell className="font-medium text-yellow-600">
+                            <TableCell className="text-primary font-bold">
                                 {t.firstPlace.join(" & ")}
                             </TableCell>
-                            <TableCell className="font-medium text-slate-500">
+                            <TableCell className="text-coral-ink font-semibold">
                                 {t.secondPlace.join(" & ")}
                             </TableCell>
-                            <TableCell className="font-medium text-amber-700">
+                            <TableCell className="font-semibold">
                                 {t.thirdPlace.join(" & ")}
                             </TableCell>
                             <TableCell className="text-muted-foreground">

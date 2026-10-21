@@ -1,18 +1,28 @@
+import { cn } from "@/lib/utils";
+
+const placeTones: Record<number, string> = {
+    1: "bg-accent text-accent-foreground",
+    2: "bg-coral-soft text-coral-ink",
+    3: "bg-secondary text-secondary-foreground",
+};
+
 interface RatingCardProps {
-    emoji: string;
     points: number;
     place: number;
 }
 
-export function RatingCard({ emoji, points, place }: RatingCardProps) {
+export function RatingCard({ points, place }: RatingCardProps) {
     const pointsLabel = points === 1 ? "Punkt" : "Punkte";
-    const label = `${pointsLabel} für Platz ${place}`;
 
     return (
-        <div className="rounded-lg border p-4 text-center">
-            <div className="text-2xl font-bold">{emoji}</div>
-            <div className="mt-1 text-3xl font-bold">{points}</div>
-            <div className="text-muted-foreground text-sm">{label}</div>
+        <div className={cn("rounded-lg p-3 lg:p-3.5", placeTones[place])}>
+            <div className="text-2xl font-extrabold tabular-nums lg:text-[1.75rem]">{points}</div>
+            <div className="text-[0.8125rem] font-semibold" aria-hidden="true">
+                {place}. Platz
+            </div>
+            <span className="sr-only">
+                {pointsLabel} für Platz {place}
+            </span>
         </div>
     );
 }

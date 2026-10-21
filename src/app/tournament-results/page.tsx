@@ -22,9 +22,9 @@ export default function TournamentResultsPage() {
                     Turniere, an denen er auf einem der drei Podestplätze gelandet ist.
                 </p>
                 <div className="grid grid-cols-3 gap-4">
-                    <RatingCard emoji="🥇" points={rating.firstPlace} place={1} />
-                    <RatingCard emoji="🥈" points={rating.secondPlace} place={2} />
-                    <RatingCard emoji="🥉" points={rating.thirdPlace} place={3} />
+                    <RatingCard points={rating.firstPlace} place={1} />
+                    <RatingCard points={rating.secondPlace} place={2} />
+                    <RatingCard points={rating.thirdPlace} place={3} />
                 </div>
             </section>
 
