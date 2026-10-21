@@ -1,6 +1,6 @@
 import { RuleParagraph } from "@/components/composites/rules/rule-paragraph";
 import type { Article } from "@/components/types/ruleset.types";
-import type { ReferenceMap } from "@/lib/ruleset-view";
+import { getArticleSearchText, type ReferenceMap } from "@/lib/ruleset-view";
 import { cn } from "@/lib/utils";
 
 /**
@@ -22,6 +22,7 @@ export function RuleArticle({
         <article
             id={article.id}
             data-rule-article
+            data-search={getArticleSearchText(article, refMap)}
             className={cn(
                 "bg-card scroll-mt-36 rounded-xl border px-[1.125rem] py-4 lg:scroll-mt-0 lg:rounded-3xl lg:px-7 lg:py-6",
                 "target:ring-primary/40 target:ring-2 motion-safe:target:animate-rule-flash",

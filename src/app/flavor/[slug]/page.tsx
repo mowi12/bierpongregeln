@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/composites/page-header";
 import { RuleSection } from "@/components/composites/rules/rule-section";
 import { RulesScrollSpy } from "@/components/composites/rules/rules-scroll-spy";
+import { RulesSearch } from "@/components/composites/rules/rules-search";
 import { RulesSectionChips } from "@/components/composites/rules/rules-section-chips";
 import { RulesToc } from "@/components/composites/rules/rules-toc";
 import { RulesToolbar } from "@/components/composites/rules/rules-toolbar";
@@ -47,9 +48,17 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
 
     return (
         <>
-            <PageHeader title={ruleset.name} description={`${kind} · ${refMap.size} Artikel`} />
+            <PageHeader
+                title={ruleset.name}
+                description={
+                    <span data-rules-count aria-live="polite">
+                        {kind} · {refMap.size} Artikel
+                    </span>
+                }
+            />
             <div className="mt-5 lg:mt-10 lg:grid lg:grid-cols-[17.5rem_minmax(0,1fr)] lg:items-start lg:gap-12">
                 <RulesToolbar>
+                    <RulesSearch key={slug} />
                     <RulesSectionChips toc={toc} />
                     <RulesToc toc={toc} />
                 </RulesToolbar>
@@ -57,6 +66,9 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
                     {ruleset.sections.map((section) => (
                         <RuleSection key={section.id} section={section} refMap={refMap} />
                     ))}
+                    <p data-rules-empty hidden className="text-lead text-muted-foreground mt-12">
+                        Keine Regel gefunden.
+                    </p>
                 </div>
             </div>
             <RulesScrollSpy key={slug} />

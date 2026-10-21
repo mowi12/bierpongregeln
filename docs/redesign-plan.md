@@ -376,6 +376,8 @@ the root layout — a server component):
 - Keyboard: `/` focuses the field (ignored while typing in an input/textarea/contenteditable);
   `Escape` clears and keeps focus. Clear button (`X`, `size-11`) visible when non-empty.
 - No URL syncing (anchors `#id` already provide shareable links).
+- Known build warning: Turbopack's CSS parser does not recognise `::highlight()` and logs
+  "Parsing CSS source code failed"; the rule is still emitted unchanged (verified in the built CSS).
 
 ### 7.3 Scroll spy (`RulesScrollSpy`, client island)
 

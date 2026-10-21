@@ -5,6 +5,7 @@ import {
     type Ruleset,
     type Section,
 } from "@/components/types/ruleset.types";
+import { normalizeSearchText } from "@/lib/search";
 
 export type ReferenceMap = Map<string, { number: number; title: string }>;
 
@@ -54,6 +55,22 @@ export function numberParagraphs(ruleset: Ruleset) {
     allParagraphs.forEach((p, i) => {
         p.id = `paragraph-${i + 1}`;
     });
+}
+
+/**
+ * Plain, normalized text of an article (title and paragraphs) used by the client-side search.
+ * HTML tags are stripped and references are resolved to their visible "Art. N" label.
+ */
+export function getArticleSearchText(article: Article, refMap: ReferenceMap): string {
+    const paragraphs = article.paragraphs.map((p) =>
+        p.content
+            .replace(/\[\[ref:(.*?)\]\]/g, (_, id: string) => {
+                const ref = refMap.get(id);
+                return ref ? `Art. ${ref.number}` : "";
+            })
+            .replace(/<[^>]*>/g, ""),
+    );
+    return normalizeSearchText([article.title, ...paragraphs].join(" "));
 }
 
 export type TocArticle = { id: string; number: number; title: string };
