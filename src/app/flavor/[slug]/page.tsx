@@ -1,56 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-    type Article,
-    isSection,
-    type Paragraph,
-    type Ruleset,
-    type Section,
-} from "@/components/types/ruleset.types";
+import { type Article, isSection, type Section } from "@/components/types/ruleset.types";
 import { getMergedRuleset, getRulesetSlugs } from "@/lib/ruleset-loader";
+import { createReferenceMap, numberParagraphs, type ReferenceMap } from "@/lib/ruleset-view";
 
-// --- Helper Functions & Components ---
-
-/**
- * Creates a map of Article ID to its dynamically calculated number and title.
- * This is used for resolving [[ref:id]] links into human-readable text.
- */
-const createReferenceMap = (ruleset: Ruleset) => {
-    const refMap = new Map<string, { number: number; title: string }>();
-    let articleCounter = 1;
-
-    const traverse = (items: (Section | Article)[]) => {
-        for (const item of items) {
-            if ("content" in item) {
-                // It's a Section
-                traverse(item.content);
-            } else {
-                // It's an Article
-                refMap.set(item.id, {
-                    number: articleCounter,
-                    title: item.title,
-                });
-                articleCounter++;
-            }
-        }
-    };
-
-    traverse(ruleset.sections);
-    return refMap;
-};
+// --- Components ---
 
 /**
  * Renders the content of a paragraph, parsing out any [[ref:id]] links
  * and converting them into clickable <Link> components.
  */
-const ParagraphRenderer = ({
-    content,
-    refMap,
-}: {
-    content: string;
-    refMap: Map<string, { number: number; title: string }>;
-}) => {
+const ParagraphRenderer = ({ content, refMap }: { content: string; refMap: ReferenceMap }) => {
     const parts = content.split(/(\[\[ref:.*?\]\])/g);
 
     const renderedParts = parts.map((part, index) => {
@@ -93,7 +54,7 @@ const ArticleComponent = ({
 }: {
     article: Article;
     number: number;
-    refMap: Map<string, { number: number; title: string }>;
+    refMap: ReferenceMap;
 }) => (
     <div id={article.id} className="mb-8 scroll-mt-20">
         <h3 className="mb-3 text-xl font-semibold text-gray-800 dark:text-gray-200">
@@ -122,7 +83,7 @@ const SectionComponent = ({
 }: {
     section: Section;
     articleCounter: { current: number };
-    refMap: Map<string, { number: number; title: string }>;
+    refMap: ReferenceMap;
 }) => {
     if (section.content.length === 0) {
         return null;
@@ -194,15 +155,7 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
     const refMap = createReferenceMap(ruleset);
     const articleCounter = { current: 0 };
 
-    // For propper rendering, add an ID to the paragraphs of each article
-    const allParagraphs: Paragraph[] = [];
-    ruleset.sections.forEach((section) => {
-        const paragraphs = getParagraphs(section);
-        allParagraphs.push(...paragraphs);
-    });
-    allParagraphs.forEach((p, i) => {
-        p.id = `paragraph-${i + 1}`;
-    });
+    numberParagraphs(ruleset);
 
     return (
         <div className="py-12">
@@ -220,16 +173,4 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
             ))}
         </div>
     );
-}
-
-function getParagraphs(section: Section) {
-    const paragraphs: Paragraph[] = [];
-    section.content.forEach((item) => {
-        if (isSection(item)) {
-            paragraphs.push(...getParagraphs(item));
-        } else {
-            paragraphs.push(...item.paragraphs);
-        }
-    });
-    return paragraphs;
 }
