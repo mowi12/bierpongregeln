@@ -46,6 +46,18 @@
     --container-page: 77.5rem;
     --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
 
+    /* Briefly highlights a rule article that was jumped to */
+    --animate-rule-flash: rule-flash 1.2s var(--ease-out-soft);
+
+    @keyframes rule-flash {
+        from {
+            background-color: var(--accent);
+        }
+        to {
+            background-color: var(--card);
+        }
+    }
+
     /* Type scale (mobile first, `-lg` variants for large screens) */
     --text-hero: 2.875rem;
     --text-hero--line-height: 1;
