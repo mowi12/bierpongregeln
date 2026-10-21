@@ -1,6 +1,7 @@
 # Redesign Plan — "Clean & Bold"
 
-Status: **implemented** (steps 0–16; step 17 see below) · Branch: `feat/redesign` · Design canvas:
+Status: **implemented** (steps 0–17, plus follow-up fixes for custom font sizes in class merging,
+the flavor subtitle and the search placeholder) · Branch: `feat/redesign` · Design canvas:
 <https://claude.ai/artifact/YMrD1kshjxw3LVi1jcM3ji>
 
 This document is the single source of truth for the redesign. Every implementation commit
@@ -478,7 +479,7 @@ redesign, i18n, analytics.
 | 14 | `feat(results): add podium, recent tournaments and team/single tabs` | `podium.tsx`, `recent-tournaments.tsx`, `standings-tabs.tsx`, `tournament-utils.ts` helpers, page layout, `podium-rise` |
 | 15 | `feat(generator): redesign tournament generator` | `generator-slider.tsx`, `.range-input`, `tournament-mode-card.tsx`, page layout |
 | 16 | `docs: document redesigned structure` | `AGENTS.md`, `README.md`, tick off this plan |
-| 17 | `refactor: replace clsx and tailwind-merge with cn` | [`cn`](https://github.com/shadcn-ui/cn) (shadcn, drop-in replacement with Tailwind v4 support): `lib/utils.ts` re-exports `cn` from `cn`; `− clsx`, `− tailwind-merge`, `+ cn` |
+| 17 | `refactor: replace clsx and tailwind-merge with cn` | [`cn`](https://github.com/shadcn-ui/cn) (shadcn, drop-in replacement with Tailwind v4 support): `lib/utils.ts` builds `cn` with `createCn` from `cn/config`, registering the custom font-size tokens (otherwise `text-label` etc. are merged away as colors); `− clsx`, `− tailwind-merge`, `+ cn` |
 
 Dependency changes (#7, #13) were approved in the planning session; #17 (`cn`) was requested
 during implementation. `cn` is pre-1.0 (0.5.0), so the swap is the last, isolated step and can be
