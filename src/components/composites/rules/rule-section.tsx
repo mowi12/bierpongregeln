@@ -26,7 +26,7 @@ export function RuleSection({
         <section
             id={section.id}
             data-rule-section
-            className={cn("scroll-mt-40 lg:scroll-mt-28", isTopLevel ? "mt-8 lg:mt-10" : "mt-2")}
+            className={cn("scroll-mt-36 lg:scroll-mt-0", isTopLevel ? "mt-8 lg:mt-10" : "mt-2")}
         >
             <SectionLabel
                 as={isTopLevel ? "h2" : "h3"}

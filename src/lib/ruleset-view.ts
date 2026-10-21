@@ -55,3 +55,28 @@ export function numberParagraphs(ruleset: Ruleset) {
         p.id = `paragraph-${i + 1}`;
     });
 }
+
+export type TocArticle = { id: string; number: number; title: string };
+export type TocSection = { id: string; title: string; articles: TocArticle[] };
+
+function collectArticles(items: (Section | Article)[], refMap: ReferenceMap): TocArticle[] {
+    return items.flatMap((item) =>
+        isSection(item)
+            ? collectArticles(item.content, refMap)
+            : [{ id: item.id, number: refMap.get(item.id)?.number ?? 0, title: item.title }],
+    );
+}
+
+/**
+ * Builds the table of contents: top-level sections with all (nested) articles they contain.
+ * Sections without articles are skipped.
+ */
+export function buildToc(ruleset: Ruleset, refMap: ReferenceMap): TocSection[] {
+    return ruleset.sections
+        .map((section) => ({
+            id: section.id,
+            title: section.title,
+            articles: collectArticles(section.content, refMap),
+        }))
+        .filter((section) => section.articles.length > 0);
+}

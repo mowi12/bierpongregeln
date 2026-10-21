@@ -23,7 +23,7 @@ export function RuleArticle({
             id={article.id}
             data-rule-article
             className={cn(
-                "bg-card scroll-mt-40 rounded-xl border px-[1.125rem] py-4 lg:scroll-mt-28 lg:rounded-3xl lg:px-7 lg:py-6",
+                "bg-card scroll-mt-36 rounded-xl border px-[1.125rem] py-4 lg:scroll-mt-0 lg:rounded-3xl lg:px-7 lg:py-6",
                 "target:ring-primary/40 target:ring-2 motion-safe:target:animate-rule-flash",
             )}
         >

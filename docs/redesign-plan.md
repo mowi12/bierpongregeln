@@ -147,7 +147,7 @@ Rule: `--coral`, `--brand-teal`, `--brand-teal-dark` are **never** used for text
 :root { --header-height: 4rem; --tabbar-height: 4.5rem; color-scheme: light; }
 @media (width >= 48rem) { :root { --header-height: 4.75rem; } }
 .dark { color-scheme: dark; }
-html { scroll-padding-top: calc(var(--header-height) + 1rem); }
+@media (width >= 48rem) { :root { scroll-padding-top: calc(var(--header-height) + 1.5rem); } } /* sticky header only ≥ md */
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body { font-feature-settings: "tnum" 0; } /* opt-in via tabular-nums only */
 ::selection { background: var(--accent); color: var(--accent-foreground); }
@@ -265,9 +265,9 @@ Legend: 🆕 new · ✏️ changed · 🗑️ deleted. Server components unless 
 
 | File | Status | Responsibility |
 |---|---|---|
-| `rule-article.tsx` | 🆕 | Moved/restyled `ArticleComponent`: `<article id data-rule-article data-search>` `scroll-mt-40 lg:scroll-mt-28 rounded-xl border bg-card px-[1.125rem] py-4 lg:rounded-3xl lg:px-7 lg:py-6 target:ring-2 target:ring-primary/40 motion-safe:target:animate-[rule-flash_1.2s_var(--ease-out-soft)]`. Header: badge `Art. N` (`rounded-full bg-accent px-2.5 py-1 text-[0.8125rem] font-bold text-accent-foreground tabular-nums`) + title (`h3`/`h4` by depth). Paragraph `<ol>`: `grid grid-cols-[1.75rem_1fr] lg:grid-cols-[2.25rem_1fr]`, number `(n)` muted tabular. |
-| `rule-paragraph.tsx` | 🆕 | Moved `ParagraphRenderer`. Ref link: `font-bold text-primary underline decoration-2 underline-offset-[3px] hover:decoration-coral`. Invalid ref: `text-destructive`. |
-| `rule-section.tsx` | 🆕 | Moved `SectionComponent` (recursive). Depth 0: `<section id data-rule-section class="scroll-mt-40 lg:scroll-mt-28">` + `SectionLabel as="h2"` + `flex flex-col gap-2.5 lg:gap-3.5`; depth ≥ 1: `SectionLabel as="h3" dot={false}`. Section spacing `mt-8 lg:mt-10`. |
+| `rule-article.tsx` | 🆕 | Moved/restyled `ArticleComponent`: `<article id data-rule-article data-search>` `scroll-mt-36 lg:scroll-mt-0 rounded-xl border bg-card px-[1.125rem] py-4 lg:rounded-3xl lg:px-7 lg:py-6 target:ring-2 target:ring-primary/40 motion-safe:target:animate-[rule-flash_1.2s_var(--ease-out-soft)]`. Header: badge `Art. N` (`rounded-full bg-accent px-2.5 py-1 text-[0.8125rem] font-bold text-accent-foreground tabular-nums`) + title (`h3`/`h4` by depth). Paragraph `<ol>`: `grid grid-cols-[1.75rem_1fr] lg:grid-cols-[2.25rem_1fr]`, number `(n)` muted tabular. |
+| `rule-paragraph.tsx` | 🆕 | Moved `ParagraphRenderer`. Refs are plain `<a href="#id">` (not `next/link`, whose `pushState` does not update `:target`). Ref link: `font-bold text-primary underline decoration-2 underline-offset-[3px] hover:decoration-coral`. Invalid ref: `text-destructive`. |
+| `rule-section.tsx` | 🆕 | Moved `SectionComponent` (recursive). Depth 0: `<section id data-rule-section class="scroll-mt-36 lg:scroll-mt-0">` + `SectionLabel as="h2"` + `flex flex-col gap-2.5 lg:gap-3.5`; depth ≥ 1: `SectionLabel as="h3" dot={false}`. Section spacing `mt-8 lg:mt-10`. |
 | `rules-toolbar.tsx` | 🆕 | Layout wrapper of the aside. `< lg`: `sticky top-0 z-30 -mx-4 px-4 py-3 bg-background/90 backdrop-blur-md border-b` containing `RulesSearch` and the section chip row; `≥ lg`: `sticky top-[calc(var(--header-height)+1.5rem)] max-h-[calc(100dvh-var(--header-height)-3rem)] overflow-y-auto` containing `RulesSearch` and the TOC. |
 | `rules-toc.tsx` | 🆕 | `hidden lg:block`. `<nav aria-label="Artikel">`, groups per `TocSection` (`SectionLabel`), links `href="#id" data-toc-target="id"` `grid grid-cols-[2rem_1fr] min-h-9 items-center rounded-[0.625rem] px-2.5 text-[0.9375rem] font-medium hover:bg-accent data-[active=true]:bg-accent data-[active=true]:font-bold data-[active=true]:text-accent-foreground`. |
 | `rules-section-chips.tsx` | 🆕 | `lg:hidden`, `flex gap-2 overflow-x-auto snap-x scrollbar-none -mx-4 px-4`. Chips are anchors `href="#section-id" data-chip-target` `min-h-9 shrink-0 snap-start rounded-full border bg-card px-3.5 text-sm font-semibold data-[active=true]:border-foreground data-[active=true]:bg-foreground data-[active=true]:text-background`. |

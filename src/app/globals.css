@@ -145,6 +145,8 @@
 @media (width >= 48rem) {
     :root {
         --header-height: 4.75rem;
+        /* Keeps anchor targets clear of the sticky header */
+        scroll-padding-top: calc(var(--header-height) + 1.5rem);
     }
 }
 
@@ -183,9 +185,6 @@
     * {
         @apply border-border outline-ring/50;
     }
-    html {
-        scroll-padding-top: calc(var(--header-height) + 1rem);
-    }
     body {
         @apply bg-background text-foreground;
     }
@@ -202,6 +201,14 @@
 /* Set briefly while the theme changes so colors switch without transitions */
 .theme-switching * {
     transition: none;
+}
+
+@utility scrollbar-none {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {

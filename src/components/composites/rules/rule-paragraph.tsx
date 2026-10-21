@@ -1,9 +1,9 @@
-import Link from "next/link";
 import type { ReferenceMap } from "@/lib/ruleset-view";
 
 /**
  * Renders the content of a paragraph, parsing out any [[ref:id]] links
- * and converting them into clickable <Link> components.
+ * and converting them into anchor links. Plain anchors (instead of next/link) are used so the
+ * browser updates `:target`, which highlights the referenced article.
  */
 export function RuleParagraph({ content, refMap }: { content: string; refMap: ReferenceMap }) {
     const parts = content.split(/(\[\[ref:.*?\]\])/g);
@@ -16,13 +16,13 @@ export function RuleParagraph({ content, refMap }: { content: string; refMap: Re
             const refData = refMap.get(refId);
             if (refData) {
                 return (
-                    <Link
+                    <a
                         key={key}
                         href={`#${refId}`}
                         className="text-primary hover:decoration-coral font-bold underline decoration-2 underline-offset-[3px] transition-colors duration-150"
                     >
                         Art. {refData.number}
-                    </Link>
+                    </a>
                 );
             }
             return (
