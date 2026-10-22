@@ -5,7 +5,7 @@ Context for the experimental leaderboard score on `/tournament-results/scoring-l
 
 ```
 A       = Σ participation points                       (flat, not scaled)
-        + Σ place weight × coefficient(event)          (scaled by field size)
+        + Σ place weight × coefficient(event)          (scaled by games to win)
 
 adjPpg  = (A + shrinkage · avgPpg) / (participations + shrinkage)
 eff     = (adjPpg / avgPpg) ^ efficiencyExponent
@@ -20,9 +20,8 @@ Decisions already settled:
 - "Additive with a rate guardrail" (option B), strong efficiency multiplier (option c).
 - Shrinkage on, K = 2. K = 0 lets lucky short records through; K = 4 buries genuine
   short-sample performers (Michael loses his top-25% team spot).
-- Difficulty coefficient by field size: head count for single events, team count
-  (`participants / 2`, rounded up so a solo player is still a full team) for team
-  events, normalised so a median-sized event is 1.0×.
+- Difficulty coefficient by games to win (`gamesToWin` in `tournaments.json`), not by
+  field size, normalised so the median event of the board is 1.0×.
 - Coefficient scales podium points only, never participation points.
 - Inactivity handled by a gradual decay (option a), not a cliff.
 - Gut-truth T1 ("Marcel above Moritz W. on team") was dropped: it is incompatible
@@ -63,9 +62,8 @@ about who is still active. Small change, more intuitive.
 
 ### 4. Coefficient anchor
 
-Difficulty is normalised to the *median* event size. As the group grows, that median
-drifts and every historical coefficient silently shifts. A fixed anchor ("a 10-player
-tournament = 1.0×") keeps past values stable — better for a system meant to last.
+Difficulty is normalised to the *median* games to win. As the group grows, that median
+drifts and every historical coefficient silently shifts. A fixed anchor ("6 games to win = 1.0×") keeps past values stable — better for a system meant to last.
 Recommendation: switch to a fixed anchor.
 
 ### 5. One number or two

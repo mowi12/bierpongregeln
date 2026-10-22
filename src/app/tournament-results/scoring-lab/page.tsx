@@ -200,8 +200,7 @@ export default function ScoringLabPage() {
   w(Turnier) = 1                          (Cliff-Modus)
              = 0,5 ^ (Alter / Halbwertszeit)   (Recency-Modus)
 
-Koeffizient = f(Feldgröße / Median),  Median-Turnier = 1,0×
-              Feldgröße = Spieler (Einzel) bzw. Teams (Team)
+Koeffizient = f(Spiele bis zum Sieg / Median),  Median-Turnier = 1,0×
 
 adjPpg  = (Rohbasis + Shrinkage · ØPpg) / (Teilnahmen + Shrinkage)
 Eff     = (adjPpg / ØPpg) ^ Effizienz-Exponent
@@ -260,7 +259,7 @@ Score   = gealterte Basis × Eff`}
                     />
                     <Slider
                         label="Podestgewicht"
-                        hint="Skaliert die Punkte für Platz 1–3 gemeinsam (vor dem Feldgrößen-Koeffizienten), das Verhältnis 15 : 8 : 3 bleibt gleich."
+                        hint="Skaliert die Punkte für Platz 1–3 gemeinsam (vor dem Spiele-Koeffizienten), das Verhältnis 15 : 8 : 3 bleibt gleich."
                         value={params.podiumWeight}
                         min={0.5}
                         max={2}
@@ -291,8 +290,8 @@ Score   = gealterte Basis × Eff`}
                 </div>
 
                 <ChoiceGroup
-                    label="Feldgrößen-Koeffizient"
-                    hint="Wie stark größere Turniere höher gewichtet werden."
+                    label="Spiele-Koeffizient"
+                    hint="Wie stark Turniere mit mehr Spielen bis zum Sieg höher gewichtet werden."
                     options={COEF_SHAPES}
                     value={params.coefficientShape}
                     onChange={set("coefficientShape")}
@@ -424,15 +423,12 @@ Score   = gealterte Basis × Eff`}
                     Turnierwertigkeit ({board === "team" ? "Team" : "Einzel"})
                 </h2>
                 <p className="text-muted-foreground text-sm">
-                    Feldgrößen-Koeffizient je Turnier und was ein Podestplatz dort wert ist
+                    Spiele-Koeffizient je Turnier und was ein Podestplatz dort wert ist
                     (Platzgewicht&nbsp;× Koeffizient). Referenz ist das Median-Turnier mit{" "}
-                    {eventValues[0]?.medianFieldSize ?? 0} {board === "team" ? "Teams" : "Spielern"}{" "}
-                    → Koeffizient&nbsp;1,00×. Umschalten über Team&nbsp;/&nbsp;Einzel oben.
+                    {eventValues[0]?.medianGamesToWin ?? 0} Spielen bis zum Sieg →
+                    Koeffizient&nbsp;1,00×. Umschalten über Team&nbsp;/&nbsp;Einzel oben.
                 </p>
-                <EventCoefficientTable
-                    events={eventValues}
-                    unit={board === "team" ? "Teams" : "Spieler"}
-                />
+                <EventCoefficientTable events={eventValues} />
             </section>
         </div>
     );

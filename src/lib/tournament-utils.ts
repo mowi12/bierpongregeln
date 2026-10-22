@@ -11,6 +11,8 @@ export interface Tournament {
     secondPlace: string[];
     thirdPlace: string[];
     participants: string[];
+    /** Games a player or team has to play and win to take the tournament. */
+    gamesToWin: number;
 }
 
 export interface Rating {

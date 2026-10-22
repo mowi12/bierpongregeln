@@ -9,17 +9,7 @@ import {
 import type { EventValue } from "@/lib/scoring";
 import { formatDate } from "@/lib/tournament-utils";
 
-function formatFieldSize(n: number): string {
-    return Number.isInteger(n) ? `${n}` : n.toFixed(1);
-}
-
-export function EventCoefficientTable({
-    events,
-    unit,
-}: {
-    events: EventValue[];
-    unit: "Spieler" | "Teams";
-}) {
+export function EventCoefficientTable({ events }: { events: EventValue[] }) {
     return (
         <div className="rounded-md border">
             <Table>
@@ -30,10 +20,10 @@ export function EventCoefficientTable({
                         <TableHead className="text-center" title="Teilnehmerzahl">
                             Feld
                         </TableHead>
-                        <TableHead className="text-center" title={`Effektive Feldgröße (${unit})`}>
-                            {unit}
+                        <TableHead className="text-center" title="Spiele bis zum Turniersieg">
+                            Spiele
                         </TableHead>
-                        <TableHead className="text-center" title="Feldgrößen-Koeffizient">
+                        <TableHead className="text-center" title="Spiele-Koeffizient">
                             Koeff.
                         </TableHead>
                         <TableHead className="text-center" title="Punkte für den 1. Platz">
@@ -60,7 +50,7 @@ export function EventCoefficientTable({
                                     {e.participants}
                                 </TableCell>
                                 <TableCell className="text-center tabular-nums">
-                                    {formatFieldSize(e.effectiveFieldSize)}
+                                    {e.gamesToWin}
                                 </TableCell>
                                 <TableCell
                                     className="text-center font-semibold tabular-nums"

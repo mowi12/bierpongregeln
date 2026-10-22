@@ -12,15 +12,6 @@ import type { CoefficientShape, EventValue, ScoredPlayer, ScoringParams } from "
 /** Podium points at `podiumWeight` 1 and a median-sized event (coefficient 1.0x). */
 export const PODIUM_POINTS = { firstPlace: 15, secondPlace: 8, thirdPlace: 3 } as const;
 
-/**
- * Effective field size: head count for single events, team count for team events.
- * An odd participant count means one player ran a team solo — that still counts
- * as a full team, so the team count is rounded up.
- */
-export function fieldSize(t: Tournament): number {
-    return t.type === "team" ? Math.ceil(t.participants.length / 2) : t.participants.length;
-}
-
 function median(values: number[]): number {
     if (values.length === 0) return 1;
     const sorted = [...values].sort((a, b) => a - b);
@@ -29,7 +20,8 @@ function median(values: number[]): number {
 }
 
 /**
- * Difficulty coefficient for an event, normalised so a median-sized event is 1.0x.
+ * Difficulty coefficient for an event from the games needed to win it, normalised so
+ * the median event of the board is 1.0x.
  */
 export function coefficient(shape: CoefficientShape, n: number, medianN: number): number {
     if (medianN <= 1 || n <= 0) return 1;
@@ -94,7 +86,7 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
     const events = boardTournaments(board);
     if (events.length === 0) return [];
 
-    const medianN = median(events.map(fieldSize));
+    const medianN = median(events.map((e) => e.gamesToWin));
     const lastIndex = events.length - 1;
     const newestDate = events[lastIndex].date;
     const halfLife = Math.max(params.recencyHalfLife, 0.1);
@@ -126,7 +118,7 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
     };
 
     events.forEach((event, index) => {
-        const coef = coefficient(params.coefficientShape, fieldSize(event), medianN);
+        const coef = coefficient(params.coefficientShape, event.gamesToWin, medianN);
         const weight =
             params.inactivityMode === "recency" ? 0.5 ** (ageOf(event, index) / halfLife) : 1;
         for (const player of event.participants) {
@@ -209,19 +201,18 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
  */
 export function computeEventValues(board: TournamentType, params: ScoringParams): EventValue[] {
     const events = boardTournaments(board);
-    const medianN = median(events.map(fieldSize));
+    const medianN = median(events.map((e) => e.gamesToWin));
 
     return events
         .map((event, index) => {
-            const effectiveFieldSize = fieldSize(event);
-            const coef = coefficient(params.coefficientShape, effectiveFieldSize, medianN);
+            const coef = coefficient(params.coefficientShape, event.gamesToWin, medianN);
             return {
                 id: `${board}-${index}`,
                 date: event.date,
                 flavor: formatFlavor(event.flavor),
                 participants: event.participants.length,
-                effectiveFieldSize,
-                medianFieldSize: medianN,
+                gamesToWin: event.gamesToWin,
+                medianGamesToWin: medianN,
                 coefficient: coef,
                 firstPlaceValue: PODIUM_POINTS.firstPlace * params.podiumWeight * coef,
                 secondPlaceValue: PODIUM_POINTS.secondPlace * params.podiumWeight * coef,

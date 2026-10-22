@@ -28,7 +28,8 @@ export default function TournamentResultsPage() {
                     <RatingCard emoji="🥉" points={rating.thirdPlace} place={3} />
                 </div>
                 <p className="text-muted-foreground text-sm">
-                    Ein alternatives Wertungssystem (Konsistenz, Aktivität, Feldgröße) lässt sich im{" "}
+                    Ein alternatives Wertungssystem (Konsistenz, Aktivität, Turnierlänge) lässt sich
+                    im{" "}
                     <Link href="/tournament-results/scoring-lab" className="underline">
                         Wertungs-Labor
                     </Link>{" "}

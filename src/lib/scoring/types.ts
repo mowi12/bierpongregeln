@@ -3,8 +3,8 @@ import type { TournamentType } from "@/lib/tournament-utils";
 export type { TournamentType };
 
 /**
- * Shape of the difficulty coefficient as a function of `fieldSize / medianFieldSize`.
- * A median-sized event always evaluates to 1.0x regardless of the shape.
+ * Shape of the difficulty coefficient as a function of `gamesToWin / medianGamesToWin`.
+ * The median event always evaluates to 1.0x regardless of the shape.
  */
 export type CoefficientShape = "linear" | "linear-cap2" | "sqrt" | "log";
 
@@ -114,10 +114,10 @@ export interface EventValue {
     flavor: string;
     /** Raw participant count. */
     participants: number;
-    /** Effective field size used for the coefficient: players (single) or teams (team). */
-    effectiveFieldSize: number;
-    /** Median effective field size of the board — the event that scores exactly 1.0x. */
-    medianFieldSize: number;
+    /** Games needed to win the event — the input of the coefficient. */
+    gamesToWin: number;
+    /** Median `gamesToWin` of the board — the event that scores exactly 1.0x. */
+    medianGamesToWin: number;
     coefficient: number;
     firstPlaceValue: number;
     secondPlaceValue: number;

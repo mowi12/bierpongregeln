@@ -3,7 +3,6 @@ export {
     coefficient,
     computeEventValues,
     computeSystemB,
-    fieldSize,
     PODIUM_POINTS,
 } from "./system-b";
 export type {
