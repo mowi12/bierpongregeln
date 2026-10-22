@@ -85,7 +85,7 @@ export default function TournamentResultsPage() {
                             ist.
                         </p>
                     </section>
-                    <section className="flex flex-col gap-3">
+                    <section className="hidden flex-col gap-3 lg:flex">
                         <SectionLabel className="ml-1">Letzte Turniere</SectionLabel>
                         <RecentTournaments tournaments={getRecentTournaments(3)} />
                     </section>
