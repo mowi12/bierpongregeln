@@ -4,7 +4,7 @@ import { join } from "node:path";
 export const socialImageSize = { width: 1200, height: 630 };
 export const socialImageAlt = "Bierpongregeln – Die beste Bierpongregelsammlung!";
 
-const logoDataUrl = `data:image/png;base64,${readFileSync(
+export const logoDataUrl = `data:image/png;base64,${readFileSync(
     join(process.cwd(), "public", "logo-social.png"),
 ).toString("base64")}`;
 

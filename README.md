@@ -24,8 +24,9 @@ A public website for beer pong rules and tournament tools.
 
 ## Features
 
-- **Ruleset browser** — Browse 9 beer pong rule variants (flavors), from the base ruleset to community-specific ones
-- **Tournament results** — Sortable table of historical tournament results and standings
+- **Ruleset browser** — Browse 9 beer pong rule variants (flavors), from the base ruleset to community-specific ones, with instant search and a table of contents
+- **Tournament results** — Podium, sortable team and single standings, and all historical tournaments
+- **Mobile first** — Bottom tab bar for quick lookups mid-game, light and dark theme
 - **Tournament format generator** — Enter player count and team size to calculate the number of tables, rounds, and suggested formats (Free For All, Group Phase, Swiss System)
 
 ## Tech Stack
@@ -33,7 +34,7 @@ A public website for beer pong rules and tournament tools.
 | Category             | Technology                  |
 |----------------------|-----------------------------|
 | Framework            | Next.js (React, TypeScript) |
-| Styling              | Tailwind CSS                |
+| Styling              | Tailwind CSS, shadcn/ui     |
 | Linting & Formatting | Biome                       |
 | Package manager      | pnpm                        |
 | Deployment           | Vercel                      |

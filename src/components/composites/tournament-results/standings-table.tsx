@@ -33,6 +33,18 @@ const features = tableFeatures({
     sortFns: { alphanumeric: sortFn_alphanumeric, basic: sortFn_basic, text: sortFn_text },
 });
 
+const tableCardClassName = "bg-card overflow-hidden rounded-xl border lg:rounded-3xl";
+
+/**
+ * Keeps rank and player visible while the other columns scroll horizontally on small screens.
+ */
+function stickyColumnClassName(columnId: string, hasRank: boolean): string | undefined {
+    const base = "bg-card group-hover/row:bg-background sticky z-10 transition-colors";
+    if (columnId === "rank") return `${base} left-0 w-10 min-w-10`;
+    if (columnId === "player") return `${base} ${hasRank ? "left-10" : "left-0"}`;
+    return undefined;
+}
+
 const DEFAULT_SORTING: SortingState = [
     { id: "winRate", desc: true },
     { id: "pointsPerGame", desc: true },
@@ -56,17 +68,17 @@ function SortButton({
         <Button
             variant="ghost"
             size="sm"
-            className="-ml-3 h-8"
+            className="-ml-3 h-8 px-3 text-xs font-bold tracking-[0.06em] uppercase"
             title={title}
             onClick={() => column.toggleSorting(sorted === "asc")}
         >
             {children}
             {sorted === "asc" ? (
-                <ArrowUp className="ml-2 h-4 w-4" />
+                <ArrowUp className="size-3.5" />
             ) : sorted === "desc" ? (
-                <ArrowDown className="ml-2 h-4 w-4" />
+                <ArrowDown className="size-3.5" />
             ) : (
-                <ArrowUpDown className="ml-2 h-4 w-4" />
+                <ArrowUpDown className="size-3.5 opacity-60" />
             )}
         </Button>
     );
@@ -78,13 +90,14 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
         header: "#",
         cell: ({ row, table }) => {
             const rank = table.getRowModel().rows.findIndex((r) => r.id === row.id) + 1;
-            return <span className="text-muted-foreground tabular-nums">{rank}</span>;
+            return <span className="text-muted-foreground font-bold tabular-nums">{rank}</span>;
         },
         enableSorting: false,
     },
     {
         accessorKey: "player",
         header: ({ column }) => <SortButton column={column}>Spieler</SortButton>,
+        cell: ({ getValue }) => <span className="font-semibold">{getValue() as string}</span>,
     },
     {
         accessorKey: "winRate",
@@ -122,7 +135,9 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
             </SortButton>
         ),
         cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">{getValue() as number}</span>
+            <span className="block text-center font-extrabold tabular-nums">
+                {getValue() as number}
+            </span>
         ),
     },
     {
@@ -173,13 +188,16 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
     });
 
     return (
-        <div className="rounded-md border">
+        <div className={tableCardClassName}>
             <Table>
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
-                                <TableHead key={header.id}>
+                                <TableHead
+                                    key={header.id}
+                                    className={stickyColumnClassName(header.column.id, true)}
+                                >
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(
@@ -194,9 +212,12 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
                 <TableBody>
                     {table.getRowModel().rows.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id}>
+                            <TableRow key={row.id} className="group/row">
                                 {row.getAllCells().map((cell) => (
-                                    <TableCell key={cell.id}>
+                                    <TableCell
+                                        key={cell.id}
+                                        className={stickyColumnClassName(cell.column.id, true)}
+                                    >
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
@@ -229,13 +250,16 @@ function UnrankedTable({ data }: { data: PlayerStanding[] }) {
     });
 
     return (
-        <div className="rounded-md border">
+        <div className={tableCardClassName}>
             <Table>
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
-                                <TableHead key={header.id}>
+                                <TableHead
+                                    key={header.id}
+                                    className={stickyColumnClassName(header.column.id, false)}
+                                >
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(
@@ -249,9 +273,12 @@ function UnrankedTable({ data }: { data: PlayerStanding[] }) {
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
-                        <TableRow key={row.id}>
+                        <TableRow key={row.id} className="group/row">
                             {row.getAllCells().map((cell) => (
-                                <TableCell key={cell.id}>
+                                <TableCell
+                                    key={cell.id}
+                                    className={stickyColumnClassName(cell.column.id, false)}
+                                >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </TableCell>
                             ))}

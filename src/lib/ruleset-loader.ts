@@ -27,6 +27,7 @@ function mergeRulesets(base: Ruleset, flavor: Ruleset): Ruleset {
 
     merged.name = flavor.name;
     merged.slug = flavor.slug;
+    merged.baseRulesetSlug = flavor.baseRulesetSlug;
     merged.sidebarPosition = flavor.sidebarPosition;
     merged.combinations = flavor.combinations;
 

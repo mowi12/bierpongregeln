@@ -1,6 +1,10 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { createCn } from "cn/config";
 
-export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
-}
+// Custom font sizes from globals.css. Without them `text-label` and friends would be treated as
+// colors and dropped when a text color like `text-muted-foreground` follows.
+const customFontSizes = ["hero", "title", "lead", "label", "card-title", "rule"].flatMap((size) => [
+    size,
+    `${size}-lg`,
+]);
+
+export const cn = createCn({ extend: { theme: { text: customFontSizes } } });

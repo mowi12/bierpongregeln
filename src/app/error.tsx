@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { HeroSplash } from "@/components/composites/hero-splash";
 import { Button } from "@/components/ui/button";
 
 export default function ErrorBoundary({
@@ -15,14 +16,13 @@ export default function ErrorBoundary({
     }, [error]);
 
     return (
-        <div className="flex min-h-[70vh] flex-col items-center justify-center text-center">
-            <h1 className="text-3xl font-bold">Etwas ist schiefgelaufen</h1>
-            <p className="text-muted-foreground mt-4 max-w-md text-lg">
-                Beim Laden dieser Seite ist ein unerwarteter Fehler aufgetreten.
-            </p>
-            <Button className="mt-8" onClick={reset}>
+        <HeroSplash
+            title="Etwas ist schiefgelaufen"
+            description="Beim Laden dieser Seite ist ein unerwarteter Fehler aufgetreten."
+        >
+            <Button size="lg" onClick={reset}>
                 Erneut versuchen
             </Button>
-        </div>
+        </HeroSplash>
     );
 }
