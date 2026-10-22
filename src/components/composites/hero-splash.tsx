@@ -51,12 +51,6 @@ export function HeroSplash({
                     {description}
                 </p>
             )}
-            <div aria-hidden="true" className="mt-7 flex gap-1.5">
-                <span className="bg-coral size-2.5 rounded-full" />
-                <span className="bg-coral size-2.5 rounded-full" />
-                <span className="bg-coral size-2.5 rounded-full" />
-                <span className="bg-primary size-2.5 rounded-full" />
-            </div>
             {children && <div className="mt-8 flex flex-wrap justify-center gap-3">{children}</div>}
         </div>
     );
