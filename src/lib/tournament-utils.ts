@@ -124,8 +124,9 @@ export function getQualifiedStandings(standings: PlayerStanding[]): PlayerStandi
     return standings.filter((p) => p.participations >= QUALIFIED_MIN_PARTICIPATIONS);
 }
 
-export function getRecentTournaments(count: number): Tournament[] {
-    return [...tournaments]
+export function getRecentTournaments(type: TournamentType, count: number): Tournament[] {
+    return tournaments
+        .filter((t) => t.type === type)
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, count);
 }

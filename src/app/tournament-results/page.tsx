@@ -13,6 +13,7 @@ import {
     getTeamStandings,
     type PlayerStanding,
     rating,
+    type TournamentType,
     tournaments,
 } from "@/lib/tournament-utils";
 
@@ -21,20 +22,44 @@ function StandingsPanel({
     standings,
     description,
 }: {
-    value: string;
+    value: TournamentType;
     standings: PlayerStanding[];
     description: string;
 }) {
     return (
-        <TabsContent value={value} className="flex flex-col gap-6">
-            <Podium standings={getQualifiedStandings(standings)} />
-            <section className="flex flex-col gap-3">
-                <div className="ml-1">
-                    <SectionLabel>Rangliste</SectionLabel>
-                    <p className="text-muted-foreground mt-1 text-[0.8125rem]">{description}</p>
-                </div>
-                <StandingsTable data={standings} />
-            </section>
+        <TabsContent
+            value={value}
+            className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-8"
+        >
+            <div className="flex min-w-0 flex-col gap-6">
+                <Podium standings={getQualifiedStandings(standings)} />
+                <section className="flex flex-col gap-3">
+                    <div className="ml-1">
+                        <SectionLabel>Rangliste</SectionLabel>
+                        <p className="text-muted-foreground mt-1 text-[0.8125rem]">{description}</p>
+                    </div>
+                    <StandingsTable data={standings} />
+                </section>
+            </div>
+
+            <aside className="flex flex-col gap-8">
+                <section className="flex flex-col gap-3">
+                    <SectionLabel className="ml-1">Punktevergabe</SectionLabel>
+                    <div className="grid grid-cols-3 gap-2">
+                        <RatingCard points={rating.firstPlace} place={1} />
+                        <RatingCard points={rating.secondPlace} place={2} />
+                        <RatingCard points={rating.thirdPlace} place={3} />
+                    </div>
+                    <p className="text-muted-foreground ml-1 text-[0.8125rem]">
+                        Die Gesamtpunktzahl eines Spielers ergibt sich aus der Summe der Punkte
+                        aller Turniere, an denen er auf einem der drei Podestplätze gelandet ist.
+                    </p>
+                </section>
+                <section className="hidden flex-col gap-3 lg:flex">
+                    <SectionLabel className="ml-1">Letzte Turniere</SectionLabel>
+                    <RecentTournaments tournaments={getRecentTournaments(value, 3)} />
+                </section>
+            </aside>
         </TabsContent>
     );
 }
@@ -57,39 +82,17 @@ export default function TournamentResultsPage() {
                 }
             />
 
-            <div className="mt-6 grid gap-10 lg:mt-9 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-8">
-                <div className="min-w-0">
-                    <StandingsPanel
-                        value="team"
-                        standings={getTeamStandings()}
-                        description="Gesamtpunktzahl aller Spieler aus Team-Turnieren."
-                    />
-                    <StandingsPanel
-                        value="single"
-                        standings={getSingleStandings()}
-                        description="Gesamtpunktzahl aller Spieler aus Einzel-Turnieren."
-                    />
-                </div>
-
-                <aside className="flex flex-col gap-8">
-                    <section className="flex flex-col gap-3">
-                        <SectionLabel className="ml-1">Punktevergabe</SectionLabel>
-                        <div className="grid grid-cols-3 gap-2">
-                            <RatingCard points={rating.firstPlace} place={1} />
-                            <RatingCard points={rating.secondPlace} place={2} />
-                            <RatingCard points={rating.thirdPlace} place={3} />
-                        </div>
-                        <p className="text-muted-foreground ml-1 text-[0.8125rem]">
-                            Die Gesamtpunktzahl eines Spielers ergibt sich aus der Summe der Punkte
-                            aller Turniere, an denen er auf einem der drei Podestplätze gelandet
-                            ist.
-                        </p>
-                    </section>
-                    <section className="hidden flex-col gap-3 lg:flex">
-                        <SectionLabel className="ml-1">Letzte Turniere</SectionLabel>
-                        <RecentTournaments tournaments={getRecentTournaments(3)} />
-                    </section>
-                </aside>
+            <div className="mt-6 lg:mt-9">
+                <StandingsPanel
+                    value="team"
+                    standings={getTeamStandings()}
+                    description="Gesamtpunktzahl aller Spieler aus Team-Turnieren."
+                />
+                <StandingsPanel
+                    value="single"
+                    standings={getSingleStandings()}
+                    description="Gesamtpunktzahl aller Spieler aus Einzel-Turnieren."
+                />
             </div>
 
             <section
