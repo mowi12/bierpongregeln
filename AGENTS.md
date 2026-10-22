@@ -42,8 +42,6 @@ src/
     utils.ts            # cn() helper
   data/
     rulesets/           # One file per ruleset (regelwerk, moritz, felix, …)
-docs/
-  redesign-plan.md      # Design system and decisions of the "Clean & Bold" redesign
 ```
 
 ## Code Conventions
@@ -58,7 +56,7 @@ docs/
 
 ## Design System
 
-See [docs/redesign-plan.md](docs/redesign-plan.md) for the full reference. In short:
+The design tokens live in `src/app/globals.css`. In short:
 
 - **Colors**: logo-derived tokens in `globals.css` (`:root` light, `.dark` dark) exposed as Tailwind colors (`bg-primary`, `bg-accent`, `bg-coral`, `text-coral-ink`, …). Coral and brand teal are decorative only, never text.
 - **Type**: Bricolage Grotesque; use the text tokens (`text-title`, `text-label`, `text-card-title`, `text-rule`, … with `-lg` variants) instead of arbitrary sizes. Numbers use `tabular-nums`.
