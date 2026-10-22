@@ -16,6 +16,7 @@ import {
     evaluateExpectations,
     type InactivityMode,
     type InactivityUnit,
+    PODIUM_POINTS,
     SCORING_VARIANTS,
     type ScoringParams,
     type TournamentType,
@@ -127,11 +128,24 @@ export default function ScoringLabPage() {
         return (value: ScoringParams[K]) => setParams((prev) => ({ ...prev, [key]: value }));
     };
 
-    const setRounded = (key: "efficiencyExponent" | "decayBase", decimals: number) => {
+    const setRounded = (
+        key: "efficiencyExponent" | "decayBase" | "podiumWeight",
+        decimals: number,
+    ) => {
         const factor = 10 ** decimals;
         return (value: number) =>
             setParams((prev) => ({ ...prev, [key]: Math.round(value * factor) / factor }));
     };
+
+    const formatPoints = (base: number) =>
+        (base * params.podiumWeight).toFixed(1).replace(/\.0$/, "").replace(".", ",");
+    const podiumDisplay = [
+        PODIUM_POINTS.firstPlace,
+        PODIUM_POINTS.secondPlace,
+        PODIUM_POINTS.thirdPlace,
+    ]
+        .map(formatPoints)
+        .join(" / ");
 
     const setUnit = (unit: ScoringParams["inactivityUnit"]) => {
         const graceMax = unit === "months" ? 12 : 4;
@@ -199,7 +213,7 @@ Score   = gealterte Basis × Eff`}
                     <p>
                         Fixiert nach dem Sensitivitäts-Test: Wurzel-Koeffizient, Shrinkage&nbsp;2,
                         Effizienz-Exponent&nbsp;0,8. Offen zum Justieren: Teilnahmepunkt,
-                        Sieggewicht und die Alterung alter Ergebnisse (Cliff-Decay oder
+                        Podestgewicht und die Alterung alter Ergebnisse (Cliff-Decay oder
                         Recency-Halbwertszeit, in Turnieren oder Monaten).
                     </p>
                 </CollapsibleContent>
@@ -245,14 +259,14 @@ Score   = gealterte Basis × Eff`}
                         onChange={set("participationPoint")}
                     />
                     <Slider
-                        label="Sieggewicht (1. Platz)"
-                        hint="Punkte für den 1. Platz vor dem Feldgrößen-Koeffizienten."
-                        value={params.firstPlaceWeight}
-                        min={10}
-                        max={30}
-                        step={1}
-                        display={`${params.firstPlaceWeight}  (2./3. fix ${params.secondPlaceWeight}/${params.thirdPlaceWeight})`}
-                        onChange={set("firstPlaceWeight")}
+                        label="Podestgewicht"
+                        hint="Skaliert die Punkte für Platz 1–3 gemeinsam (vor dem Feldgrößen-Koeffizienten), das Verhältnis 15 : 8 : 3 bleibt gleich."
+                        value={params.podiumWeight}
+                        min={0.5}
+                        max={2}
+                        step={0.1}
+                        display={`×${params.podiumWeight.toFixed(1)}  (${podiumDisplay})`}
+                        onChange={setRounded("podiumWeight", 1)}
                     />
                     <Slider
                         label="Shrinkage (K)"

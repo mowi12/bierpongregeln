@@ -33,7 +33,7 @@ export type DecayScope = "full" | "podium";
  *
  * ```
  * A        = Σ participationPoint × w(event)              (flat, not difficulty-scaled)
- *          + Σ placeWeight × coefficient(event) × w(event)
+ *          + Σ podiumPoints × podiumWeight × coefficient(event) × w(event)
  *   w(event) = 1                       in cliff mode
  *            = 0.5 ^ (age / halfLife)  in recency mode
  *
@@ -47,12 +47,11 @@ export type DecayScope = "full" | "podium";
 export interface ScoringParams {
     /** Flat points for entering a tournament. Not scaled by field size. */
     participationPoint: number;
-    /** Points for 1st place before the difficulty coefficient. */
-    firstPlaceWeight: number;
-    /** Points for 2nd place before the difficulty coefficient. */
-    secondPlaceWeight: number;
-    /** Points for 3rd place before the difficulty coefficient. */
-    thirdPlaceWeight: number;
+    /**
+     * Multiplier on the fixed podium points (`PODIUM_POINTS`). Scales 1st, 2nd and 3rd
+     * together, so their ratio stays the same.
+     */
+    podiumWeight: number;
     /** How the difficulty coefficient grows with field size. */
     coefficientShape: CoefficientShape;
     /** Pseudo-tournaments at the field average added when estimating a player's rate. */

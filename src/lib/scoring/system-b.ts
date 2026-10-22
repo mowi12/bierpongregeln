@@ -9,6 +9,9 @@ import {
 } from "@/lib/tournament-utils";
 import type { CoefficientShape, EventValue, ScoredPlayer, ScoringParams } from "./types";
 
+/** Podium points at `podiumWeight` 1 and a median-sized event (coefficient 1.0x). */
+export const PODIUM_POINTS = { firstPlace: 15, secondPlace: 8, thirdPlace: 3 } as const;
+
 /**
  * Effective field size: head count for single events, team count for team events.
  * An odd participant count means one player ran a team solo — that still counts
@@ -95,11 +98,6 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
     const lastIndex = events.length - 1;
     const newestDate = events[lastIndex].date;
     const halfLife = Math.max(params.recencyHalfLife, 0.1);
-    const placeWeight = {
-        firstPlace: params.firstPlaceWeight,
-        secondPlace: params.secondPlaceWeight,
-        thirdPlace: params.thirdPlaceWeight,
-    } as const;
 
     const ageOf = (event: Tournament, index: number): number =>
         params.inactivityUnit === "months"
@@ -143,7 +141,7 @@ export function computeSystemB(board: TournamentType, params: ScoringParams): Sc
             for (const player of event[place]) {
                 const entry = ensure(player);
                 entry[place]++;
-                const points = placeWeight[place] * coef;
+                const points = PODIUM_POINTS[place] * params.podiumWeight * coef;
                 entry.podiumScore += points * weight;
                 entry.rawBaseScore += points;
             }
@@ -225,9 +223,9 @@ export function computeEventValues(board: TournamentType, params: ScoringParams)
                 effectiveFieldSize,
                 medianFieldSize: medianN,
                 coefficient: coef,
-                firstPlaceValue: params.firstPlaceWeight * coef,
-                secondPlaceValue: params.secondPlaceWeight * coef,
-                thirdPlaceValue: params.thirdPlaceWeight * coef,
+                firstPlaceValue: PODIUM_POINTS.firstPlace * params.podiumWeight * coef,
+                secondPlaceValue: PODIUM_POINTS.secondPlace * params.podiumWeight * coef,
+                thirdPlaceValue: PODIUM_POINTS.thirdPlace * params.podiumWeight * coef,
             };
         })
         .reverse();

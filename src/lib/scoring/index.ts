@@ -1,5 +1,11 @@
 export { evaluateExpectations } from "./checks";
-export { coefficient, computeEventValues, computeSystemB, fieldSize } from "./system-b";
+export {
+    coefficient,
+    computeEventValues,
+    computeSystemB,
+    fieldSize,
+    PODIUM_POINTS,
+} from "./system-b";
 export type {
     CoefficientShape,
     DecayScope,

@@ -29,7 +29,7 @@ Decisions already settled:
   with rewarding large fields, because Moritz W. won the biggest tournament on
   record and Marcel did not reach that podium.
 
-Open knobs on the page: participation point, 1st-place weight, coefficient shape,
+Open knobs on the page: participation point, podium weight, coefficient shape,
 shrinkage K, efficiency exponent k, decay base d, decay grace G.
 
 ---

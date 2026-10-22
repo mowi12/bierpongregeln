@@ -3,14 +3,12 @@ import type { ScoringParams, ScoringVariant } from "./types";
 /**
  * Baseline "System B" parameters. The values that survived the sensitivity sweep
  * unchanged (coefficient shape, shrinkage, efficiency exponent, decay) are fixed
- * here; `participationPoint` and `firstPlaceWeight` are the knobs left open for
+ * here; `participationPoint` and `podiumWeight` are the knobs left open for
  * tuning on the scoring lab page.
  */
 export const DEFAULT_PARAMS: ScoringParams = {
     participationPoint: 2,
-    firstPlaceWeight: 15,
-    secondPlaceWeight: 8,
-    thirdPlaceWeight: 3,
+    podiumWeight: 1,
     coefficientShape: "sqrt",
     shrinkage: 2,
     efficiencyExponent: 0.8,
@@ -46,14 +44,14 @@ export const SCORING_VARIANTS: ScoringVariant[] = [
     },
     {
         id: "v-c",
-        name: "V-C · Win-heavy + activity",
+        name: "V-C · Podium-heavy + activity",
         description:
-            "Wins weigh more (1st = 20) and every appearance is worth 3 points, so loyal " +
-            "players climb while the field of winners stays clearly on top.",
+            "Podium places weigh more (×1.3, 1st ≈ 20) and every appearance is worth 3 " +
+            "points, so loyal players climb while the podium regulars stay clearly on top.",
         params: {
             ...DEFAULT_PARAMS,
             participationPoint: 3,
-            firstPlaceWeight: 20,
+            podiumWeight: 1.3,
         },
     },
 ];
