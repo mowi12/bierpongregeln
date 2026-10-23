@@ -72,7 +72,7 @@ Each ruleset can have a `summary`: a few short bullets shown in the "Kurz erklä
 
 ## Tournament Results
 
-Results live in `tournaments.json` (schema: `tournaments.schema.json`). `pnpm run data-consistency-check` validates them and runs in CI.
+Results live in `tournaments.json` (schema: `tournaments.schema.json`), sorted by date. `pnpm run data-consistency-check` runs in CI and checks that placed names are participants, `gamesToWin` is a whole number ≥ 1, nobody holds two podium places in one tournament, each place has 1 name (single) or 1–2 names (team), and dates are valid, sorted and not in the future.
 
 Each tournament has `date`, `flavor`, `type` (`single` or `team`), `gamesToWin`, `firstPlace`, `secondPlace`, `thirdPlace` and `participants`. Every placed name must also be listed in `participants`. In team tournaments, list both players of a placed team; each gets the full points.
 
