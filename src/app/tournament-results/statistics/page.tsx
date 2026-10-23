@@ -4,10 +4,11 @@ import Link from "next/link";
 import { PageHeader } from "@/components/composites/page-header";
 import { SectionLabel } from "@/components/composites/section-label";
 import { ParticipationChart } from "@/components/composites/tournament-stats/participation-chart";
+import { RaceChart } from "@/components/composites/tournament-stats/race-chart";
 import { RecordCards } from "@/components/composites/tournament-stats/record-cards";
 import { StatTiles } from "@/components/composites/tournament-stats/stat-tiles";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getOverview, getParticipation, getRecords } from "@/lib/tournament-stats";
+import { getOverview, getParticipation, getRace, getRecords } from "@/lib/tournament-stats";
 import { QUALIFIED_MIN_PARTICIPATIONS, type TournamentType } from "@/lib/tournament-utils";
 
 export const metadata: Metadata = {
@@ -19,6 +20,10 @@ function StatsPanel({ value }: { value: TournamentType }) {
     return (
         <TabsContent value={value} className="flex flex-col gap-10 lg:gap-14">
             <StatTiles overview={getOverview(value)} />
+            <section className="flex flex-col gap-3">
+                <SectionLabel className="ml-1">Das Rennen um Platz 1</SectionLabel>
+                <RaceChart race={getRace(value)} />
+            </section>
             <section className="flex flex-col gap-3">
                 <div className="ml-1">
                     <SectionLabel>Teilnehmer pro Turnier</SectionLabel>
