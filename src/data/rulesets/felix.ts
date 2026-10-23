@@ -5,6 +5,14 @@ export const felix: Ruleset = {
     slug: "felix",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 2,
+    summary: [
+        "<strong>Balls Back</strong> schon bei jedem einzelnen Treffer, und zwar für denselben Spieler.",
+        "<strong>Blasen</strong> ist erlaubt, Fingern nicht.",
+        "<strong>Nachspiel</strong> statt Konter: Bei Erfolg ist es unentschieden.",
+        "<strong>Trickshot</strong> zählt doppelt, aber der Gegner darf den Ball wegschnappen.",
+        "<strong>Abfangen</strong> eines Balls in der Luft → sofort verloren.",
+        "Dazu Todesbecher, Insel, Air Ball und Gentle(wo-)men (die letzten 2 Becher werden hintereinander gestellt).",
+    ],
     sections: [
         {
             id: "allgemeine-regeln",

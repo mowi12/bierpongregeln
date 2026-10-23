@@ -5,6 +5,11 @@ export const sniper: Ruleset = {
     slug: "sniper",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 7,
+    summary: [
+        "Springt ein Ball vom Becher ab, darf er gefangen werden.",
+        "Wer ihn fängt, darf den Werfer abwerfen. Bei einem Treffer muss dessen Team einen Becher entfernen (nicht unter 2 Becher).",
+        "Fängt der Werfer den Ball selbst, passiert nichts.",
+    ],
     sections: [
         {
             id: "spezialregeln",

@@ -7,6 +7,7 @@ import { RulesSearch } from "@/components/composites/rules/rules-search";
 import { RulesSectionChips } from "@/components/composites/rules/rules-section-chips";
 import { RulesToc } from "@/components/composites/rules/rules-toc";
 import { RulesToolbar } from "@/components/composites/rules/rules-toolbar";
+import { RulesetSummary } from "@/components/composites/rules/ruleset-summary";
 import { getMergedRuleset, getRulesetSlugs } from "@/lib/ruleset-loader";
 import { buildToc, createReferenceMap, numberParagraphs } from "@/lib/ruleset-view";
 
@@ -44,7 +45,8 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
     numberParagraphs(ruleset);
 
     const toc = buildToc(ruleset, refMap);
-    const kind = ruleset.baseRulesetSlug === null ? "Basisregeln" : "Flavor";
+    const isBase = ruleset.baseRulesetSlug === null;
+    const kind = isBase ? "Basisregeln" : "Flavor";
 
     return (
         <>
@@ -56,6 +58,9 @@ export default async function FlavorPage({ params }: FlavorPageProps) {
                     </span>
                 }
             />
+            {ruleset.summary && (
+                <RulesetSummary items={ruleset.summary} isBase={isBase} refMap={refMap} />
+            )}
             <div className="mt-5 lg:mt-10 lg:grid lg:grid-cols-[17.5rem_minmax(0,1fr)] lg:items-start lg:gap-12">
                 <RulesToolbar>
                     <RulesSearch key={slug} />

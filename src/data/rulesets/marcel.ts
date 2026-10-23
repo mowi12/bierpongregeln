@@ -5,6 +5,14 @@ export const marcel: Ruleset = {
     slug: "marcel",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 3,
+    summary: [
+        "Nur wer trifft, trinkt. Wer es vergisst, bekommt den Becher zurück.",
+        "<strong>Dead Cup:</strong> Bleibt ein getroffener Becher stehen und der Gegner trifft ihn → sofort gewonnen.",
+        "<strong>Island:</strong> Einmal pro Spiel einen alleinstehenden Becher ansagen → Treffer zählt doppelt, andere Becher zählen nicht.",
+        "Ein Ball, der vom Becherrand reinspringt, zählt nicht als Aufsetzer, gibt aber einen extra Wurf.",
+        "Mit einer <strong>Bombe</strong> darf das Spiel nicht beendet werden.",
+        "Im Turnier ab dem Halbfinale: <strong>Pferderennen</strong>-Wetten.",
+    ],
     sections: [
         {
             id: "turnierablauf",

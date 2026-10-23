@@ -5,6 +5,12 @@ export const gamePigeon: Ruleset = {
     slug: "game-pigeon",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 4,
+    summary: [
+        "Getroffene Becher werden <strong>sofort</strong> entfernt, Bälle nie gleichzeitig werfen.",
+        "Bei 6 und 3 Bechern wird automatisch zusammengestellt.",
+        "<strong>Aufsetzer</strong> zählt nur einfach und darf nicht abgewehrt werden.",
+        "<strong>Konter</strong> für beide Teams, aber nur einmal im Spiel → Stechen mit je 3 Bechern.",
+    ],
     sections: [
         {
             id: "allgemeine-regeln",
@@ -129,6 +135,10 @@ export const gamePigeon: Ruleset = {
                     id: "art-12-aufsetzer",
                     title: "Aufsetzer",
                     paragraphs: [
+                        {
+                            content:
+                                "Ein Ball, welcher mindestens einmal auf dem Tisch aufgesetzt hat und in einem Becher landet, zählt als Aufsetzer, aber nur als ein Treffer.",
+                        },
                         {
                             content: "Ein Aufsetzer darf nicht weggeschlagen werden.",
                         },
