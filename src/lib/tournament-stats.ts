@@ -1,6 +1,8 @@
 import {
+    computeBoard,
     formatDate,
-    rating,
+    getBoardScoring,
+    getQualifiedStandings,
     type Tournament,
     type TournamentType,
     tournaments,
@@ -103,72 +105,82 @@ export function getParticipation(type: TournamentType): ParticipationPoint[] {
     return points;
 }
 
-// --- Race of the total points ---
+// --- Race for the ranking ---
 
 export interface RaceStep {
     id: string;
     label: string;
     date: string;
     flavor: string;
-    /** Players leading after this tournament (several on a tie). */
+    /** First of the ranking after this tournament, empty while nobody is ranked yet. */
     leaders: string[];
-    /** Whether the lead changed hands, i.e. none of the previous leaders is still on top. */
+    /** Whether a different player took first place with this tournament. */
     leadChange: boolean;
 }
 
 export interface RacePlayer {
     player: string;
-    /** Total points after each step, `null` before the player's first podium. */
-    points: (number | null)[];
-    /** Rank by total points after each step (ties share a rank), `null` before the first podium. */
+    /** Rank after each step, `null` before the player's first tournament. */
     ranks: (number | null)[];
-    /** Points behind the leader after each step, `null` before the first podium. */
-    gaps: (number | null)[];
+    /** Score (points × form × activity) after each step, `null` before the first tournament. */
+    scores: (number | null)[];
+    /** Points after each step, `null` before the first tournament. */
+    points: (number | null)[];
+    /** Form after each step, `null` before the first tournament. */
+    forms: (number | null)[];
+    /** Activity after each step, `null` before the first tournament. */
+    activities: (number | null)[];
     finalRank: number;
 }
 
 export interface Race {
     steps: RaceStep[];
-    /** Sorted by final total points. */
+    /** The players of the final ranking, sorted by their final rank. */
     players: RacePlayer[];
 }
 
 /**
- * Total points of every player after each tournament of the given type. Players enter the race
- * with their first podium finish.
+ * How the players of the final ranking of the results page ranked against each other after each
+ * tournament of the given type. Each step scores only the tournaments played so far, so the
+ * coefficients, the form and the activity are those of that moment and the last step matches the
+ * results page. Players enter the race with their first tournament, not only once they
+ * qualify for the ranking.
  */
 export function getRace(type: TournamentType): Race {
-    const totals = new Map<string, number>();
+    const list = ofType(type);
+    const finalists = new Set(
+        getQualifiedStandings(getBoardScoring(type).standings).map((standing) => standing.player),
+    );
     const history = new Map<string, RacePlayer>();
     const steps: RaceStep[] = [];
-    const list = ofType(type);
 
     list.forEach((t, step) => {
-        for (const place of places) {
-            for (const player of t[place]) {
-                totals.set(player, (totals.get(player) ?? 0) + rating[place]);
-                if (!history.has(player)) {
-                    history.set(player, {
-                        player,
-                        points: Array(list.length).fill(null),
-                        ranks: Array(list.length).fill(null),
-                        gaps: Array(list.length).fill(null),
-                        finalRank: 0,
-                    });
-                }
+        const ranked = computeBoard(list.slice(0, step + 1)).standings.filter((standing) =>
+            finalists.has(standing.player),
+        );
+
+        ranked.forEach((standing, index) => {
+            let entry = history.get(standing.player);
+            if (!entry) {
+                entry = {
+                    player: standing.player,
+                    ranks: Array(list.length).fill(null),
+                    scores: Array(list.length).fill(null),
+                    points: Array(list.length).fill(null),
+                    forms: Array(list.length).fill(null),
+                    activities: Array(list.length).fill(null),
+                    finalRank: 0,
+                };
+                history.set(standing.player, entry);
             }
-        }
+            entry.ranks[step] = index + 1;
+            entry.scores[step] = standing.score;
+            entry.points[step] = standing.points;
+            entry.forms[step] = standing.form;
+            entry.activities[step] = standing.activity;
+        });
 
-        const lead = Math.max(...totals.values());
-        for (const [player, points] of totals) {
-            const entry = history.get(player);
-            if (!entry) continue;
-            entry.points[step] = points;
-            entry.ranks[step] = 1 + [...totals.values()].filter((p) => p > points).length;
-            entry.gaps[step] = points - lead;
-        }
-
-        const leaders = [...totals].filter(([, p]) => p === lead).map(([player]) => player);
+        const leaders = ranked.length > 0 ? [ranked[0].player] : [];
         const previous = steps.at(-1)?.leaders ?? [];
         steps.push({
             id: t.id,
@@ -176,14 +188,13 @@ export function getRace(type: TournamentType): Race {
             date: formatDate(t.date),
             flavor: Array.isArray(t.flavor) ? t.flavor.join(", ") : t.flavor,
             leaders,
-            leadChange: step > 0 && !leaders.some((player) => previous.includes(player)),
+            leadChange: previous.length > 0 && leaders[0] !== previous[0],
         });
     });
 
-    const players = [...history.values()].sort(
-        (a, b) => (b.points.at(-1) ?? 0) - (a.points.at(-1) ?? 0),
-    );
-    for (const entry of players) entry.finalRank = entry.ranks.at(-1) ?? players.length;
+    const players = [...history.values()];
+    for (const entry of players) entry.finalRank = entry.ranks.at(-1) ?? players.length + 1;
+    players.sort((a, b) => a.finalRank - b.finalRank);
 
     return { steps, players };
 }
@@ -284,6 +295,23 @@ export function getRecords(type: TournamentType, minParticipations: number): Rec
             title: "Titelverteidigung",
             holders: winRun.holders,
             value: plural(winRun.count, "Sieg", "Siege in Folge"),
+        });
+    }
+
+    const longestWay = Math.max(0, ...list.map((t) => t.gamesToWin));
+    const longestWins = list.filter((t) => t.gamesToWin === longestWay);
+    if (longestWay > 0) {
+        records.push({
+            title: "Längster Weg zum Titel",
+            // One line per winner, the same team only once
+            holders: [
+                ...new Map(longestWins.map((t) => [t.firstPlace.join(), t.firstPlace])).values(),
+            ],
+            value: plural(longestWay, "Spiel", "Spiele"),
+            detail:
+                longestWins.length === 1
+                    ? formatDate(longestWins[0].date)
+                    : `in ${longestWins.length} Turnieren`,
         });
     }
 

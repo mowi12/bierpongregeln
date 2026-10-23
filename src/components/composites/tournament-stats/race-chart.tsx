@@ -5,13 +5,13 @@ import { CartesianGrid, Line, LineChart, ReferenceDot, XAxis, YAxis } from "rech
 import { type ChartConfig, ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import type { Race, RacePlayer } from "@/lib/tournament-stats";
 
-type Mode = "rank" | "points" | "gap";
+type Mode = "rank" | "score" | "points";
 type Filter = "5" | "10" | "all";
 
 const modes: { value: Mode; label: string }[] = [
     { value: "rank", label: "Rang" },
+    { value: "score", label: "Score" },
     { value: "points", label: "Punkte" },
-    { value: "gap", label: "Abstand" },
 ];
 
 const filters: { value: Filter; label: string }[] = [
@@ -21,12 +21,12 @@ const filters: { value: Filter; label: string }[] = [
 ];
 
 const descriptions: Record<Mode, string> = {
-    rank: "Platz in der Gesamtwertung nach jedem Turnier. Gleich viele Punkte teilen sich einen Platz.",
-    points: "Gesamtpunkte nach jedem Turnier.",
-    gap: "Punkte hinter der Spitze nach jedem Turnier. Wer führt, läuft oben entlang.",
+    rank: "Platz nach jedem Turnier, sortiert wie die Rangliste der Ergebnisseite. Gezeigt werden die Spieler der Rangliste (ab 3 Teilnahmen) ab ihrem ersten Turnier.",
+    score: "Score (Punkte × Form × Aktivität) nach jedem Turnier. Nach ihm wird die Rangliste sortiert, wer Turniere verpasst, fällt ab.",
+    points: "Punkte nach jedem Turnier: Teilnahmepunkte plus Podestpunkte × Turnierkoeffizient.",
 };
 
-// The top ten by final total points keep their style in every view and filter. Only five colors
+// The top ten of the final ranking keep their style in every view and filter. Only five colors
 // stay distinguishable, so places 6 to 10 reuse them with a dashed line.
 const highlightColors = ["--chart-1", "--chart-2", "--chart-3", "--chart-4", "--chart-5"];
 const HIGHLIGHTED_PLAYERS = 10;
@@ -36,14 +36,25 @@ const CHART_HEIGHT_PX = 320;
 const PLOT_HEIGHT_PX = 282;
 const LABEL_HEIGHT_PX = 13;
 
+const decimalFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+});
+
+const factorFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+});
+
 function valuesOf(player: RacePlayer, mode: Mode): (number | null)[] {
-    return mode === "rank" ? player.ranks : mode === "points" ? player.points : player.gaps;
+    if (mode === "rank") return player.ranks;
+    if (mode === "points") return player.points;
+    return player.scores;
 }
 
 function formatValue(value: number, mode: Mode): string {
     if (mode === "rank") return `#${value}`;
-    if (mode === "points") return `${value} P.`;
-    return value === 0 ? "Führung" : `${value}`;
+    return decimalFormat.format(value);
 }
 
 function joinNames(names: string[]): string {
@@ -114,7 +125,7 @@ function SegmentedControl<T extends string>({
 }
 
 /**
- * Race of the total points over all tournaments of one type.
+ * Race for the ranking over all tournaments of one type.
  */
 export function RaceChart({ race }: { race: Race }) {
     const { steps } = race;
@@ -165,9 +176,8 @@ export function RaceChart({ race }: { race: Race }) {
     const allValues = players.flatMap((player) =>
         valuesOf(player, mode).filter((v): v is number => v !== null),
     );
-    const min = Math.min(0, ...allValues);
     const max = Math.max(1, ...allValues);
-    const domain: [number, number] = mode === "rank" ? [1, max] : [min, max];
+    const domain: [number, number] = mode === "rank" ? [1, max] : [0, max];
 
     // Label the line ends from the top down and skip a label that would overlap the one above
     const labeled = new Set<string>();
@@ -189,7 +199,7 @@ export function RaceChart({ race }: { race: Race }) {
     const current = steps[lastStep];
     const caption = (() => {
         const names = joinNames(current.leaders);
-        if (current.leaders.length > 1) return `Gleichstand an der Spitze: ${names}`;
+        if (current.leaders.length === 0) return "Noch niemand in der Rangliste";
         if (lastStep === 0) return `${names} legt vor`;
         if (current.leadChange) return `${names} übernimmt die Führung`;
         return `${names} bleibt vorne`;
@@ -250,16 +260,12 @@ export function RaceChart({ race }: { race: Race }) {
                         <YAxis
                             tickLine={false}
                             axisLine={false}
-                            width={mode === "gap" ? 64 : 44}
+                            width={44}
                             reversed={mode === "rank"}
                             domain={domain}
                             allowDecimals={false}
                             tickFormatter={(value: number) =>
-                                mode === "rank"
-                                    ? `#${value}`
-                                    : mode === "gap" && value === 0
-                                      ? "Führung"
-                                      : `${value}`
+                                mode === "rank" ? `#${value}` : `${value}`
                             }
                         />
                         <ChartTooltip
@@ -273,6 +279,8 @@ export function RaceChart({ race }: { race: Race }) {
                                         player,
                                         value: valuesOf(player, mode)[index],
                                         rank: player.ranks[index],
+                                        form: player.forms[index],
+                                        activity: player.activities[index],
                                     }))
                                     .filter((row) => row.value !== null)
                                     .sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0));
@@ -282,7 +290,7 @@ export function RaceChart({ race }: { race: Race }) {
                                         <p className="font-semibold">
                                             {steps[index].date} · {steps[index].flavor}
                                         </p>
-                                        {shown.map(({ player, value }) => (
+                                        {shown.map(({ player, value, form, activity }) => (
                                             <div
                                                 key={player.key}
                                                 className="flex items-center gap-2"
@@ -297,6 +305,14 @@ export function RaceChart({ race }: { race: Race }) {
                                                 <span className="text-muted-foreground truncate">
                                                     {player.player}
                                                 </span>
+                                                {mode === "score" && form !== null && (
+                                                    <span className="text-muted-foreground ml-auto pl-3 whitespace-nowrap tabular-nums">
+                                                        Form ×{factorFormat.format(form)}
+                                                        {activity !== null &&
+                                                            activity < 1 &&
+                                                            ` · Akt. ×${factorFormat.format(activity)}`}
+                                                    </span>
+                                                )}
                                             </div>
                                         ))}
                                         {rows.length > shown.length && (
