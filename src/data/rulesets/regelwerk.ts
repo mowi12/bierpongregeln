@@ -5,6 +5,15 @@ export const regelwerk: Ruleset = {
     slug: "regelwerk",
     baseRulesetSlug: null, // This is the base ruleset
     sidebarPosition: 1,
+    summary: [
+        "10 Becher pro Team, 2 Würfe pro Runde.",
+        "Getroffene Becher werden erst nach beiden Würfen entfernt.",
+        "<strong>Balls Back:</strong> Beide Würfe treffen → nochmal werfen.",
+        "<strong>Aufsetzer</strong> zählt doppelt, darf aber abgewehrt werden.",
+        "<strong>Bombe:</strong> Beide Bälle im selben Becher → dieser + 2 weitere weg.",
+        "<strong>Konter:</strong> Das zweite Team darf in der letzten Runde ausgleichen, beliebig oft.",
+        "Trinken erst nach den gegnerischen Würfen. Blasen und Fingern verboten.",
+    ],
     sections: [
         {
             id: "vorbereitung",

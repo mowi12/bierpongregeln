@@ -5,6 +5,11 @@ export const gamePigeon: Ruleset = {
     slug: "game-pigeon",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 4,
+    summary: [
+        "Getroffene Becher werden <strong>sofort</strong> entfernt, Bälle nie gleichzeitig werfen.",
+        "Bei 6 und 3 Bechern wird automatisch zusammengestellt.",
+        "<strong>Konter</strong> für beide Teams, aber nur einmal im Spiel → Stechen mit je 3 Bechern.",
+    ],
     sections: [
         {
             id: "allgemeine-regeln",

@@ -5,6 +5,11 @@ export const mehrBaelle: Ruleset = {
     slug: "mehr-baelle",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 6,
+    summary: [
+        "Mit beliebig vielen Bällen: Jeder Ball ist ein Wurf pro Runde.",
+        "Balls Back und Bombe gelten nur, wenn <strong>alle</strong> Bälle treffen.",
+        "Im Teamspiel dürfen alle Bälle gleichzeitig geworfen werden.",
+    ],
     sections: [
         {
             id: "allgemeine-regeln",

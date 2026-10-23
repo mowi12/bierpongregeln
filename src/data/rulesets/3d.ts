@@ -5,6 +5,11 @@ export const dreiD: Ruleset = {
     slug: "3d",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 5,
+    summary: [
+        "10 Becher als 3D-Pyramide (6 – 3 – 1).",
+        "Es fällt immer ein Becher der obersten Ebene weg, egal welcher getroffen wurde.",
+        "Erster Treffer im Spiel auf den obersten Becher → dieser + 2 weitere weg.",
+    ],
     sections: [
         {
             id: "vorbereitung",

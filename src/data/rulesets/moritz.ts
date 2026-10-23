@@ -5,6 +5,12 @@ export const moritz: Ruleset = {
     slug: "moritz",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 1,
+    summary: [
+        "<strong>Dead Cup:</strong> Bleibt ein getroffener Becher stehen und der Gegner trifft ihn → sofort gewonnen.",
+        "<strong>On Fire:</strong> Drei Treffer in Folge (mit „Heating Up“/„On Fire“ rufen) → werfen bis daneben.",
+        "<strong>Island:</strong> Einmal pro Spiel einen alleinstehenden Becher ansagen → Treffer zählt doppelt, andere Becher zählen nicht.",
+        "<strong>Air Ball:</strong> Gefangener Air Ball → nächste Runde einen Ball doppelt werfen.",
+    ],
     sections: [
         {
             id: "spezialregeln",

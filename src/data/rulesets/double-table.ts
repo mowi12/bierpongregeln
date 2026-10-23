@@ -5,6 +5,12 @@ export const doubleTable: Ruleset = {
     slug: "double-table",
     baseRulesetSlug: "regelwerk",
     sidebarPosition: 8,
+    summary: [
+        "Zwei Tische, 20 Becher pro Team (je eine Pyramide pro Tisch).",
+        "Ihr dürft auf beide Tische werfen.",
+        "Zusätzlich entfernte Becher dürfen auch vom anderen Tisch kommen.",
+        "Zusammenstellen geht einmal pro Tisch, nie über beide Tische hinweg.",
+    ],
     sections: [
         {
             id: "vorbereitung",
