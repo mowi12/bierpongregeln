@@ -164,7 +164,7 @@
                         "minItems": 3
                     },
                     "gamesToWin": {
-                        "description": "Number of games a player or team has to play and win to win the tournament",
+                        "description": "Number of games the tournament winner played up to and including the final, wins and losses alike (a 4-1 record is 5 games). For team tournaments, the games of the winning team.",
                         "type": "integer",
                         "minimum": 1
                     }

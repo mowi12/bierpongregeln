@@ -1,3 +1,4 @@
+import { PlayerScoreButton } from "@/components/composites/tournament-results/score-explanation";
 import type { PlayerStanding } from "@/lib/tournament-utils";
 import { cn } from "@/lib/utils";
 
@@ -54,43 +55,45 @@ export function Podium({ standings }: { standings: PlayerStanding[] }) {
                 const place = places[index];
 
                 return (
-                    <li
-                        key={player.player}
-                        className={cn("flex min-w-0 flex-col items-center gap-2", place.order)}
-                    >
-                        <span
-                            aria-hidden="true"
-                            className={cn(
-                                "flex size-13 items-center justify-center rounded-full text-lg font-extrabold lg:size-16 lg:text-[1.375rem]",
-                                place.avatar,
-                            )}
+                    <li key={player.player} className={cn("flex min-w-0", place.order)}>
+                        <PlayerScoreButton
+                            player={player.player}
+                            className="group/podium focus-visible:ring-ring/50 flex w-full min-w-0 cursor-pointer flex-col items-center gap-2 rounded-t-xl outline-none focus-visible:ring-[3px]"
                         >
-                            {getInitials(player.player)}
-                        </span>
-                        <span className="w-full truncate text-center font-bold lg:text-lg">
-                            {player.player}
-                        </span>
-                        <span className="text-muted-foreground -mt-1.5 text-center text-xs tabular-nums lg:text-[0.8125rem]">
-                            <span className="block lg:inline">
-                                Score {scoreFormat.format(player.score)}
+                            <span
+                                aria-hidden="true"
+                                className={cn(
+                                    "flex size-13 items-center justify-center rounded-full text-lg font-extrabold lg:size-16 lg:text-[1.375rem]",
+                                    place.avatar,
+                                )}
+                            >
+                                {getInitials(player.player)}
                             </span>
-                            <span className="hidden lg:inline"> · </span>
-                            <span className="block lg:inline">
-                                {player.firstPlace} {player.firstPlace === 1 ? "Sieg" : "Siege"}
+                            <span className="w-full truncate text-center font-bold underline-offset-4 group-hover/podium:underline lg:text-lg">
+                                {player.player}
                             </span>
-                        </span>
-                        <span
-                            className={cn(
-                                "flex w-full origin-bottom justify-center rounded-t-xl pt-2.5 motion-safe:animate-podium-rise motion-safe:fill-mode-both lg:pt-3.5",
-                                place.block,
-                                place.delay,
-                            )}
-                        >
-                            <span className="text-[1.75rem] leading-none font-extrabold lg:text-[2.5rem]">
-                                <span className="sr-only">Platz </span>
-                                {index + 1}
+                            <span className="text-muted-foreground -mt-1.5 text-center text-xs tabular-nums lg:text-[0.8125rem]">
+                                <span className="block lg:inline">
+                                    Score {scoreFormat.format(player.score)}
+                                </span>
+                                <span className="hidden lg:inline"> · </span>
+                                <span className="block lg:inline">
+                                    {player.firstPlace} {player.firstPlace === 1 ? "Sieg" : "Siege"}
+                                </span>
                             </span>
-                        </span>
+                            <span
+                                className={cn(
+                                    "flex w-full origin-bottom justify-center rounded-t-xl pt-2.5 motion-safe:animate-podium-rise motion-safe:fill-mode-both lg:pt-3.5",
+                                    place.block,
+                                    place.delay,
+                                )}
+                            >
+                                <span className="text-[1.75rem] leading-none font-extrabold lg:text-[2.5rem]">
+                                    <span className="sr-only">Platz </span>
+                                    {index + 1}
+                                </span>
+                            </span>
+                        </PlayerScoreButton>
                     </li>
                 );
             })}

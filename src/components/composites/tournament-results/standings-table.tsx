@@ -15,6 +15,10 @@ import {
 } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import {
+    PlayerScoreButton,
+    useScoreExplanation,
+} from "@/components/composites/tournament-results/score-explanation";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
@@ -26,6 +30,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { type PlayerStanding, QUALIFIED_MIN_PARTICIPATIONS } from "@/lib/tournament-utils";
+import { cn } from "@/lib/utils";
 
 const features = tableFeatures({
     rowSortingFeature,
@@ -100,7 +105,14 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
     {
         accessorKey: "player",
         header: ({ column }) => <SortButton column={column}>Spieler</SortButton>,
-        cell: ({ getValue }) => <span className="font-semibold">{getValue() as string}</span>,
+        cell: ({ getValue }) => (
+            <PlayerScoreButton
+                player={getValue() as string}
+                className="focus-visible:ring-ring/50 -mx-1 cursor-pointer rounded px-1 text-left font-semibold underline-offset-4 outline-none group-hover/row:underline focus-visible:ring-[3px]"
+            >
+                {getValue() as string}
+            </PlayerScoreButton>
+        ),
     },
     {
         accessorKey: "score",
@@ -197,6 +209,7 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
 ];
 
 function RankedTable({ data }: { data: PlayerStanding[] }) {
+    const explanation = useScoreExplanation();
     const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
     const table = useTable({
@@ -232,7 +245,11 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
                 <TableBody>
                     {table.getRowModel().rows.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id} className="group/row">
+                            <TableRow
+                                key={row.id}
+                                className={cn("group/row", explanation && "cursor-pointer")}
+                                onClick={() => explanation?.open(row.original.player)}
+                            >
                                 {row.getAllCells().map((cell) => (
                                     <TableCell
                                         key={cell.id}
@@ -259,6 +276,7 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
 const columnsNoRank = columns.filter((c) => c.id !== "rank");
 
 function UnrankedTable({ data }: { data: PlayerStanding[] }) {
+    const explanation = useScoreExplanation();
     const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
     const table = useTable({
@@ -293,7 +311,11 @@ function UnrankedTable({ data }: { data: PlayerStanding[] }) {
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
-                        <TableRow key={row.id} className="group/row">
+                        <TableRow
+                            key={row.id}
+                            className={cn("group/row", explanation && "cursor-pointer")}
+                            onClick={() => explanation?.open(row.original.player)}
+                        >
                             {row.getAllCells().map((cell) => (
                                 <TableCell
                                     key={cell.id}

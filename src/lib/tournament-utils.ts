@@ -11,7 +11,10 @@ export interface Tournament {
     secondPlace: string[];
     thirdPlace: string[];
     participants: string[];
-    /** Games a player or team has to play and win to take the tournament. */
+    /**
+     * Games the tournament winner played up to and including the final, wins and losses alike
+     * (a 4-1 record is 5 games). For team tournaments, the games of the winning team.
+     */
     gamesToWin: number;
 }
 
@@ -79,8 +82,9 @@ function median(values: number[]): number {
 }
 
 /**
- * Weight of a tournament by how many games it took to win it. Grows logarithmically and is
- * 1.0 for the median tournament of the board, so the reference moves with new tournaments.
+ * Weight of a tournament by how many games the winner played up to and including the final.
+ * Grows logarithmically and is 1.0 for the median tournament of the board, so the reference
+ * moves with new tournaments.
  */
 function tournamentCoefficient(gamesToWin: number, medianGamesToWin: number): number {
     if (medianGamesToWin <= 1 || gamesToWin <= 0) return 1;
