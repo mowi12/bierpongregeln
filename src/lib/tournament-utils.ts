@@ -11,6 +11,8 @@ export interface Tournament {
     secondPlace: string[];
     thirdPlace: string[];
     participants: string[];
+    /** Games a player or team has to play and win to take the tournament. */
+    gamesToWin: number;
 }
 
 export interface Rating {
@@ -26,12 +28,42 @@ export interface PlayerStanding {
     secondPlace: number;
     thirdPlace: number;
     podiumFinishes: number;
-    totalScore: number;
-    winRate: number;
-    pointsPerGame: number;
+    /** Participation points plus podium points weighted by the tournament coefficient. */
+    points: number;
+    /** Points per tournament relative to the average, shrunk toward 1 for few participations. */
+    form: number;
+    /** Deduction for tournaments missed since the last participation (1 = none). */
+    activity: number;
+    /** Final ranking value: `points × form × activity`. */
+    score: number;
 }
 
 export const QUALIFIED_MIN_PARTICIPATIONS = 3;
+
+/**
+ * Parameters of the ranking:
+ *
+ * ```
+ * coefficient = ln(gamesToWin) / ln(median gamesToWin of the board)
+ * points      = Σ participationPoints + Σ rating[place] × coefficient
+ * form        = ((points + shrinkage · avg) / (participations + shrinkage) / avg) ^ formExponent
+ *               avg = points per participation over all players of the board
+ * activity    = inactivityDecay ^ max(0, missed tournaments − inactivityGrace)
+ * score       = points × form × activity
+ * ```
+ */
+export const scoring = {
+    /** Points for every tournament entered. */
+    participationPoints: 1,
+    /** Pseudo-tournaments at the average added to each player's record for the form. */
+    shrinkage: 2,
+    /** How strongly the form moves the score. */
+    formExponent: 0.8,
+    /** Factor per missed tournament once the grace is used up. */
+    inactivityDecay: 0.9,
+    /** Missed tournaments of the board that are not penalised. */
+    inactivityGrace: 2,
+} as const;
 
 export const rating: Rating = tournamentData.rating;
 export const tournaments: Tournament[] = tournamentData.tournaments.map((t, i) => ({
@@ -39,66 +71,93 @@ export const tournaments: Tournament[] = tournamentData.tournaments.map((t, i) =
     ...t,
 }));
 
+function median(values: number[]): number {
+    const sorted = [...values].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+}
+
+/**
+ * Weight of a tournament by how many games it took to win it. Grows logarithmically and is
+ * 1.0 for the median tournament of the board, so the reference moves with new tournaments.
+ */
+function tournamentCoefficient(gamesToWin: number, medianGamesToWin: number): number {
+    if (medianGamesToWin <= 1 || gamesToWin <= 0) return 1;
+    return Math.log(gamesToWin) / Math.log(medianGamesToWin);
+}
+
 function computeStandings(type: TournamentType): PlayerStanding[] {
-    const scores = new Map<string, PlayerStanding>();
+    const events = tournaments
+        .filter((t) => t.type === type)
+        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    if (events.length === 0) return [];
+
+    const medianGamesToWin = median(events.map((t) => t.gamesToWin));
+    const standings = new Map<string, PlayerStanding>();
+    const lastEventIndex = new Map<string, number>();
 
     function ensureEntry(player: string): PlayerStanding {
-        let existing = scores.get(player);
-        if (!existing) {
-            const score = {
+        let entry = standings.get(player);
+        if (!entry) {
+            entry = {
                 player,
                 participations: 0,
                 firstPlace: 0,
                 secondPlace: 0,
                 thirdPlace: 0,
                 podiumFinishes: 0,
-                totalScore: 0,
-                winRate: 0,
-                pointsPerGame: 0,
+                points: 0,
+                form: 1,
+                activity: 1,
+                score: 0,
             };
-
-            scores.set(player, score);
-            existing = score;
+            standings.set(player, entry);
         }
-        return existing;
+        return entry;
     }
 
-    for (const t of tournaments) {
-        if (t.type !== type) continue;
+    events.forEach((t, index) => {
+        const coefficient = tournamentCoefficient(t.gamesToWin, medianGamesToWin);
 
         for (const player of t.participants) {
-            ensureEntry(player).participations++;
+            const entry = ensureEntry(player);
+            entry.participations++;
+            entry.points += scoring.participationPoints;
+            lastEventIndex.set(player, index);
         }
 
-        const addPoints = (
-            players: string[],
-            place: "firstPlace" | "secondPlace" | "thirdPlace",
-        ) => {
-            for (const player of players) {
+        for (const place of ["firstPlace", "secondPlace", "thirdPlace"] as const) {
+            for (const player of t[place]) {
                 const entry = ensureEntry(player);
                 entry[place]++;
-                entry.totalScore += rating[place];
+                entry.points += rating[place] * coefficient;
             }
-        };
+        }
+    });
 
-        addPoints(t.firstPlace, "firstPlace");
-        addPoints(t.secondPlace, "secondPlace");
-        addPoints(t.thirdPlace, "thirdPlace");
-    }
+    const entries = Array.from(standings.values());
+    const totalPoints = entries.reduce((sum, e) => sum + e.points, 0);
+    const totalParticipations = entries.reduce((sum, e) => sum + e.participations, 0);
+    const averagePoints = totalParticipations > 0 ? totalPoints / totalParticipations : 0;
 
-    for (const entry of scores.values()) {
+    for (const entry of entries) {
         entry.podiumFinishes = entry.firstPlace + entry.secondPlace + entry.thirdPlace;
-        entry.winRate = entry.participations > 0 ? entry.firstPlace / entry.participations : 0;
-        entry.pointsPerGame =
-            entry.participations > 0 ? entry.totalScore / entry.participations : 0;
+
+        if (averagePoints > 0) {
+            const shrunkPoints =
+                (entry.points + scoring.shrinkage * averagePoints) /
+                (entry.participations + scoring.shrinkage);
+            entry.form = (shrunkPoints / averagePoints) ** scoring.formExponent;
+        }
+
+        const missed = events.length - 1 - (lastEventIndex.get(entry.player) ?? -1);
+        entry.activity = scoring.inactivityDecay ** Math.max(0, missed - scoring.inactivityGrace);
+        entry.score = entry.points * entry.form * entry.activity;
     }
 
-    return Array.from(scores.values()).sort((a, b) => {
-        if (b.winRate !== a.winRate) return b.winRate - a.winRate;
-        if (b.pointsPerGame !== a.pointsPerGame) return b.pointsPerGame - a.pointsPerGame;
-        if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
-        if (b.firstPlace !== a.firstPlace) return b.firstPlace - a.firstPlace;
-        if (b.podiumFinishes !== a.podiumFinishes) return b.podiumFinishes - a.podiumFinishes;
+    return entries.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        if (b.points !== a.points) return b.points - a.points;
         return b.participations - a.participations;
     });
 }

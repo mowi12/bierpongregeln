@@ -162,6 +162,11 @@
                         },
                         "uniqueItems": true,
                         "minItems": 3
+                    },
+                    "gamesToWin": {
+                        "description": "Number of games a player or team has to play and win to win the tournament",
+                        "type": "integer",
+                        "minimum": 1
                     }
                 },
                 "required": [
@@ -171,7 +176,8 @@
                     "firstPlace",
                     "secondPlace",
                     "thirdPlace",
-                    "participants"
+                    "participants",
+                    "gamesToWin"
                 ],
                 "allOf": [
                     {

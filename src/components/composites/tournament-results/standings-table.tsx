@@ -45,14 +45,17 @@ function stickyColumnClassName(columnId: string, hasRank: boolean): string | und
     return undefined;
 }
 
-const DEFAULT_SORTING: SortingState = [
-    { id: "winRate", desc: true },
-    { id: "pointsPerGame", desc: true },
-    { id: "totalScore", desc: true },
-    { id: "firstPlace", desc: true },
-    { id: "podiumFinishes", desc: true },
-    { id: "participations", desc: true },
-];
+const DEFAULT_SORTING: SortingState = [{ id: "score", desc: true }];
+
+const decimalFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+});
+
+const factorFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+});
 
 function SortButton({
     column,
@@ -100,45 +103,66 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
         cell: ({ getValue }) => <span className="font-semibold">{getValue() as string}</span>,
     },
     {
-        accessorKey: "winRate",
+        accessorKey: "score",
         header: ({ column }) => (
-            <SortButton column={column} title="Siegquote (Siege / Teilnahmen)">
-                Quote
-            </SortButton>
-        ),
-        cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">
-                {((getValue() as number) * 100).toFixed(1)}%
-            </span>
-        ),
-        sortFn: "basic",
-    },
-    {
-        accessorKey: "pointsPerGame",
-        header: ({ column }) => (
-            <SortButton column={column} title="Punkte pro Teilnahme">
-                P/TN
-            </SortButton>
-        ),
-        cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">
-                {(getValue() as number).toFixed(1)}
-            </span>
-        ),
-        sortFn: "basic",
-    },
-    {
-        accessorKey: "totalScore",
-        header: ({ column }) => (
-            <SortButton column={column} title="Gesamtpunkte">
-                Punkte
+            <SortButton column={column} title="Wertung: Punkte × Form × Aktivität">
+                Score
             </SortButton>
         ),
         cell: ({ getValue }) => (
             <span className="block text-center font-extrabold tabular-nums">
-                {getValue() as number}
+                {decimalFormat.format(getValue() as number)}
             </span>
         ),
+        sortFn: "basic",
+    },
+    {
+        accessorKey: "points",
+        header: ({ column }) => (
+            <SortButton
+                column={column}
+                title="Teilnahmepunkte plus Podestpunkte × Turnierkoeffizient"
+            >
+                Punkte
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">
+                {decimalFormat.format(getValue() as number)}
+            </span>
+        ),
+        sortFn: "basic",
+    },
+    {
+        accessorKey: "form",
+        header: ({ column }) => (
+            <SortButton
+                column={column}
+                title="Punkte pro Turnier im Vergleich zum Durchschnitt (über 1 = besser)"
+            >
+                Form
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">
+                ×{factorFormat.format(getValue() as number)}
+            </span>
+        ),
+        sortFn: "basic",
+    },
+    {
+        accessorKey: "activity",
+        header: ({ column }) => (
+            <SortButton column={column} title="Abzug für verpasste Turniere (×1,00 = kein Abzug)">
+                Aktivität
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">
+                ×{factorFormat.format(getValue() as number)}
+            </span>
+        ),
+        sortFn: "basic",
     },
     {
         accessorKey: "firstPlace",
@@ -183,7 +207,6 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
         data,
         columns,
         onSortingChange: setSorting,
-        enableMultiSort: true,
         state: { sorting },
     });
 
@@ -239,7 +262,7 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
 const columnsNoRank = columns.filter((c) => c.id !== "rank");
 
 function UnrankedTable({ data }: { data: PlayerStanding[] }) {
-    const [sorting, setSorting] = useState<SortingState>([{ id: "totalScore", desc: true }]);
+    const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
     const table = useTable({
         features,

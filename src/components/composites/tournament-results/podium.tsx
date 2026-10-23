@@ -1,9 +1,9 @@
 import type { PlayerStanding } from "@/lib/tournament-utils";
 import { cn } from "@/lib/utils";
 
-const percentFormat = new Intl.NumberFormat("de-DE", {
-    style: "percent",
-    maximumFractionDigits: 0,
+const scoreFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
 });
 
 const places = [
@@ -72,10 +72,12 @@ export function Podium({ standings }: { standings: PlayerStanding[] }) {
                         </span>
                         <span className="text-muted-foreground -mt-1.5 text-center text-xs tabular-nums lg:text-[0.8125rem]">
                             <span className="block lg:inline">
-                                Quote {percentFormat.format(player.winRate)}
+                                Score {scoreFormat.format(player.score)}
                             </span>
                             <span className="hidden lg:inline"> · </span>
-                            <span className="block lg:inline">{player.totalScore} Pkt.</span>
+                            <span className="block lg:inline">
+                                {player.firstPlace} {player.firstPlace === 1 ? "Sieg" : "Siege"}
+                            </span>
                         </span>
                         <span
                             className={cn(

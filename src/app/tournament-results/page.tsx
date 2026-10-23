@@ -13,6 +13,7 @@ import {
     getTeamStandings,
     type PlayerStanding,
     rating,
+    scoring,
     type TournamentType,
     tournaments,
 } from "@/lib/tournament-utils";
@@ -50,10 +51,26 @@ function StandingsPanel({
                         <RatingCard points={rating.secondPlace} place={2} />
                         <RatingCard points={rating.thirdPlace} place={3} />
                     </div>
-                    <p className="text-muted-foreground ml-1 text-[0.8125rem]">
-                        Die Gesamtpunktzahl eines Spielers ergibt sich aus der Summe der Punkte
-                        aller Turniere, an denen er auf einem der drei Podestplätze gelandet ist.
-                    </p>
+                    <div className="text-muted-foreground ml-1 flex flex-col gap-2 text-[0.8125rem]">
+                        <p>
+                            Podestpunkte werden mit dem Turnierkoeffizienten multipliziert: Je mehr
+                            Spiele bis zum Sieg nötig sind, desto mehr zählt das Turnier
+                            (logarithmisch, ein durchschnittliches Turnier zählt 1,0×). Dazu kommt{" "}
+                            {scoring.participationPoints} Punkt pro Teilnahme.
+                        </p>
+                        <p>Gerankt wird nach dem Score = Punkte × Form × Aktivität.</p>
+                        <p>
+                            <span className="text-foreground font-semibold">Form</span> vergleicht
+                            die Punkte pro Turnier mit dem Durchschnitt. Bei wenigen Teilnahmen wird
+                            sie zum Durchschnitt hin gezogen, damit ein einzelner Glückstreffer
+                            nicht überbewertet wird.
+                        </p>
+                        <p>
+                            <span className="text-foreground font-semibold">Aktivität</span> zieht
+                            für jedes verpasste Turnier nach den ersten {scoring.inactivityGrace}{" "}
+                            jeweils {Math.round((1 - scoring.inactivityDecay) * 100)}&nbsp;% ab.
+                        </p>
+                    </div>
                 </section>
                 <section className="hidden flex-col gap-3 lg:flex">
                     <SectionLabel className="ml-1">Letzte Turniere</SectionLabel>
@@ -73,7 +90,7 @@ export default function TournamentResultsPage() {
         <Tabs defaultValue="team" className="gap-0">
             <PageHeader
                 title="Ergebnisse"
-                description="Punkte aus allen Turnieren mit Podestplatz."
+                description="Wertung aus Podestplätzen, Turnierlänge, Form und Aktivität."
                 actions={
                     <TabsList aria-label="Rangliste wählen" className="w-full sm:w-72">
                         <TabsTrigger value="team">Team</TabsTrigger>
@@ -86,12 +103,12 @@ export default function TournamentResultsPage() {
                 <StandingsPanel
                     value="team"
                     standings={getTeamStandings()}
-                    description="Gesamtpunktzahl aller Spieler aus Team-Turnieren."
+                    description="Wertung aller Spieler aus Team-Turnieren."
                 />
                 <StandingsPanel
                     value="single"
                     standings={getSingleStandings()}
-                    description="Gesamtpunktzahl aller Spieler aus Einzel-Turnieren."
+                    description="Wertung aller Spieler aus Einzel-Turnieren."
                 />
             </div>
 
