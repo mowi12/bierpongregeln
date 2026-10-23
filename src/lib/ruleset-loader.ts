@@ -1,5 +1,10 @@
 import { klona } from "klona";
-import type { Article, Ruleset, Section } from "@/components/types/ruleset.types";
+import {
+    type Article,
+    isSection,
+    type Ruleset,
+    type Section,
+} from "@/components/types/ruleset.types";
 
 const rulesetData = {
     // Base Ruleset
@@ -62,6 +67,23 @@ function mergeRulesets(base: Ruleset, flavor: Ruleset): Ruleset {
     return merged;
 }
 
+/**
+ * Drops articles without paragraphs and sections left without content. Flavors remove a base
+ * article by overriding it with no paragraphs, so it must not be rendered, numbered or listed.
+ */
+function removeEmptyItems(ruleset: Ruleset): Ruleset {
+    const prune = <T extends Section | Article>(items: T[]): T[] =>
+        items.flatMap((item) => {
+            if (isSection(item)) {
+                const content = prune(item.content);
+                return content.length > 0 ? [{ ...item, content }] : [];
+            }
+            return item.paragraphs.length > 0 ? [item] : [];
+        });
+
+    return { ...ruleset, sections: prune(ruleset.sections) };
+}
+
 export async function getMergedRuleset(slug: string): Promise<Ruleset | null> {
     if (!(slug in rulesetData)) {
         return null;
@@ -71,7 +93,7 @@ export async function getMergedRuleset(slug: string): Promise<Ruleset | null> {
 
     if (!flavorData.baseRulesetSlug) {
         // This is the base ruleset itself
-        return flavorData;
+        return removeEmptyItems(flavorData);
     }
 
     const baseData = await rulesetData[flavorData.baseRulesetSlug as RulesetSlug]();
@@ -81,5 +103,5 @@ export async function getMergedRuleset(slug: string): Promise<Ruleset | null> {
         );
     }
 
-    return mergeRulesets(baseData, flavorData);
+    return removeEmptyItems(mergeRulesets(baseData, flavorData));
 }
