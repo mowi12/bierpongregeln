@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/composites/page-header";
 import { SectionLabel } from "@/components/composites/section-label";
+import { ParticipationChart } from "@/components/composites/tournament-stats/participation-chart";
 import { RecordCards } from "@/components/composites/tournament-stats/record-cards";
 import { StatTiles } from "@/components/composites/tournament-stats/stat-tiles";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getOverview, getRecords } from "@/lib/tournament-stats";
+import { getOverview, getParticipation, getRecords } from "@/lib/tournament-stats";
 import { QUALIFIED_MIN_PARTICIPATIONS, type TournamentType } from "@/lib/tournament-utils";
 
 export const metadata: Metadata = {
@@ -18,6 +19,15 @@ function StatsPanel({ value }: { value: TournamentType }) {
     return (
         <TabsContent value={value} className="flex flex-col gap-10 lg:gap-14">
             <StatTiles overview={getOverview(value)} />
+            <section className="flex flex-col gap-3">
+                <div className="ml-1">
+                    <SectionLabel>Teilnehmer pro Turnier</SectionLabel>
+                    <p className="text-muted-foreground mt-1 text-[0.8125rem]">
+                        Neu dabei heißt: erstes Turnier überhaupt, egal ob Team oder Einzel.
+                    </p>
+                </div>
+                <ParticipationChart data={getParticipation(value)} />
+            </section>
             <section className="flex flex-col gap-3">
                 <SectionLabel className="ml-1">Rekorde</SectionLabel>
                 <RecordCards records={getRecords(value, QUALIFIED_MIN_PARTICIPATIONS)} />
