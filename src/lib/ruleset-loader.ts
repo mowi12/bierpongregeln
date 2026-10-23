@@ -30,6 +30,8 @@ function mergeRulesets(base: Ruleset, flavor: Ruleset): Ruleset {
     merged.baseRulesetSlug = flavor.baseRulesetSlug;
     merged.sidebarPosition = flavor.sidebarPosition;
     merged.combinations = flavor.combinations;
+    // Each ruleset has its own summary, so the base summary must not leak into flavors
+    merged.summary = flavor.summary;
 
     const mergeContent = (
         baseContent: (Section | Article)[],

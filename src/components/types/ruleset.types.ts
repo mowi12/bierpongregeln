@@ -64,6 +64,9 @@ export type Ruleset = {
     // The slug of the ruleset this one extends. 'null' for the base ruleset.
     baseRulesetSlug: string | null;
     sidebarPosition: number;
+    // Short list of the most important rules, shown at the top of the page. For flavors, only the
+    // differences to the base ruleset. Supports the same markup as a Paragraph.
+    summary?: string[];
     sections: Section[];
     combinations: CombinationRule[];
 };
