@@ -20,7 +20,31 @@ export const DEFAULT_PARAMS: ScoringParams = {
     recencyHalfLife: 8,
 };
 
+/** The configuration agreed for the official leaderboard. */
+export const FINAL_PARAMS: ScoringParams = {
+    ...DEFAULT_PARAMS,
+    participationPoint: 1,
+    podiumWeight: 1,
+    coefficientShape: "log",
+    shrinkage: 2,
+    efficiencyExponent: 0.8,
+    inactivityMode: "cliff",
+    inactivityUnit: "tournaments",
+    decayBase: 0.9,
+    decayGrace: 2,
+    decayScope: "full",
+};
+
 export const SCORING_VARIANTS: ScoringVariant[] = [
+    {
+        id: "final",
+        name: "Final",
+        description:
+            "The agreed configuration: log games-to-win coefficient, shrinkage 2, efficiency " +
+            "exponent 0.8, 1 point per appearance, podium points 15/8/3, and a cliff decay of " +
+            "0.9 per tournament after 2 missed, applied to the whole score.",
+        params: FINAL_PARAMS,
+    },
     {
         id: "v-a",
         name: "V-A · Difficulty-light",

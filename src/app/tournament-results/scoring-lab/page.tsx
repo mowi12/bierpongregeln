@@ -11,9 +11,9 @@ import {
     type CoefficientShape,
     computeEventValues,
     computeSystemB,
-    DEFAULT_PARAMS,
     type DecayScope,
     evaluateExpectations,
+    FINAL_PARAMS,
     type InactivityMode,
     type InactivityUnit,
     PODIUM_POINTS,
@@ -121,7 +121,7 @@ function Slider({
 }
 
 export default function ScoringLabPage() {
-    const [params, setParams] = useState<ScoringParams>(DEFAULT_PARAMS);
+    const [params, setParams] = useState<ScoringParams>(FINAL_PARAMS);
     const [board, setBoard] = useState<TournamentType>("team");
 
     const set = <K extends keyof ScoringParams>(key: K) => {
@@ -210,10 +210,10 @@ Inakt   = Decay-Basis ^ max(0, verpasste Einheiten − Karenz)   (nur Cliff)
 Score   = gealterte Basis × Eff`}
                     </pre>
                     <p>
-                        Fixiert nach dem Sensitivitäts-Test: Wurzel-Koeffizient, Shrinkage&nbsp;2,
-                        Effizienz-Exponent&nbsp;0,8. Offen zum Justieren: Teilnahmepunkt,
-                        Podestgewicht und die Alterung alter Ergebnisse (Cliff-Decay oder
-                        Recency-Halbwertszeit, in Turnieren oder Monaten).
+                        Vereinbarte Final-Konfiguration: logarithmischer Koeffizient,
+                        Shrinkage&nbsp;2, Effizienz-Exponent&nbsp;0,8, Teilnahmepunkt&nbsp;1,
+                        Podestgewicht&nbsp;1 (15/8/3), Cliff-Decay&nbsp;0,9 nach 2 verpassten
+                        Turnieren auf den ganzen Score. Die übrigen Varianten bleiben zum Vergleich.
                     </p>
                 </CollapsibleContent>
             </Collapsible>

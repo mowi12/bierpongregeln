@@ -17,4 +17,4 @@ export type {
     ScoringVariant,
     TournamentType,
 } from "./types";
-export { DEFAULT_PARAMS, SCORING_VARIANTS } from "./variants";
+export { DEFAULT_PARAMS, FINAL_PARAMS, SCORING_VARIANTS } from "./variants";

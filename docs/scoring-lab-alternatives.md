@@ -108,4 +108,9 @@ vs one) now, and leave the rest.
   with a Cliff-Decay / Recency-Halbwertszeit mode switch, a Turniere / Monate unit switch,
   and — in cliff mode — a "ganzer Score / nur Podest" scope switch. Cliff + tournaments +
   full is the default and reproduces the previous behaviour exactly.
-- **4–6 still open.**
+- **Final configuration agreed** (2026-10-23), available as the "Final" preset in the lab:
+  log games-to-win coefficient, shrinkage 2, efficiency exponent 0.8, participation point 1,
+  podium weight 1 (15/8/3), cliff decay 0.9 after 2 missed tournaments on the whole score.
+- **4 decided: no fixed anchor.** The coefficient stays normalised to the board's median
+  games to win and may shift as new tournaments are added.
+- **5–6 still open.**
