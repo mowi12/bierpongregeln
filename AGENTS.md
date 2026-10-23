@@ -68,6 +68,8 @@ The design tokens live in `src/app/globals.css`. In short:
 
 The base ruleset is `regelwerk`. All other flavors extend it via `baseRulesetSlug`. `getMergedRuleset(slug)` in `ruleset-loader.ts` handles the merge. Available slugs: `regelwerk`, `moritz`, `felix`, `marcel`, `game-pigeon`, `3d`, `mehr-baelle`, `sniper`, `double-table`.
 
+Each ruleset can have a `summary`: a few short bullets shown in the "Kurz erklärt" card at the top of its page. It is not inherited, so flavors list only their differences to the base ruleset. Bullets use the same markup as paragraphs (e.g. `<strong>` for keywords).
+
 ## What Requires Approval
 
 - Pushing to remote
