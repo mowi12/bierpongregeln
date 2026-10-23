@@ -138,10 +138,14 @@ const PLACES = [
     ["thirdPlace", 3],
 ] as const;
 
-function computeBoard(type: TournamentType): BoardScoring {
-    const events = tournaments
-        .filter((t) => t.type === type)
-        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+/**
+ * Scores the given tournaments of one board as if they were all that had been played. The
+ * median, the average and the missed days are taken from this list only.
+ */
+export function computeBoard(list: Tournament[]): BoardScoring {
+    const events = [...list].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
     if (events.length === 0) {
         return {
             standings: [],
@@ -266,7 +270,7 @@ const boardCache = new Map<TournamentType, BoardScoring>();
 export function getBoardScoring(type: TournamentType): BoardScoring {
     let board = boardCache.get(type);
     if (!board) {
-        board = computeBoard(type);
+        board = computeBoard(tournaments.filter((t) => t.type === type));
         boardCache.set(type, board);
     }
     return board;

@@ -1,3 +1,5 @@
+import { ChartLine } from "lucide-react";
+import Link from "next/link";
 import { PageHeader } from "@/components/composites/page-header";
 import { SectionLabel } from "@/components/composites/section-label";
 import { Podium } from "@/components/composites/tournament-results/podium";
@@ -9,6 +11,7 @@ import {
 } from "@/components/composites/tournament-results/score-explanation";
 import { StandingsTable } from "@/components/composites/tournament-results/standings-table";
 import { TournamentsTable } from "@/components/composites/tournament-results/tournaments-table";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     getBoardScoring,
@@ -38,11 +41,19 @@ function StandingsPanel({ value, description }: { value: TournamentType; descrip
                 <div className="flex min-w-0 flex-col gap-6">
                     <Podium standings={getQualifiedStandings(standings)} />
                     <section className="flex flex-col gap-3">
-                        <div className="ml-1">
-                            <SectionLabel>Rangliste</SectionLabel>
-                            <p className="text-muted-foreground mt-1 text-[0.8125rem]">
-                                {description}
-                            </p>
+                        <div className="ml-1 flex items-center justify-between gap-3">
+                            <div>
+                                <SectionLabel>Rangliste</SectionLabel>
+                                <p className="text-muted-foreground mt-1 text-[0.8125rem]">
+                                    {description}
+                                </p>
+                            </div>
+                            <Button asChild variant="outline" className="shrink-0">
+                                <Link href="/tournament-results/statistics">
+                                    <ChartLine aria-hidden="true" />
+                                    Statistiken
+                                </Link>
+                            </Button>
                         </div>
                         <StandingsTable data={standings} />
                     </section>

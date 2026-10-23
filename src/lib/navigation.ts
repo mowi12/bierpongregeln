@@ -70,7 +70,7 @@ export const navigationItems: NavItem[] = [
         shortTitle: "Ergebnisse",
         url: "/tournament-results",
         icon: Trophy,
-        match: (pathname) => pathname === "/tournament-results",
+        match: (pathname) => pathname.startsWith("/tournament-results"),
     },
     {
         title: "Turniermodus Generator",

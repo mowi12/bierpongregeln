@@ -23,6 +23,7 @@ src/
     flavor/[slug]/      # Dynamic ruleset pages (server-rendered articles + client islands)
     tournament-generator/
     tournament-results/
+      statistics/       # Statistics page: key figures, race chart, participants, records
     coming-soon/
     globals.css         # Design tokens (light/dark), type scale, keyframes, base styles
   components/
@@ -30,6 +31,7 @@ src/
     composites/         # App-specific composed components
       rules/            # Rule articles, TOC, section chips, search + scroll-spy islands
       tournament-results/
+      tournament-stats/ # Stat tiles, race and participants charts (Recharts), record cards
       tournament-generator/
     types/              # Shared TypeScript types (ruleset.types.ts)
   lib/
@@ -39,6 +41,7 @@ src/
     search.ts           # Search text normalization (umlauts, accents)
     theme.ts            # Theme init script + toggle helpers
     tournament-utils.ts # Ranking (score calculation) and tournament helpers
+    tournament-stats.ts # Key figures, race and records computed from the tournament data
     utils.ts            # cn() helper
   data/
     rulesets/           # One file per ruleset (regelwerk, moritz, felix, …)
@@ -63,6 +66,7 @@ The design tokens live in `src/app/globals.css`. In short:
 - **Theme**: inline script in `<head>` (`lib/theme.ts`) applies `.dark` before paint; `ThemeToggle` persists the choice in `localStorage`.
 - **Layout**: mobile first; bottom tab bar below `md`, sticky header from `md`, sidebars from `lg`. Touch targets ≥ 44 px.
 - **Motion**: Tailwind transitions and `tw-animate-css`, wrapped in `motion-safe:`; reduced motion is respected globally.
+- **Charts**: Recharts via `ui/chart.tsx`. Series colors are `--chart-1` to `--chart-5` in this fixed order, validated for color blindness in light and dark mode; brand teal and coral are not chart colors.
 
 ## Rulesets
 
@@ -86,6 +90,8 @@ The ranking is computed per board (team, single) by `getBoardScoring()` in `tour
 - **Score** = points × form × activity. Players with fewer than `QUALIFIED_MIN_PARTICIPATIONS` (3) participations are listed but not ranked.
 
 The "Berechnung im Detail" dialog (`components/composites/tournament-results/score-explanation.tsx`) shows the formulas and a per-player breakdown. It reads its numbers from the same calculation, so parameter changes need no text changes there.
+
+The statistics page (`/tournament-results/statistics`) gets its data from `lib/tournament-stats.ts`. The race ranks the players of the final ranking after every tournament with `computeBoard()` on the tournaments played so far, so it follows any change to the score and its last step always matches the results page. The records only use places, participants and `gamesToWin`, not the score.
 
 ## What Requires Approval
 
