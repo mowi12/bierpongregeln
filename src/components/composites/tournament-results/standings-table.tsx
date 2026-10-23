@@ -15,6 +15,10 @@ import {
 } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import {
+    PlayerScoreButton,
+    useScoreExplanation,
+} from "@/components/composites/tournament-results/score-explanation";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
@@ -26,6 +30,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { type PlayerStanding, QUALIFIED_MIN_PARTICIPATIONS } from "@/lib/tournament-utils";
+import { cn } from "@/lib/utils";
 
 const features = tableFeatures({
     rowSortingFeature,
@@ -45,14 +50,17 @@ function stickyColumnClassName(columnId: string, hasRank: boolean): string | und
     return undefined;
 }
 
-const DEFAULT_SORTING: SortingState = [
-    { id: "winRate", desc: true },
-    { id: "pointsPerGame", desc: true },
-    { id: "totalScore", desc: true },
-    { id: "firstPlace", desc: true },
-    { id: "podiumFinishes", desc: true },
-    { id: "participations", desc: true },
-];
+const DEFAULT_SORTING: SortingState = [{ id: "score", desc: true }];
+
+const decimalFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+});
+
+const factorFormat = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+});
 
 function SortButton({
     column,
@@ -97,70 +105,95 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
     {
         accessorKey: "player",
         header: ({ column }) => <SortButton column={column}>Spieler</SortButton>,
-        cell: ({ getValue }) => <span className="font-semibold">{getValue() as string}</span>,
-    },
-    {
-        accessorKey: "winRate",
-        header: ({ column }) => (
-            <SortButton column={column} title="Siegquote (Siege / Teilnahmen)">
-                Quote
-            </SortButton>
-        ),
         cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">
-                {((getValue() as number) * 100).toFixed(1)}%
-            </span>
+            <PlayerScoreButton
+                player={getValue() as string}
+                className="focus-visible:ring-ring/50 -mx-1 cursor-pointer rounded px-1 text-left font-semibold underline-offset-4 outline-none group-hover/row:underline focus-visible:ring-[3px]"
+            >
+                {getValue() as string}
+            </PlayerScoreButton>
         ),
-        sortFn: "basic",
     },
     {
-        accessorKey: "pointsPerGame",
+        accessorKey: "score",
         header: ({ column }) => (
-            <SortButton column={column} title="Punkte pro Teilnahme">
-                P/TN
-            </SortButton>
-        ),
-        cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">
-                {(getValue() as number).toFixed(1)}
-            </span>
-        ),
-        sortFn: "basic",
-    },
-    {
-        accessorKey: "totalScore",
-        header: ({ column }) => (
-            <SortButton column={column} title="Gesamtpunkte">
-                Punkte
+            <SortButton column={column} title="Wertung: Punkte × Form × Aktivität">
+                Score
             </SortButton>
         ),
         cell: ({ getValue }) => (
             <span className="block text-center font-extrabold tabular-nums">
-                {getValue() as number}
+                {decimalFormat.format(getValue() as number)}
             </span>
         ),
+        sortFn: "basic",
     },
     {
-        accessorKey: "firstPlace",
+        accessorKey: "points",
         header: ({ column }) => (
-            <SortButton column={column} title="Siege (1. Platz)">
-                Siege
+            <SortButton
+                column={column}
+                title="Teilnahmepunkte plus Podestpunkte × Turnierkoeffizient"
+            >
+                Punkte
             </SortButton>
         ),
         cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">{getValue() as number}</span>
+            <span className="block text-center tabular-nums">
+                {decimalFormat.format(getValue() as number)}
+            </span>
         ),
+        sortFn: "basic",
     },
     {
-        accessorKey: "podiumFinishes",
+        accessorKey: "form",
         header: ({ column }) => (
-            <SortButton column={column} title="Podestplätze (Plätze 1–3)">
-                Podest
+            <SortButton
+                column={column}
+                title="Punkte pro Turnier im Vergleich zum Durchschnitt (über 1 = besser)"
+            >
+                Form
             </SortButton>
         ),
         cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">{getValue() as number}</span>
+            <span className="block text-center tabular-nums">
+                ×{factorFormat.format(getValue() as number)}
+            </span>
         ),
+        sortFn: "basic",
+    },
+    {
+        accessorKey: "activity",
+        header: ({ column }) => (
+            <SortButton
+                column={column}
+                title="Abzug für verpasste Turniertage (×1,00 = kein Abzug)"
+            >
+                Aktivität
+            </SortButton>
+        ),
+        cell: ({ getValue }) => (
+            <span className="block text-center tabular-nums">
+                ×{factorFormat.format(getValue() as number)}
+            </span>
+        ),
+        sortFn: "basic",
+    },
+    {
+        id: "placements",
+        // Sorts by wins, then 2nd places, then 3rd places.
+        accessorFn: (row) => row.firstPlace * 10_000 + row.secondPlace * 100 + row.thirdPlace,
+        header: ({ column }) => (
+            <SortButton column={column} title="Platzierungen: 1. / 2. / 3. Plätze">
+                1/2/3
+            </SortButton>
+        ),
+        cell: ({ row }) => (
+            <span className="block text-center whitespace-nowrap tabular-nums">
+                {row.original.firstPlace}/{row.original.secondPlace}/{row.original.thirdPlace}
+            </span>
+        ),
+        sortFn: "basic",
     },
     {
         accessorKey: "participations",
@@ -176,6 +209,7 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
 ];
 
 function RankedTable({ data }: { data: PlayerStanding[] }) {
+    const explanation = useScoreExplanation();
     const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
     const table = useTable({
@@ -183,7 +217,6 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
         data,
         columns,
         onSortingChange: setSorting,
-        enableMultiSort: true,
         state: { sorting },
     });
 
@@ -212,7 +245,11 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
                 <TableBody>
                     {table.getRowModel().rows.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id} className="group/row">
+                            <TableRow
+                                key={row.id}
+                                className={cn("group/row", explanation && "cursor-pointer")}
+                                onClick={() => explanation?.open(row.original.player)}
+                            >
                                 {row.getAllCells().map((cell) => (
                                     <TableCell
                                         key={cell.id}
@@ -239,7 +276,8 @@ function RankedTable({ data }: { data: PlayerStanding[] }) {
 const columnsNoRank = columns.filter((c) => c.id !== "rank");
 
 function UnrankedTable({ data }: { data: PlayerStanding[] }) {
-    const [sorting, setSorting] = useState<SortingState>([{ id: "totalScore", desc: true }]);
+    const explanation = useScoreExplanation();
+    const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING);
 
     const table = useTable({
         features,
@@ -273,7 +311,11 @@ function UnrankedTable({ data }: { data: PlayerStanding[] }) {
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
-                        <TableRow key={row.id} className="group/row">
+                        <TableRow
+                            key={row.id}
+                            className={cn("group/row", explanation && "cursor-pointer")}
+                            onClick={() => explanation?.open(row.original.player)}
+                        >
                             {row.getAllCells().map((cell) => (
                                 <TableCell
                                     key={cell.id}

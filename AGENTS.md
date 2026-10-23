@@ -38,7 +38,7 @@ src/
     ruleset-view.ts     # Reference map, TOC and search text for rendering rulesets
     search.ts           # Search text normalization (umlauts, accents)
     theme.ts            # Theme init script + toggle helpers
-    tournament-utils.ts # Standings and tournament helpers
+    tournament-utils.ts # Ranking (score calculation) and tournament helpers
     utils.ts            # cn() helper
   data/
     rulesets/           # One file per ruleset (regelwerk, moritz, felix, …)
@@ -69,6 +69,23 @@ The design tokens live in `src/app/globals.css`. In short:
 The base ruleset is `regelwerk`. All other flavors extend it via `baseRulesetSlug`. `getMergedRuleset(slug)` in `ruleset-loader.ts` handles the merge. Available slugs: `regelwerk`, `moritz`, `felix`, `marcel`, `game-pigeon`, `3d`, `mehr-baelle`, `sniper`, `double-table`.
 
 Each ruleset can have a `summary`: a few short bullets shown in the "Kurz erklärt" card at the top of its page. It is not inherited, so flavors list only their differences to the base ruleset. Bullets use the same markup as paragraphs (e.g. `<strong>` for keywords).
+
+## Tournament Results
+
+Results live in `tournaments.json` (schema: `tournaments.schema.json`), sorted by date. `pnpm run data-consistency-check` runs in CI and checks that placed names are participants, `gamesToWin` is a whole number ≥ 1, nobody holds two podium places in one tournament, each place has 1 name (single) or 1–2 names (team), and dates are valid, sorted and not in the future.
+
+Each tournament has `date`, `flavor`, `type` (`single` or `team`), `gamesToWin`, `firstPlace`, `secondPlace`, `thirdPlace` and `participants`. Every placed name must also be listed in `participants`. In team tournaments, list both players of a placed team; each gets the full points.
+
+`gamesToWin` is the number of games the tournament winner played up to and including the final, wins and losses alike (a 4-1 record is 5 games). For team tournaments, count the winning team's games.
+
+The ranking is computed per board (team, single) by `getBoardScoring()` in `tournament-utils.ts`; all parameters are in its `scoring` object:
+
+- **Points**: 1 per participation plus podium points (`rating`: 15/8/3) × tournament coefficient. The coefficient is `ln(gamesToWin) / ln(median gamesToWin of the board)`, so the median tournament counts 1.0× and the reference moves as tournaments are added.
+- **Form**: points per participation compared with the board average, with 2 average tournaments added to every player (shrinkage) and an exponent of 0.8.
+- **Activity**: 0.9 per missed tournament day after the first 2; several tournaments on one date count as one day.
+- **Score** = points × form × activity. Players with fewer than `QUALIFIED_MIN_PARTICIPATIONS` (3) participations are listed but not ranked.
+
+The "Berechnung im Detail" dialog (`components/composites/tournament-results/score-explanation.tsx`) shows the formulas and a per-player breakdown. It reads its numbers from the same calculation, so parameter changes need no text changes there.
 
 ## What Requires Approval
 

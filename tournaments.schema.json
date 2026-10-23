@@ -162,6 +162,11 @@
                         },
                         "uniqueItems": true,
                         "minItems": 3
+                    },
+                    "gamesToWin": {
+                        "description": "Number of games the tournament winner played up to and including the final, wins and losses alike (a 4-1 record is 5 games). For team tournaments, the games of the winning team.",
+                        "type": "integer",
+                        "minimum": 1
                     }
                 },
                 "required": [
@@ -171,7 +176,8 @@
                     "firstPlace",
                     "secondPlace",
                     "thirdPlace",
-                    "participants"
+                    "participants",
+                    "gamesToWin"
                 ],
                 "allOf": [
                     {
