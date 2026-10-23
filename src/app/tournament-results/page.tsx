@@ -67,8 +67,10 @@ function StandingsPanel({
                         </p>
                         <p>
                             <span className="text-foreground font-semibold">Aktivität</span> zieht
-                            für jedes verpasste Turnier nach den ersten {scoring.inactivityGrace}{" "}
-                            jeweils {Math.round((1 - scoring.inactivityDecay) * 100)}&nbsp;% ab.
+                            für jeden verpassten Turniertag nach den ersten{" "}
+                            {scoring.inactivityGrace} jeweils{" "}
+                            {Math.round((1 - scoring.inactivityDecay) * 100)}&nbsp;% ab. Mehrere
+                            Turniere am selben Tag zählen als ein Tag.
                         </p>
                     </div>
                 </section>

@@ -153,7 +153,10 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
     {
         accessorKey: "activity",
         header: ({ column }) => (
-            <SortButton column={column} title="Abzug für verpasste Turniere (×1,00 = kein Abzug)">
+            <SortButton
+                column={column}
+                title="Abzug für verpasste Turniertage (×1,00 = kein Abzug)"
+            >
                 Aktivität
             </SortButton>
         ),

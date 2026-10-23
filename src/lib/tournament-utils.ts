@@ -32,7 +32,7 @@ export interface PlayerStanding {
     points: number;
     /** Points per tournament relative to the average, shrunk toward 1 for few participations. */
     form: number;
-    /** Deduction for tournaments missed since the last participation (1 = none). */
+    /** Deduction for tournament days missed since the last participation (1 = none). */
     activity: number;
     /** Final ranking value: `points × form × activity`. */
     score: number;
@@ -48,7 +48,8 @@ export const QUALIFIED_MIN_PARTICIPATIONS = 3;
  * points      = Σ participationPoints + Σ rating[place] × coefficient
  * form        = ((points + shrinkage · avg) / (participations + shrinkage) / avg) ^ formExponent
  *               avg = points per participation over all players of the board
- * activity    = inactivityDecay ^ max(0, missed tournaments − inactivityGrace)
+ * activity    = inactivityDecay ^ max(0, missed tournament days − inactivityGrace)
+ *               (several tournaments on the same date count as one missed day)
  * score       = points × form × activity
  * ```
  */
@@ -59,9 +60,9 @@ export const scoring = {
     shrinkage: 2,
     /** How strongly the form moves the score. */
     formExponent: 0.8,
-    /** Factor per missed tournament once the grace is used up. */
+    /** Factor per missed tournament day once the grace is used up. */
     inactivityDecay: 0.9,
-    /** Missed tournaments of the board that are not penalised. */
+    /** Missed tournament days of the board that are not penalised. */
     inactivityGrace: 2,
 } as const;
 
@@ -93,8 +94,10 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
     if (events.length === 0) return [];
 
     const medianGamesToWin = median(events.map((t) => t.gamesToWin));
+    // Several tournaments on one date count as a single day for the activity deduction.
+    const tournamentDates = [...new Set(events.map((t) => t.date))];
     const standings = new Map<string, PlayerStanding>();
-    const lastEventIndex = new Map<string, number>();
+    const lastParticipationDate = new Map<string, string>();
 
     function ensureEntry(player: string): PlayerStanding {
         let entry = standings.get(player);
@@ -116,14 +119,14 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
         return entry;
     }
 
-    events.forEach((t, index) => {
+    for (const t of events) {
         const coefficient = tournamentCoefficient(t.gamesToWin, medianGamesToWin);
 
         for (const player of t.participants) {
             const entry = ensureEntry(player);
             entry.participations++;
             entry.points += scoring.participationPoints;
-            lastEventIndex.set(player, index);
+            lastParticipationDate.set(player, t.date);
         }
 
         for (const place of ["firstPlace", "secondPlace", "thirdPlace"] as const) {
@@ -133,7 +136,7 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
                 entry.points += rating[place] * coefficient;
             }
         }
-    });
+    }
 
     const entries = Array.from(standings.values());
     const totalPoints = entries.reduce((sum, e) => sum + e.points, 0);
@@ -150,7 +153,8 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
             entry.form = (shrunkPoints / averagePoints) ** scoring.formExponent;
         }
 
-        const missed = events.length - 1 - (lastEventIndex.get(entry.player) ?? -1);
+        const lastDate = lastParticipationDate.get(entry.player) ?? "";
+        const missed = tournamentDates.filter((date) => date > lastDate).length;
         entry.activity = scoring.inactivityDecay ** Math.max(0, missed - scoring.inactivityGrace);
         entry.score = entry.points * entry.form * entry.activity;
     }
