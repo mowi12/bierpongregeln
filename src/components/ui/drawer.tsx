@@ -1,6 +1,5 @@
 "use client";
 
-import { XIcon } from "lucide-react";
 import type * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
@@ -60,10 +59,6 @@ function DrawerContent({
                     className="bg-border mx-auto mt-3 h-1.5 w-10 shrink-0 rounded-full"
                 />
                 {children}
-                <DrawerPrimitive.Close className="hover:bg-accent focus-visible:ring-ring/50 absolute top-3 right-3 flex size-11 items-center justify-center rounded-full opacity-70 transition-[opacity,background-color] hover:opacity-100 focus-visible:ring-[3px] focus-visible:outline-hidden disabled:pointer-events-none">
-                    <XIcon className="size-5" />
-                    <span className="sr-only">Schließen</span>
-                </DrawerPrimitive.Close>
             </DrawerPrimitive.Content>
         </DrawerPortal>
     );
