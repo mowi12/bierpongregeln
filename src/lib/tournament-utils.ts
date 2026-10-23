@@ -87,16 +87,72 @@ function tournamentCoefficient(gamesToWin: number, medianGamesToWin: number): nu
     return Math.log(gamesToWin) / Math.log(medianGamesToWin);
 }
 
-function computeStandings(type: TournamentType): PlayerStanding[] {
+/** One podium finish and the points it earned. */
+export interface PodiumResult {
+    date: string;
+    place: 1 | 2 | 3;
+    /** Podium points before the coefficient (`rating`). */
+    basePoints: number;
+    gamesToWin: number;
+    coefficient: number;
+    /** `basePoints × coefficient`. */
+    points: number;
+}
+
+/** Intermediate values of a player's score, for explaining the calculation. */
+export interface ScoreBreakdown {
+    player: string;
+    participations: number;
+    /** `participations × scoring.participationPoints`. */
+    participationPoints: number;
+    podiums: PodiumResult[];
+    points: number;
+    /** `(points + shrinkage · averagePoints) / (participations + shrinkage)`. */
+    adjustedPointsPerTournament: number;
+    form: number;
+    lastParticipationDate: string;
+    /** Tournament days of the board after the last participation. */
+    missedDays: number;
+    activity: number;
+    score: number;
+}
+
+/** Board-wide values the score depends on. */
+export interface BoardScoring {
+    standings: PlayerStanding[];
+    /** Same order as `standings`. */
+    breakdowns: ScoreBreakdown[];
+    medianGamesToWin: number;
+    /** Points per participation over all players of the board. */
+    averagePoints: number;
+    tournamentDays: number;
+}
+
+const PLACES = [
+    ["firstPlace", 1],
+    ["secondPlace", 2],
+    ["thirdPlace", 3],
+] as const;
+
+function computeBoard(type: TournamentType): BoardScoring {
     const events = tournaments
         .filter((t) => t.type === type)
         .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    if (events.length === 0) return [];
+    if (events.length === 0) {
+        return {
+            standings: [],
+            breakdowns: [],
+            medianGamesToWin: 0,
+            averagePoints: 0,
+            tournamentDays: 0,
+        };
+    }
 
     const medianGamesToWin = median(events.map((t) => t.gamesToWin));
     // Several tournaments on one date count as a single day for the activity deduction.
     const tournamentDates = [...new Set(events.map((t) => t.date))];
     const standings = new Map<string, PlayerStanding>();
+    const podiums = new Map<string, PodiumResult[]>();
     const lastParticipationDate = new Map<string, string>();
 
     function ensureEntry(player: string): PlayerStanding {
@@ -115,6 +171,7 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
                 score: 0,
             };
             standings.set(player, entry);
+            podiums.set(player, []);
         }
         return entry;
     }
@@ -129,11 +186,20 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
             lastParticipationDate.set(player, t.date);
         }
 
-        for (const place of ["firstPlace", "secondPlace", "thirdPlace"] as const) {
+        for (const [place, placeNumber] of PLACES) {
             for (const player of t[place]) {
                 const entry = ensureEntry(player);
+                const points = rating[place] * coefficient;
                 entry[place]++;
-                entry.points += rating[place] * coefficient;
+                entry.points += points;
+                podiums.get(player)?.push({
+                    date: t.date,
+                    place: placeNumber,
+                    basePoints: rating[place],
+                    gamesToWin: t.gamesToWin,
+                    coefficient,
+                    points,
+                });
             }
         }
     }
@@ -142,36 +208,72 @@ function computeStandings(type: TournamentType): PlayerStanding[] {
     const totalPoints = entries.reduce((sum, e) => sum + e.points, 0);
     const totalParticipations = entries.reduce((sum, e) => sum + e.participations, 0);
     const averagePoints = totalParticipations > 0 ? totalPoints / totalParticipations : 0;
+    const breakdowns = new Map<string, ScoreBreakdown>();
 
     for (const entry of entries) {
         entry.podiumFinishes = entry.firstPlace + entry.secondPlace + entry.thirdPlace;
 
+        const adjustedPointsPerTournament =
+            (entry.points + scoring.shrinkage * averagePoints) /
+            (entry.participations + scoring.shrinkage);
         if (averagePoints > 0) {
-            const shrunkPoints =
-                (entry.points + scoring.shrinkage * averagePoints) /
-                (entry.participations + scoring.shrinkage);
-            entry.form = (shrunkPoints / averagePoints) ** scoring.formExponent;
+            entry.form = (adjustedPointsPerTournament / averagePoints) ** scoring.formExponent;
         }
 
         const lastDate = lastParticipationDate.get(entry.player) ?? "";
-        const missed = tournamentDates.filter((date) => date > lastDate).length;
-        entry.activity = scoring.inactivityDecay ** Math.max(0, missed - scoring.inactivityGrace);
+        const missedDays = tournamentDates.filter((date) => date > lastDate).length;
+        entry.activity =
+            scoring.inactivityDecay ** Math.max(0, missedDays - scoring.inactivityGrace);
         entry.score = entry.points * entry.form * entry.activity;
+
+        breakdowns.set(entry.player, {
+            player: entry.player,
+            participations: entry.participations,
+            participationPoints: entry.participations * scoring.participationPoints,
+            podiums: podiums.get(entry.player) ?? [],
+            points: entry.points,
+            adjustedPointsPerTournament,
+            form: entry.form,
+            lastParticipationDate: lastDate,
+            missedDays,
+            activity: entry.activity,
+            score: entry.score,
+        });
     }
 
-    return entries.sort((a, b) => {
+    const sorted = entries.sort((a, b) => {
         if (b.score !== a.score) return b.score - a.score;
         if (b.points !== a.points) return b.points - a.points;
         return b.participations - a.participations;
     });
+
+    return {
+        standings: sorted,
+        breakdowns: sorted.map((e) => breakdowns.get(e.player) as ScoreBreakdown),
+        medianGamesToWin,
+        averagePoints,
+        tournamentDays: tournamentDates.length,
+    };
+}
+
+const boardCache = new Map<TournamentType, BoardScoring>();
+
+/** Standings plus the intermediate values of every player's score. */
+export function getBoardScoring(type: TournamentType): BoardScoring {
+    let board = boardCache.get(type);
+    if (!board) {
+        board = computeBoard(type);
+        boardCache.set(type, board);
+    }
+    return board;
 }
 
 export function getTeamStandings(): PlayerStanding[] {
-    return computeStandings("team");
+    return getBoardScoring("team").standings;
 }
 
 export function getSingleStandings(): PlayerStanding[] {
-    return computeStandings("single");
+    return getBoardScoring("single").standings;
 }
 
 export function formatFlavor(flavor: string | string[]): string {
