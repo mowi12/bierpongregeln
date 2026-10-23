@@ -165,26 +165,20 @@ const columns: ColumnDef<typeof features, PlayerStanding>[] = [
         sortFn: "basic",
     },
     {
-        accessorKey: "firstPlace",
+        id: "placements",
+        // Sorts by wins, then 2nd places, then 3rd places.
+        accessorFn: (row) => row.firstPlace * 10_000 + row.secondPlace * 100 + row.thirdPlace,
         header: ({ column }) => (
-            <SortButton column={column} title="Siege (1. Platz)">
-                Siege
+            <SortButton column={column} title="Platzierungen: 1. / 2. / 3. Plätze">
+                1/2/3
             </SortButton>
         ),
-        cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">{getValue() as number}</span>
+        cell: ({ row }) => (
+            <span className="block text-center whitespace-nowrap tabular-nums">
+                {row.original.firstPlace}/{row.original.secondPlace}/{row.original.thirdPlace}
+            </span>
         ),
-    },
-    {
-        accessorKey: "podiumFinishes",
-        header: ({ column }) => (
-            <SortButton column={column} title="Podestplätze (Plätze 1–3)">
-                Podest
-            </SortButton>
-        ),
-        cell: ({ getValue }) => (
-            <span className="block text-center tabular-nums">{getValue() as number}</span>
-        ),
+        sortFn: "basic",
     },
     {
         accessorKey: "participations",
