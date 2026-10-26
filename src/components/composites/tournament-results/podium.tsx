@@ -1,3 +1,5 @@
+import { Blobatar } from "@blobatar/react";
+import "blobatar/motion.css";
 import { PlayerScoreButton } from "@/components/composites/tournament-results/score-explanation";
 import type { PlayerStanding } from "@/lib/tournament-utils";
 import { cn } from "@/lib/utils";
@@ -11,32 +13,24 @@ const places = [
     {
         // 1st place: center and tallest
         order: "order-2",
-        avatar: "bg-accent text-accent-foreground",
         block: "bg-primary text-primary-foreground h-[7.5rem] lg:h-[9.375rem]",
         delay: "[animation-delay:160ms]",
     },
     {
         order: "order-1",
-        avatar: "bg-coral-soft text-coral-ink",
         block: "bg-coral text-coral-foreground h-[5.75rem] lg:h-[7rem]",
         delay: "[animation-delay:80ms]",
     },
     {
         order: "order-3",
-        avatar: "bg-secondary text-secondary-foreground",
         block: "bg-secondary text-secondary-foreground h-[4.5rem] lg:h-[5.25rem]",
         delay: "[animation-delay:0ms]",
     },
 ];
 
-function getInitials(name: string): string {
-    return name
-        .split(/[\s.]+/)
-        .filter(Boolean)
-        .map((word) => word[0])
-        .join("")
-        .slice(0, 2)
-        .toUpperCase();
+/** Seed for the avatar: the full name without the dot after an abbreviated last name. */
+function getAvatarName(name: string): string {
+    return name.replace(/\.$/, "");
 }
 
 /**
@@ -60,15 +54,12 @@ export function Podium({ standings }: { standings: PlayerStanding[] }) {
                             player={player.player}
                             className="group/podium focus-visible:ring-ring/50 flex w-full min-w-0 cursor-pointer flex-col items-center gap-2 rounded-t-xl outline-none focus-visible:ring-[3px]"
                         >
-                            <span
-                                aria-hidden="true"
-                                className={cn(
-                                    "flex size-13 items-center justify-center rounded-full text-lg font-extrabold lg:size-16 lg:text-[1.375rem]",
-                                    place.avatar,
-                                )}
-                            >
-                                {getInitials(player.player)}
-                            </span>
+                            <Blobatar
+                                name={getAvatarName(player.player)}
+                                background={false}
+                                animate="always"
+                                className="size-13 lg:size-16"
+                            />
                             <span className="w-full truncate text-center font-bold underline-offset-4 group-hover/podium:underline lg:text-lg">
                                 {player.player}
                             </span>
