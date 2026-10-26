@@ -17,12 +17,14 @@
         "data-consistency-check": "node scripts/ensure-data-consistency.js"
     },
     "dependencies": {
+        "@blobatar/react": "2.7.0",
         "@radix-ui/react-collapsible": "^1.1.20",
         "@radix-ui/react-dialog": "^1.1.23",
         "@radix-ui/react-navigation-menu": "^1.2.22",
         "@radix-ui/react-slot": "^1.3.3",
         "@radix-ui/react-tabs": "^1.2.1",
         "@tanstack/react-table": "^9.2.4",
+        "blobatar": "2.7.0",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.5.0",
         "klona": "^2.0.6",
