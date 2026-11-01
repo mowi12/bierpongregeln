@@ -35,6 +35,11 @@
             }
         }
     },
+    "yaml": {
+        "formatter": {
+            "indentWidth": 2
+        }
+    },
     "css": {
         "parser": {
             "tailwindDirectives": true

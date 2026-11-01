@@ -32,7 +32,7 @@ A public website for beer pong rules and tournament tools.
 ## Tech Stack
 
 | Category             | Technology                  |
-|----------------------|-----------------------------|
+| -------------------- | --------------------------- |
 | Framework            | Next.js (React, TypeScript) |
 | Styling              | Tailwind CSS, shadcn/ui     |
 | Linting & Formatting | Biome                       |

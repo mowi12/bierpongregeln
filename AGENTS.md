@@ -4,14 +4,14 @@ A static Next.js website for beer pong rules and tournament tools. German-langua
 
 ## Key Commands
 
-| Task | Command |
-|------|---------|
-| Dev server | `pnpm dev` |
-| Production build | `pnpm build` |
-| Type check | `pnpm run typecheck` |
-| Lint (CI mode) | `pnpm exec biome ci --error-on-warnings` |
-| Lint + fix | `pnpm run check:fix` |
-| Format | `pnpm run format` |
+| Task             | Command                                  |
+| ---------------- | ---------------------------------------- |
+| Dev server       | `pnpm dev`                               |
+| Production build | `pnpm build`                             |
+| Type check       | `pnpm run typecheck`                     |
+| Lint (CI mode)   | `pnpm exec biome ci --error-on-warnings` |
+| Lint + fix       | `pnpm run check:fix`                     |
+| Format           | `pnpm run format`                        |
 
 All three CI checks must pass before merging: `biome ci`, `typecheck`, `build`.
 
