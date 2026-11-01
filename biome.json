@@ -40,6 +40,12 @@
             "indentWidth": 2
         }
     },
+    "markdown": {
+        "formatter": {
+            "indentWidth": 2,
+            "proseWrap": "preserve"
+        }
+    },
     "css": {
         "parser": {
             "tailwindDirectives": true

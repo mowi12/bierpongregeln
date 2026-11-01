@@ -49,7 +49,7 @@ src/
 
 ## Code Conventions
 
-- **Linter/Formatter**: Biome — 4-space indent, 100-char line width, LF line endings, double quotes
+- **Linter/Formatter**: Biome — 4-space indent (2 for YAML and Markdown), 100-char line width, LF line endings, double quotes; Markdown line breaks are kept as written
 - **TypeScript**: strict mode, path alias `@/*` → `src/*`
 - **Commits**: conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `build:`, `docs:`)
 - **Package manager**: pnpm (v11)
