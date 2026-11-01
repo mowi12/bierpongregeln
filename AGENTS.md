@@ -4,14 +4,14 @@ A static Next.js website for beer pong rules and tournament tools. German-langua
 
 ## Key Commands
 
-| Task | Command |
-|------|---------|
-| Dev server | `pnpm dev` |
-| Production build | `pnpm build` |
-| Type check | `pnpm run typecheck` |
-| Lint (CI mode) | `pnpm exec biome ci --error-on-warnings` |
-| Lint + fix | `pnpm run check:fix` |
-| Format | `pnpm run format` |
+| Task             | Command                                  |
+| ---------------- | ---------------------------------------- |
+| Dev server       | `pnpm dev`                               |
+| Production build | `pnpm build`                             |
+| Type check       | `pnpm run typecheck`                     |
+| Lint (CI mode)   | `pnpm exec biome ci --error-on-warnings` |
+| Lint + fix       | `pnpm run check:fix`                     |
+| Format           | `pnpm run format`                        |
 
 All three CI checks must pass before merging: `biome ci`, `typecheck`, `build`.
 
@@ -49,7 +49,7 @@ src/
 
 ## Code Conventions
 
-- **Linter/Formatter**: Biome — 4-space indent, 100-char line width, LF line endings, double quotes
+- **Linter/Formatter**: Biome — 4-space indent (2 for YAML and Markdown), 100-char line width, LF line endings, double quotes; Markdown line breaks are kept as written
 - **TypeScript**: strict mode, path alias `@/*` → `src/*`
 - **Commits**: conventional commits (`feat:`, `fix:`, `chore:`, `refactor:`, `build:`, `docs:`)
 - **Package manager**: pnpm (v11)
